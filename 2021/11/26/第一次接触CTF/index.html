@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Web1.白给&amp;签到没什么可说的，直接复制粘贴。 2.WelcomeF12查看源代码，得到flag 3.Get由代码知，只需令henu&#x3D;flag即可输出flag，则在网址一栏添加&#x2F;?henu&#x3D;flag。 4.Post利用hackbar post传参henu&#x3D;fl@g即可得到flag 5. easyphp_1此题涉及md5加密，根据常见md5加密，搜索s214587387a找到相应md5加密">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一次接触CTF">
+<meta property="og:url" content="http://example.com/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/index.html">
+<meta property="og:site_name" content="寒林舍">
+<meta property="og:description" content="Web1.白给&amp;签到没什么可说的，直接复制粘贴。 2.WelcomeF12查看源代码，得到flag 3.Get由代码知，只需令henu&#x3D;flag即可输出flag，则在网址一栏添加&#x2F;?henu&#x3D;flag。 4.Post利用hackbar post传参henu&#x3D;fl@g即可得到flag 5. easyphp_1此题涉及md5加密，根据常见md5加密，搜索s214587387a找到相应md5加密">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/Blog/hexo/source_posts/第一次接触CTF/1.jpg">
+<meta property="og:image" content="file:///D:/Blog/hexo/source/_posts/第一次接触CTF/2.jpg">
+<meta property="og:image" content="file:///C:/Users/23003/AppData/Local/Temp/msohtmlclip1/01/clip_image010.jpg">
+<meta property="og:image" content="file:///C:/Users/23003/AppData/Local/Temp/msohtmlclip1/01/clip_image012.jpg">
+<meta property="og:image" content="file:///C:/Users/23003/AppData/Local/Temp/msohtmlclip1/01/clip_image014.jpg">
+<meta property="og:image" content="file:///C:/Users/23003/AppData/Local/Temp/msohtmlclip1/01/clip_image016.jpg">
+<meta property="og:image" content="file:///C:/Users/23003/AppData/Local/Temp/msohtmlclip1/01/clip_image018.jpg">
+<meta property="article:published_time" content="2021-11-26T05:00:12.220Z">
+<meta property="article:modified_time" content="2021-11-26T05:45:01.761Z">
+<meta property="article:author" content="Harbeter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/Blog/hexo/source_posts/第一次接触CTF/1.jpg">
+
+<link rel="canonical" href="http://example.com/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>第一次接触CTF | 寒林舍</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">寒林舍</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-resources">
+
+    <a href="/resources/" rel="section"><i class="fa fa-download fa-fw"></i>资源</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-comments">
+
+    <a href="/comments/" rel="section"><i class="fa fa-comments fa-fw"></i>留言</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Harbeter">
+      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="寒林舍">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          第一次接触CTF
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-26 13:00:12 / 修改时间：13:45:01" itemprop="dateCreated datePublished" datetime="2021-11-26T13:00:12+08:00">2021-11-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="1-白给-amp-签到"><a href="#1-白给-amp-签到" class="headerlink" title="1.白给&amp;签到"></a>1.白给&amp;签到</h2><p>没什么可说的，直接复制粘贴。</p>
+<h2 id="2-Welcome"><a href="#2-Welcome" class="headerlink" title="2.Welcome"></a>2.Welcome</h2><p>F12查看源代码，得到flag</p>
+<h2 id="3-Get"><a href="#3-Get" class="headerlink" title="3.Get"></a>3.Get</h2><p>由代码知，只需令henu=flag即可输出flag，则在网址一栏添加/?henu=flag。</p>
+<h2 id="4-Post"><a href="#4-Post" class="headerlink" title="4.Post"></a>4.Post</h2><p>利用hackbar post传参henu=fl@g即可得到flag</p>
+<h2 id="5-easyphp-1"><a href="#5-easyphp-1" class="headerlink" title="5. easyphp_1"></a>5. easyphp_1</h2><p>此题涉及md5加密，根据常见md5加密，搜索s214587387a找到相应md5加密“PHP弱性处理0e开头md5哈希字符串缺陷/bug” 令henu=其中任意加密码，如s1885207154a得到flag</p>
+<h2 id="6-全是假的"><a href="#6-全是假的" class="headerlink" title="6.全是假的"></a>6.全是假的</h2><p>通过F12找到，则直接进入/hint.php,多次刷新得到flllagggg.php 访问得知需要WebAC浏览器，启用bp修改浏览器并伪造Ip，但最终没有得到flag</p>
+<h2 id="7-Autumn"><a href="#7-Autumn" class="headerlink" title="7. Autumn"></a>7. Autumn</h2><p>网站提示要扫一扫，则打开御剑后台扫描工具，扫描后进入相应网站，提示flag不在这，最终没有得到flag</p>
+<h2 id="8-easy-Cookie"><a href="#8-easy-Cookie" class="headerlink" title="8. easy_Cookie"></a>8. easy_Cookie</h2><p>通过Google插件查看cookie</p>
+<p>得知是一段密文，打开bp解密，先用url解密知%3D为=，改之，接着连用两次Base64解密得到flag</p>
+<h2 id="9-艺术就是？"><a href="#9-艺术就是？" class="headerlink" title="9. 艺术就是？"></a>9. 艺术就是？</h2><p>由火影忍者中迪达拉（哈哈哈哈哈哈哈）知道艺术即为爆破，进去网站发现果然是爆破打开bp，又因为密码账户一样，则用battering ram进行攻击得到administrator，输入得到flag</p>
+<h2 id="10-webshell"><a href="#10-webshell" class="headerlink" title="10.webshell"></a>10.webshell</h2><p>关键词“一句话”，进入网址，看来需要用一句话木马通过蚁剑进入后台，提交木马txt用bp修改格式，上传成功，但最终没能用蚁剑连接上。</p>
+<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="1-滴滴滴"><a href="#1-滴滴滴" class="headerlink" title="1.滴滴滴"></a>1.滴滴滴</h2><p>下载附件后，一看就是摩斯密码，根据摩斯密码得到flag</p>
+<h2 id="2-每逢佳节"><a href="#2-每逢佳节" class="headerlink" title="2.每逢佳节"></a>2.每逢佳节</h2><p>一看末尾有=，尝试用bp中的base64解码，得到flag</p>
+<h2 id="3-Bacon"><a href="#3-Bacon" class="headerlink" title="3.Bacon"></a>3.Bacon</h2><p>关键词“当铺”，“培根”即当铺密码和培根密码，根据当铺密码转换关系将字符转换为数字，进而利用ASCII码转换为字母形式，最后培根解密得到flag</p>
+<h2 id="4-古典变奏"><a href="#4-古典变奏" class="headerlink" title="4.古典变奏"></a>4.古典变奏</h2><p>关键词“猪圈”“凯撒”“栅栏”，先用猪圈密码解密，然后用凯撒密码6，栅栏密码8解密得到flag</p>
+<h1 id="Pwn"><a href="#Pwn" class="headerlink" title="Pwn"></a>Pwn</h1><h2 id="1-白给-连上就给flag"><a href="#1-白给-连上就给flag" class="headerlink" title="1. [白给] 连上就给flag"></a>1. [白给] 连上就给flag</h2><p>根据提示下载了ubuntu虚拟机并且安装了netcat 但nc 39.103.198.196 10008</p>
+<p>然后输入指令ls -l 再输入cat flag.txt得到flag。</p>
+<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/Blog\hexo\source_posts\第一次接触CTF\1.jpg" alt="img"></p>
+<h2 id="2-白给-从后门进来"><a href="#2-白给-从后门进来" class="headerlink" title="2. [白给] 从后门进来"></a>2. [白给] 从后门进来</h2><p><img src="file:///D:/Blog/hexo/source/_posts/第一次接触CTF/2.jpg" alt="img"></p>
+<p>不知道咋办了。</p>
+<h1 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h1><h2 id="1-easy-re"><a href="#1-easy-re" class="headerlink" title="1. easy_re"></a>1. easy_re</h2><p>根据要求，下载了ida，将exe拖入后得到</p>
+<p><img src="file:///C:/Users/23003/AppData/Local/Temp/msohtmlclip1/01/clip_image010.jpg" alt="img"></p>
+<p>尝试F5转换，最终得到flag。</p>
+<h2 id="2-keypatch"><a href="#2-keypatch" class="headerlink" title="2.keypatch"></a>2.keypatch</h2><p>按提示下载安装keypatch（虽然我也不知道有啥用），打开程序后发现一直循环，然后将程序拖入到ida，找到关键函数</p>
+<p><img src="file:///C:/Users/23003/AppData/Local/Temp/msohtmlclip1/01/clip_image012.jpg" alt="img"></p>
+<p>将这里的50000改为1，然后运行程序，得到flag。</p>
+<h2 id="3-re1"><a href="#3-re1" class="headerlink" title="3.re1"></a>3.re1</h2><p><img src="file:///C:/Users/23003/AppData/Local/Temp/msohtmlclip1/01/clip_image014.jpg" alt="img"></p>
+<p><img src="file:///C:/Users/23003/AppData/Local/Temp/msohtmlclip1/01/clip_image016.jpg" alt="img"></p>
+<p>哈哈哈哈哈哈，啊这~，就不用我说了吧。</p>
+<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="1-小兔子"><a href="#1-小兔子" class="headerlink" title="1.小兔子"></a>1.小兔子</h2><p>下载图片后，右键查看属性，得到一串密文，尝试搜索兔子加密，得知有rabbit解密，通过解密得到flag</p>
+<h2 id="2-我在城楼观山景"><a href="#2-我在城楼观山景" class="headerlink" title="2.我在城楼观山景"></a>2.我在城楼观山景</h2><p>下载文档后发现是乱码，尝试搜索前几行字符</p>
+<p><img src="file:///C:/Users/23003/AppData/Local/Temp/msohtmlclip1/01/clip_image018.jpg" alt="img"></p>
+<p>得知该为图片转为txt会出现的乱码，将后缀改为jpg打开图片后，发现左下角的falg</p>
+<h2 id="3-如来の兽"><a href="#3-如来の兽" class="headerlink" title="3. 如来の兽"></a>3. 如来の兽</h2><p>根据题目可知，该题涉及佛曰和兽音解密，经过两次解密后，发现仍有密文，尝试搜索社会主义核心价值观解密，得知真有此加密方法，解密得到flag</p>
+<h2 id="4-PDF"><a href="#4-PDF" class="headerlink" title="4.PDF"></a>4.PDF</h2><p>提示在图片下面，我们便将PDF转为word文档，得到一串极具讽刺意味的话语，尝试复制搜索，得到该为阴阳怪气加密，解密得到flag</p>
+<h2 id="5-QRcode"><a href="#5-QRcode" class="headerlink" title="5. QRcode"></a>5. QRcode</h2><p>打开后发现二维码残缺，补全后扫描得到一串密文，尝试搜索密文，得知有brainfuck加密方式，输入密文，解密得到flag</p>
+<h2 id="6-Boringboss"><a href="#6-Boringboss" class="headerlink" title="6.Boringboss"></a>6.Boringboss</h2><p>打开后发现这明显是当铺密码，解密后得到对应数字，利用ASCII码转换为对应字母，接着用培根密码解密得到flag</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/23/hello-world/" rel="prev" title="朋友，你好！欢迎来到我的世界!">
+      <i class="fa fa-chevron-left"></i> 朋友，你好！欢迎来到我的世界!
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Web"><span class="nav-number">1.</span> <span class="nav-text">Web</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%99%BD%E7%BB%99-amp-%E7%AD%BE%E5%88%B0"><span class="nav-number">1.1.</span> <span class="nav-text">1.白给&amp;签到</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Welcome"><span class="nav-number">1.2.</span> <span class="nav-text">2.Welcome</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Get"><span class="nav-number">1.3.</span> <span class="nav-text">3.Get</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Post"><span class="nav-number">1.4.</span> <span class="nav-text">4.Post</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-easyphp-1"><span class="nav-number">1.5.</span> <span class="nav-text">5. easyphp_1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%85%A8%E6%98%AF%E5%81%87%E7%9A%84"><span class="nav-number">1.6.</span> <span class="nav-text">6.全是假的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Autumn"><span class="nav-number">1.7.</span> <span class="nav-text">7. Autumn</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-easy-Cookie"><span class="nav-number">1.8.</span> <span class="nav-text">8. easy_Cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E8%89%BA%E6%9C%AF%E5%B0%B1%E6%98%AF%EF%BC%9F"><span class="nav-number">1.9.</span> <span class="nav-text">9. 艺术就是？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-webshell"><span class="nav-number">1.10.</span> <span class="nav-text">10.webshell</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Crypto"><span class="nav-number">2.</span> <span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%BB%B4%E6%BB%B4%E6%BB%B4"><span class="nav-number">2.1.</span> <span class="nav-text">1.滴滴滴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%AF%8F%E9%80%A2%E4%BD%B3%E8%8A%82"><span class="nav-number">2.2.</span> <span class="nav-text">2.每逢佳节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Bacon"><span class="nav-number">2.3.</span> <span class="nav-text">3.Bacon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%8F%A4%E5%85%B8%E5%8F%98%E5%A5%8F"><span class="nav-number">2.4.</span> <span class="nav-text">4.古典变奏</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pwn"><span class="nav-number">3.</span> <span class="nav-text">Pwn</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%99%BD%E7%BB%99-%E8%BF%9E%E4%B8%8A%E5%B0%B1%E7%BB%99flag"><span class="nav-number">3.1.</span> <span class="nav-text">1. [白给] 连上就给flag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%99%BD%E7%BB%99-%E4%BB%8E%E5%90%8E%E9%97%A8%E8%BF%9B%E6%9D%A5"><span class="nav-number">3.2.</span> <span class="nav-text">2. [白给] 从后门进来</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reverse"><span class="nav-number">4.</span> <span class="nav-text">Reverse</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-easy-re"><span class="nav-number">4.1.</span> <span class="nav-text">1. easy_re</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-keypatch"><span class="nav-number">4.2.</span> <span class="nav-text">2.keypatch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-re1"><span class="nav-number">4.3.</span> <span class="nav-text">3.re1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Misc"><span class="nav-number">5.</span> <span class="nav-text">Misc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%B0%8F%E5%85%94%E5%AD%90"><span class="nav-number">5.1.</span> <span class="nav-text">1.小兔子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%88%91%E5%9C%A8%E5%9F%8E%E6%A5%BC%E8%A7%82%E5%B1%B1%E6%99%AF"><span class="nav-number">5.2.</span> <span class="nav-text">2.我在城楼观山景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%A6%82%E6%9D%A5%E3%81%AE%E5%85%BD"><span class="nav-number">5.3.</span> <span class="nav-text">3. 如来の兽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-PDF"><span class="nav-number">5.4.</span> <span class="nav-text">4.PDF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-QRcode"><span class="nav-number">5.5.</span> <span class="nav-text">5. QRcode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Boringboss"><span class="nav-number">5.6.</span> <span class="nav-text">6.Boringboss</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Harbeter"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Harbeter</p>
+  <div class="site-description" itemprop="description">愿你永远善良，永远向往未来！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Harbeter</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
