@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>“解决codeblocks无法运行c++程序&quot;</title>
-    <url>/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/</url>
-    <content><![CDATA[<p>下载Codeblocks后，创建新程序后，发现点击运行后无法弹出控制台，如图</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120305308.png" alt="image-20211127120305308"></p>
-<p>#法1</p>
-<p>查看compiler setting中的路径，如下图</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120458845.png" alt="image-20211127120458845"></p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120607794.png" alt="image-20211127120607794"></p>
-<p>修改MinGW的路径后，解决问题</p>
-<p>#法2（法1未解决）</p>
-<p>路径正常，修改路径后显示</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120747653.png" alt="image-20211127120747653"></p>
-<p>即缺少GNU GCC Compiler，说白了就是MinGW文件不完整，尝试删除WinGW文件夹，然后重新下载</p>
-<p>下载地址：链接：<a href="https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag">https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag</a>    提取码：axen</p>
-<p>将该压缩包解压后，解决问题</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127121331465.png" alt="image-20211127121331465"></p>
-]]></content>
-  </entry>
-  <entry>
     <title>朋友，你好！欢迎来到我的世界!</title>
     <url>/2021/11/23/hello-world/</url>
     <content><![CDATA[<p>这是我的第一条<a href="https://shl528.top/">博客</a>!在这里我会更新自己觉得有价值的东西，希望这对你能有一些帮助。<br>嗯… 也不知道到写些什么，那就摘一篇我认为很有价值的文章吧！</p>
@@ -159,6 +140,25 @@
 <h2 id="4-PDF"><a href="#4-PDF" class="headerlink" title="4.PDF"></a>4.PDF</h2><p>提示在图片下面，我们便将PDF转为word文档，得到一串极具讽刺意味的话语，尝试复制搜索，得到该为阴阳怪气加密，解密得到flag</p>
 <h2 id="5-QRcode"><a href="#5-QRcode" class="headerlink" title="5. QRcode"></a>5. QRcode</h2><p>打开后发现二维码残缺，补全后扫描得到一串密文，尝试搜索密文，得知有brainfuck加密方式，输入密文，解密得到flag</p>
 <h2 id="6-Boringboss"><a href="#6-Boringboss" class="headerlink" title="6.Boringboss"></a>6.Boringboss</h2><p>打开后发现这明显是当铺密码，解密后得到对应数字，利用ASCII码转换为对应字母，接着用培根密码解密得到flag</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>“解决codeblocks无法运行c++程序&quot;</title>
+    <url>/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/</url>
+    <content><![CDATA[<p>下载Codeblocks后，创建新程序后，发现点击运行后无法弹出控制台，如图</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120305308.png" alt="image-20211127120305308"></p>
+<p>#法1</p>
+<p>查看compiler setting中的路径，如下图</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120458845.png" alt="image-20211127120458845"></p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120607794.png" alt="image-20211127120607794"></p>
+<p>修改MinGW的路径后，解决问题</p>
+<p>#法2（法1未解决）</p>
+<p>路径正常，修改路径后显示</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120747653.png" alt="image-20211127120747653"></p>
+<p>即缺少GNU GCC Compiler，说白了就是MinGW文件不完整，尝试删除WinGW文件夹，然后重新下载</p>
+<p>下载地址：链接：<a href="https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag">https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag</a>    提取码：axen</p>
+<p>将该压缩包解压后，解决问题</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127121331465.png" alt="image-20211127121331465"></p>
 ]]></content>
   </entry>
 </search>
