@@ -1169,7 +1169,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #1432a1;
+  background: #ffe4b8;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2391,7 +2391,7 @@ embed {
   white-space: nowrap;
 }
 body {
-  background: url("https://source.unsplash.com/random/1600x900");
+  background: url("/images/background.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
