@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>第一次接触CTF</title>
+    <url>/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/</url>
+    <content><![CDATA[<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="1-白给-amp-签到"><a href="#1-白给-amp-签到" class="headerlink" title="1.白给&amp;签到"></a>1.白给&amp;签到</h2><p>没什么可说的，直接复制粘贴。</p>
+<h2 id="2-Welcome"><a href="#2-Welcome" class="headerlink" title="2.Welcome"></a>2.Welcome</h2><p>F12查看源代码，得到flag</p>
+<h2 id="3-Get"><a href="#3-Get" class="headerlink" title="3.Get"></a>3.Get</h2><p>由代码知，只需令henu=flag即可输出flag，则在网址一栏添加/?henu=flag。</p>
+<h2 id="4-Post"><a href="#4-Post" class="headerlink" title="4.Post"></a>4.Post</h2><p>利用hackbar post传参henu=fl@g即可得到flag</p>
+<h2 id="5-easyphp-1"><a href="#5-easyphp-1" class="headerlink" title="5. easyphp_1"></a>5. easyphp_1</h2><p>此题涉及md5加密，根据常见md5加密，搜索s214587387a找到相应md5加密“PHP弱性处理0e开头md5哈希字符串缺陷/bug” 令henu=其中任意加密码，如s1885207154a得到flag</p>
+<h2 id="6-全是假的"><a href="#6-全是假的" class="headerlink" title="6.全是假的"></a>6.全是假的</h2><p>通过F12找到，则直接进入/hint.php,多次刷新得到flllagggg.php 访问得知需要WebAC浏览器，启用bp修改浏览器并伪造Ip，但最终没有得到flag</p>
+<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/6.png"></p>
+<h2 id="7-Autumn"><a href="#7-Autumn" class="headerlink" title="7. Autumn"></a>7. Autumn</h2><p>网站提示要扫一扫，则打开御剑后台扫描工具，扫描后进入相应网站，提示flag不在这，最终没有得到flag</p>
+<h2 id="8-easy-Cookie"><a href="#8-easy-Cookie" class="headerlink" title="8. easy_Cookie"></a>8. easy_Cookie</h2><p>通过Google插件查看cookie</p>
+<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/8.png"></p>
+<p>得知是一段密文，打开bp解密，先用url解密知%3D为=，改之，接着连用两次Base64解密得到flag</p>
+<h2 id="9-艺术就是？"><a href="#9-艺术就是？" class="headerlink" title="9. 艺术就是？"></a>9. 艺术就是？</h2><p>由火影忍者中迪达拉（哈哈哈哈哈哈哈）知道艺术即为爆破，进去网站发现果然是爆破打开bp，又因为密码账户一样，则用battering ram进行攻击得到administrator，输入得到flag</p>
+<h2 id="10-webshell"><a href="#10-webshell" class="headerlink" title="10.webshell"></a>10.webshell</h2><p>关键词“一句话”，进入网址，看来需要用一句话木马通过蚁剑进入后台，提交木马txt用bp修改格式，上传成功，但最终没能用蚁剑连接上。</p>
+<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="1-滴滴滴"><a href="#1-滴滴滴" class="headerlink" title="1.滴滴滴"></a>1.滴滴滴</h2><p>下载附件后，一看就是摩斯密码，根据摩斯密码得到flag</p>
+<h2 id="2-每逢佳节"><a href="#2-每逢佳节" class="headerlink" title="2.每逢佳节"></a>2.每逢佳节</h2><p>一看末尾有=，尝试用bp中的base64解码，得到flag</p>
+<h2 id="3-Bacon"><a href="#3-Bacon" class="headerlink" title="3.Bacon"></a>3.Bacon</h2><p>关键词“当铺”，“培根”即当铺密码和培根密码，根据当铺密码转换关系将字符转换为数字，进而利用ASCII码转换为字母形式，最后培根解密得到flag</p>
+<h2 id="4-古典变奏"><a href="#4-古典变奏" class="headerlink" title="4.古典变奏"></a>4.古典变奏</h2><p>关键词“猪圈”“凯撒”“栅栏”，先用猪圈密码解密，然后用凯撒密码6，栅栏密码8解密得到flag</p>
+<h1 id="Pwn"><a href="#Pwn" class="headerlink" title="Pwn"></a>Pwn</h1><h2 id="1-白给-连上就给flag"><a href="#1-白给-连上就给flag" class="headerlink" title="1. [白给] 连上就给flag"></a>1. [白给] 连上就给flag</h2><p>根据提示下载了ubuntu虚拟机并且安装了netcat 但nc 39.103.198.196 10008</p>
+<p>然后输入指令ls -l 再输入cat flag.txt得到flag。</p>
+<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/1.png" alt="img"></p>
+<h2 id="2-白给-从后门进来"><a href="#2-白给-从后门进来" class="headerlink" title="2. [白给] 从后门进来"></a>2. [白给] 从后门进来</h2><p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/2.png" alt="img"></p>
+<p>不知道咋办了。</p>
+<h1 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h1><h2 id="1-easy-re"><a href="#1-easy-re" class="headerlink" title="1. easy_re"></a>1. easy_re</h2><p>根据要求，下载了ida，将exe拖入后得到</p>
+<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/re1.png" alt="img"></p>
+<p>尝试F5转换，最终得到flag。</p>
+<h2 id="2-keypatch"><a href="#2-keypatch" class="headerlink" title="2.keypatch"></a>2.keypatch</h2><p>按提示下载安装keypatch（虽然我也不知道有啥用），打开程序后发现一直循环，然后将程序拖入到ida，找到关键函数</p>
+<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/re2.png" alt="img"></p>
+<p>将这里的50000改为1，然后运行程序，得到flag。</p>
+<h2 id="3-re1"><a href="#3-re1" class="headerlink" title="3.re1"></a>3.re1</h2><p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/re3.1.png" alt="img"></p>
+<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/re3.png" alt="img"></p>
+<p>哈哈哈哈哈哈，啊这~，就不用我说了吧。</p>
+<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="1-小兔子"><a href="#1-小兔子" class="headerlink" title="1.小兔子"></a>1.小兔子</h2><p>下载图片后，右键查看属性，得到一串密文，尝试搜索兔子加密，得知有rabbit解密，通过解密得到flag</p>
+<h2 id="2-我在城楼观山景"><a href="#2-我在城楼观山景" class="headerlink" title="2.我在城楼观山景"></a>2.我在城楼观山景</h2><p>下载文档后发现是乱码，尝试搜索前几行字符</p>
+<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/misc2.png" alt="img"></p>
+<p>得知该为图片转为txt会出现的乱码，将后缀改为jpg打开图片后，发现左下角的falg</p>
+<h2 id="3-如来の兽"><a href="#3-如来の兽" class="headerlink" title="3. 如来の兽"></a>3. 如来の兽</h2><p>根据题目可知，该题涉及佛曰和兽音解密，经过两次解密后，发现仍有密文，尝试搜索社会主义核心价值观解密，得知真有此加密方法，解密得到flag</p>
+<h2 id="4-PDF"><a href="#4-PDF" class="headerlink" title="4.PDF"></a>4.PDF</h2><p>提示在图片下面，我们便将PDF转为word文档，得到一串极具讽刺意味的话语，尝试复制搜索，得到该为阴阳怪气加密，解密得到flag</p>
+<h2 id="5-QRcode"><a href="#5-QRcode" class="headerlink" title="5. QRcode"></a>5. QRcode</h2><p>打开后发现二维码残缺，补全后扫描得到一串密文，尝试搜索密文，得知有brainfuck加密方式，输入密文，解密得到flag</p>
+<h2 id="6-Boringboss"><a href="#6-Boringboss" class="headerlink" title="6.Boringboss"></a>6.Boringboss</h2><p>打开后发现这明显是当铺密码，解密后得到对应数字，利用ASCII码转换为对应字母，接着用培根密码解密得到flag</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>“解决codeblocks无法运行c++程序&quot;</title>
+    <url>/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/</url>
+    <content><![CDATA[<p>下载Codeblocks后，创建新程序后，发现点击运行后无法弹出控制台，如图</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120305308.png" alt="image-20211127120305308"></p>
+<p>#法1</p>
+<p>查看compiler setting中的路径，如下图</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120458845.png" alt="image-20211127120458845"></p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120607794.png" alt="image-20211127120607794"></p>
+<p>修改MinGW的路径后，解决问题</p>
+<p>#法2（法1未解决）</p>
+<p>路径正常，修改路径后显示</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120747653.png" alt="image-20211127120747653"></p>
+<p>即缺少GNU GCC Compiler，说白了就是MinGW文件不完整，尝试删除WinGW文件夹，然后重新下载</p>
+<p>下载地址：链接：<a href="https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag">https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag</a>    提取码：axen</p>
+<p>将该压缩包解压后，解决问题</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127121331465.png" alt="image-20211127121331465"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>朋友，你好！欢迎来到我的世界!</title>
     <url>/2021/11/23/hello-world/</url>
     <content><![CDATA[<p>这是我的第一条<a href="https://shl528.top/">博客</a>!在这里我会更新自己觉得有价值的东西，希望这对你能有一些帮助。<br>嗯… 也不知道到写些什么，那就摘一篇我认为很有价值的文章吧！</p>
@@ -96,69 +159,6 @@
 <p>有同学会说，在车上看书伤眼睛，或者不方便，这可能也有道理，但是我看不少同学在无论多么拥挤的车上，也照样在看手机，玩游戏。如果把这些时间放在看书上，也许你会更充实。</p>
 <p>卡夫卡说，一本书，必须是一把凿开我们心中冰海的利斧。</p>
 <p>亲爱的同学们，你的心中有冰海吗？那么，就从现在开始读书吧！</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>“解决codeblocks无法运行c++程序&quot;</title>
-    <url>/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/</url>
-    <content><![CDATA[<p>下载Codeblocks后，创建新程序后，发现点击运行后无法弹出控制台，如图</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120305308.png" alt="image-20211127120305308"></p>
-<p>#法1</p>
-<p>查看compiler setting中的路径，如下图</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120458845.png" alt="image-20211127120458845"></p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120607794.png" alt="image-20211127120607794"></p>
-<p>修改MinGW的路径后，解决问题</p>
-<p>#法2（法1未解决）</p>
-<p>路径正常，修改路径后显示</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120747653.png" alt="image-20211127120747653"></p>
-<p>即缺少GNU GCC Compiler，说白了就是MinGW文件不完整，尝试删除WinGW文件夹，然后重新下载</p>
-<p>下载地址：链接：<a href="https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag">https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag</a>    提取码：axen</p>
-<p>将该压缩包解压后，解决问题</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127121331465.png" alt="image-20211127121331465"></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>第一次接触CTF</title>
-    <url>/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/</url>
-    <content><![CDATA[<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="1-白给-amp-签到"><a href="#1-白给-amp-签到" class="headerlink" title="1.白给&amp;签到"></a>1.白给&amp;签到</h2><p>没什么可说的，直接复制粘贴。</p>
-<h2 id="2-Welcome"><a href="#2-Welcome" class="headerlink" title="2.Welcome"></a>2.Welcome</h2><p>F12查看源代码，得到flag</p>
-<h2 id="3-Get"><a href="#3-Get" class="headerlink" title="3.Get"></a>3.Get</h2><p>由代码知，只需令henu=flag即可输出flag，则在网址一栏添加/?henu=flag。</p>
-<h2 id="4-Post"><a href="#4-Post" class="headerlink" title="4.Post"></a>4.Post</h2><p>利用hackbar post传参henu=fl@g即可得到flag</p>
-<h2 id="5-easyphp-1"><a href="#5-easyphp-1" class="headerlink" title="5. easyphp_1"></a>5. easyphp_1</h2><p>此题涉及md5加密，根据常见md5加密，搜索s214587387a找到相应md5加密“PHP弱性处理0e开头md5哈希字符串缺陷/bug” 令henu=其中任意加密码，如s1885207154a得到flag</p>
-<h2 id="6-全是假的"><a href="#6-全是假的" class="headerlink" title="6.全是假的"></a>6.全是假的</h2><p>通过F12找到，则直接进入/hint.php,多次刷新得到flllagggg.php 访问得知需要WebAC浏览器，启用bp修改浏览器并伪造Ip，但最终没有得到flag</p>
-<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/6.png"></p>
-<h2 id="7-Autumn"><a href="#7-Autumn" class="headerlink" title="7. Autumn"></a>7. Autumn</h2><p>网站提示要扫一扫，则打开御剑后台扫描工具，扫描后进入相应网站，提示flag不在这，最终没有得到flag</p>
-<h2 id="8-easy-Cookie"><a href="#8-easy-Cookie" class="headerlink" title="8. easy_Cookie"></a>8. easy_Cookie</h2><p>通过Google插件查看cookie</p>
-<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/8.png"></p>
-<p>得知是一段密文，打开bp解密，先用url解密知%3D为=，改之，接着连用两次Base64解密得到flag</p>
-<h2 id="9-艺术就是？"><a href="#9-艺术就是？" class="headerlink" title="9. 艺术就是？"></a>9. 艺术就是？</h2><p>由火影忍者中迪达拉（哈哈哈哈哈哈哈）知道艺术即为爆破，进去网站发现果然是爆破打开bp，又因为密码账户一样，则用battering ram进行攻击得到administrator，输入得到flag</p>
-<h2 id="10-webshell"><a href="#10-webshell" class="headerlink" title="10.webshell"></a>10.webshell</h2><p>关键词“一句话”，进入网址，看来需要用一句话木马通过蚁剑进入后台，提交木马txt用bp修改格式，上传成功，但最终没能用蚁剑连接上。</p>
-<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="1-滴滴滴"><a href="#1-滴滴滴" class="headerlink" title="1.滴滴滴"></a>1.滴滴滴</h2><p>下载附件后，一看就是摩斯密码，根据摩斯密码得到flag</p>
-<h2 id="2-每逢佳节"><a href="#2-每逢佳节" class="headerlink" title="2.每逢佳节"></a>2.每逢佳节</h2><p>一看末尾有=，尝试用bp中的base64解码，得到flag</p>
-<h2 id="3-Bacon"><a href="#3-Bacon" class="headerlink" title="3.Bacon"></a>3.Bacon</h2><p>关键词“当铺”，“培根”即当铺密码和培根密码，根据当铺密码转换关系将字符转换为数字，进而利用ASCII码转换为字母形式，最后培根解密得到flag</p>
-<h2 id="4-古典变奏"><a href="#4-古典变奏" class="headerlink" title="4.古典变奏"></a>4.古典变奏</h2><p>关键词“猪圈”“凯撒”“栅栏”，先用猪圈密码解密，然后用凯撒密码6，栅栏密码8解密得到flag</p>
-<h1 id="Pwn"><a href="#Pwn" class="headerlink" title="Pwn"></a>Pwn</h1><h2 id="1-白给-连上就给flag"><a href="#1-白给-连上就给flag" class="headerlink" title="1. [白给] 连上就给flag"></a>1. [白给] 连上就给flag</h2><p>根据提示下载了ubuntu虚拟机并且安装了netcat 但nc 39.103.198.196 10008</p>
-<p>然后输入指令ls -l 再输入cat flag.txt得到flag。</p>
-<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/1.png" alt="img"></p>
-<h2 id="2-白给-从后门进来"><a href="#2-白给-从后门进来" class="headerlink" title="2. [白给] 从后门进来"></a>2. [白给] 从后门进来</h2><p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/2.png" alt="img"></p>
-<p>不知道咋办了。</p>
-<h1 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h1><h2 id="1-easy-re"><a href="#1-easy-re" class="headerlink" title="1. easy_re"></a>1. easy_re</h2><p>根据要求，下载了ida，将exe拖入后得到</p>
-<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/re1.png" alt="img"></p>
-<p>尝试F5转换，最终得到flag。</p>
-<h2 id="2-keypatch"><a href="#2-keypatch" class="headerlink" title="2.keypatch"></a>2.keypatch</h2><p>按提示下载安装keypatch（虽然我也不知道有啥用），打开程序后发现一直循环，然后将程序拖入到ida，找到关键函数</p>
-<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/re2.png" alt="img"></p>
-<p>将这里的50000改为1，然后运行程序，得到flag。</p>
-<h2 id="3-re1"><a href="#3-re1" class="headerlink" title="3.re1"></a>3.re1</h2><p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/re3.1.png" alt="img"></p>
-<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/re3.png" alt="img"></p>
-<p>哈哈哈哈哈哈，啊这~，就不用我说了吧。</p>
-<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="1-小兔子"><a href="#1-小兔子" class="headerlink" title="1.小兔子"></a>1.小兔子</h2><p>下载图片后，右键查看属性，得到一串密文，尝试搜索兔子加密，得知有rabbit解密，通过解密得到flag</p>
-<h2 id="2-我在城楼观山景"><a href="#2-我在城楼观山景" class="headerlink" title="2.我在城楼观山景"></a>2.我在城楼观山景</h2><p>下载文档后发现是乱码，尝试搜索前几行字符</p>
-<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/misc2.png" alt="img"></p>
-<p>得知该为图片转为txt会出现的乱码，将后缀改为jpg打开图片后，发现左下角的falg</p>
-<h2 id="3-如来の兽"><a href="#3-如来の兽" class="headerlink" title="3. 如来の兽"></a>3. 如来の兽</h2><p>根据题目可知，该题涉及佛曰和兽音解密，经过两次解密后，发现仍有密文，尝试搜索社会主义核心价值观解密，得知真有此加密方法，解密得到flag</p>
-<h2 id="4-PDF"><a href="#4-PDF" class="headerlink" title="4.PDF"></a>4.PDF</h2><p>提示在图片下面，我们便将PDF转为word文档，得到一串极具讽刺意味的话语，尝试复制搜索，得到该为阴阳怪气加密，解密得到flag</p>
-<h2 id="5-QRcode"><a href="#5-QRcode" class="headerlink" title="5. QRcode"></a>5. QRcode</h2><p>打开后发现二维码残缺，补全后扫描得到一串密文，尝试搜索密文，得知有brainfuck加密方式，输入密文，解密得到flag</p>
-<h2 id="6-Boringboss"><a href="#6-Boringboss" class="headerlink" title="6.Boringboss"></a>6.Boringboss</h2><p>打开后发现这明显是当铺密码，解密后得到对应数字，利用ASCII码转换为对应字母，接着用培根密码解密得到flag</p>
 ]]></content>
   </entry>
 </search>
