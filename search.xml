@@ -29,6 +29,9 @@
 <p>在根目录下得到flag</p>
 <p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173912850.png" alt="image-20211202173912850"></p>
 ]]></content>
+      <tags>
+        <tag>webshell</tag>
+      </tags>
   </entry>
   <entry>
     <title>朋友，你好！欢迎来到我的世界!</title>
@@ -127,6 +130,9 @@
 <p>卡夫卡说，一本书，必须是一把凿开我们心中冰海的利斧。</p>
 <p>亲爱的同学们，你的心中有冰海吗？那么，就从现在开始读书吧！</p>
 ]]></content>
+      <tags>
+        <tag>杂谈</tag>
+      </tags>
   </entry>
   <entry>
     <title>“解决codeblocks无法运行c++程序&quot;</title>
@@ -146,6 +152,9 @@
 <p>将该压缩包解压后，解决问题</p>
 <p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127121331465.png" alt="image-20211127121331465"></p>
 ]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
   </entry>
   <entry>
     <title>极客大挑战 2019上传</title>
@@ -221,5 +230,8 @@
 <h2 id="5-QRcode"><a href="#5-QRcode" class="headerlink" title="5. QRcode"></a>5. QRcode</h2><p>打开后发现二维码残缺，补全后扫描得到一串密文，尝试搜索密文，得知有brainfuck加密方式，输入密文，解密得到flag</p>
 <h2 id="6-Boringboss"><a href="#6-Boringboss" class="headerlink" title="6.Boringboss"></a>6.Boringboss</h2><p>打开后发现这明显是当铺密码，解密后得到对应数字，利用ASCII码转换为对应字母，接着用培根密码解密得到flag</p>
 ]]></content>
+      <tags>
+        <tag>CTF</tag>
+      </tags>
   </entry>
 </search>
