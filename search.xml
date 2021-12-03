@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ACTF2020 新生赛]Upload</title>
+    <title>ACTF2020 新生赛 Upload</title>
     <url>/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/</url>
     <content><![CDATA[<p>同样是一道上传题，上传已有木马</p>
 <p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162637320.png" alt="image-20211202162637320"></p>
@@ -31,28 +31,6 @@
 ]]></content>
       <tags>
         <tag>webshell</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>“解决codeblocks无法运行c++程序&quot;</title>
-    <url>/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/</url>
-    <content><![CDATA[<p>下载Codeblocks后，创建新程序后，发现点击运行后无法弹出控制台，如图</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120305308.png" alt="image-20211127120305308"></p>
-<p>#法1</p>
-<p>查看compiler setting中的路径，如下图</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120458845.png" alt="image-20211127120458845"></p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120607794.png" alt="image-20211127120607794"></p>
-<p>修改MinGW的路径后，解决问题</p>
-<p>#法2（法1未解决）</p>
-<p>路径正常，修改路径后显示</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120747653.png" alt="image-20211127120747653"></p>
-<p>即缺少GNU GCC Compiler，说白了就是MinGW文件不完整，尝试删除WinGW文件夹，然后重新下载</p>
-<p>下载地址：链接：<a href="https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag">https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag</a>    提取码：axen</p>
-<p>将该压缩包解压后，解决问题</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127121331465.png" alt="image-20211127121331465"></p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -157,49 +135,71 @@
       </tags>
   </entry>
   <entry>
-    <title>极客大挑战 2019]EasySQL</title>
+    <title>“解决codeblocks无法运行c++程序&quot;</title>
+    <url>/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/</url>
+    <content><![CDATA[<p>下载Codeblocks后，创建新程序后，发现点击运行后无法弹出控制台，如图</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120305308.png" alt="image-20211127120305308"></p>
+<p>#法1</p>
+<p>查看compiler setting中的路径，如下图</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120458845.png" alt="image-20211127120458845"></p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120607794.png" alt="image-20211127120607794"></p>
+<p>修改MinGW的路径后，解决问题</p>
+<p>#法2（法1未解决）</p>
+<p>路径正常，修改路径后显示</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120747653.png" alt="image-20211127120747653"></p>
+<p>即缺少GNU GCC Compiler，说白了就是MinGW文件不完整，尝试删除WinGW文件夹，然后重新下载</p>
+<p>下载地址：链接：<a href="https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag">https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag</a>    提取码：axen</p>
+<p>将该压缩包解压后，解决问题</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127121331465.png" alt="image-20211127121331465"></p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>极客大挑战 2019 EasySQL</title>
     <url>/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/</url>
     <content><![CDATA[<p>打开题目如下</p>
-<p><img src="/image-20211203192806308.png" alt="image-20211203192806308"></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203192806308.png" alt="image-20211203192806308"></p>
 <p>典型的爆破，提示他是cl4y，则猜测用户名为cl4y，开始爆破</p>
-<p><img src="/image-20211203193005388.png" alt="image-20211203193005388"></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203193005388.png" alt="image-20211203193005388"></p>
 <p><strong>攻击类型：</strong></p>
-<p><u>单字典（无论几个变量都是一个字典）</u></p>
+<p><u>单字典（无论几个变量都是一个字典）<u></u></u></p>
 <p>1.狙击手（Sniper）：如果选择多个变量，所选字典会先爆破一个变量，再爆破第二个变量（一个一个来），适用于知道账户或密码的情况。</p>
 <p>2.破城槌（Battering ram）：无论选择过几个变量，此字典都会同时爆破（多个一起上，且变量值都一样），适用于账户密码相同的情况。</p>
-<p><u>多字典（几个变量就用几个字典）</u></p>
+<p><u>多字典（几个变量就用几个字典）<u></u></u></p>
 <p>1.音叉（Pitchfork）：变量1与变量2一一对应进行，若两个字典行数不同，小字典测完即结束，适用于知道多个账号和与之匹配的密码。</p>
 <p>2.集束炸弹（Cluster bomb）：一对多出，即变量1的每个变量都要和变量2匹配一遍，适用于账号密码都不知道的情况。</p>
 <p>此处应选Sniper，并添加字典。</p>
-<p><img src="/image-20211203194636704.png" alt="image-20211203194636704"></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203194636704.png" alt="image-20211203194636704"></p>
 <p>开始爆破</p>
-<p><img src="/image-20211203195307444.png" alt="image-20211203195307444"></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195307444.png" alt="image-20211203195307444"></p>
 <p>结果不是723就是737，有两个不同的即736和726，尝试该结果</p>
 <p>723</p>
-<p><img src="/image-20211203195538959.png" alt="image-20211203195538959"></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195538959.png" alt="image-20211203195538959"></p>
 <p>737</p>
-<p><img src="/image-20211203195619481.png" alt="image-20211203195619481"></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195619481.png" alt="image-20211203195619481"></p>
 <p>736</p>
-<p><img src="/image-20211203195443399.png" alt="image-20211203195443399"></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195443399.png" alt="image-20211203195443399"></p>
 <p>F12后什么也没有</p>
-<p><img src="/image-20211203195923451.png" alt="image-20211203195923451"></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195923451.png" alt="image-20211203195923451"></p>
 <p>726</p>
-<p><img src="/image-20211203195506430.png" alt="image-20211203195506430"></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195506430.png" alt="image-20211203195506430"></p>
 <p>最后得出结果：你爆破你码呢？？？？？？？？？？？？？？？？？？？这是SQL，果断关闭Bp。</p>
 <p>随便输入账户密码 并在账号前加  ‘  如图</p>
-<p><img src="/image-20211203201213071.png" alt="image-20211203201213071"></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201213071.png" alt="image-20211203201213071"></p>
 <p>进入后</p>
-<p><img src="/image-20211203201229961.png" alt="image-20211203201229961"></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201229961.png" alt="image-20211203201229961"></p>
 <p>谷歌翻译</p>
-<p><img src="/image-20211203201303627.png" alt="image-20211203201303627"></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201303627.png" alt="image-20211203201303627"></p>
 <p>尝试万能密码 <strong>admin’ or ‘1’=’1</strong></p>
-<p><img src="/image-20211203201415048.png" alt="image-20211203201415048"></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201415048.png" alt="image-20211203201415048"></p>
 <p>结果</p>
-<p><img src="/image-20211203201442402.png" alt="image-20211203201442402"></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201442402.png" alt="image-20211203201442402"></p>
 <p>不慌，用第二种，不去判断密码的正确性。<code>admin&#39; or 1=1 %23</code></p>
-<p><img src="/image-20211203201549920.png" alt="image-20211203201549920"></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201549920.png" alt="image-20211203201549920"></p>
 <p>成功</p>
-<p><img src="/image-20211203201607750.png" alt="image-20211203201607750"></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201607750.png" alt="image-20211203201607750"></p>
 ]]></content>
       <tags>
         <tag>SQL</tag>
