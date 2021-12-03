@@ -158,30 +158,30 @@
   </entry>
   <entry>
     <title>极客大挑战 2019上传</title>
-    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019%E4%B8%8A%E4%BC%A0/</url>
+    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
     <content><![CDATA[<p>该题为上传木马题</p>
 <p>进入题目后，上传一句话木马</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019%E4%B8%8A%E4%BC%A0/image-20211202140512260.png" alt="image-20211202140512260"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
 <p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019%E4%B8%8A%E4%BC%A0/image-20211202140538654.png" alt="image-20211202140538654"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
 <p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
 <p>得到</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
 <p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019%E4%B8%8A%E4%BC%A0/image-20211202155449805.png" alt="image-20211202155449805"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
 <p>上传失败</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019%E4%B8%8A%E4%BC%A0/image-20211202155757260.png" alt="image-20211202155757260"></p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019%E4%B8%8A%E4%BC%A0/image-20211202160253250.png" alt="image-20211202160253250"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
 <p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019%E4%B8%8A%E4%BC%A0/image-20211202160420596.png" alt="image-20211202160420596"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
 <p>上传后</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019%E4%B8%8A%E4%BC%A0/image-20211202160637524.png" alt="image-20211202160637524"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
 <p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
 <p>链接成功</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019%E4%B8%8A%E4%BC%A0/image-20211202161339014.png" alt="image-20211202161339014"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
 <p>最后在根目录下得到flag</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019%E4%B8%8A%E4%BC%A0/image-20211202161504689.png" alt="image-20211202161504689"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
 ]]></content>
       <tags>
         <tag>webshell</tag>
