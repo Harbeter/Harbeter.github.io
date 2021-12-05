@@ -203,10 +203,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-12-03 19:26:10 / 修改时间：20:28:17" itemprop="dateCreated datePublished" datetime="2021-12-03T19:26:10+08:00">2021-12-03</time>
+              <time title="创建时间：2021-12-03 19:26:10" itemprop="dateCreated datePublished" datetime="2021-12-03T19:26:10+08:00">2021-12-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-05 15:50:36" itemprop="dateModified" datetime="2021-12-05T15:50:36+08:00">2021-12-05</time>
+              </span>
 
           
 
@@ -222,45 +228,14 @@
           <p>打开题目如下</p>
 <p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203192806308.png" alt="image-20211203192806308"></p>
 <p>典型的爆破，提示他是cl4y，则猜测用户名为cl4y，开始爆破</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203193005388.png" alt="image-20211203193005388"></p>
-<p><strong>攻击类型：</strong></p>
-<p><u>单字典（无论几个变量都是一个字典）<u></u></u></p>
-<p>1.狙击手（Sniper）：如果选择多个变量，所选字典会先爆破一个变量，再爆破第二个变量（一个一个来），适用于知道账户或密码的情况。</p>
-<p>2.破城槌（Battering ram）：无论选择过几个变量，此字典都会同时爆破（多个一起上，且变量值都一样），适用于账户密码相同的情况。</p>
-<p><u>多字典（几个变量就用几个字典）<u></u></u></p>
-<p>1.音叉（Pitchfork）：变量1与变量2一一对应进行，若两个字典行数不同，小字典测完即结束，适用于知道多个账号和与之匹配的密码。</p>
-<p>2.集束炸弹（Cluster bomb）：一对多出，即变量1的每个变量都要和变量2匹配一遍，适用于账号密码都不知道的情况。</p>
-<p>此处应选Sniper，并添加字典。</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203194636704.png" alt="image-20211203194636704"></p>
-<p>开始爆破</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195307444.png" alt="image-20211203195307444"></p>
-<p>结果不是723就是737，有两个不同的即736和726，尝试该结果</p>
-<p>723</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195538959.png" alt="image-20211203195538959"></p>
-<p>737</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195619481.png" alt="image-20211203195619481"></p>
-<p>736</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195443399.png" alt="image-20211203195443399"></p>
-<p>F12后什么也没有</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195923451.png" alt="image-20211203195923451"></p>
-<p>726</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195506430.png" alt="image-20211203195506430"></p>
-<p>最后得出结果：你爆破你码呢？？？？？？？？？？？？？？？？？？？这是SQL，果断关闭Bp。</p>
-<p>随便输入账户密码 并在账号前加  ‘  如图</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201213071.png" alt="image-20211203201213071"></p>
-<p>进入后</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201229961.png" alt="image-20211203201229961"></p>
-<p>谷歌翻译</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201303627.png" alt="image-20211203201303627"></p>
-<p>尝试万能密码 <code>admin&#39; or &#39;1&#39;=&#39;1</code></p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201415048.png" alt="image-20211203201415048"></p>
-<p>结果</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201442402.png" alt="image-20211203201442402"></p>
-<p>不慌，用第二种，不去判断密码的正确性。<code>admin&#39; or 1=1 %23</code></p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201549920.png" alt="image-20211203201549920"></p>
-<p>成功</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201607750.png" alt="image-20211203201607750"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -310,7 +285,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-03 20:23:26" itemprop="dateModified" datetime="2021-12-03T20:23:26+08:00">2021-12-03</time>
+                <time title="修改时间：2021-12-05 15:52:01" itemprop="dateModified" datetime="2021-12-05T15:52:01+08:00">2021-12-05</time>
               </span>
 
           
@@ -326,30 +301,14 @@
       
           <p>同样是一道上传题，上传已有木马</p>
 <p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162637320.png" alt="image-20211202162637320"></p>
-<p>换gif木马重新尝试</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162755354.png" alt="image-20211202162755354"></p>
-<p>上传成功，打开指定网址查看是否有上传文件</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162849704.png" alt="image-20211202162849704"></p>
-<p>果然有</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162906119.png" alt="image-20211202162906119"></p>
-<p>接着打开蚁剑连接，发现</p>
-<p><strong><u>上传的图片中的代码不能用</u></strong></p>
-<p>换方法</p>
-<p>随便上传一个图片，然后修改其后缀和内容</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173541721.png" alt="image-20211202173541721"></p>
-<p>改为php后，不通过，则改为phtml</p>
-<p>并插入代码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>如图</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173720354.png" alt="image-20211202173720354"></p>
-<p>提交后</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173743862.png" alt="image-20211202173743862"></p>
-<p>进入蚁剑连接</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173834016.png" alt="image-20211202173834016"></p>
-<p>在根目录下得到flag</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173912850.png" alt="image-20211202173912850"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -391,10 +350,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-12-02 14:01:34 / 修改时间：18:00:42" itemprop="dateCreated datePublished" datetime="2021-12-02T14:01:34+08:00">2021-12-02</time>
+              <time title="创建时间：2021-12-02 14:01:34" itemprop="dateCreated datePublished" datetime="2021-12-02T14:01:34+08:00">2021-12-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-05 15:52:30" itemprop="dateModified" datetime="2021-12-05T15:52:30+08:00">2021-12-05</time>
+              </span>
 
           
 
@@ -411,26 +376,14 @@
 <p>进入题目后，上传一句话木马</p>
 <p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
 <p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
-<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
-<p>得到</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
-<p>上传失败</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
-<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
-<p>上传后</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
-<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
-<p>链接成功</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
-<p>最后在根目录下得到flag</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -480,7 +433,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-02 23:39:37" itemprop="dateModified" datetime="2021-12-02T23:39:37+08:00">2021-12-02</time>
+                <time title="修改时间：2021-12-05 15:52:55" itemprop="dateModified" datetime="2021-12-05T15:52:55+08:00">2021-12-05</time>
               </span>
 
           
@@ -496,19 +449,14 @@
       
           <p>下载Codeblocks后，创建新程序后，发现点击运行后无法弹出控制台，如图</p>
 <p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120305308.png" alt="image-20211127120305308"></p>
-<p>#法1</p>
-<p>查看compiler setting中的路径，如下图</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120458845.png" alt="image-20211127120458845"></p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120607794.png" alt="image-20211127120607794"></p>
-<p>修改MinGW的路径后，解决问题</p>
-<p>#法2（法1未解决）</p>
-<p>路径正常，修改路径后显示</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120747653.png" alt="image-20211127120747653"></p>
-<p>即缺少GNU GCC Compiler，说白了就是MinGW文件不完整，尝试删除WinGW文件夹，然后重新下载</p>
-<p>下载地址：链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag">https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag</a>    提取码：axen</p>
-<p>将该压缩包解压后，解决问题</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127121331465.png" alt="image-20211127121331465"></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -558,7 +506,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-02 23:40:39" itemprop="dateModified" datetime="2021-12-02T23:40:39+08:00">2021-12-02</time>
+                <time title="修改时间：2021-12-05 15:53:19" itemprop="dateModified" datetime="2021-12-05T15:53:19+08:00">2021-12-05</time>
               </span>
 
           
@@ -574,44 +522,14 @@
       
           <h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="1-白给-amp-签到"><a href="#1-白给-amp-签到" class="headerlink" title="1.白给&amp;签到"></a>1.白给&amp;签到</h2><p>没什么可说的，直接复制粘贴。</p>
 <h2 id="2-Welcome"><a href="#2-Welcome" class="headerlink" title="2.Welcome"></a>2.Welcome</h2><p>F12查看源代码，得到flag</p>
-<h2 id="3-Get"><a href="#3-Get" class="headerlink" title="3.Get"></a>3.Get</h2><p>由代码知，只需令henu=flag即可输出flag，则在网址一栏添加/?henu=flag。</p>
-<h2 id="4-Post"><a href="#4-Post" class="headerlink" title="4.Post"></a>4.Post</h2><p>利用hackbar post传参henu=fl@g即可得到flag</p>
-<h2 id="5-easyphp-1"><a href="#5-easyphp-1" class="headerlink" title="5. easyphp_1"></a>5. easyphp_1</h2><p>此题涉及md5加密，根据常见md5加密，搜索s214587387a找到相应md5加密“PHP弱性处理0e开头md5哈希字符串缺陷/bug” 令henu=其中任意加密码，如s1885207154a得到flag</p>
-<h2 id="6-全是假的"><a href="#6-全是假的" class="headerlink" title="6.全是假的"></a>6.全是假的</h2><p>通过F12找到，则直接进入/hint.php,多次刷新得到flllagggg.php 访问得知需要WebAC浏览器，启用bp修改浏览器并伪造Ip，但最终没有得到flag</p>
-<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/6.png"></p>
-<h2 id="7-Autumn"><a href="#7-Autumn" class="headerlink" title="7. Autumn"></a>7. Autumn</h2><p>网站提示要扫一扫，则打开御剑后台扫描工具，扫描后进入相应网站，提示flag不在这，最终没有得到flag</p>
-<h2 id="8-easy-Cookie"><a href="#8-easy-Cookie" class="headerlink" title="8. easy_Cookie"></a>8. easy_Cookie</h2><p>通过Google插件查看cookie</p>
-<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/8.png"></p>
-<p>得知是一段密文，打开bp解密，先用url解密知%3D为=，改之，接着连用两次Base64解密得到flag</p>
-<h2 id="9-艺术就是？"><a href="#9-艺术就是？" class="headerlink" title="9. 艺术就是？"></a>9. 艺术就是？</h2><p>由火影忍者中迪达拉（哈哈哈哈哈哈哈）知道艺术即为爆破，进去网站发现果然是爆破打开bp，又因为密码账户一样，则用battering ram进行攻击得到administrator，输入得到flag</p>
-<h2 id="10-webshell"><a href="#10-webshell" class="headerlink" title="10.webshell"></a>10.webshell</h2><p>关键词“一句话”，进入网址，看来需要用一句话木马通过蚁剑进入后台，提交木马txt用bp修改格式，上传成功，但最终没能用蚁剑连接上。</p>
-<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="1-滴滴滴"><a href="#1-滴滴滴" class="headerlink" title="1.滴滴滴"></a>1.滴滴滴</h2><p>下载附件后，一看就是摩斯密码，根据摩斯密码得到flag</p>
-<h2 id="2-每逢佳节"><a href="#2-每逢佳节" class="headerlink" title="2.每逢佳节"></a>2.每逢佳节</h2><p>一看末尾有=，尝试用bp中的base64解码，得到flag</p>
-<h2 id="3-Bacon"><a href="#3-Bacon" class="headerlink" title="3.Bacon"></a>3.Bacon</h2><p>关键词“当铺”，“培根”即当铺密码和培根密码，根据当铺密码转换关系将字符转换为数字，进而利用ASCII码转换为字母形式，最后培根解密得到flag</p>
-<h2 id="4-古典变奏"><a href="#4-古典变奏" class="headerlink" title="4.古典变奏"></a>4.古典变奏</h2><p>关键词“猪圈”“凯撒”“栅栏”，先用猪圈密码解密，然后用凯撒密码6，栅栏密码8解密得到flag</p>
-<h1 id="Pwn"><a href="#Pwn" class="headerlink" title="Pwn"></a>Pwn</h1><h2 id="1-白给-连上就给flag"><a href="#1-白给-连上就给flag" class="headerlink" title="1. [白给] 连上就给flag"></a>1. [白给] 连上就给flag</h2><p>根据提示下载了ubuntu虚拟机并且安装了netcat 但nc 39.103.198.196 10008</p>
-<p>然后输入指令ls -l 再输入cat flag.txt得到flag。</p>
-<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/1.png" alt="img"></p>
-<h2 id="2-白给-从后门进来"><a href="#2-白给-从后门进来" class="headerlink" title="2. [白给] 从后门进来"></a>2. [白给] 从后门进来</h2><p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/2.png" alt="img"></p>
-<p>不知道咋办了。</p>
-<h1 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h1><h2 id="1-easy-re"><a href="#1-easy-re" class="headerlink" title="1. easy_re"></a>1. easy_re</h2><p>根据要求，下载了ida，将exe拖入后得到</p>
-<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/re1.png" alt="img"></p>
-<p>尝试F5转换，最终得到flag。</p>
-<h2 id="2-keypatch"><a href="#2-keypatch" class="headerlink" title="2.keypatch"></a>2.keypatch</h2><p>按提示下载安装keypatch（虽然我也不知道有啥用），打开程序后发现一直循环，然后将程序拖入到ida，找到关键函数</p>
-<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/re2.png" alt="img"></p>
-<p>将这里的50000改为1，然后运行程序，得到flag。</p>
-<h2 id="3-re1"><a href="#3-re1" class="headerlink" title="3.re1"></a>3.re1</h2><p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/re3.1.png" alt="img"></p>
-<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/re3.png" alt="img"></p>
-<p>哈哈哈哈哈哈，啊这~，就不用我说了吧。</p>
-<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="1-小兔子"><a href="#1-小兔子" class="headerlink" title="1.小兔子"></a>1.小兔子</h2><p>下载图片后，右键查看属性，得到一串密文，尝试搜索兔子加密，得知有rabbit解密，通过解密得到flag</p>
-<h2 id="2-我在城楼观山景"><a href="#2-我在城楼观山景" class="headerlink" title="2.我在城楼观山景"></a>2.我在城楼观山景</h2><p>下载文档后发现是乱码，尝试搜索前几行字符</p>
-<p><img src="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/misc2.png" alt="img"></p>
-<p>得知该为图片转为txt会出现的乱码，将后缀改为jpg打开图片后，发现左下角的falg</p>
-<h2 id="3-如来の兽"><a href="#3-如来の兽" class="headerlink" title="3. 如来の兽"></a>3. 如来の兽</h2><p>根据题目可知，该题涉及佛曰和兽音解密，经过两次解密后，发现仍有密文，尝试搜索社会主义核心价值观解密，得知真有此加密方法，解密得到flag</p>
-<h2 id="4-PDF"><a href="#4-PDF" class="headerlink" title="4.PDF"></a>4.PDF</h2><p>提示在图片下面，我们便将PDF转为word文档，得到一串极具讽刺意味的话语，尝试复制搜索，得到该为阴阳怪气加密，解密得到flag</p>
-<h2 id="5-QRcode"><a href="#5-QRcode" class="headerlink" title="5. QRcode"></a>5. QRcode</h2><p>打开后发现二维码残缺，补全后扫描得到一串密文，尝试搜索密文，得知有brainfuck加密方式，输入密文，解密得到flag</p>
-<h2 id="6-Boringboss"><a href="#6-Boringboss" class="headerlink" title="6.Boringboss"></a>6.Boringboss</h2><p>打开后发现这明显是当铺密码，解密后得到对应数字，利用ASCII码转换为对应字母，接着用培根密码解密得到flag</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -661,7 +579,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-02 23:40:58" itemprop="dateModified" datetime="2021-12-02T23:40:58+08:00">2021-12-02</time>
+                <time title="修改时间：2021-12-05 15:53:55" itemprop="dateModified" datetime="2021-12-05T15:53:55+08:00">2021-12-05</time>
               </span>
 
           
@@ -677,98 +595,14 @@
       
           <p>这是我的第一条<a target="_blank" rel="noopener" href="https://shl528.top/">博客</a>!在这里我会更新自己觉得有价值的东西，希望这对你能有一些帮助。<br>嗯… 也不知道到写些什么，那就摘一篇我认为很有价值的文章吧！</p>
 <h2 id="关于读书（引自罗翔老师）"><a href="#关于读书（引自罗翔老师）" class="headerlink" title="关于读书（引自罗翔老师）"></a>关于读书（引自罗翔老师）</h2><h3 id="一-为什么读书？"><a href="#一-为什么读书？" class="headerlink" title="一.为什么读书？"></a>一.为什么读书？</h3><p>我们为什么要读书？</p>
-<p>你会毫不犹豫的说，因为读书能够获得知识。</p>
-<p>那人又为什么要获得知识呢？</p>
-<p>我想答案不外乎是，因为知识可以改变人的命运、知识可以让你将来找到一个好工作，知识能够让你摆脱愚昧等等。</p>
-<p>宋朝皇帝真宗赵恒说的比大家更为直白：</p>
-<p>富家不用买良田，书中自有千锺粟</p>
-<p>安居不用架高堂，书中自有黄金屋</p>
-<p>出门莫恨无人随，书中车马多如簇</p>
-<p>娶妻莫恨无良媒，书中自有颜如玉</p>
-<p>男儿若遂平生志，六经勤向窗前读</p>
-<p>你看，读书的好处真不少，车子、票子、房子、妻子都有了。</p>
-<p>我并不否认读书会带来这些功利价值，但如果只是定睛于读书的功利性价值，那我要非常遗憾的告诉大家，我们在法大学的很多东西，将来可能都没有用处。</p>
-<p>做律师，能赚大钱，那我为什么要学高数，难道要用高数数钱吗？</p>
-<p>做大官，祖坟能冒烟，那我为什么要学法律，学学关系学、领导学就行了。</p>
-<p>功利性读书必然让你接受成功主义的价值观，我们身处的社会弥漫的都是成功主义的哲学，你要成功，你要出名，你要成为人上人。</p>
-<p>这几乎主宰了我们一切的价值观。</p>
-<p>成功主义将成功作为评估一切价值的尺度，为了成功，你可以不折手段，你可以牺牲一切利益。</p>
-<p>大家看过「魔鬼代言人」吧，年轻有为的律师凯文 基洛·里维斯扮演经过不住高薪豪宅的诱惑，带着妻子从家乡来到纽约发展。</p>
-<p>在一个又一个成功中迷失了自己，为了追求利益和打赢官司，他放弃了律师操守，为了追逐胜诉，不惜隐瞒证据；他也牺牲了家庭，为了事业，他放弃了家庭，导致妻子自杀。</p>
-<p>最后他才发现，他其实是魔鬼的私生子，成功全都来源于魔鬼的操控。魔鬼正是试图通过成功让我们放弃自己安身立命的美好价值。</p>
-<p>在影片的结尾，魔鬼说了一句意味深长的话：</p>
-<p>虚荣，无疑是我最爱的罪。</p>
-<p>功利性读书让你只想成功，无法接受失败。</p>
-<p>但我始终认为：</p>
-<p>一个人的真正成功不是在于你取得多少辉煌，而是在挫折中，你能不能勇敢的爬起来。只有非功利性阅读，才能让你坦然接受失败。</p>
-<p>在大量的与功利无关的文学作品、名人传记中，主人公的失败、困苦、绝望比比皆是。那么多伟大的灵魂，他们也曾有跌倒过的时候，你为什么不能跌倒。</p>
-<p>功利性的读书让你只注重外在的功名，而忽视了内心的丰富。</p>
-<p>孔门七十二贤，不乏博学多能者，高官厚禄者，但孔子最欣赏的学生却是单纯的颜回，“一箪食，一瓢饮，在陋巷，人不堪其忧，回也不改其乐”。</p>
-<p>孔子说颜回好学，“有颜回者好学，不迁怒，不贰过。”也就是说颜回心态平和，情绪稳定，善于改过自新，注重德行。</p>
-<p>这种内心的丰富在功利性阅读中，你不可能习得。</p>
-<p>功利性读书会让人自高自大，孤标傲世。知识经常会让人骄傲给人带来智力上的优越感，让你瞧不起人，无法与人建立正常的人际关系。曹丕说“文人相轻，自古已然”。</p>
-<p>为什么中国的文人总是互相瞧不上，这可能就是知识带来的恶果，因为知识让我们觉得自己与众不同，高人一等。</p>
-<p>很多知识分子不懂得如何去配合，只懂得单打独斗，很长一段时间，中国都没有出现世界性的大师，一个很重要的原因，就是这些人过于骄傲。</p>
-<p>在座的同学们中会出现大师吗？我不知道，但我想，如果你真的想为人类的进步作出贡献的话，你必须承认自己的无知与有限，必须与他人互相配合。</p>
-<p>因此，读书的目的不能仅限于功利，必须去追逐非功利性的价值。</p>
-<p>在我看来，读书的真正目的是追求智慧，而非单纯的知识。</p>
-<p>从表面上来看，读书是一个一个悖论：让你在求知的过程中越来越觉得自己的无知。这就像苏格拉底所说的“承认自己的无知才是开启智慧的大门”。</p>
-<p>庄子说：</p>
-<p>吾生也有涯，而知也无涯，以有涯随无涯，殆已</p>
-<p>这句话被很多人误读为励志名句。其实庄子的意思完全相反，庄子想说的是，生命是有限的，而知识是无限的，以有限的生命去追逐无限的知识，会把自己搞的非常疲倦的。</p>
-<p>所罗门王也说过类似的话，“著书多，没有穷尽；读书多，身体疲倦”。</p>
-<p>这些话表面上很消极，但他其实是想告诉我们，知识是无限的，在求知的过程中，必须对无限的知识保持足够的谦卑。</p>
-<p>因此，读书首先可以培养自己对未知世界的敬畏。随着阅读的深入，你才能知道知识的大海是没有边界的，我们所知道的真的是太有限了。</p>
-<p>读书可以激发我们对未知世界的探索，虽然知识的海洋是无限的，个体生命是有限的，但后人对庄子的误读有合理之处。</p>
-<p>正是因为人类有智慧，不同于其他生物，因此我们必须用我们的智慧去探索未知世界的奥秘，然后更加感到宇宙的奇妙，避免人类的狂妄自大。</p>
-<h3 id="二-读什么书？"><a href="#二-读什么书？" class="headerlink" title="二.读什么书？"></a>二.读什么书？</h3><p>刚才我们说过，读书的目的有功利性目的和非功利性目的。</p>
-<p>前者是为了成功，后者是对前者进行纠偏：为了丰富自己的内心避免受到成功主义的荼毒，通过读书承认自己的有限，在浩瀚的宇宙面前保持足够的谦卑之心去不断探索宇宙的奥秘。</p>
-<p>因此，读书也就分功利性阅读与非功利性阅读，前者就是大家从小到大，家长老师让大家好好读的书，没有太多可讲的。</p>
-<p>大学四年，功利性阅读当然是必不可少的，你要学好专业，作为将来谋生的工具，你要学好英语，如果你不想将来和国际脱钩。</p>
-<p>但更重要的是非功利性阅读，这可以让你感受真正的幸福。</p>
-<p>那么，应该读什么书呢？</p>
-<p>我觉得还是应该博观约取，厚积薄发。首先要“博观”，要“厚积”，广泛涉猎。</p>
-<p>作为文科大学文史哲不分家，因此我们至少要通读重要的文学经典，在文学中，我们可以丰富我们人生的体验，文学来源于现实，虽然从表面上看主人公都是虚构的人物，但他们都是现实的折射。</p>
-<p>文学可以让我们知道人生的多样性，人生不同路径的不同结果，它可以告诉学习到面临相同情境应该如何抉择。</p>
-<p>文学作品还能极大地培养人的同理心，文学中无数个体的悲欢离合命运多舛，这能让我们体会人生的苦难与无常，我们会思想自己也是血肉之躯，苦难随时也会临到自身，故会感同身受，更会深刻领悟约翰多恩的布道词：</p>
-<p>没有人是自成一体、与世隔绝的孤岛，每一个人都是广袤大陆的一部份。如果海浪冲掉了一块岩石，欧洲就减少。如同一个海岬失掉一角，如同你的朋友或者你自己的领地失掉一块。每个人的死亡都是我的哀伤，因为我是人类的一员。所以，不要问丧钟为谁而鸣，它就为你而鸣！</p>
-<p>其次，我们必须要了解历史。如果说文学作品是虚构的人物，那历史就是真实人物的真实人生。</p>
-<p>通过对历史的阅读，我们能够更深刻地了解人性的复杂，你会对人性的高贵赞叹不已，也会对人性邪恶不寒而栗；通过历史人物,我们也能反省自己，升华自己，去彰显人性的光辉，压制人性的幽暗。</p>
-<p>历史中，无数鲜活的个体让我们认识到人性的不完美，从此我们可以拒绝人造的偶像。</p>
-<p>正是因为对历的阅读，我才深刻了解法治的精神，因为人的不完美，因此人类的任何群体都有败坏的天性，所以对任何权力都要保持绝对的警惕。</p>
-<p>权力导致腐败，绝对权力导致绝对腐败，任何权力都要套上法治的镣铐。</p>
-<p>再次，哲学书也应看看。哲学是对人生观的探讨，这里说的哲学不是大家以前上课时学的哲学，那只是哲学中一个的门类，不过一家之言而已。</p>
-<p>苏格拉底、柏拉图、亚里斯多德、奥古斯丁、阿奎那、西塞罗、马丁路德、加尔文、孟德斯鸠、洛克、波普尔、哈耶克等等。</p>
-<p>这一连串名单，人类群星璀璨时，够你一生去阅读，通过对各类哲学著作的阅读，你可以追寻先贤的脚踪，去思索人从何而来，归向何方，一生应为何而活。</p>
-<p>有兴趣的话，大家可以先从入门看起，如杜兰特的「哲学的故事」，看完后，你也许会慢慢爱上哲学。</p>
-<p>除了文史哲，美术、音乐等各种艺术书籍都可涉猎。一个爱好艺术的人，他离善道应该更近一点。</p>
-<p>不过这方面，我没有资格谈论，我自己艺术细胞很少。只看过几本美术史的著作，感觉很舒服，今后我也会在这方面补补课。</p>
-<p>当然，“博观”“厚积”之后，就是约取。孟子说，尽信书不如无书，读书是对前人的经验的认识，必须有一个筛选的过程，绝不可人云亦云，要注意比较鉴别、明辨是非。</p>
-<p>“吾爱吾师，吾更爱真理”，读书就像在真理之路的交通工具，有的交通工具走得快点，有的交通工具走的慢点，飞机飞得比火车快，但航班经常延误，而且到不了小村小寨，各种交通工具都有自己的利弊，因此什么书都可以读点，不可厚此薄彼。</p>
-<p>另外，再好的交通工具如果走错方向，南辕北辙，那就麻烦了。通过读书，可以慢慢树立正确的价值观，就如选择正确的行驶路线。</p>
-<h3 id="三-怎么读书？"><a href="#三-怎么读书？" class="headerlink" title="三.怎么读书？"></a>三.怎么读书？</h3><p>那么如何去读这些书呢？</p>
-<p>这首先涉及去哪寻找这些书，老师们都会有自己的喜欢的书单上课时会给大家推荐，每年假期，我也会给大家推荐，如果大家有兴趣，也可以关注。</p>
-<p>大学期间，同学们应该充分利用图书馆的资源，法大虽然不大但图书馆还是不错的，至少大学生应该阅读的主要书籍都有。</p>
-<p>另外，如果大家想看新书的话，可以逛书店，经济条件允许的话，最好还是上书店买书。否则都在网上购书,实体书店也就都倒闭了。</p>
-<p>给大家推荐几个书店，一个就是位于北大和清华之间的万圣书园，周末叫上三五知己，在万圣坐坐，看看书。谈恋爱的同学可以在书店旁边的醒客咖啡谈情说爱，顺便看看书，很浪漫、很温馨、很典雅。</p>
-<p>另外一个稍微远点，在美术馆附近的三联书店的总店，也很不错，去故宫、景山公园是可以顺便逛逛。这两个书店的网站上每个月都有新书推荐，大家可以参考。</p>
-<p>其次，大家也可以参加或组织读书小组，多人共同读书，每月读一两本好书，人不要太多，五六个人就可以了，每次由一两个同学做主报告人,其他同学参与讨论，在互动讨论中，你会有很多收获。</p>
-<p>豆瓣上的读书小组也可以参加，但是我还是倾向人与人在现实空间中面对面的接触，这不仅可以读书，也可以阅人。</p>
-<p>再次，关于读书的方法，一般的书籍都可以泛读，不要抱着读一本书要学多少东西的心态，否则就回到了功利主义的路子。</p>
-<p>很多同学经常向我抱怨，老师我读书老记不住，读了后面就忘了前面。</p>
-<p>其实为什么要记住呢？是为了写文章，还是为了在别人面前炫耀呢？</p>
-<p>读书就是为了读书而读书，陶渊明说：</p>
-<p>好读书，不求甚解；每有会意，便欣然忘食</p>
-<p>在读书过程中，有那么片刻你能达到与书同乐，欣然忘食的境界，那就达到读书的目的了。你的内心就在潜移默化中慢慢被洗涤了。</p>
-<p>当然，如果你觉得一本书泛读之后，非常不错，那你可以再读精读，对于书中的让你感动不已的语句，你可以记录下来，甚至可以发在微博上，人人上，让大家分享你的心得。</p>
-<p>有很多书是可以反复读的。随着年龄的增长，阅历的丰富，同样一本书在不同时刻会给你不同的感动。</p>
-<p>在大学四年中，我想大家至少要有几本放在床头的书，没事就翻翻，就像老朋友一样，有空就聊聊，等到书翻破翻黄，你对这个老朋友可能就会有更深的了解。</p>
-<p>最后，很多书籍可以利用零碎的时间来读，比如坐公车坐地铁做火车坐飞机时，周末去逛万圣书店的路途中等等。</p>
-<p>记得当年我读林达的「近距离看美国系列」 这个书学习法律的同学是一定要看的好像都是在做公车的时候看完的。</p>
-<p>有同学会说，在车上看书伤眼睛，或者不方便，这可能也有道理，但是我看不少同学在无论多么拥挤的车上，也照样在看手机，玩游戏。如果把这些时间放在看书上，也许你会更充实。</p>
-<p>卡夫卡说，一本书，必须是一把凿开我们心中冰海的利斧。</p>
-<p>亲爱的同学们，你的心中有冰海吗？那么，就从现在开始读书吧！</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/23/hello-world/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
