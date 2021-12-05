@@ -36,6 +36,26 @@
       </tags>
   </entry>
   <entry>
+    <title>bugku-bp</title>
+    <url>/2021/12/05/bugku-bp/</url>
+    <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185551656.png" alt="image-20211205185551656"></p>
+<p>爆破结果如下</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/05/bugku-bp/image-20211205185641750.png" alt="image-20211205185641750"></p>
+<p>结果均为908，则猜想正确结果与错误结果的length一样，则选择其他参考标准，通过观察响应包里面的内容，我们发现错误包里面都会返回一个JavaScript代码告知我们的密码有错误。因此我们通过Burpsuite的 （Grep – Match 在响应中找出存在指定的内容的一项。）过滤掉存在JavaScript代码中的{code: ‘bugku10000’}的数据包。</p>
+<p>添加如图内容，继续爆破</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185817178.png" alt="image-20211205185817178"></p>
+<p>发现可疑点</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185906383.png" alt="image-20211205185906383"></p>
+<p>输入该密码，得到flag。</p>
+]]></content>
+      <tags>
+        <tag>bp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>朋友，你好！欢迎来到我的世界!</title>
     <url>/2021/11/23/hello-world/</url>
     <content><![CDATA[<p>这是我的第一条<a href="https://shl528.top/">博客</a>!在这里我会更新自己觉得有价值的东西，希望这对你能有一些帮助。<br>嗯… 也不知道到写些什么，那就摘一篇我认为很有价值的文章吧！</p>
