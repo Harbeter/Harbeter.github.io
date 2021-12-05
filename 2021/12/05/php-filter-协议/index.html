@@ -21,19 +21,26 @@
     var CONFIG = {"hostname":"harbeter.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="愿你永远善良，永远向往未来！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="https://harbeter.github.io/about/index.html">
+  <meta name="description" content="php:&#x2F;&#x2F;filter 协议 1是格式2是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）3是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php:&#x2F;&#x2F;filter 协议">
+<meta property="og:url" content="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/index.html">
 <meta property="og:site_name" content="寒林舍">
-<meta property="og:description" content="愿你永远善良，永远向往未来！">
+<meta property="og:description" content="php:&#x2F;&#x2F;filter 协议 1是格式2是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）3是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-11-24T15:32:29.702Z">
-<meta property="article:modified_time" content="2021-11-24T15:32:29.702Z">
+<meta property="og:image" content="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png">
+<meta property="og:image" content="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png">
+<meta property="og:image" content="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png">
+<meta property="og:image" content="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png">
+<meta property="og:image" content="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png">
+<meta property="article:published_time" content="2021-12-05T08:36:20.251Z">
+<meta property="article:modified_time" content="2021-12-05T09:07:15.339Z">
 <meta property="article:author" content="Harbeter">
+<meta property="article:tag" content="php Filter">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png">
 
-<link rel="canonical" href="https://harbeter.github.io/about/">
+<link rel="canonical" href="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/">
 
 
 <script id="page-configurations">
@@ -41,13 +48,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>关于 | 寒林舍
-</title>
+  <title>php://filter 协议 | 寒林舍</title>
   
 
 
@@ -177,43 +183,98 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Harbeter">
+      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="寒林舍">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          php://filter 协议
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">关于
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-<div class="post-meta">
+              <time title="创建时间：2021-12-05 16:36:20 / 修改时间：17:07:15" itemprop="dateCreated datePublished" datetime="2021-12-05T16:36:20+08:00">2021-12-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
+<p>1是格式<br>2是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br>3是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br>4是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
+<span id="more"></span>
+
+<p>转base64编码：convert.base64-encode</p>
+<p>转大写：string.toupper</p>
+<p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
+<p>例题：</p>
+<h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
+<p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
+<p>构造：php://filter/read=convert.base64-encode/recource=flag.php</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
+<p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
+<p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/php-Filter/" rel="tag"># php Filter</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/" rel="prev" title="极客大挑战 2019Havefun">
+      <i class="fa fa-chevron-left"></i> 极客大挑战 2019Havefun
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -264,6 +325,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#php-filter-%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.</span> <span class="nav-text">php:&#x2F;&#x2F;filter 协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9BInclude"><span class="nav-number">2.</span> <span class="nav-text">ACTF2020 新生赛Include</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
