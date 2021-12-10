@@ -36,26 +36,6 @@
       </tags>
   </entry>
   <entry>
-    <title>bugku-bp</title>
-    <url>/2021/12/05/bugku-bp/</url>
-    <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185551656.png" alt="image-20211205185551656"></p>
-<p>爆破结果如下</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/05/bugku-bp/image-20211205185641750.png" alt="image-20211205185641750"></p>
-<p>结果均为908，则猜想正确结果与错误结果的length一样，则选择其他参考标准，通过观察响应包里面的内容，我们发现错误包里面都会返回一个JavaScript代码告知我们的密码有错误。因此我们通过Burpsuite的 （Grep – Match 在响应中找出存在指定的内容的一项。）过滤掉存在JavaScript代码中的{code: ‘bugku10000’}的数据包。</p>
-<p>添加如图内容，继续爆破</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185817178.png" alt="image-20211205185817178"></p>
-<p>发现可疑点</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185906383.png" alt="image-20211205185906383"></p>
-<p>输入该密码，得到flag。</p>
-]]></content>
-      <tags>
-        <tag>bp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++数据类型及数据的运用</title>
     <url>/2021/12/08/C-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h1 id="一、C-程序初始代码"><a href="#一、C-程序初始代码" class="headerlink" title="一、C++程序初始代码"></a>一、C++程序初始代码</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -165,14 +145,14 @@
 
 <p><u>注意：C++输出小数默认显示6位有效数字，若想多显示，需要其他操作。</u></p>
 <h3 id="3-3字符型"><a href="#3-3字符型" class="headerlink" title="3.3字符型"></a>3.3字符型</h3><p>作用：用于表示<u>单个字母</u></p>
-<p>用法：<code>char 变量名 = &#39;单个字母&#39;</code>（注意此处为单引号，）</p>
+<p>用法：<code>char 变量名 = &#39;单个字母&#39;</code>（注意此处为单引号，） 也可以直接用<code>&#39;单个字母&#39;</code></p>
 <p>注意：</p>
 <ul>
 <li>C和C++中字符型变量只占用1个字节</li>
 <li>字符型变量并不是把字符本身放到内存中存储，而是把其对应的ASCII编码放入到存储单位</li>
 </ul>
 <p>例如</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">char</span> hl1 = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">char</span>)&lt;&lt;endl;<span class="comment">//输出其所占字符</span></span><br><span class="line">    	cout&lt;&lt;(<span class="keyword">int</span>)hl1&lt;&lt;endl;<span class="comment">//把字符型变量强转成整型，即a所对应ASCII码</span></span><br><span class="line">    <span class="keyword">char</span> hl2 = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">        cout&lt;&lt;(<span class="keyword">int</span>)hl2&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">char</span> hl1 = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">char</span>)&lt;&lt;endl;<span class="comment">//输出其所占字符</span></span><br><span class="line">    	cout&lt;&lt;(<span class="keyword">int</span>)hl1&lt;&lt;endl;<span class="comment">//把字符型变量强转成整型，即a所对应ASCII码</span></span><br><span class="line">    <span class="keyword">char</span> hl2 = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">        cout&lt;&lt;(<span class="keyword">int</span>)hl2&lt;&lt;endl;</span><br><span class="line">    	cout&lt;&lt;(<span class="keyword">int</span>)<span class="string">&#x27;B&#x27;</span>&lt;&lt;endl;</span><br><span class="line">    	cout&lt;&lt;<span class="string">&#x27;C&#x27;</span>&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="3-4转义字符"><a href="#3-4转义字符" class="headerlink" title="3.4转义字符"></a>3.4转义字符</h3><p>作用：用于表示一些不能显示出来的ASCII字符</p>
 <p>现阶段常用的转义字符有：<code>\n \\ \t</code></p>
@@ -264,6 +244,253 @@
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++运算符</title>
+    <url>/2021/12/10/C-%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
+    <content><![CDATA[<h1 id="1-运算符类型"><a href="#1-运算符类型" class="headerlink" title="1.运算符类型"></a>1.运算符类型</h1><p>运算运算符：用于四则运算</p>
+<p>赋值运算符：用于表达式的值赋给变量</p>
+<p>比较运算符：用于表达式的比较，并返回一个真值或假值</p>
+<p>逻辑运算符：用于根据表达式的值返回真值或假值</p>
+<h1 id="2-算术运算符"><a href="#2-算术运算符" class="headerlink" title="2.算术运算符"></a>2.算术运算符</h1><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>术语</th>
+<th>示例</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>正号</td>
+<td>+3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>-</td>
+<td>负号</td>
+<td>-3</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>+</td>
+<td>加</td>
+<td>1+1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>-</td>
+<td>减</td>
+<td>1-1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>*</td>
+<td>乘</td>
+<td>2*3</td>
+<td>6</td>
+</tr>
+<tr>
+<td>/</td>
+<td>除</td>
+<td>6*3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>%</td>
+<td>取模（取余）</td>
+<td>5%3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>++</td>
+<td>前置递增</td>
+<td>a=2;b=++a;</td>
+<td>a=3;b=3;</td>
+</tr>
+<tr>
+<td>++</td>
+<td>后置递增</td>
+<td>a=2;b=a++;</td>
+<td>a=3;b=2;</td>
+</tr>
+<tr>
+<td>–</td>
+<td>前置递减</td>
+<td>a=2;b=–a;</td>
+<td>a=1;b=1;</td>
+</tr>
+<tr>
+<td>–</td>
+<td>后置递减</td>
+<td>a=2;b=a–;</td>
+<td>a=1;b=2;</td>
+</tr>
+</tbody></table>
+<p>四则运算如下</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">3</span>;</span><br><span class="line">    cout&lt;&lt;a+b&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;a-b&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;a/b&lt;&lt;endl;<span class="comment">//C++规定，两个整数相除，结果仍然为整数，会舍去剩下的小数</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">double</span> c = <span class="number">3.14</span>;</span><br><span class="line">    <span class="keyword">double</span> d = <span class="number">4.23</span>;<span class="comment">//此处也可写为    double c=3.14,d=4.23;</span></span><br><span class="line">    cout&lt;&lt;c/d&lt;&lt;endl;<span class="comment">//该结果为小数</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><u>除法运算和取模运算的除数不能为0</u></p>
+<p>取模运算如下</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">4</span>,b=<span class="number">3</span>;</span><br><span class="line">    cout&lt;&lt;a%b&lt;&lt;endl;</span><br><span class="line">    <span class="comment">//注意：取模运算不能为小数</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>前/后置递增/减如下</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">int</span> a = ++b*<span class="number">10</span>;<span class="comment">//先加1后参与运算</span></span><br><span class="line">    cout&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">int</span> b =<span class="number">3</span>;</span><br><span class="line">    <span class="keyword">int</span> c = b++*<span class="number">10</span>;<span class="comment">//先参与运算再加1</span></span><br><span class="line">    cout&lt;&lt;c&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-赋值运算符"><a href="#3-赋值运算符" class="headerlink" title="3.赋值运算符"></a>3.赋值运算符</h1><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>术语</th>
+<th>示例</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>=</td>
+<td>赋值</td>
+<td>a=2;b=3;</td>
+<td>a=2;b=3;</td>
+</tr>
+<tr>
+<td>+=</td>
+<td>加等于</td>
+<td>a=0;a+=2;</td>
+<td>a=2;</td>
+</tr>
+<tr>
+<td>-=</td>
+<td>减等于</td>
+<td>a=5;a-=3;</td>
+<td>a=2;</td>
+</tr>
+<tr>
+<td>*=</td>
+<td>乘等于</td>
+<td>a=2;a*=2;</td>
+<td>a=4;</td>
+</tr>
+<tr>
+<td>/=</td>
+<td>除等于</td>
+<td>a=4;a/=2;</td>
+<td>a=2;</td>
+</tr>
+<tr>
+<td>%=</td>
+<td>模等于</td>
+<td>a=3;a%=2;</td>
+<td>a=1;</td>
+</tr>
+</tbody></table>
+<p>详细使用方法如下</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a =<span class="number">0</span>;<span class="comment">//该处也可用 int a; 来引入变量a</span></span><br><span class="line">    a = <span class="number">10</span>;</span><br><span class="line">    cout&lt;&lt;a&lt;&lt;ednl;</span><br><span class="line">    </span><br><span class="line">    a=<span class="number">10</span>;</span><br><span class="line">    a+=<span class="number">2</span>;<span class="comment">//表示a=a+2</span></span><br><span class="line">    cout&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    a=<span class="number">10</span>;</span><br><span class="line">    a-=<span class="number">2</span>;<span class="comment">//表示a=a-2</span></span><br><span class="line">    cout&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    a=<span class="number">10</span>;</span><br><span class="line">    a%=<span class="number">3</span>;<span class="comment">//表示a=a%3</span></span><br><span class="line">    cout&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-比较运算符"><a href="#4-比较运算符" class="headerlink" title="4.比较运算符"></a>4.比较运算符</h1><p>作用：用于表达式的比较，并返回真假值</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>术语</th>
+<th>示例</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>==</td>
+<td>相等于</td>
+<td>4==3</td>
+<td>0</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>不等于</td>
+<td>4!=3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+<td>4&lt;3</td>
+<td>0</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于</td>
+<td>4&gt;3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小于等于</td>
+<td>4&lt;=3</td>
+<td>0</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>大于等于</td>
+<td>4&gt;=3</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">4</span>,b=<span class="number">3</span>;</span><br><span class="line">    cout&lt;&lt;(a==b)&lt;&lt;endl;<span class="comment">//此处没有括号不对，括号表示优先运算，初学者可以看成一种语法</span></span><br><span class="line">    cout&lt;&lt;(a!=b)&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;(a&gt;b)&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;(a&lt;=b)&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="5-逻辑运算符"><a href="#5-逻辑运算符" class="headerlink" title="5.逻辑运算符"></a>5.逻辑运算符</h1><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>术语</th>
+<th>示例</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>!</td>
+<td>非</td>
+<td>!a</td>
+<td>与a的真假相反</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>与</td>
+<td>a&amp;&amp;b</td>
+<td>a和b均为真时为真，否则为假</td>
+</tr>
+<tr>
+<td>||</td>
+<td>或</td>
+<td>a||b</td>
+<td>a和b中有一个真即为真，否则为假</td>
+</tr>
+</tbody></table>
+<p>示例如下</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line">    cout&lt;&lt;!a&lt;&lt;endl;<span class="comment">//在C++中的数字，除了0其余都为真</span></span><br><span class="line">    cout&lt;&lt;!!a&lt;&lt;endl;<span class="comment">//该值为真，即为1</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> b=<span class="number">0</span>;</span><br><span class="line">    cout&lt;&lt;(a&amp;&amp;b)&lt;&lt;endl;<span class="comment">//注意该处的优先运算括号</span></span><br><span class="line">    b=<span class="number">1</span>;</span><br><span class="line">    cout&lt;&lt;(a&amp;&amp;b)&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    a=<span class="number">1</span>,b=<span class="number">0</span>;</span><br><span class="line">    cout&lt;&lt;(a||b)&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bugku-bp</title>
+    <url>/2021/12/05/bugku-bp/</url>
+    <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185551656.png" alt="image-20211205185551656"></p>
+<p>爆破结果如下</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/05/bugku-bp/image-20211205185641750.png" alt="image-20211205185641750"></p>
+<p>结果均为908，则猜想正确结果与错误结果的length一样，则选择其他参考标准，通过观察响应包里面的内容，我们发现错误包里面都会返回一个JavaScript代码告知我们的密码有错误。因此我们通过Burpsuite的 （Grep – Match 在响应中找出存在指定的内容的一项。）过滤掉存在JavaScript代码中的{code: ‘bugku10000’}的数据包。</p>
+<p>添加如图内容，继续爆破</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185817178.png" alt="image-20211205185817178"></p>
+<p>发现可疑点</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185906383.png" alt="image-20211205185906383"></p>
+<p>输入该密码，得到flag。</p>
+]]></content>
+      <tags>
+        <tag>bp</tag>
       </tags>
   </entry>
   <entry>
