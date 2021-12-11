@@ -36,6 +36,42 @@
       </tags>
   </entry>
   <entry>
+    <title>C++中的if选择语句</title>
+    <url>/2021/12/11/C-%E4%B8%AD%E7%9A%84if%E9%80%89%E6%8B%A9%E8%AF%AD%E5%8F%A5/</url>
+    <content><![CDATA[<p>作用：执行满足条件的语句</p>
+<p>if语句的三种形式</p>
+<ul>
+<li>单行格式if语句</li>
+<li>多行格式if语句</li>
+<li>多条件的if语句</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="1-单行格式if语句"><a href="#1-单行格式if语句" class="headerlink" title="1.单行格式if语句"></a>1.单行格式if语句</h1><p>语法：<code>if(条件)&#123;条件满足时执行的语句&#125;</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)<span class="comment">//注意此处没有;</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-多行格式if语句"><a href="#2-多行格式if语句" class="headerlink" title="2.多行格式if语句"></a>2.多行格式if语句</h1><p>语法：<code>if(条件)&#123;条件满足时执行的语句&#125;else&#123;条件不满足是执行的语句&#125;;</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;继续加油吧&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-多条件的if语句"><a href="#3-多条件的if语句" class="headerlink" title="3.多条件的if语句"></a>3.多条件的if语句</h1><p>语法：<code>if(条件1)&#123;条件1满足时执行的代码&#125;else if(条件2)&#123;条件2满足时执行的代码&#125; ... else&#123;以上条件都不满足执行的语句&#125;</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)<span class="comment">//第一个条件</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(score&gt;<span class="number">400</span>)<span class="comment">//第二个条件</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得还行&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(score&gt;<span class="number">300</span>)<span class="comment">//第三个条件</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得有点差&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;继续加油吧&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-嵌套if语句"><a href="#4-嵌套if语句" class="headerlink" title="4.嵌套if语句"></a>4.嵌套if语句</h1><p>if语句里面还有if语句</p>
+<p>注意if嵌套语句中条件的大小顺序</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;<span class="comment">//此处判断条件要从大到小，否则无法正常运行</span></span><br><span class="line">        <span class="keyword">if</span>(score&gt;<span class="number">650</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;有望985&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(score&gt;<span class="number">600</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;有望211&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;有望一本&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;继续加油吧&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="5-三目运算符"><a href="#5-三目运算符" class="headerlink" title="5.三目运算符"></a>5.三目运算符</h1><p>作用：通过三目运算符实现简单的判断</p>
+<p>语法：<code>条件 ? 代码1 : 代码2</code></p>
+<p>解释：</p>
+<p>如果满足条件，则执行代码1，否则执行代码2</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a,b,c;</span><br><span class="line">    cin&gt;&gt;a&gt;&gt;b;<span class="comment">//注意此处为&gt;&gt;而不是,</span></span><br><span class="line">    </span><br><span class="line">    c=(a&gt;b?a:b);</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;c&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    (a&gt;b?a:b)=<span class="number">50</span>;<span class="comment">//三目运算符同样可以这样使用，表示将a b中较大的一个赋值为50</span></span><br><span class="line">    cout&lt;&lt;a&lt;&lt;<span class="string">&quot;\n&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++数据类型及数据的运用</title>
     <url>/2021/12/08/C-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h1 id="一、C-程序初始代码"><a href="#一、C-程序初始代码" class="headerlink" title="一、C++程序初始代码"></a>一、C++程序初始代码</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -476,26 +512,6 @@
       </tags>
   </entry>
   <entry>
-    <title>bugku-bp</title>
-    <url>/2021/12/05/bugku-bp/</url>
-    <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185551656.png" alt="image-20211205185551656"></p>
-<p>爆破结果如下</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/05/bugku-bp/image-20211205185641750.png" alt="image-20211205185641750"></p>
-<p>结果均为908，则猜想正确结果与错误结果的length一样，则选择其他参考标准，通过观察响应包里面的内容，我们发现错误包里面都会返回一个JavaScript代码告知我们的密码有错误。因此我们通过Burpsuite的 （Grep – Match 在响应中找出存在指定的内容的一项。）过滤掉存在JavaScript代码中的{code: ‘bugku10000’}的数据包。</p>
-<p>添加如图内容，继续爆破</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185817178.png" alt="image-20211205185817178"></p>
-<p>发现可疑点</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185906383.png" alt="image-20211205185906383"></p>
-<p>输入该密码，得到flag。</p>
-]]></content>
-      <tags>
-        <tag>bp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>朋友，你好！欢迎来到我的世界!</title>
     <url>/2021/11/23/hello-world/</url>
     <content><![CDATA[<p>这是我的第一条<a href="https://shl528.top/">博客</a>!在这里我会更新自己觉得有价值的东西，希望这对你能有一些帮助。<br>嗯… 也不知道到写些什么，那就摘一篇我认为很有价值的文章吧！</p>
@@ -599,6 +615,26 @@
       </tags>
   </entry>
   <entry>
+    <title>bugku-bp</title>
+    <url>/2021/12/05/bugku-bp/</url>
+    <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185551656.png" alt="image-20211205185551656"></p>
+<p>爆破结果如下</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/05/bugku-bp/image-20211205185641750.png" alt="image-20211205185641750"></p>
+<p>结果均为908，则猜想正确结果与错误结果的length一样，则选择其他参考标准，通过观察响应包里面的内容，我们发现错误包里面都会返回一个JavaScript代码告知我们的密码有错误。因此我们通过Burpsuite的 （Grep – Match 在响应中找出存在指定的内容的一项。）过滤掉存在JavaScript代码中的{code: ‘bugku10000’}的数据包。</p>
+<p>添加如图内容，继续爆破</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185817178.png" alt="image-20211205185817178"></p>
+<p>发现可疑点</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185906383.png" alt="image-20211205185906383"></p>
+<p>输入该密码，得到flag。</p>
+]]></content>
+      <tags>
+        <tag>bp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>php://filter 协议</title>
     <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
     <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
@@ -660,57 +696,6 @@
 ]]></content>
       <tags>
         <tag>GET</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>极客大挑战 2019 EasySQL</title>
-    <url>/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/</url>
-    <content><![CDATA[<p>打开题目如下</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203192806308.png" alt="image-20211203192806308"></p>
-<p>典型的爆破，提示他是cl4y，则猜测用户名为cl4y，开始爆破</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203193005388.png" alt="image-20211203193005388"></p>
-<p><strong>攻击类型：</strong></p>
-<p><u>单字典（无论几个变量都是一个字典）<u></u></u></p>
-<p>1.狙击手（Sniper）：如果选择多个变量，所选字典会先爆破一个变量，再爆破第二个变量（一个一个来），适用于知道账户或密码的情况。</p>
-<p>2.破城槌（Battering ram）：无论选择过几个变量，此字典都会同时爆破（多个一起上，且变量值都一样），适用于账户密码相同的情况。</p>
-<p><u>多字典（几个变量就用几个字典）<u></u></u></p>
-<p>1.音叉（Pitchfork）：变量1与变量2一一对应进行，若两个字典行数不同，小字典测完即结束，适用于知道多个账号和与之匹配的密码。</p>
-<p>2.集束炸弹（Cluster bomb）：一对多出，即变量1的每个变量都要和变量2匹配一遍，适用于账号密码都不知道的情况。</p>
-<p>此处应选Sniper，并添加字典。</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203194636704.png" alt="image-20211203194636704"></p>
-<p>开始爆破</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195307444.png" alt="image-20211203195307444"></p>
-<p>结果不是723就是737，有两个不同的即736和726，尝试该结果</p>
-<p>723</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195538959.png" alt="image-20211203195538959"></p>
-<p>737</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195619481.png" alt="image-20211203195619481"></p>
-<p>736</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195443399.png" alt="image-20211203195443399"></p>
-<p>F12后什么也没有</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195923451.png" alt="image-20211203195923451"></p>
-<p>726</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195506430.png" alt="image-20211203195506430"></p>
-<p>最后得出结果：你爆破你码呢？？？？？？？？？？？？？？？？？？？这是SQL，果断关闭Bp。</p>
-<p>随便输入账户密码 并在账号前加  ‘  如图</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201213071.png" alt="image-20211203201213071"></p>
-<p>进入后</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201229961.png" alt="image-20211203201229961"></p>
-<p>谷歌翻译</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201303627.png" alt="image-20211203201303627"></p>
-<p>尝试万能密码 <code>admin&#39; or &#39;1&#39;=&#39;1</code></p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201415048.png" alt="image-20211203201415048"></p>
-<p>结果</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201442402.png" alt="image-20211203201442402"></p>
-<p>不慌，用第二种，不去判断密码的正确性。<code>admin&#39; or 1=1 %23</code></p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201549920.png" alt="image-20211203201549920"></p>
-<p>成功</p>
-<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201607750.png" alt="image-20211203201607750"></p>
-]]></content>
-      <tags>
-        <tag>SQL</tag>
       </tags>
   </entry>
   <entry>
@@ -793,6 +778,57 @@
 ]]></content>
       <tags>
         <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>极客大挑战 2019 EasySQL</title>
+    <url>/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/</url>
+    <content><![CDATA[<p>打开题目如下</p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203192806308.png" alt="image-20211203192806308"></p>
+<p>典型的爆破，提示他是cl4y，则猜测用户名为cl4y，开始爆破</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203193005388.png" alt="image-20211203193005388"></p>
+<p><strong>攻击类型：</strong></p>
+<p><u>单字典（无论几个变量都是一个字典）<u></u></u></p>
+<p>1.狙击手（Sniper）：如果选择多个变量，所选字典会先爆破一个变量，再爆破第二个变量（一个一个来），适用于知道账户或密码的情况。</p>
+<p>2.破城槌（Battering ram）：无论选择过几个变量，此字典都会同时爆破（多个一起上，且变量值都一样），适用于账户密码相同的情况。</p>
+<p><u>多字典（几个变量就用几个字典）<u></u></u></p>
+<p>1.音叉（Pitchfork）：变量1与变量2一一对应进行，若两个字典行数不同，小字典测完即结束，适用于知道多个账号和与之匹配的密码。</p>
+<p>2.集束炸弹（Cluster bomb）：一对多出，即变量1的每个变量都要和变量2匹配一遍，适用于账号密码都不知道的情况。</p>
+<p>此处应选Sniper，并添加字典。</p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203194636704.png" alt="image-20211203194636704"></p>
+<p>开始爆破</p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195307444.png" alt="image-20211203195307444"></p>
+<p>结果不是723就是737，有两个不同的即736和726，尝试该结果</p>
+<p>723</p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195538959.png" alt="image-20211203195538959"></p>
+<p>737</p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195619481.png" alt="image-20211203195619481"></p>
+<p>736</p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195443399.png" alt="image-20211203195443399"></p>
+<p>F12后什么也没有</p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195923451.png" alt="image-20211203195923451"></p>
+<p>726</p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203195506430.png" alt="image-20211203195506430"></p>
+<p>最后得出结果：你爆破你码呢？？？？？？？？？？？？？？？？？？？这是SQL，果断关闭Bp。</p>
+<p>随便输入账户密码 并在账号前加  ‘  如图</p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201213071.png" alt="image-20211203201213071"></p>
+<p>进入后</p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201229961.png" alt="image-20211203201229961"></p>
+<p>谷歌翻译</p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201303627.png" alt="image-20211203201303627"></p>
+<p>尝试万能密码 <code>admin&#39; or &#39;1&#39;=&#39;1</code></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201415048.png" alt="image-20211203201415048"></p>
+<p>结果</p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201442402.png" alt="image-20211203201442402"></p>
+<p>不慌，用第二种，不去判断密码的正确性。<code>admin&#39; or 1=1 %23</code></p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201549920.png" alt="image-20211203201549920"></p>
+<p>成功</p>
+<p><img src="/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/image-20211203201607750.png" alt="image-20211203201607750"></p>
+]]></content>
+      <tags>
+        <tag>SQL</tag>
       </tags>
   </entry>
 </search>
