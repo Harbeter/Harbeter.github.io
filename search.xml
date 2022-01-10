@@ -1,41 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ACTF2020 新生赛 Upload</title>
-    <url>/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/</url>
-    <content><![CDATA[<p>同样是一道上传题，上传已有木马</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162637320.png" alt="image-20211202162637320"></p>
-<span id="more"></span>
-
-<p>换gif木马重新尝试</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162755354.png" alt="image-20211202162755354"></p>
-<p>上传成功，打开指定网址查看是否有上传文件</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162849704.png" alt="image-20211202162849704"></p>
-<p>果然有</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162906119.png" alt="image-20211202162906119"></p>
-<p>接着打开蚁剑连接，发现</p>
-<p><strong><u>上传的图片中的代码不能用</u></strong></p>
-<p>换方法</p>
-<p>随便上传一个图片，然后修改其后缀和内容</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173541721.png" alt="image-20211202173541721"></p>
-<p>改为php后，不通过，则改为phtml</p>
-<p>并插入代码</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>如图</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173720354.png" alt="image-20211202173720354"></p>
-<p>提交后</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173743862.png" alt="image-20211202173743862"></p>
-<p>进入蚁剑连接</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173834016.png" alt="image-20211202173834016"></p>
-<p>在根目录下得到flag</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173912850.png" alt="image-20211202173912850"></p>
-]]></content>
-      <tags>
-        <tag>webshell</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++中的循环结构和跳转语句</title>
     <url>/2021/12/16/C-%E4%B8%AD%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<h1 id="一、循环结构"><a href="#一、循环结构" class="headerlink" title="一、循环结构"></a>一、循环结构</h1><h2 id="1-while循环结构"><a href="#1-while循环结构" class="headerlink" title="1.while循环结构"></a>1.while循环结构</h2><p>作用：满足循环条件，执行循环语句</p>
@@ -80,6 +45,41 @@
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ACTF2020 新生赛 Upload</title>
+    <url>/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/</url>
+    <content><![CDATA[<p>同样是一道上传题，上传已有木马</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162637320.png" alt="image-20211202162637320"></p>
+<span id="more"></span>
+
+<p>换gif木马重新尝试</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162755354.png" alt="image-20211202162755354"></p>
+<p>上传成功，打开指定网址查看是否有上传文件</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162849704.png" alt="image-20211202162849704"></p>
+<p>果然有</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162906119.png" alt="image-20211202162906119"></p>
+<p>接着打开蚁剑连接，发现</p>
+<p><strong><u>上传的图片中的代码不能用</u></strong></p>
+<p>换方法</p>
+<p>随便上传一个图片，然后修改其后缀和内容</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173541721.png" alt="image-20211202173541721"></p>
+<p>改为php后，不通过，则改为phtml</p>
+<p>并插入代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如图</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173720354.png" alt="image-20211202173720354"></p>
+<p>提交后</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173743862.png" alt="image-20211202173743862"></p>
+<p>进入蚁剑连接</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173834016.png" alt="image-20211202173834016"></p>
+<p>在根目录下得到flag</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173912850.png" alt="image-20211202173912850"></p>
+]]></content>
+      <tags>
+        <tag>webshell</tag>
       </tags>
   </entry>
   <entry>
@@ -566,6 +566,66 @@
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git版本穿梭及版本比较</title>
+    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
+    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
+<li><p>状态查看：<code>git status</code></p>
+</li>
+<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
+</li>
+<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
+<p>简洁显示：<code>git log --pretty=oneline</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
+<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
+<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
+<p>HEAD@{移动到当前版本所需要步数}</p>
+<p>若版本信息有多屏</p>
+<p>则空格向下翻页，b向上翻页，q退出</p>
+<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
+<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
+<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
+<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
+<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
+<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
+<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
+<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
+<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
+<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
+<p>现在状态为</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
+<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
+<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
+<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
+<p>然后删除文件，并添加到暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
+<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
+<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
+<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
+<p>上图表示第一行删去了9个a</p>
+<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
