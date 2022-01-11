@@ -693,6 +693,71 @@
       </tags>
   </entry>
   <entry>
+    <title>Git远程库相关操作</title>
+    <url>/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h1 id="添加远程库及推送"><a href="#添加远程库及推送" class="headerlink" title="添加远程库及推送"></a>添加远程库及推送</h1><p>命令：<code>git remote add 地址名 HTTP或SSH地址</code></p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111201215014.png" alt="image-20220111201215014"></p>
+<p>执行完后，如以下页面</p>
+<span id="more"></span>
+
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111201612020.png" alt="image-20220111201612020"></p>
+<p>推送命令：<code>git push 地址名 分支名</code>，执行后报错</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111202306396.png" alt="image-20220111202306396"></p>
+<p>因为git在拉取或者提交项目时，中间会有git的http和https代理，但是我们本地环境本身就有SSL协议了，所以取消git的https代理即可，不行再取消http的代理。</p>
+<p>取消指令为：</p>
+<p>取消http代理<br><code>git config --global --unset http.proxy</code><br>取消https代理<br><code>git config --global --unset https.proxy</code></p>
+<p>也可以直接用ssh地址，设置ssh协议的方法可参考<a href="https://zhuanlan.zhihu.com/p/103391101">这里</a></p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111202436988.png" alt="image-20220111202436988"></p>
+<p>然后查看远程库，即可发现文件</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111202501488.png" alt="image-20220111202501488"></p>
+<h1 id="克隆远程库到本地"><a href="#克隆远程库到本地" class="headerlink" title="克隆远程库到本地"></a>克隆远程库到本地</h1><p>命令：<code>git clone 克隆地址</code>，克隆地址为下（克隆不需要再初始化）</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111203222264.png" alt="image-20220111203222264"></p>
+<p>操作如下</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111203419197.png" alt="image-20220111203419197"></p>
+<p>克隆的三个操作</p>
+<ul>
+<li>完整的把远程库下载到本地</li>
+<li>创建origin远程库地址别名</li>
+<li>初始化本地库</li>
+</ul>
+<h2 id="推送本地库到远程库"><a href="#推送本地库到远程库" class="headerlink" title="推送本地库到远程库"></a>推送本地库到远程库</h2><p>命令：<code>git push 远程库地址别名 分支名</code>（前提是，发出提交的Github账户在该团队内，邀请在GitHub内进行）</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111212540339.png" alt="image-20220111212540339"></p>
+<p>邀请加入后</p>
+<p>这里仍然要用ssh协议</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111210851950.png" alt="image-20220111210851950"></p>
+<p>内容推送上去后，远程库内容改变</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111211327947.png" alt="image-20220111211327947"></p>
+<h1 id="拉取远程库到本地库"><a href="#拉取远程库到本地库" class="headerlink" title="拉取远程库到本地库"></a>拉取远程库到本地库</h1><p>然后切换另一编辑者，也就是库的创建者</p>
+<p>执行抓取操作：<code>git fetch 地址别名 分支</code></p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111211608126.png" alt="image-20220111211608126"></p>
+<p>抓取下来后可看到，本地库文件并没有改变</p>
+<p>切换分支：<code>git checkout 地址别名/分支名</code></p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111211801979.png" alt="image-20220111211801979"></p>
+<p>可看到，内容已经改变（多了一行g）</p>
+<p>然后要将远程库合并到本地库就要切换到master分支，然后执行：<code>git merge 地址别名/分支名</code></p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111220729815.png" alt="image-20220111220729815"></p>
+<p>以上适用于需要检查代码的情况，比较麻烦</p>
+<p>若是追求简单，则可直接执行：<code>git pull 地址别名 分支名</code>同样可拿到远程库内容</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111220915812.png" alt="image-20220111220915812"></p>
+<p><strong><u>总结：push=fetch+merge</u></strong></p>
+<h1 id="推送时的矛盾"><a href="#推送时的矛盾" class="headerlink" title="推送时的矛盾"></a>推送时的矛盾</h1><p>若两个人同时对远程库进行推送，则推送晚者不能推送，只能拉取最新的库，然后再进行修改、推送</p>
+<p>冲突页面如下</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111221428737.png" alt="image-20220111221428737"></p>
+<p>拉取远程库文件</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111221617497.png" alt="image-20220111221617497"></p>
+<p>打开冲突的文件</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111221505181.png" alt="image-20220111221505181"></p>
+<p>删去多余行目，然后提交到本地库</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111221923785.png" alt="image-20220111221923785"></p>
+<p>然后再推送到远程库</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111222029729.png" alt="image-20220111222029729"></p>
+<p><strong>这种机制的目的避免了推送混乱</strong></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PHPstudy+Win7搭建ＤＶＷＡ靶场</title>
     <url>/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/</url>
     <content><![CDATA[<h1 id="1-安装虚拟机"><a href="#1-安装虚拟机" class="headerlink" title="1.安装虚拟机"></a>1.安装虚拟机</h1><p>这里我用的时VMware，可以直接百度搜索，然后下载即可。之后要去找一个Win7的系统静像，这里推荐去<a href="https://msdn.itellyou.cn/"> I Tell You</a>下载。然后就是配置虚拟机</p>
