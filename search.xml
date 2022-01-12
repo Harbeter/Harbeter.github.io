@@ -792,6 +792,116 @@
       </tags>
   </entry>
   <entry>
+    <title>SQL入门</title>
+    <url>/2022/01/12/SQL%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<h1 id="计算机语言"><a href="#计算机语言" class="headerlink" title="计算机语言"></a>计算机语言</h1><ul>
+<li>机器语言：例如10101010100011（二进制语言）</li>
+<li>汇编语言：也是比较接近计算机底层，例如<img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112122525180.png" alt="image-20220112122525180"></li>
+<li>高级语言：例如C语言（更接近底层）、python、SQL等</li>
+</ul>
+<h1 id="SQL概述"><a href="#SQL概述" class="headerlink" title="SQL概述"></a>SQL概述</h1><p><strong>SQL</strong> (Structured Query Language:结构化查询语言) 是用于管理关系数据库管理系统（RDBMS）。 SQL 的范围包括数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。</p>
+<h2 id="SQL的特点"><a href="#SQL的特点" class="headerlink" title="SQL的特点"></a>SQL的特点</h2><ul>
+<li>具有总和统一性，不同数据库所支持的SQL稍有不同</li>
+<li>非过程化语言（不需要关心内部操作过程）</li>
+<li>语言简洁，用户容易接受</li>
+<li>以一种语言结构提供两种使用方式，例如SQL和python或java结合使用</li>
+</ul>
+<h2 id="SQL的语法特点"><a href="#SQL的语法特点" class="headerlink" title="SQL的语法特点"></a>SQL的语法特点</h2><ul>
+<li>SQL对关键字的大小写不敏感，比如SELECT和select一样</li>
+<li>SQL语句可以以单行或者多行书写，以分号结束</li>
+<li>SQL注释分单行注释和多行注释，单行注释语法：<code>-- 单行注释</code>，注意–后面有空格；<code>#单行注释</code>，#后可加可不加空格。例如<code>select * from 库名;-- 单行注释</code>。多行注释和C++一样<code>/*  注释内容  */</code>。</li>
+</ul>
+<h1 id="数据库概述"><a href="#数据库概述" class="headerlink" title="数据库概述"></a>数据库概述</h1><p>数据库（DataBase）是“按照数据结构来组织、存储和管理数据的仓库”。是一个长期存储在计算机内的、有组织的、可共享的、统一管理的大量数据的集合。</p>
+<p><strong>数据库应用系统是指基于数据库的应用软件</strong></p>
+<h2 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h2><h3 id="关系型数据库（RDBMS）"><a href="#关系型数据库（RDBMS）" class="headerlink" title="关系型数据库（RDBMS）"></a>关系型数据库（RDBMS）</h3><ul>
+<li>Oracle数据库（最挣钱体积庞大，几个Gb）</li>
+<li>MySQL数据库（最流行中型数据库）</li>
+<li>SQL server数据库（Window上最好的数据库）</li>
+<li>PostgreSQL（功能最强大的开源数据库）</li>
+<li>SQLite（最流行的嵌入式数据库，体积非常小几百kb）</li>
+</ul>
+<h3 id="非关系型数据库（NoSQL）"><a href="#非关系型数据库（NoSQL）" class="headerlink" title="非关系型数据库（NoSQL）"></a>非关系型数据库（NoSQL）</h3><ul>
+<li>Redis（最好的缓存数据库）</li>
+<li>MongoDB（最好的文档型数据库）</li>
+<li>Elasticsearch（最好的搜索服务）</li>
+<li>Cassandra（最好的列式数据库）</li>
+<li>HBase（优秀的分布式、列式数据库）</li>
+</ul>
+<p><strong>两类数据库的区别在于，关系型数据库存储数据用一张张的表，而非关系型数据库有其自身的存储方式</strong></p>
+<h2 id="SQL和数据库管理系统的关系"><a href="#SQL和数据库管理系统的关系" class="headerlink" title="SQL和数据库管理系统的关系"></a>SQL和数据库管理系统的关系</h2><ul>
+<li>SQL是一种用于操作数据库的语言，SQL适用于所有的关系数据库。</li>
+<li>MySQL、Oracle、SQLSever是一个数据库软件，这些数据库软件支持标准的SQL，也就是通过SQL可以使用这些软件，不过每一个数据库系统会在标准SQL的举出上扩展自己的SQL语法</li>
+<li>大部分NoSQL数据库有自己的操作语言，对SQL支持并不好</li>
+</ul>
+<h2 id="关系型数据库的组成"><a href="#关系型数据库的组成" class="headerlink" title="关系型数据库的组成"></a>关系型数据库的组成</h2><p>数据库管理系统（DBMS）主要由数据库（Database）和表（table）组成，一个系统可以有很多数据库，每个数据库可以有很多表。</p>
+<h1 id="MySQL简介"><a href="#MySQL简介" class="headerlink" title="MySQL简介"></a>MySQL简介</h1><ul>
+<li>MySQL如今归Oracle管，并有社区版和企业版</li>
+<li>MySQL使用标准化的SQL语言</li>
+</ul>
+<h2 id="MySQL的特点"><a href="#MySQL的特点" class="headerlink" title="MySQL的特点"></a>MySQL的特点</h2><ol>
+<li>MySQL的数据库是用C和C++语言编写的，以保证源码的可移植性</li>
+<li>支持多个操作系统，例如：Windows、Linux、Mac OS等等</li>
+<li>支持多线程，可以充分利用CPU资源</li>
+<li>为多种编程语言提供API，包括C语言、Java、PHP、Python语言等</li>
+<li>MySQL优化了SQL算法，有效的提高了查询速度</li>
+<li>MySQL开放源代码，且无版权制约，自主性强，使用成本低</li>
+<li>MySQL历史悠久，社区及用户非常活跃，遇到问题，可以很快获得帮助</li>
+</ol>
+<h2 id="MySQL的版本"><a href="#MySQL的版本" class="headerlink" title="MySQL的版本"></a>MySQL的版本</h2><p>针对不同用户，MySQL分为两种不同的版本：</p>
+<p><strong>MySQL Community Server</strong></p>
+<p>社区版本，免费，但是MySQL不提供官方的技术支持</p>
+<p><strong>MySQL Enterprise Edition</strong></p>
+<p>商业版，该版本是收费的，可以试用30天，官方提供技术支持</p>
+<p><strong>MySQL Cluster</strong></p>
+<p>集群版，开源免费，可将几个MySQL Server封装成一个Server</p>
+<p><strong>MySQL Cluster CGE</strong></p>
+<p>高级集群版，需要付费</p>
+<p><strong>MySQL Workbench （GUI TOOL）</strong></p>
+<p>一款专门为MySQL设计的ER/数据库建模工具，MySQL Workbench又分为两个版本，分别是社区版（MySQL Workbench OSS）、商用版（MySQL Workbench SE）</p>
+<h2 id="MySQL的版本命名"><a href="#MySQL的版本命名" class="headerlink" title="MySQL的版本命名"></a>MySQL的版本命名</h2><p>MySQL的命名机制使用三个数字和一个后缀组成的版本号，例如，mysql-8.0.26的版本号这样解释：</p>
+<p>第一个数字（8）是主版本号，描述了文件格式，所有版本5的发行都有相同的文件格式。</p>
+<p>第二个数字（0）是发行级别，主版本号和发行级别组合到一块便构成了发行序列号。</p>
+<p>第三个数字（26）是在此发行系列的版本号，随每个新发行版本递增</p>
+<h1 id="MySQL的安装"><a href="#MySQL的安装" class="headerlink" title="MySQL的安装"></a>MySQL的安装</h1><h2 id="压缩包安装"><a href="#压缩包安装" class="headerlink" title="压缩包安装"></a>压缩包安装</h2><p>去<a href="https://dev.mysql.com/downloads/mysql/">官网下载zip</a>然后解压进行配置</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112153020029.png" alt="image-20220112153020029"></p>
+<p>解压后新建my. ini文件,并编辑</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160645372.png" alt="image-20220112160645372"></p>
+<p>若没有新建文件的权力，修改一下内容</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160750113.png" alt="image-20220112160750113"></p>
+<p>然后配置环境变量（<strong>若不配置，则cmd无法识别mysql指令</strong>）</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161003464.png" alt="image-20220112161003464"></p>
+<p>然后在Path中添加如下内容</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161441314.png" alt="image-20220112161441314"></p>
+<p>配置好后，进入cmd（管理员模式）并打开bin文件如图</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112162133149.png" alt="image-20220112162133149"></p>
+<p>然后对mysql进行初始化，记住初始化密码，下面登录要用</p>
+<p><code>mysqld --initialize --user=mysql --console</code></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112221537146.png" alt="image-20220112221537146"></p>
+<p>安装mysql服务</p>
+<p><code>mysqld --install</code></p>
+<p>启动mysql服务</p>
+<p><code>net start mysql</code></p>
+<p>登录mysql</p>
+<p><code>mysql -uroot -p</code></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223115990.png" alt="image-20220112223115990"></p>
+<p>修改root用户密码为root</p>
+<p><code>ALTER USER&#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></p>
+<p>修改root用户权限</p>
+<p><code>create user &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223244690.png" alt="image-20220112223244690"></p>
+<p>退出登录用quit</p>
+<h2 id="程序安装"><a href="#程序安装" class="headerlink" title="程序安装"></a>程序安装</h2><p>去<a href="https://dev.mysql.com/downloads/windows/installer/8.0.html">官网下载程序</a>然后安装</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112154249700.png" alt="image-20220112154249700"></p>
+<p>这种方法比较上一种，少了配置my.ini文件和初始化的步骤，其余差不多，但需要注意的是配置环境变量时，MySQL的安装路径</p>
+<h1 id="MySQL的卸载"><a href="#MySQL的卸载" class="headerlink" title="MySQL的卸载"></a>MySQL的卸载</h1><p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223649914.png" alt="image-20220112223649914"></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223728875.png" alt="image-20220112223728875"></p>
+<p>该图片摘自B站黑马程序员</p>
+]]></content>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Win7搭建sqlilabs</title>
     <url>/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/</url>
     <content><![CDATA[<h1 id="下载sqli-labs"><a href="#下载sqli-labs" class="headerlink" title="下载sqli-labs"></a>下载sqli-labs</h1><p><a href="https://github.com/Audi-1/sqli-labs">点击此处下载</a>sqli-labs</p>
@@ -932,6 +1042,30 @@
       </tags>
   </entry>
   <entry>
+    <title>php://filter 协议</title>
+    <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
+<p>1是格式<br>2是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br>3是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br>4是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
+<span id="more"></span>
+
+<p>转base64编码：convert.base64-encode</p>
+<p>转大写：string.toupper</p>
+<p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
+<p>例题：</p>
+<h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
+<p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
+<p>构造：php://filter/read=convert.base64-encode/recource=flag.php</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
+<p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
+<p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
+]]></content>
+      <tags>
+        <tag>php Filter</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>朋友，你好！欢迎来到我的世界!</title>
     <url>/2021/11/23/hello-world/</url>
     <content><![CDATA[<p>这是我的第一条<a href="https://shl528.top/">博客</a>!在这里我会更新自己觉得有价值的东西，希望这对你能有一些帮助。<br>嗯… 也不知道到写些什么，那就摘一篇我认为很有价值的文章吧！</p>
@@ -1032,30 +1166,6 @@
 ]]></content>
       <tags>
         <tag>杂谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>php://filter 协议</title>
-    <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
-    <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
-<p>1是格式<br>2是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br>3是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br>4是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
-<span id="more"></span>
-
-<p>转base64编码：convert.base64-encode</p>
-<p>转大写：string.toupper</p>
-<p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
-<p>例题：</p>
-<h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
-<p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
-<p>构造：php://filter/read=convert.base64-encode/recource=flag.php</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
-<p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
-<p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
-]]></content>
-      <tags>
-        <tag>php Filter</tag>
       </tags>
   </entry>
   <entry>

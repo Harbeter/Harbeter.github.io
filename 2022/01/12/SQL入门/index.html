@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"harbeter.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="计算机语言 机器语言：例如10101010100011（二进制语言） 汇编语言：也是比较接近计算机底层，例如 高级语言：例如C语言（更接近底层）、python、SQL等  SQL概述SQL (Structured Query Language:结构化查询语言) 是用于管理关系数据库管理系统（RDBMS）。 SQL 的范围包括数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。 SQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL入门">
+<meta property="og:url" content="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="像风吹过八千里">
+<meta property="og:description" content="计算机语言 机器语言：例如10101010100011（二进制语言） 汇编语言：也是比较接近计算机底层，例如 高级语言：例如C语言（更接近底层）、python、SQL等  SQL概述SQL (Structured Query Language:结构化查询语言) 是用于管理关系数据库管理系统（RDBMS）。 SQL 的范围包括数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。 SQ">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112122525180.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112153020029.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160645372.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160750113.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161003464.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161441314.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112162133149.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112221537146.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223115990.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223244690.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112154249700.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223649914.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223728875.png">
+<meta property="article:published_time" content="2022-01-12T04:21:12.432Z">
+<meta property="article:modified_time" content="2022-01-12T14:37:50.742Z">
+<meta property="article:author" content="Harbeter">
+<meta property="article:tag" content="SQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112122525180.png">
+
+<link rel="canonical" href="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>SQL入门 | 像风吹过八千里</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">像风吹过八千里</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2022/01/12/SQL%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Harbeter">
+      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="像风吹过八千里">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SQL入门
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-01-12 12:21:12 / 修改时间：22:37:50" itemprop="dateCreated datePublished" datetime="2022-01-12T12:21:12+08:00">2022-01-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="计算机语言"><a href="#计算机语言" class="headerlink" title="计算机语言"></a>计算机语言</h1><ul>
+<li>机器语言：例如10101010100011（二进制语言）</li>
+<li>汇编语言：也是比较接近计算机底层，例如<img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112122525180.png" alt="image-20220112122525180"></li>
+<li>高级语言：例如C语言（更接近底层）、python、SQL等</li>
+</ul>
+<h1 id="SQL概述"><a href="#SQL概述" class="headerlink" title="SQL概述"></a>SQL概述</h1><p><strong>SQL</strong> (Structured Query Language:结构化查询语言) 是用于管理关系数据库管理系统（RDBMS）。 SQL 的范围包括数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。</p>
+<h2 id="SQL的特点"><a href="#SQL的特点" class="headerlink" title="SQL的特点"></a>SQL的特点</h2><ul>
+<li>具有总和统一性，不同数据库所支持的SQL稍有不同</li>
+<li>非过程化语言（不需要关心内部操作过程）</li>
+<li>语言简洁，用户容易接受</li>
+<li>以一种语言结构提供两种使用方式，例如SQL和python或java结合使用</li>
+</ul>
+<h2 id="SQL的语法特点"><a href="#SQL的语法特点" class="headerlink" title="SQL的语法特点"></a>SQL的语法特点</h2><ul>
+<li>SQL对关键字的大小写不敏感，比如SELECT和select一样</li>
+<li>SQL语句可以以单行或者多行书写，以分号结束</li>
+<li>SQL注释分单行注释和多行注释，单行注释语法：<code>-- 单行注释</code>，注意–后面有空格；<code>#单行注释</code>，#后可加可不加空格。例如<code>select * from 库名;-- 单行注释</code>。多行注释和C++一样<code>/*  注释内容  */</code>。</li>
+</ul>
+<h1 id="数据库概述"><a href="#数据库概述" class="headerlink" title="数据库概述"></a>数据库概述</h1><p>数据库（DataBase）是“按照数据结构来组织、存储和管理数据的仓库”。是一个长期存储在计算机内的、有组织的、可共享的、统一管理的大量数据的集合。</p>
+<p><strong>数据库应用系统是指基于数据库的应用软件</strong></p>
+<h2 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h2><h3 id="关系型数据库（RDBMS）"><a href="#关系型数据库（RDBMS）" class="headerlink" title="关系型数据库（RDBMS）"></a>关系型数据库（RDBMS）</h3><ul>
+<li>Oracle数据库（最挣钱体积庞大，几个Gb）</li>
+<li>MySQL数据库（最流行中型数据库）</li>
+<li>SQL server数据库（Window上最好的数据库）</li>
+<li>PostgreSQL（功能最强大的开源数据库）</li>
+<li>SQLite（最流行的嵌入式数据库，体积非常小几百kb）</li>
+</ul>
+<h3 id="非关系型数据库（NoSQL）"><a href="#非关系型数据库（NoSQL）" class="headerlink" title="非关系型数据库（NoSQL）"></a>非关系型数据库（NoSQL）</h3><ul>
+<li>Redis（最好的缓存数据库）</li>
+<li>MongoDB（最好的文档型数据库）</li>
+<li>Elasticsearch（最好的搜索服务）</li>
+<li>Cassandra（最好的列式数据库）</li>
+<li>HBase（优秀的分布式、列式数据库）</li>
+</ul>
+<p><strong>两类数据库的区别在于，关系型数据库存储数据用一张张的表，而非关系型数据库有其自身的存储方式</strong></p>
+<h2 id="SQL和数据库管理系统的关系"><a href="#SQL和数据库管理系统的关系" class="headerlink" title="SQL和数据库管理系统的关系"></a>SQL和数据库管理系统的关系</h2><ul>
+<li>SQL是一种用于操作数据库的语言，SQL适用于所有的关系数据库。</li>
+<li>MySQL、Oracle、SQLSever是一个数据库软件，这些数据库软件支持标准的SQL，也就是通过SQL可以使用这些软件，不过每一个数据库系统会在标准SQL的举出上扩展自己的SQL语法</li>
+<li>大部分NoSQL数据库有自己的操作语言，对SQL支持并不好</li>
+</ul>
+<h2 id="关系型数据库的组成"><a href="#关系型数据库的组成" class="headerlink" title="关系型数据库的组成"></a>关系型数据库的组成</h2><p>数据库管理系统（DBMS）主要由数据库（Database）和表（table）组成，一个系统可以有很多数据库，每个数据库可以有很多表。</p>
+<h1 id="MySQL简介"><a href="#MySQL简介" class="headerlink" title="MySQL简介"></a>MySQL简介</h1><ul>
+<li>MySQL如今归Oracle管，并有社区版和企业版</li>
+<li>MySQL使用标准化的SQL语言</li>
+</ul>
+<h2 id="MySQL的特点"><a href="#MySQL的特点" class="headerlink" title="MySQL的特点"></a>MySQL的特点</h2><ol>
+<li>MySQL的数据库是用C和C++语言编写的，以保证源码的可移植性</li>
+<li>支持多个操作系统，例如：Windows、Linux、Mac OS等等</li>
+<li>支持多线程，可以充分利用CPU资源</li>
+<li>为多种编程语言提供API，包括C语言、Java、PHP、Python语言等</li>
+<li>MySQL优化了SQL算法，有效的提高了查询速度</li>
+<li>MySQL开放源代码，且无版权制约，自主性强，使用成本低</li>
+<li>MySQL历史悠久，社区及用户非常活跃，遇到问题，可以很快获得帮助</li>
+</ol>
+<h2 id="MySQL的版本"><a href="#MySQL的版本" class="headerlink" title="MySQL的版本"></a>MySQL的版本</h2><p>针对不同用户，MySQL分为两种不同的版本：</p>
+<p><strong>MySQL Community Server</strong></p>
+<p>社区版本，免费，但是MySQL不提供官方的技术支持</p>
+<p><strong>MySQL Enterprise Edition</strong></p>
+<p>商业版，该版本是收费的，可以试用30天，官方提供技术支持</p>
+<p><strong>MySQL Cluster</strong></p>
+<p>集群版，开源免费，可将几个MySQL Server封装成一个Server</p>
+<p><strong>MySQL Cluster CGE</strong></p>
+<p>高级集群版，需要付费</p>
+<p><strong>MySQL Workbench （GUI TOOL）</strong></p>
+<p>一款专门为MySQL设计的ER/数据库建模工具，MySQL Workbench又分为两个版本，分别是社区版（MySQL Workbench OSS）、商用版（MySQL Workbench SE）</p>
+<h2 id="MySQL的版本命名"><a href="#MySQL的版本命名" class="headerlink" title="MySQL的版本命名"></a>MySQL的版本命名</h2><p>MySQL的命名机制使用三个数字和一个后缀组成的版本号，例如，mysql-8.0.26的版本号这样解释：</p>
+<p>第一个数字（8）是主版本号，描述了文件格式，所有版本5的发行都有相同的文件格式。</p>
+<p>第二个数字（0）是发行级别，主版本号和发行级别组合到一块便构成了发行序列号。</p>
+<p>第三个数字（26）是在此发行系列的版本号，随每个新发行版本递增</p>
+<h1 id="MySQL的安装"><a href="#MySQL的安装" class="headerlink" title="MySQL的安装"></a>MySQL的安装</h1><h2 id="压缩包安装"><a href="#压缩包安装" class="headerlink" title="压缩包安装"></a>压缩包安装</h2><p>去<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql/">官网下载zip</a>然后解压进行配置</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112153020029.png" alt="image-20220112153020029"></p>
+<p>解压后新建my. ini文件,并编辑</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160645372.png" alt="image-20220112160645372"></p>
+<p>若没有新建文件的权力，修改一下内容</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160750113.png" alt="image-20220112160750113"></p>
+<p>然后配置环境变量（<strong>若不配置，则cmd无法识别mysql指令</strong>）</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161003464.png" alt="image-20220112161003464"></p>
+<p>然后在Path中添加如下内容</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161441314.png" alt="image-20220112161441314"></p>
+<p>配置好后，进入cmd（管理员模式）并打开bin文件如图</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112162133149.png" alt="image-20220112162133149"></p>
+<p>然后对mysql进行初始化，记住初始化密码，下面登录要用</p>
+<p><code>mysqld --initialize --user=mysql --console</code></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112221537146.png" alt="image-20220112221537146"></p>
+<p>安装mysql服务</p>
+<p><code>mysqld --install</code></p>
+<p>启动mysql服务</p>
+<p><code>net start mysql</code></p>
+<p>登录mysql</p>
+<p><code>mysql -uroot -p</code></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223115990.png" alt="image-20220112223115990"></p>
+<p>修改root用户密码为root</p>
+<p><code>ALTER USER&#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></p>
+<p>修改root用户权限</p>
+<p><code>create user &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223244690.png" alt="image-20220112223244690"></p>
+<p>退出登录用quit</p>
+<h2 id="程序安装"><a href="#程序安装" class="headerlink" title="程序安装"></a>程序安装</h2><p>去<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/windows/installer/8.0.html">官网下载程序</a>然后安装</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112154249700.png" alt="image-20220112154249700"></p>
+<p>这种方法比较上一种，少了配置my.ini文件和初始化的步骤，其余差不多，但需要注意的是配置环境变量时，MySQL的安装路径</p>
+<h1 id="MySQL的卸载"><a href="#MySQL的卸载" class="headerlink" title="MySQL的卸载"></a>MySQL的卸载</h1><p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223649914.png" alt="image-20220112223649914"></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223728875.png" alt="image-20220112223728875"></p>
+<p>该图片摘自B站黑马程序员</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SQL/" rel="tag"># SQL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/" rel="prev" title="Win7搭建sqlilabs">
+      <i class="fa fa-chevron-left"></i> Win7搭建sqlilabs
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%AD%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">计算机语言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">SQL概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">2.1.</span> <span class="nav-text">SQL的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL%E7%9A%84%E8%AF%AD%E6%B3%95%E7%89%B9%E7%82%B9"><span class="nav-number">2.2.</span> <span class="nav-text">SQL的语法特点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">数据库概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.1.</span> <span class="nav-text">数据库管理系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88RDBMS%EF%BC%89"><span class="nav-number">3.1.1.</span> <span class="nav-text">关系型数据库（RDBMS）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88NoSQL%EF%BC%89"><span class="nav-number">3.1.2.</span> <span class="nav-text">非关系型数据库（NoSQL）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">3.2.</span> <span class="nav-text">SQL和数据库管理系统的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-number">3.3.</span> <span class="nav-text">关系型数据库的组成</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL%E7%AE%80%E4%BB%8B"><span class="nav-number">4.</span> <span class="nav-text">MySQL简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">4.1.</span> <span class="nav-text">MySQL的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E7%9A%84%E7%89%88%E6%9C%AC"><span class="nav-number">4.2.</span> <span class="nav-text">MySQL的版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL%E7%9A%84%E7%89%88%E6%9C%AC%E5%91%BD%E5%90%8D"><span class="nav-number">4.3.</span> <span class="nav-text">MySQL的版本命名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">5.</span> <span class="nav-text">MySQL的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9%E5%8C%85%E5%AE%89%E8%A3%85"><span class="nav-number">5.1.</span> <span class="nav-text">压缩包安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E5%AE%89%E8%A3%85"><span class="nav-number">5.2.</span> <span class="nav-text">程序安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL%E7%9A%84%E5%8D%B8%E8%BD%BD"><span class="nav-number">6.</span> <span class="nav-text">MySQL的卸载</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Harbeter"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Harbeter</p>
+  <div class="site-description" itemprop="description">愿你永远善良，永远向往未来！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:qq2300350627@163.com" title="E-Mail → mailto:qq2300350627@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">冀ICP备2021027275号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Harbeter</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
+
+
