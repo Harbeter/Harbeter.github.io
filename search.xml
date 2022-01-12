@@ -758,6 +758,50 @@
       </tags>
   </entry>
   <entry>
+    <title>Win7搭建sqlilabs</title>
+    <url>/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/</url>
+    <content><![CDATA[<h1 id="下载sqli-labs"><a href="#下载sqli-labs" class="headerlink" title="下载sqli-labs"></a>下载sqli-labs</h1><p><a href="https://github.com/Audi-1/sqli-labs">点击此处下载</a>sqli-labs</p>
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102456244.png" alt="image-20220112102456244"></p>
+<p>下载后将该文件移入虚拟机，并解压到如下文件夹</p>
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102537646.png" alt="image-20220112102537646"></p>
+<h1 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h1><p>进入如下位置</p>
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102702411.png" alt="image-20220112102702411"></p>
+<p>打开phpstudy并启用如下服务</p>
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102759449.png" alt="image-20220112102759449"></p>
+<p>然后访问sqli-labs的网址</p>
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102840119.png" alt="image-20220112102840119"></p>
+<p>安装完成后即可使用</p>
+<h1 id="物理机访问虚拟机的sqli-labs"><a href="#物理机访问虚拟机的sqli-labs" class="headerlink" title="物理机访问虚拟机的sqli-labs"></a>物理机访问虚拟机的sqli-labs</h1><p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112103120644.png" alt="image-20220112103120644"></p>
+<p>然后用物理机访问IPv4地址中的sqli-labs文件夹</p>
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112103219553.png" alt="image-20220112103219553"></p>
+<p>完成</p>
+<p><strong>最后提示：一定一定一定一定要打开phpstudy的相关服务</strong></p>
+]]></content>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bugku-bp</title>
+    <url>/2021/12/05/bugku-bp/</url>
+    <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185551656.png" alt="image-20211205185551656"></p>
+<p>爆破结果如下</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/05/bugku-bp/image-20211205185641750.png" alt="image-20211205185641750"></p>
+<p>结果均为908，则猜想正确结果与错误结果的length一样，则选择其他参考标准，通过观察响应包里面的内容，我们发现错误包里面都会返回一个JavaScript代码告知我们的密码有错误。因此我们通过Burpsuite的 （Grep – Match 在响应中找出存在指定的内容的一项。）过滤掉存在JavaScript代码中的{code: ‘bugku10000’}的数据包。</p>
+<p>添加如图内容，继续爆破</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185817178.png" alt="image-20211205185817178"></p>
+<p>发现可疑点</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185906383.png" alt="image-20211205185906383"></p>
+<p>输入该密码，得到flag。</p>
+]]></content>
+      <tags>
+        <tag>bp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PHPstudy+Win7搭建ＤＶＷＡ靶场</title>
     <url>/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/</url>
     <content><![CDATA[<h1 id="1-安装虚拟机"><a href="#1-安装虚拟机" class="headerlink" title="1.安装虚拟机"></a>1.安装虚拟机</h1><p>这里我用的时VMware，可以直接百度搜索，然后下载即可。之后要去找一个Win7的系统静像，这里推荐去<a href="https://msdn.itellyou.cn/"> I Tell You</a>下载。然后就是配置虚拟机</p>
@@ -789,26 +833,6 @@
 ]]></content>
       <tags>
         <tag>PHPstudy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>bugku-bp</title>
-    <url>/2021/12/05/bugku-bp/</url>
-    <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185551656.png" alt="image-20211205185551656"></p>
-<p>爆破结果如下</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/05/bugku-bp/image-20211205185641750.png" alt="image-20211205185641750"></p>
-<p>结果均为908，则猜想正确结果与错误结果的length一样，则选择其他参考标准，通过观察响应包里面的内容，我们发现错误包里面都会返回一个JavaScript代码告知我们的密码有错误。因此我们通过Burpsuite的 （Grep – Match 在响应中找出存在指定的内容的一项。）过滤掉存在JavaScript代码中的{code: ‘bugku10000’}的数据包。</p>
-<p>添加如图内容，继续爆破</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185817178.png" alt="image-20211205185817178"></p>
-<p>发现可疑点</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185906383.png" alt="image-20211205185906383"></p>
-<p>输入该密码，得到flag。</p>
-]]></content>
-      <tags>
-        <tag>bp</tag>
       </tags>
   </entry>
   <entry>
