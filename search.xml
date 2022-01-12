@@ -758,6 +758,40 @@
       </tags>
   </entry>
   <entry>
+    <title>PHPstudy+Win7搭建ＤＶＷＡ靶场</title>
+    <url>/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/</url>
+    <content><![CDATA[<h1 id="1-安装虚拟机"><a href="#1-安装虚拟机" class="headerlink" title="1.安装虚拟机"></a>1.安装虚拟机</h1><p>这里我用的时VMware，可以直接百度搜索，然后下载即可。之后要去找一个Win7的系统静像，这里推荐去<a href="https://msdn.itellyou.cn/"> I Tell You</a>下载。然后就是配置虚拟机</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174106598.png" alt="image-20211211174106598"></p>
+<p>点击创建新的虚拟机，然后选定刚才下载的Win7静像，即可创建。创建完成后要进行VMware Tools的安装（目的是要实现与物理机的粘贴与复制），打开此处的设置</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174722062.png" alt="image-20211211174722062"></p>
+<p>这里要将CD和软盘的连接都设置为 使用物理驱动器 </p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174757258.png" alt="image-20211211174757258"></p>
+<p>然后进行VMware Tools的安装（如果不设置无法安装）。这里建议安装后为系统拍摄快照。</p>
+<h1 id="2-安装PHPstudy和DVWA"><a href="#2-安装PHPstudy和DVWA" class="headerlink" title="2.安装PHPstudy和DVWA"></a>2.安装PHPstudy和DVWA</h1><p>安装之后直接直接在浏览器里面下载phpstudy，之后安装以下套件</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211181907791.png" alt="image-20211211181907791"></p>
+<p>然后找到以下文件夹</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182353767.png" alt="image-20211211182353767"></p>
+<p>将事先下载好的DVWA-master文件夹移入，然后打开文件夹的如下位置</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182626782.png" alt="image-20211211182626782"></p>
+<p>并将里面文件复制后去掉.dist保存，再将其打开，修改其中数据：</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182721061.png" alt="image-20211211182721061"></p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182928405.png" alt="image-20211211182928405"></p>
+<p>然后在浏览器中输入地址 ：<a href="http://127.0.0.1/DVWA-master/setup.php">http://127.0.0.1/DVWA-master/setup.php</a></p>
+<p>拉到最下面点击按钮</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182947997.png" alt="image-20211211182947997"></p>
+<p>之后进入登录页面</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211183019265.png" alt="image-20211211183019265"></p>
+<p>账号：admin</p>
+<p>密码：password</p>
+<p>登录成功后即可进入</p>
+]]></content>
+      <tags>
+        <tag>PHPstudy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Win7搭建sqlilabs</title>
     <url>/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/</url>
     <content><![CDATA[<h1 id="下载sqli-labs"><a href="#下载sqli-labs" class="headerlink" title="下载sqli-labs"></a>下载sqli-labs</h1><p><a href="https://github.com/Audi-1/sqli-labs">点击此处下载</a>sqli-labs</p>
@@ -799,40 +833,6 @@
 ]]></content>
       <tags>
         <tag>bp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PHPstudy+Win7搭建ＤＶＷＡ靶场</title>
-    <url>/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/</url>
-    <content><![CDATA[<h1 id="1-安装虚拟机"><a href="#1-安装虚拟机" class="headerlink" title="1.安装虚拟机"></a>1.安装虚拟机</h1><p>这里我用的时VMware，可以直接百度搜索，然后下载即可。之后要去找一个Win7的系统静像，这里推荐去<a href="https://msdn.itellyou.cn/"> I Tell You</a>下载。然后就是配置虚拟机</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174106598.png" alt="image-20211211174106598"></p>
-<p>点击创建新的虚拟机，然后选定刚才下载的Win7静像，即可创建。创建完成后要进行VMware Tools的安装（目的是要实现与物理机的粘贴与复制），打开此处的设置</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174722062.png" alt="image-20211211174722062"></p>
-<p>这里要将CD和软盘的连接都设置为 使用物理驱动器 </p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174757258.png" alt="image-20211211174757258"></p>
-<p>然后进行VMware Tools的安装（如果不设置无法安装）。这里建议安装后为系统拍摄快照。</p>
-<h1 id="2-安装PHPstudy和DVWA"><a href="#2-安装PHPstudy和DVWA" class="headerlink" title="2.安装PHPstudy和DVWA"></a>2.安装PHPstudy和DVWA</h1><p>安装之后直接直接在浏览器里面下载phpstudy，之后安装以下套件</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211181907791.png" alt="image-20211211181907791"></p>
-<p>然后找到以下文件夹</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182353767.png" alt="image-20211211182353767"></p>
-<p>将事先下载好的DVWA-master文件夹移入，然后打开文件夹的如下位置</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182626782.png" alt="image-20211211182626782"></p>
-<p>并将里面文件复制后去掉.dist保存，再将其打开，修改其中数据：</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182721061.png" alt="image-20211211182721061"></p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182928405.png" alt="image-20211211182928405"></p>
-<p>然后在浏览器中输入地址 ：<a href="http://127.0.0.1/DVWA-master/setup.php">http://127.0.0.1/DVWA-master/setup.php</a></p>
-<p>拉到最下面点击按钮</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182947997.png" alt="image-20211211182947997"></p>
-<p>之后进入登录页面</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211183019265.png" alt="image-20211211183019265"></p>
-<p>账号：admin</p>
-<p>密码：password</p>
-<p>登录成功后即可进入</p>
-]]></content>
-      <tags>
-        <tag>PHPstudy</tag>
       </tags>
   </entry>
   <entry>
