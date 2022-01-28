@@ -1667,7 +1667,7 @@
 <p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144009957.png" alt="image-20220128144009957"></p>
 <h1 id="开始测试"><a href="#开始测试" class="headerlink" title="开始测试"></a>开始测试</h1><p>按照图中的指令即可</p>
 <p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144150492.png" alt="image-20220128144150492"></p>
-<p>注意，这里用完后，原来scrabble文件夹中的内容就被目标网站中的源码取代了，所以建议备份scrabble源文件，要不还得git clone一下。获取后直接cat查看就可以了。但是我试了一下，这里并不能获得sqli-labs的源文件，现在还不知道原因是什么。以后再说吧。</p>
+<p>注意，这里用完后，原来scrabble文件夹中的内容就被目标网站中的源码取代了，所以建议备份scrabble源文件，要不还得git clone一下。获取后直接cat查看就可以了。但是我试了一下，这里并不能获得sqli-labs的源文件，目测是因为sqli-labs中.git文件夹中的信息不太友好，本地对其并没有操作。所以也就没有git提交记录。</p>
 ]]></content>
       <tags>
         <tag>Git</tag>
@@ -2068,22 +2068,6 @@
       </tags>
   </entry>
   <entry>
-    <title>极客大挑战 2019Havefun</title>
-    <url>/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/</url>
-    <content><![CDATA[<p>打开题目后啥也没有，按F12查看代码，发现线索</p>
-<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161615155.png" alt="image-20211205161615155"></p>
-<span id="more"></span>
-
-<p>很明显要用GET的方式让cat=dog</p>
-<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161708933.png" alt="image-20211205161708933"></p>
-<p>进入后得到flag</p>
-<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161730917.png" alt="image-20211205161730917"></p>
-]]></content>
-      <tags>
-        <tag>GET</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>极客大挑战 2019 EasySQL</title>
     <url>/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/</url>
     <content><![CDATA[<p>打开题目如下</p>
@@ -2132,6 +2116,22 @@
 ]]></content>
       <tags>
         <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>极客大挑战 2019Havefun</title>
+    <url>/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/</url>
+    <content><![CDATA[<p>打开题目后啥也没有，按F12查看代码，发现线索</p>
+<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161615155.png" alt="image-20211205161615155"></p>
+<span id="more"></span>
+
+<p>很明显要用GET的方式让cat=dog</p>
+<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161708933.png" alt="image-20211205161708933"></p>
+<p>进入后得到flag</p>
+<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161730917.png" alt="image-20211205161730917"></p>
+]]></content>
+      <tags>
+        <tag>GET</tag>
       </tags>
   </entry>
   <entry>
