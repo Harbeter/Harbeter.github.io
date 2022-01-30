@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://harbeter.github.io/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144009957.png">
 <meta property="og:image" content="https://harbeter.github.io/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144150492.png">
 <meta property="article:published_time" content="2022-01-28T06:23:04.565Z">
-<meta property="article:modified_time" content="2022-01-28T06:55:48.266Z">
+<meta property="article:modified_time" content="2022-01-28T08:47:09.719Z">
 <meta property="article:author" content="Harbeter">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
@@ -217,7 +217,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-01-28 14:23:04 / 修改时间：14:55:48" itemprop="dateCreated datePublished" datetime="2022-01-28T14:23:04+08:00">2022-01-28</time>
+              <time title="创建时间：2022-01-28 14:23:04 / 修改时间：16:47:09" itemprop="dateCreated datePublished" datetime="2022-01-28T14:23:04+08:00">2022-01-28</time>
             </span>
 
           
@@ -252,6 +252,8 @@
 <h1 id="开始测试"><a href="#开始测试" class="headerlink" title="开始测试"></a>开始测试</h1><p>按照图中的指令即可</p>
 <p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144150492.png" alt="image-20220128144150492"></p>
 <p>注意，这里用完后，原来scrabble文件夹中的内容就被目标网站中的源码取代了，所以建议备份scrabble源文件，要不还得git clone一下。获取后直接cat查看就可以了。但是我试了一下，这里并不能获得sqli-labs的源文件，目测是因为sqli-labs中.git文件夹中的信息不太友好，本地对其并没有操作。所以也就没有git提交记录。</p>
+<p><strong>还有一种情况是，flag会藏在老版本里，所以我们用scrabble获取源码后。输入<code>git log</code>查看以前版本，并切换，从而找到flag</strong></p>
+<p>再补充一下，<code>git reflog</code>版本信息更全，能够看更先进的版本（如果有的话）。而<code>git log</code>只能看老版本</p>
 
     </div>
 
@@ -270,10 +272,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/" rel="prev" title="sqlilabs第8-10关">
-      <i class="fa fa-chevron-left"></i> sqlilabs第8-10关
+    <a href="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/" rel="prev" title="sqlilabs第8-10关（盲注）">
+      <i class="fa fa-chevron-left"></i> sqlilabs第8-10关（盲注）
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="next" title="PHP环境搭建">
+      PHP环境搭建 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -348,14 +353,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

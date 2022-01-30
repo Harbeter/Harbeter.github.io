@@ -711,66 +711,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Git版本穿梭及版本比较</title>
-    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
-    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
-<li><p>状态查看：<code>git status</code></p>
-</li>
-<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
-</li>
-<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
-<p>简洁显示：<code>git log --pretty=oneline</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
-<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
-<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
-<p>HEAD@{移动到当前版本所需要步数}</p>
-<p>若版本信息有多屏</p>
-<p>则空格向下翻页，b向上翻页，q退出</p>
-<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
-<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
-<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
-<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
-<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
-<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
-<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
-<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
-<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
-<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
-<p>现在状态为</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
-<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
-<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
-<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
-<p>然后删除文件，并添加到暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
-<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
-<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
-<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
-<p>上图表示第一行删去了9个a</p>
-<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git的分支管理级Git的基本原理</title>
     <url>/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<h1 id="分支的意义"><a href="#分支的意义" class="headerlink" title="分支的意义"></a>分支的意义</h1><ul>
@@ -829,6 +769,66 @@
 <p>当分支文件不一样时，才会出现分支</p>
 <p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111122101487.png" alt="image-20220111122101487"></p>
 <p><strong>Git在本地的版本控制就完结了</strong></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git版本穿梭及版本比较</title>
+    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
+    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
+<li><p>状态查看：<code>git status</code></p>
+</li>
+<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
+</li>
+<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
+<p>简洁显示：<code>git log --pretty=oneline</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
+<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
+<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
+<p>HEAD@{移动到当前版本所需要步数}</p>
+<p>若版本信息有多屏</p>
+<p>则空格向下翻页，b向上翻页，q退出</p>
+<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
+<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
+<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
+<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
+<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
+<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
+<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
+<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
+<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
+<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
+<p>现在状态为</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
+<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
+<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
+<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
+<p>然后删除文件，并添加到暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
+<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
+<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
+<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
+<p>上图表示第一行删去了9个a</p>
+<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
 ]]></content>
       <tags>
         <tag>Git</tag>
@@ -971,6 +971,210 @@
 ]]></content>
       <tags>
         <tag>PHPstudy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP环境搭建</title>
+    <url>/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<h1 id="PHP简介"><a href="#PHP简介" class="headerlink" title="PHP简介"></a>PHP简介</h1><h2 id="PHP定义"><a href="#PHP定义" class="headerlink" title="PHP定义"></a>PHP定义</h2><p>PHP定义：一种<strong>服务器端</strong>的 HTML <strong>脚本/编程语言</strong>,是一种简单的、面向对象的、解释型的、健壮的、安全的、性能非常之高的、独立于架构的、可移植的、动态的脚本语言。是一种广泛用于 Open Source（开放源代码）的尤其适合 Web 开发并可以嵌入 HTML 的多用途脚本语言。它的语法接近 C，Java 和 Perl，而且容易学习。该语言让 Web 开发人员快速的书写<strong>动态</strong>生成的网页。</p>
+ <span id="more"></span>
+
+<p>PHP前身：Personal HomePage，个人主页，使用Perl语言开发的一种写个人主页的语言</p>
+<p>PHP：PHP Hypertext Preprosessor，php超文本预处理器，底层使用C语言</p>
+<p>平台支持（window，Linux，UNIX）</p>
+<p>数据库支持（Sqlserver，mysql，Oracle，Access）</p>
+<h1 id="网站相关的基本概念"><a href="#网站相关的基本概念" class="headerlink" title="网站相关的基本概念"></a>网站相关的基本概念</h1><h2 id="网站的动与静"><a href="#网站的动与静" class="headerlink" title="网站的动与静"></a>网站的动与静</h2><h3 id="静态网站特点"><a href="#静态网站特点" class="headerlink" title="静态网站特点"></a>静态网站特点</h3><ol>
+<li>网页内容一经发布到网站服务器上，无论是否有用户访问，每个静态网页的内容都是保存在网站服务器上的，也就是说，静态网页是实实在在保存在服务器上的文件，每个网页都是一个独立的文件；</li>
+<li>静态网页的内容相对稳定，因此<strong>容易被搜索引擎检索</strong>；</li>
+<li>静态网页<strong>没有数据库的支持</strong>，在网站制作和维护方面工作量较大，因此当网站信息量很大时完全依靠静态网页制作方式比较困难； </li>
+<li>静态网页的<strong>交互性较差</strong>，在功能方面有较大的限制。</li>
+</ol>
+<h3 id="动态网站特点"><a href="#动态网站特点" class="headerlink" title="动态网站特点"></a>动态网站特点</h3><ol>
+<li>交互性：<strong>网页会根据用户的要求和选择而动态地改变和响应</strong>，浏览器作为客户端，成为一个动态交流的桥梁，动态网页的交互性也是今后Web发展的潮流。</li>
+<li>自动更新：即无须手动更新HTML文档，便会自动生成新页面，可以大大节省工作量。</li>
+<li><strong>因时因人而变</strong>：即当不同时间、不同用户访问同一网址时会出现不同页面。</li>
+<li>此外动态网页是与静态网页相对应的，也就是说，网页URL的后缀不是.htm、.html、.shtml、.xml等静态网页的常见形式，而是以.asp、.jsp、.php、.perl、.cgi等形式为后缀。在动态网页网址中有一个<strong>标志性的符号——“?”</strong></li>
+</ol>
+<h2 id="服务器概念"><a href="#服务器概念" class="headerlink" title="服务器概念"></a>服务器概念</h2><p>服务器（server），也称伺服器，是提供计算服务的设备。由于服务器需要响应服务请求，并进行处理，因此一般来说服务器应具备承担服务并且保障服务的能力。</p>
+<p>服务器的构成包括处理器、硬盘、内存、系统总线等，和通用的计算机架构类似，但是由于需要提供高可靠的服务，因此在处理能力、稳定性、可靠性、安全性、可扩展性、可管理性等方面要求较高。</p>
+<p>在网络环境下，根据服务器提供的服务类型不同，分为文件服务器，数据库服务器，应用程序服务器，WEB服务器等。</p>
+<p>服务器：能够提供服务的机器，<strong>取决于机器上所安装的软件</strong>（服务软件）</p>
+<p>Web服务器：提供web服务（网站访问），就需要安装web服务软件，Apache，tomcat，iis等</p>
+<h2 id="IP的概念"><a href="#IP的概念" class="headerlink" title="IP的概念"></a>IP的概念</h2><p>IP：Internet Protocol，网络之间互联协议。网络之间互连的协议也就是为计算机网络相互连接进行通信而设计的协议。在因特网中，它是能使连接到网上的所有计算机网络实现相互通信的一套规则，规定了计算机在因特网上进行通信时应当遵守的规则。任何厂家生产的计算机系统，只要遵守IP协议就可以与因特网互连互通。<strong>IP地址具有唯一性。</strong>（每台电脑（如果只有一个网卡的话）都有一个唯一的IP地址）</p>
+<h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><p>域名（Domain Name），是由一串用点分隔的名字组成（<a href="http://www.baidu.com)的internet上某一台计算机或计算机组的名称,用于在数据传输时标识计算机的电子方位(有时也指地理位置,地理上的域名,指代有行政自主权的一个地方区域).**域名是一个ip地址上有“面具”/">www.baidu.com）的Internet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置，地理上的域名，指代有行政自主权的一个地方区域）。**域名是一个IP地址上有“面具”</a>** 。一个域名的目的是便于记忆和沟通的一组服务器的地址（网站，电子邮件，FTP等）。域名作为力所能及难忘的互联网参与者的名称。</p>
+<p>特殊IP：127.0.0.1，代表本机</p>
+<p>特殊域名：localhost</p>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p>DNS（Domain Name System，域名系统），因特网上作为域名和IP地址相互映射的一个分布式数据库，能够使用户更方便的访问互联网，而不用去记住能够被机器直接读取的IP数串。通过主机名，最终得到该主机名对应的IP地址的过程叫做域名解析（或主机名解析）。</p>
+<p>用户输入域名localhost =&gt; DNS（localhost 127.0.0.1）=&gt; 服务器电脑</p>
+<h2 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h2><p>端口（Port），可以认为是设备与外界通讯交流的出口。端口可分为虚拟端口和物理端口，其中虚拟端口指计算机内部或交换机路由器内的端口，不可见。例如计算机中的80端口、21端口、23端口等。物理端口又称为接口，是可见端口，计算机背板的RJ45网口，交换机路由器集线器等RJ45端口。</p>
+<p>用户输入域名localhost:端口 =&gt; DNS（localhost 127.0.0.1）=&gt; 服务器电脑 =&gt; 软件（服务）</p>
+<h1 id="网站访问流程"><a href="#网站访问流程" class="headerlink" title="网站访问流程"></a>网站访问流程</h1><p>浏览器发起访问–》DNS解析域名–》服务器电脑–》服务软件</p>
+<h2 id="静态网站"><a href="#静态网站" class="headerlink" title="静态网站"></a>静态网站</h2><p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220129222735907.png" alt="image-20220129222735907"></p>
+<h2 id="动态网站"><a href="#动态网站" class="headerlink" title="动态网站"></a>动态网站</h2><p>动态网站访问流程与静态差不多，但是会多出几个内容：服务器端解析、数据库</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220129223402559.png" alt="image-20220129223402559"></p>
+<h1 id="Apache的安装和使用"><a href="#Apache的安装和使用" class="headerlink" title="Apache的安装和使用"></a>Apache的安装和使用</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220129230152301.png" alt="image-20220129230152301"></p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220129230235487.png" alt="image-20220129230235487"></p>
+<h2 id="目录介绍"><a href="#目录介绍" class="headerlink" title="目录介绍"></a>目录介绍</h2><p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220129230320686.png" alt="image-20220129230320686"></p>
+<h2 id="httpd指令的使用"><a href="#httpd指令的使用" class="headerlink" title="httpd指令的使用"></a>httpd指令的使用</h2><p>因为没有配置环境变量，所以httpd只能在apache的bin目录下使用</p>
+<p>这里介绍了两个指令</p>
+<p><code>httpd -M</code>查看使用的模块</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220129231247378.png" alt="image-20220129231247378"></p>
+<p><code>httpd -t</code>验证配置文件是否有效</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220129231310602.png" alt="image-20220129231310602"></p>
+<h2 id="配置默认站点"><a href="#配置默认站点" class="headerlink" title="配置默认站点"></a>配置默认站点</h2><p>1.让Apache确定服务器上访问的位置：网站文件夹所在位置</p>
+<p>conf文件夹中的Httpd.conf文件中的：DocumentRoot</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220129231630244.png" alt="image-20220129231630244"></p>
+<p>2.方便用户使用名字访问对应的网站：给文件夹对应的取一个别名</p>
+<p>conf文件夹中的Httpd.conf文件中的：ServerName</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220129231906230.png" alt="image-20220129231906230"></p>
+<p>端口可以单独实现：httpd.conf：listen</p>
+<p><strong>凡是涉及到Apache配置文件的修改，那么需要重启Apache才能生效</strong></p>
+<p>3.实现DNS域名解析：通常默认站点都是本地DNS：hosts文件</p>
+<p>查看是否能够访问</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220129232630161.png" alt="image-20220129232630161"></p>
+<p>这里的内容可以在htdocs文件夹的index.html中修改</p>
+<h1 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h1><p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130145350704.png" alt="image-20220130145350704"></p>
+<p>解压后与apache文件夹放在一起</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130145522298.png" alt="image-20220130145522298"></p>
+<h2 id="php目录介绍"><a href="#php目录介绍" class="headerlink" title="php目录介绍"></a>php目录介绍</h2><p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130150013564.png" alt="image-20220130150013564"></p>
+<p>PHP.exe就是可以解析PHP代码转变成HTML代码从而让浏览器可以解析的。</p>
+<p>通过CMD控制器进入到php.exe所在目录（没有配置php环境变量就要进文件夹）</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130150237621.png" alt="image-20220130150237621"></p>
+<p>通过php.exe运行命令来指定要解析的PHP脚本就可以：php.exe -f PHP文件所在路径</p>
+<p>首先要在PHP所在路径创建php文件，这里创建了index.php并写入了简单的echo代码</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130150654236.png" alt="image-20220130150654236"></p>
+<h2 id="配置Apache加载PHP模块"><a href="#配置Apache加载PHP模块" class="headerlink" title="配置Apache加载PHP模块"></a>配置Apache加载PHP模块</h2><p>若不配置，php与apache不能产生联系，用浏览器访问php文件，仍然是代码</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130150933799.png" alt="image-20220130150933799"></p>
+<p>1.Apache加载PHP模块：在Apache的主配置文件（httpd.conf）中加载对应的PHP提供的模块</p>
+<p>在LoadModule最后面添加<code>LoadModule php5_module PHP所提供的模块链接所在路径</code></p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130151437174.png" alt="image-20220130151437174"></p>
+<p>可以用在apache的bin目录下使用<code>httpd -t</code>和<code>httpd -M</code>来检验是否加载成功</p>
+<p>然后重启apache</p>
+<p>2.然后apache要分配工作给php</p>
+<p>如果是PHP代码就交给PHP处理：文件后缀判断.php结尾肯定是PHP代码</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130152046731.png" alt="image-20220130152046731"></p>
+<p>然后用在apache的bin目录下使用<code>httpd -t</code>和<code>httpd -M</code>来检验是否加载成功，并重启Apache</p>
+<p>再访问刚刚访问的网址</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130152148617.png" alt="image-20220130152148617"></p>
+<p>ok了，然后还有第三步</p>
+<p>3.将PHP的配置文件加载到Apache配置文件中：共同生效</p>
+<p>在Apache中指定PHP配置文件所在路径</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130152711629.png" alt="image-20220130152711629"></p>
+<p>php.ini文件默认是不存在的，是以development和production格式存在，需要格式化</p>
+<p>将development复制一份，并改后缀</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130152929533.png" alt="image-20220130152929533"></p>
+<p>重启apache</p>
+<p>说明：PHP的配置文件已经加入到Apache的配置项中，意味着php.ini的修改需要Apache重启才会生效。</p>
+<h1 id="安装和使用MySQL"><a href="#安装和使用MySQL" class="headerlink" title="安装和使用MySQL"></a>安装和使用MySQL</h1><p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130153308455.png" alt="image-20220130153308455"></p>
+<p>选择自定义</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130153406888.png" alt="image-20220130153406888"></p>
+<p>修改路径</p>
+<p>软件安装路径</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130153550707.png" alt="image-20220130153550707"></p>
+<p>数据安装路径</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130153724063.png" alt="image-20220130153724063"></p>
+<p>然后无脑下一步</p>
+<p>进入配置页面</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130153947795.png" alt="image-20220130153947795"></p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130154128619.png" alt="image-20220130154128619"></p>
+<p>选第一个</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130154322675.png" alt="image-20220130154322675"></p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130154455181.png" alt="image-20220130154455181"></p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130154554371.png" alt="image-20220130154554371"></p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130155033879.png" alt="image-20220130155033879"></p>
+<p>等待安装完成</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130160045517.png" alt="image-20220130160045517"></p>
+<h2 id="目录结构说明"><a href="#目录结构说明" class="headerlink" title="目录结构说明"></a>目录结构说明</h2><p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130160153996.png" alt="image-20220130160153996"></p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130161145616.png" alt="image-20220130161145616"></p>
+<p>软件设计结构：C/S和B/S</p>
+<p>C/S：Client客户端/Server服务端，用户需要安装客户端产品才能访问服务器，而且只能访问一种软件（当前自己）</p>
+<p>B/S：Browser浏览器/Server服务端，用户只需要安装浏览器，就可以访问所有的服务器（B/S架构服务）</p>
+<h2 id="访问MySQL"><a href="#访问MySQL" class="headerlink" title="访问MySQL"></a>访问MySQL</h2><p>首先要打开mysql服务</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130161442154.png" alt="image-20220130161442154"></p>
+<p>Mysql是一款C/S架构的软件，需要通过客户端来访问服务端（MySQL提示也提供了其他模式的访问：通过一些插件扩展来充当客户端）</p>
+<p>启用MySQL客户端：mysql.exe，该软件本身可以通过CMD控制台运行</p>
+<p>本身客户端：mysql.exe</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130161645785.png" alt="image-20220130161645785"></p>
+<p>也可以直接通过cmd访问</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130162435116.png" alt="image-20220130162435116"></p>
+<p>这是之前安装的那个mysql8，要连接我们现在安装的mysql5则要输入端口</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130162603446.png" alt="image-20220130162603446"></p>
+<p>MySQL客户端访问服务端需要进行寻找匹配：连接认证</p>
+<p>连接：IP和端口确认，如果是本地都可以省略</p>
+<p>-h主机地址—-》-hlocalhost（可以是IP）</p>
+<p>-P端口—》-P3306</p>
+<p>认证：通过用户名和密码进入服务器</p>
+<p>-u用户名—》-uroot，不可以省略（匿名用户除外）</p>
+<p>-p密码—》-proot</p>
+<h2 id="PHP加载MySQL"><a href="#PHP加载MySQL" class="headerlink" title="PHP加载MySQL"></a>PHP加载MySQL</h2><p>PHP本身不具备操作MySQL数据库的能力，需要借助PHP操作MySQL的扩展来实现。</p>
+<p>1.PHP加载MySQL扩展：php.ini文件中</p>
+<p>查找mysql并去掉前面的  ;  然后重启apache</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130182957868.png" alt="image-20220130182957868"></p>
+<p>之后修改以前创建的index.php文件，查看php相关配置</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130183159581.png" alt="image-20220130183159581"></p>
+<p>然后访问页面</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130183229980.png" alt="image-20220130183229980"></p>
+<p>搜索mysql，发现并没有生效</p>
+<p>2.PHP中所有的扩展都是在ext文件夹中，需要制定扩展所在路径：extension_dir</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130183734593.png" alt="image-20220130183734593"></p>
+<p>然后重启apache</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130184006809.png" alt="image-20220130184006809"></p>
+<h2 id="设定php系统时区"><a href="#设定php系统时区" class="headerlink" title="设定php系统时区"></a>设定php系统时区</h2><p>如果不设置会有警告</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130184151362.png" alt="image-20220130184151362"></p>
+<p>通过php.ini中的timezone配置项来实现</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130184421102.png" alt="image-20220130184421102"></p>
+<p>重启后生效</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130184443181.png" alt="image-20220130184443181"></p>
+<h1 id="配置虚拟主机"><a href="#配置虚拟主机" class="headerlink" title="配置虚拟主机"></a>配置虚拟主机</h1><p>一台服务器很贵，如果只能部署一个网站，那么非常浪费。所以需要通过其他渠道来实现一台主机上部署多个网站。</p>
+<h2 id="什么是虚拟主机"><a href="#什么是虚拟主机" class="headerlink" title="什么是虚拟主机"></a>什么是虚拟主机</h2><p>虚拟主机：Virtual machine，并不存在真实的主机，但是可以提供真实主机所实现的功能。</p>
+<p>通俗的讲，虚拟主机就是将计算机中不同的文件夹进行不同的命名，然后可以实现让服务器（Apache）根据用户的需求从不同的文件夹（网站）中读取不同的内容。</p>
+<h2 id="虚拟主机的分类"><a href="#虚拟主机的分类" class="headerlink" title="虚拟主机的分类"></a>虚拟主机的分类</h2><p>在Apache中，可以将虚拟主机划分成两类：</p>
+<p>1、 基于IP的虚拟主机：一台电脑上有多个IP，每个IP对应一个网站</p>
+<p>原理：电脑默认只有一个IP，因为通常只配有一个网卡；但是有的电脑（服务器居多）可以配置多个网卡，每个网卡可以绑定一个IP地址。</p>
+<p>2、 基于域名的虚拟主机：一台电脑上只有一个IP，但是IP下可以制作多个网站，但是需要给每个网站不同的名字（虚拟主机名）</p>
+<h1 id="搭建基于域名的虚拟主机"><a href="#搭建基于域名的虚拟主机" class="headerlink" title="搭建基于域名的虚拟主机"></a>搭建基于域名的虚拟主机</h1><p>在Apache中，虚拟主机的搭建有两种方式：</p>
+<p>1.在主配置文件中搭建：需要手动开启虚拟主机（基于域名）</p>
+<p>NameVirtualHost *:80</p>
+<p>2.在专门的虚拟主机配置文件中配置</p>
+<p>2.1在主配置文件中加载虚拟主机配置文件(httpd.conf)：虚拟主机配置文件已经开启了虚拟主机NameVirtualHost</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130190746631.png" alt="image-20220130190746631"></p>
+<p>2.2虚拟主机从配置文件（extra/httpd-vhosts.conf）中配置虚拟主机</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130191051384.png" alt="image-20220130191051384"></p>
+<p>①增加一个对应的站点文件夹位置：DocumentRoot</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130191323263.png" alt="image-20220130191323263"></p>
+<p>②增加主机名字：文件夹的别名：ServerName</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130192600474.png" alt="image-20220130192600474"></p>
+<p>③ 增加域名解析DNS：hosts</p>
+<p>host文件地址：C:\Windows\System32\drivers\etc</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130192211393.png" alt="image-20220130192211393"></p>
+<p>重启apache</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130192625049.png" alt="image-20220130192625049"></p>
+<p>④需要给当前设定的站点（目录）访问权限</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Directory &#x27;D:/discuz&#x27;&gt;</span><br><span class="line">       	order deny,allow</span><br><span class="line">	deny from all</span><br><span class="line">	allow from all</span><br><span class="line">	&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130201434788.png" alt="image-20220130201434788"></p>
+<p>然后随便在discuz里面添加一个html文件，之后访问</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130201632542.png" alt="image-20220130201632542"></p>
+<p>成功</p>
+<p>⑤配置访问列表：当访问是一个目录时候（没有指定具体要访问的文件）</p>
+<p>Options Indexes [FollowSymLinks]，（中括号表示可有可无）如果访问目录，那么列表显示所有文件</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130203126391.png" alt="image-20220130203126391"></p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130203138613.png" alt="image-20220130203138613"></p>
+<p>注意，此处不能有html文件，否则无法显示</p>
+<p>⑥ 当用户访问指定目录不指定文件的时候，通常需要系统指定一个默认文件</p>
+<p>DirectoryIndex 默认的文件列表，使用空格分离</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130203451919.png" alt="image-20220130203451919"></p>
+<p>注意：如果说网站中整个网站根目录允许访问，但是其中还有其他文件夹不允许访问：可以增加多个Directory标签，针对不同的文件夹</p>
+<p>例如，如果不想让访问上述的 新建文件夹 则可添加 DirectoryIndex index.php shl.txt</p>
+<p>3.一旦启用虚拟主机配置文件，那么默认的主机地址localhost就不再生效，如果想要生效：为localhost增加单独的虚拟主机</p>
+<p>若想不影响，则再添加一条virtualhost就行</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130204205483.png" alt="image-20220130204205483"></p>
+<p>结果如下</p>
+<p><img src="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/image-20220130204444679.png" alt="image-20220130204444679"></p>
+<p>（本内容摘自B站黑马程序员，但略有所改动）</p>
+]]></content>
+      <tags>
+        <tag>PHP</tag>
       </tags>
   </entry>
   <entry>
@@ -1624,24 +1828,24 @@
     <title>php://filter 协议</title>
     <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
     <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
-<p>1是格式<br>2是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br>3是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br>4是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
+<p><strong>1</strong>是格式<br><strong>2</strong>是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br><strong>3</strong>是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br><strong>4</strong>是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
 <span id="more"></span>
 
-<p>转base64编码：convert.base64-encode</p>
-<p>转大写：string.toupper</p>
+<p>转base64编码：<code>convert.base64-encode</code></p>
+<p>转大写：<code>string.toupper</code></p>
 <p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
 <p>例题：</p>
 <h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
 <p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
 <p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
-<p>构造：php://filter/read=convert.base64-encode/recource=flag.php</p>
+<p>构造：<code>php://filter/read=convert.base64-encode/resource=flag.php</code></p>
 <p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
 <p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
 <p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
 <p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
 ]]></content>
       <tags>
-        <tag>php Filter</tag>
+        <tag>php协议</tag>
       </tags>
   </entry>
   <entry>
@@ -1668,13 +1872,15 @@
 <h1 id="开始测试"><a href="#开始测试" class="headerlink" title="开始测试"></a>开始测试</h1><p>按照图中的指令即可</p>
 <p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144150492.png" alt="image-20220128144150492"></p>
 <p>注意，这里用完后，原来scrabble文件夹中的内容就被目标网站中的源码取代了，所以建议备份scrabble源文件，要不还得git clone一下。获取后直接cat查看就可以了。但是我试了一下，这里并不能获得sqli-labs的源文件，目测是因为sqli-labs中.git文件夹中的信息不太友好，本地对其并没有操作。所以也就没有git提交记录。</p>
+<p><strong>还有一种情况是，flag会藏在老版本里，所以我们用scrabble获取源码后。输入<code>git log</code>查看以前版本，并切换，从而找到flag</strong></p>
+<p>再补充一下，<code>git reflog</code>版本信息更全，能够看更先进的版本（如果有的话）。而<code>git log</code>只能看老版本</p>
 ]]></content>
       <tags>
         <tag>Git</tag>
       </tags>
   </entry>
   <entry>
-    <title>sqlilabs第5、6关</title>
+    <title>sqlilabs第5、6关（报错注入）</title>
     <url>/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/</url>
     <content><![CDATA[<h1 id="第5关"><a href="#第5关" class="headerlink" title="第5关"></a>第5关</h1><p>按题意输入id=1，发现无回显，则不可用联合注入，题目说是双重注入，那就用双重注入。</p>
 <p><img src="/2022/01/23/sqlilabs%E7%AC%AC5%E3%80%816%E5%85%B3/image-20220123120136543.png" alt="image-20220123120136543"></p>
@@ -1730,7 +1936,7 @@
       </tags>
   </entry>
   <entry>
-    <title>sqlilabs第7关</title>
+    <title>sqlilabs第7关（上传木马）</title>
     <url>/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/</url>
     <content><![CDATA[<h1 id="配置关卡文件"><a href="#配置关卡文件" class="headerlink" title="配置关卡文件"></a>配置关卡文件</h1><p>首先，MySQL默认是不能通过sql上传文件的，具体请输入命令<code>show variables like &#39;%secure%&#39;</code> 查看</p>
 <p>若图中划红线的框为</p>
@@ -1781,7 +1987,7 @@
       </tags>
   </entry>
   <entry>
-    <title>sqlilabs第8-10关</title>
+    <title>sqlilabs第8-10关（盲注）</title>
     <url>/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/</url>
     <content><![CDATA[<h1 id="第八关"><a href="#第八关" class="headerlink" title="第八关"></a>第八关</h1><h2 id="判断闭合类型"><a href="#判断闭合类型" class="headerlink" title="判断闭合类型"></a>判断闭合类型</h2><p>?id=1’报错，?id=1’–+不报错，说明是单引号包裹。</p>
 <h2 id="爆库"><a href="#爆库" class="headerlink" title="爆库"></a>爆库</h2><p>这里要用到substr函数和ascii函数，顺便了解一下length函数</p>
@@ -2068,6 +2274,22 @@
       </tags>
   </entry>
   <entry>
+    <title>极客大挑战 2019Havefun</title>
+    <url>/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/</url>
+    <content><![CDATA[<p>打开题目后啥也没有，按F12查看代码，发现线索</p>
+<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161615155.png" alt="image-20211205161615155"></p>
+<span id="more"></span>
+
+<p>很明显要用GET的方式让cat=dog</p>
+<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161708933.png" alt="image-20211205161708933"></p>
+<p>进入后得到flag</p>
+<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161730917.png" alt="image-20211205161730917"></p>
+]]></content>
+      <tags>
+        <tag>GET</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>极客大挑战 2019 EasySQL</title>
     <url>/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/</url>
     <content><![CDATA[<p>打开题目如下</p>
@@ -2116,22 +2338,6 @@
 ]]></content>
       <tags>
         <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>极客大挑战 2019Havefun</title>
-    <url>/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/</url>
-    <content><![CDATA[<p>打开题目后啥也没有，按F12查看代码，发现线索</p>
-<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161615155.png" alt="image-20211205161615155"></p>
-<span id="more"></span>
-
-<p>很明显要用GET的方式让cat=dog</p>
-<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161708933.png" alt="image-20211205161708933"></p>
-<p>进入后得到flag</p>
-<p><img src="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/image-20211205161730917.png" alt="image-20211205161730917"></p>
-]]></content>
-      <tags>
-        <tag>GET</tag>
       </tags>
   </entry>
   <entry>
@@ -2213,7 +2419,7 @@
 <h2 id="6-Boringboss"><a href="#6-Boringboss" class="headerlink" title="6.Boringboss"></a>6.Boringboss</h2><p>打开后发现这明显是当铺密码，解密后得到对应数字，利用ASCII码转换为对应字母，接着用培根密码解密得到flag</p>
 ]]></content>
       <tags>
-        <tag>CTF</tag>
+        <tag>刷题</tag>
       </tags>
   </entry>
 </search>
