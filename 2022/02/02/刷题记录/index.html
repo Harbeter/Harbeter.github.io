@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"harbeter.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="HCTF2018 WarmUp这道题还是挺有意思的，不过还没完全吃透，看着别人的WP勉强能看懂一点。 按F12发现存在source.php，进入页面后发现源码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="刷题记录">
+<meta property="og:url" content="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="像风吹过八千里">
+<meta property="og:description" content="HCTF2018 WarmUp这道题还是挺有意思的，不过还没完全吃透，看着别人的WP勉强能看懂一点。 按F12发现存在source.php，进入页面后发现源码">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202194305288.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202194436341.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202201329717.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202202215263.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202202305894.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202224533519.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202225656448.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202234437902.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220203002112267.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220204122557483.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220204122646306.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220204135439694.png">
+<meta property="article:published_time" content="2022-02-02T08:53:08.231Z">
+<meta property="article:modified_time" content="2022-02-04T05:55:51.641Z">
+<meta property="article:author" content="Harbeter">
+<meta property="article:tag" content="刷题">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202194305288.png">
+
+<link rel="canonical" href="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>刷题记录 | 像风吹过八千里</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">像风吹过八千里</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">流云和月都曾爱过你</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Harbeter">
+      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="像风吹过八千里">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          刷题记录
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-02 16:53:08" itemprop="dateCreated datePublished" datetime="2022-02-02T16:53:08+08:00">2022-02-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-04 13:55:51" itemprop="dateModified" datetime="2022-02-04T13:55:51+08:00">2022-02-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="HCTF2018-WarmUp"><a href="#HCTF2018-WarmUp" class="headerlink" title="HCTF2018 WarmUp"></a>HCTF2018 WarmUp</h1><p>这道题还是挺有意思的，不过还没完全吃透，看着别人的WP勉强能看懂一点。</p>
+<p>按F12发现存在source.php，进入页面后发现源码</p>
+<span id="more"></span>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);<span class="comment">// highlight_file() 函数对文件进行语法高亮显示。</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">emmm</span>//定义<span class="title">emmm</span>类①</span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">checkFile</span>(<span class="params">&amp;<span class="variable">$page</span></span>)//将传入的参数（这里是<span class="title">file</span>）赋给<span class="title">page</span>②</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="variable">$whitelist</span> = [<span class="string">&quot;source&quot;</span>=&gt;<span class="string">&quot;source.php&quot;</span>,<span class="string">&quot;hint&quot;</span>=&gt;<span class="string">&quot;hint.php&quot;</span>];<span class="comment">//定义whitelist白名单</span></span><br><span class="line">            <span class="keyword">if</span> (! <span class="keyword">isset</span>(<span class="variable">$page</span>) || !is_string(<span class="variable">$page</span>)) <span class="comment">//非定义或者非字符③</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;you can&#x27;t see it&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (in_array(<span class="variable">$page</span>, <span class="variable">$whitelist</span>)) <span class="comment">//变量page在变量whitelist的白名单内④</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$_page</span> = mb_substr(</span><br><span class="line">                <span class="variable">$page</span>,</span><br><span class="line">                <span class="number">0</span>,</span><br><span class="line">                mb_strpos(<span class="variable">$page</span> . <span class="string">&#x27;?&#x27;</span>, <span class="string">&#x27;?&#x27;</span>)</span><br><span class="line">            );<span class="comment">//过滤?</span></span><br><span class="line">            <span class="keyword">if</span> (in_array(<span class="variable">$_page</span>, <span class="variable">$whitelist</span>)) </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$_page</span> = urldecode(<span class="variable">$page</span>);<span class="comment">//url解码</span></span><br><span class="line">            <span class="variable">$_page</span> = mb_substr(</span><br><span class="line">                <span class="variable">$_page</span>,</span><br><span class="line">                <span class="number">0</span>,</span><br><span class="line">                mb_strpos(<span class="variable">$_page</span> . <span class="string">&#x27;?&#x27;</span>, <span class="string">&#x27;?&#x27;</span>)</span><br><span class="line">            );<span class="comment">//过滤?</span></span><br><span class="line">            <span class="keyword">if</span> (in_array(<span class="variable">$_page</span>, <span class="variable">$whitelist</span>)) </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;you can&#x27;t see it&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="comment">//checkFile检验</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (! <span class="keyword">empty</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">        &amp;&amp; is_string(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">        &amp;&amp; emmm::checkFile(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">    ) <span class="comment">//变量file非空，为字符串，且能通过checkFile的检验</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">include</span> <span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>];⑥</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125; </span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">	&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&lt;img src=\&quot;https://i.loli.net/2018/11/01/5bdb0d93dc794.jpg\&quot; /&gt;&quot;</span>;</span><br><span class="line">    &#125;  </span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>①class定义类<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/7492.html#:~:text=%E5%9C%A8%20PHP%20%E4%B8%AD%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%20class%20%E5%85%B3%E9%94%AE%E5%AD%97%E5%8A%A0%E7%B1%BB%E5%90%8D%E7%9A%84%E6%96%B9%E5%BC%8F%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E7%B1%BB%EF%BC%8C%E7%84%B6%E5%90%8E%E7%94%A8%E5%A4%A7%E6%8B%AC%E5%8F%B7%20%7B,%7D%20%E5%B0%86%E5%9C%A8%E7%B1%BB%E4%BD%93%E4%B8%AD%E5%AE%9A%E4%B9%89%E7%B1%BB%E7%9A%84%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95%E5%8C%85%E8%A3%B9%E8%B5%B7%E6%9D%A5%EF%BC%8C%E7%B1%BB%E7%9A%84%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F%E5%A6%82%E4%B8%8B%EF%BC%9A%20%5B%E4%BF%AE%E9%A5%B0%E7%B1%BB%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97%5D%20class%20%E7%B1%BB%E5%90%8D%20%7B">详细解释</a></p>
+<p>②static是定义<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ab5749914f7c">静态变量</a>，function<a target="_blank" rel="noopener" href="https://www.php.cn/php-notebook-178152.html">定义函数</a>。</p>
+<p>③<a target="_blank" rel="noopener" href="https://www.runoob.com/php/php-isset-function.html">isset</a>判断变量是否定义，is_string判断是否为字符串。</p>
+<p>④<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/php/func_array_in_array.asp">in_array</a>的详细用法</p>
+<p>⑤<a target="_blank" rel="noopener" href="https://www.runoob.com/php/func-string-mb_substr.html">mb_substr</a>和<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/php/func_string_strpos.asp">mb_strpos</a>的详细用法</p>
+<p>⑥<a target="_blank" rel="noopener" href="https://www.php.cn/php-ask-432688.html#:~:text=php%E4%B8%ADinclude%E7%9A%84%E7%94%A8%E6%B3%95.%20include%20%EF%BC%88%E6%88%96%20require%EF%BC%89%E8%AF%AD%E5%8F%A5%E4%BC%9A%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E4%B8%AD%E5%AD%98%E5%9C%A8%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E6%9C%AC%2F%E4%BB%A3%E7%A0%81%2F%E6%A0%87%E8%AE%B0%EF%BC%8C%E5%B9%B6%E5%A4%8D%E5%88%B6%E5%88%B0%E4%BD%BF%E7%94%A8%20include%20%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%AD%E3%80%82.%20%E5%8C%85%E5%90%AB%E6%96%87%E4%BB%B6%E5%BE%88%E6%9C%89%E7%94%A8%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%82%A8%E9%9C%80%E8%A6%81%E5%9C%A8%E7%BD%91%E7%AB%99%E7%9A%84%E5%A4%9A%E5%BC%A0%E9%A1%B5%E9%9D%A2%E4%B8%8A%E5%BC%95%E7%94%A8%E7%9B%B8%E5%90%8C%E7%9A%84%20PHP%E3%80%81HTML,PHP%20%E6%96%87%E4%BB%B6%EF%BC%88%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8C%E5%AE%83%E4%B9%8B%E5%89%8D%EF%BC%89%E3%80%82.%20include%20%E5%92%8C%20require%20%E8%AF%AD%E5%8F%A5%E6%98%AF%E7%9B%B8%E5%90%8C%E7%9A%84%EF%BC%8C%E9%99%A4%E4%BA%86%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%96%B9%E9%9D%A2%EF%BC%9A.%20require%20%E4%BC%9A%E7%94%9F%E6%88%90%E8%87%B4%E5%91%BD%E9%94%99%E8%AF%AF%EF%BC%88E_COMPILE_ERROR%EF%BC%89%E5%B9%B6%E5%81%9C%E6%AD%A2%E8%84%9A%E6%9C%AC.">include</a>的使用</p>
+<p>首先尝试<code>/?file=source.php</code>页面返回的仅仅是又打印了一边source.php中的源码，接着尝试</p>
+<p><code>/?file=hint.php</code>发现页面底部出现了flag在ffffllllaaaagggg的字样。然后尝试</p>
+<p><code>/?file=hint.php?../ffffllllaaaagggg</code>至于这里的?我现在还是不太懂，然后逐渐增加../的数量，增加到第5个时，flag出现。</p>
+<h1 id="强网杯-2019-随便注"><a href="#强网杯-2019-随便注" class="headerlink" title="[强网杯 2019]随便注"></a>[强网杯 2019]随便注</h1><p>首先要了解一下PHP中的<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/language.types.array.php">数组</a>，以及<a target="_blank" rel="noopener" href="https://www.runoob.com/php/php-var_dump-function.html">var_dump函数</a>。</p>
+<p>这里要用到堆叠注入</p>
+<p>堆叠注入的使用条件十分有限，其可能受到API或者数据库引擎，又或者权限的限制只有当调用数据库函数支持执行多条sql语句时才能够使用，利用mysqli_multi_query()函数就支持多条sql语句同时执行，但实际情况中，如PHP为了防止sql注入机制，往往使用调用数据库的函数是mysqli_ query()函数，其只能执行一条语句，分号后面的内容将不会被执行，所以可以说堆叠注入的使用条件十分有限，一旦能够被使用，将可能对网站造成十分大的威胁。</p>
+<p>摘自：</p>
+<p>作者：dawsonenjoy<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c50ced83414d">https://www.jianshu.com/p/c50ced83414d</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<h2 id="判断闭合方式"><a href="#判断闭合方式" class="headerlink" title="判断闭合方式"></a>判断闭合方式</h2><p>用Hackerbar，不要直接在输入框里输，会过滤。</p>
+<p>经过判断后，闭合方式为单引号。</p>
+<h2 id="判断字段数"><a href="#判断字段数" class="headerlink" title="判断字段数"></a>判断字段数</h2><p>判断判断字段数，结果为2。</p>
+<h2 id="爆库"><a href="#爆库" class="headerlink" title="爆库"></a>爆库</h2><p>接着用union 和select爆库，结果发现select被过滤了，不能用</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202194305288.png" alt="image-20220202194305288"></p>
+<p>这里要用到<code>show databases</code>，注意与<code>select database()</code>的区别，前者是显示所有数据库名称，后者是显示当前数据库名称。</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202194436341.png" alt="image-20220202194436341"></p>
+<h2 id="爆表，爆字段"><a href="#爆表，爆字段" class="headerlink" title="爆表，爆字段"></a>爆表，爆字段</h2><p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202201329717.png" alt="image-20220202201329717"></p>
+<p>words表中的字段</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202202215263.png" alt="image-20220202202215263"></p>
+<p>1919810931114514中的字段</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202202305894.png" alt="image-20220202202305894"></p>
+<h2 id="查看flag"><a href="#查看flag" class="headerlink" title="查看flag"></a>查看flag</h2><p>根据words中字段的回显，有很大可能输入的数为id，然后猜测语句为</p>
+<p><code>select id,data from words where id=</code></p>
+<p>根据<code>1&#39; or 1=1--+</code>的回显，可得words表为</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>data</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>hahahah</td>
+</tr>
+<tr>
+<td>2</td>
+<td>miaomiaomiao</td>
+</tr>
+<tr>
+<td>114514</td>
+<td>ys</td>
+</tr>
+</tbody></table>
+<p>所以，我们把表名1919810931114514改为words然后查询flag即可</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span><span class="string">&#x27;;rename table `words` to `words0`; </span></span><br><span class="line"><span class="string">rename table `1919810931114514` to `words`;</span></span><br><span class="line"><span class="string"> alter table `words` change `flag` `id` varchar(100);</span></span><br></pre></td></tr></table></figure>
+
+<p>然后用<code>1&#39; or 1=1;--+</code>查询的flag</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202224533519.png" alt="image-20220202224533519"></p>
+<h1 id="粗心的小李"><a href="#粗心的小李" class="headerlink" title="粗心的小李"></a>粗心的小李</h1><p>scrabble的用法请见<a href="https://harbeter.github.io/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/">这里</a>。用docker搭建测试环境后，用Ubuntu打开物理机的IP v4地址。</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202225656448.png" alt="image-20220202225656448"></p>
+<p>然后用scrabble直接获取源码，得到flag。</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202234437902.png" alt="image-20220202234437902"></p>
+<h1 id="SUCTF-2019-EasySQL"><a href="#SUCTF-2019-EasySQL" class="headerlink" title="[SUCTF 2019]EasySQL"></a>[SUCTF 2019]EasySQL</h1><p>首先尝试了一波判断闭合方式，结果发现越来越不对劲，有三种回显，要么空，要么是数组，要么就是Nonono，然后尝试了堆叠注入，发现果然行！！！但是最后用到<code>show columns from Flag</code>却回显Nonono，初步判断有字符过滤，于是用Fuzz字典判断一下过滤的字符，结果如下</p>
+<table>
+<thead>
+<tr>
+<th>handler</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>like</td>
+</tr>
+<tr>
+<td>sleep</td>
+</tr>
+<tr>
+<td>delete</td>
+</tr>
+<tr>
+<td>or</td>
+</tr>
+<tr>
+<td>insert</td>
+</tr>
+<tr>
+<td>&amp;</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+</tr>
+<tr>
+<td>handler</td>
+</tr>
+<tr>
+<td>INFORMATION</td>
+</tr>
+<tr>
+<td>xor</td>
+</tr>
+<tr>
+<td>AND</td>
+</tr>
+<tr>
+<td>CREATE</td>
+</tr>
+<tr>
+<td>from</td>
+</tr>
+<tr>
+<td>“</td>
+</tr>
+</tbody></table>
+<p>然后又进行了一番尝试，发现2和2;返回值不一样，说明<strong>输入的值被嵌入了某个语句中</strong>。</p>
+<h2 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h2><p>PIPES_AS_CONCAT：将【||】原本的“或”转换为“连接字符”，就是将||前后进行拼接</p>
+<p>使用方法：PayLoad1【1;set sql_mode=PIPES_AS_CONCAT;select 1】</p>
+<p>拼接过后的结果就是【select 1;set sql_mode=PIPES_AS_CONCAT;select 1||flag from Flag】</p>
+<h2 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h2><p>我们传递过去的内容会被解析为$sql = “select “.$post[‘query’].”||flag from Flag”;</p>
+<p>因此我们可以在传递值这边做文章，让数据库进行错误的判断</p>
+<p>我们可以尝试传入1,1</p>
+<p>返回回来的结果</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220203002112267.png" alt="image-20220203002112267"></p>
+<p>在数据库中的操作<br>我们可以发现，这里的内容查询不是对【1,1】||【flag】而是对【1】，【1||flag】</p>
+<p>这就是数据库对符号的判断不严谨，导致的非预期漏洞</p>
+<p>我们就可以将”,”前的内容改为“ * ”, 从而构建PayLoad【 *,1 】</p>
+<p>PayLoad2：【 *,1】</p>
+<h1 id="ACTF2020-新生赛-Exec"><a href="#ACTF2020-新生赛-Exec" class="headerlink" title="[ACTF2020 新生赛]Exec"></a>[ACTF2020 新生赛]Exec</h1><p>这里又出现了新知识。</p>
+<p>Linux中的命令连接操作符</p>
+<ol>
+<li>和号操作符 (<strong>&amp;</strong>) ‘&amp;’的作用是使命令在后台运行。只要在命令后面跟上一个空格和 ‘&amp;’。你可以一口气在后台运行多个命令。</li>
+<li>分号操作符 (<strong>;</strong> ) 分号操作符使你可以一口气运行几个命令，命令顺序执行。</li>
+<li>与操作符 (<strong>&amp;&amp;</strong>) 如果第一个命令执行成功，与操作符 (&amp;&amp;)才会执行第二个命令，也就是说，第一个命令退出状态是0，后面的才会执行。在UNIX里面，0表示无错误，而所有非0返回值都是各种错误。</li>
+<li>或操作符 (<strong>||</strong>) 或操作符 (||)很像编程中的else语句。上面的操作符允许你在第一个命令失败的情况下执行第二个命令，但第一个命令成功则第二个不会执行</li>
+<li>非操作符 (<strong>!</strong>) 非操作符 (!)很像except语句。这个命令会执行除了提供的条件外的所有的语句。这个是纯逻辑操作符，注入很少用</li>
+<li>管道操作符 (<strong>|</strong>) PIPE在将第一个命令的输出作为第二个命令的输入时很有用。</li>
+<li>优先操作符 <strong>()</strong> 指定优先级</li>
+<li>连接符 <strong>()</strong> 连接符 ()如它名字所说，被用于连接shell中那些太长而需要分成多行的命令。可以在输入一个“\”之后就回车，然后继续输入命令行，直到输入完成。</li>
+</ol>
+<p>这里首先要判断该题的类型，题目为Exec，所以这里我们有必要知道什么是<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/3091.html#:~:text=exec%20%E6%98%AF%20Shell%20%E5%86%85%E7%BD%AE%E5%91%BD%E4%BB%A4%20%EF%BC%8C%E5%AE%83%E6%9C%89%E4%B8%A4%E7%A7%8D%E7%94%A8%E6%B3%95%EF%BC%8C%E4%B8%80%E7%A7%8D%E6%98%AF%E6%89%A7%E8%A1%8C%20Shell,%E5%91%BD%E4%BB%A4%EF%BC%8C%E4%B8%80%E7%A7%8D%E6%98%AF%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6%E3%80%82%20%E6%9C%AC%E8%8A%82%E5%8F%AA%E8%AE%B2%E8%A7%A3%E5%90%8E%E9%9D%A2%E4%B8%80%E7%A7%8D%EF%BC%8C%E5%89%8D%E9%9D%A2%E4%B8%80%E7%A7%8D%E8%AF%B7%E5%A4%A7%E5%AE%B6%E8%87%AA%E8%A1%8C%E5%AD%A6%E4%B9%A0%E3%80%82%20%E4%BD%BF%E7%94%A8%20exec%20%E5%91%BD%E4%BB%A4%E5%8F%AF%E4%BB%A5%E6%B0%B8%E4%B9%85%E6%80%A7%E5%9C%B0%E9%87%8D%E5%AE%9A%E5%90%91%EF%BC%8C%E5%90%8E%E7%BB%AD%E5%91%BD%E4%BB%A4%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%96%B9%E5%90%91%E4%B9%9F%E8%A2%AB%E7%A1%AE%E5%AE%9A%E4%BA%86%EF%BC%8C%E7%9B%B4%E5%88%B0%E5%86%8D%E6%AC%A1%E9%81%87%E5%88%B0%20exec%20%E5%91%BD%E4%BB%A4%E6%89%8D%E4%BC%9A%E6%94%B9%E5%8F%98%E9%87%8D%E5%AE%9A%E5%90%91%E7%9A%84%E6%96%B9%E5%90%91%EF%BC%9B%E6%8D%A2%E5%8F%A5%E8%AF%9D%E8%AF%B4%EF%BC%8C%E4%B8%80%E6%AC%A1%E9%87%8D%E5%AE%9A%E5%90%91%EF%BC%8C%E6%B0%B8%E4%B9%85%E6%9C%89%E6%95%88%E3%80%82">Exec</a>和<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/706.html#:~:text=Shell%20%E6%98%AF%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%EF%BC%8C%E5%AE%83%E8%BF%9E%E6%8E%A5%E4%BA%86%E7%94%A8%E6%88%B7%E5%92%8C%20Linux%20%E5%86%85%E6%A0%B8%EF%BC%8C%E8%AE%A9%E7%94%A8%E6%88%B7%E8%83%BD%E5%A4%9F%E6%9B%B4%E5%8A%A0%E9%AB%98%E6%95%88%E3%80%81%E5%AE%89%E5%85%A8%E3%80%81%E4%BD%8E%E6%88%90%E6%9C%AC%E5%9C%B0%E4%BD%BF%E7%94%A8%20Linux%20%E5%86%85%E6%A0%B8%EF%BC%8C%E8%BF%99%E5%B0%B1%E6%98%AF%20Shell%20%E7%9A%84%E6%9C%AC%E8%B4%A8%E3%80%82,%E7%9A%84%E8%AF%9D%EF%BC%8C%E7%94%A8%E6%88%B7%E5%B0%B1%E6%B2%A1%E5%8A%9E%E6%B3%95%E4%BD%BF%E7%94%A8%20Linux%E3%80%82%20Shell%20%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9E%E6%8E%A5%E7%94%A8%E6%88%B7%E5%92%8C%E5%86%85%E6%A0%B8%E7%9A%84%EF%BC%9F%20Shell%20%E8%83%BD%E5%A4%9F%E6%8E%A5%E6%94%B6%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E7%9A%84%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%B9%B6%E5%AF%B9%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86%EF%BC%8C%E5%A4%84%E7%90%86%E5%AE%8C%E6%AF%95%E5%90%8E%E5%86%8D%E5%B0%86%E7%BB%93%E6%9E%9C%E5%8F%8D%E9%A6%88%E7%BB%99%E7%94%A8%E6%88%B7%EF%BC%8C%E6%AF%94%E5%A6%82%E8%BE%93%E5%87%BA%E5%88%B0%E6%98%BE%E7%A4%BA%E5%99%A8%E3%80%81%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6%E7%AD%89%EF%BC%8C%E8%BF%99%E5%B0%B1%E6%98%AF%E5%A4%A7%E9%83%A8%E5%88%86%E8%AF%BB%E8%80%85%E5%AF%B9%20Shell%20%E7%9A%84%E8%AE%A4%E7%9F%A5%E3%80%82">Shell</a>。Exec的中文意思是”命令执行“，所以这里和SQL注入关系不大。</p>
+<p>上面我们了解了linux中的命令连接符，所以我们逐级构造<code>1;cd ../;ls</code>1处可以随便输。</p>
+<p>当构造为<code>1;cd ../../../;ls</code>时，目录中出现flag</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220204122557483.png" alt="image-20220204122557483"></p>
+<p>然后获取flag就可以了<code>1;cd ../../../;ls;cat flag</code></p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220204122646306.png" alt="image-20220204122646306"></p>
+<h1 id="极客大挑战-2019-Secret-File"><a href="#极客大挑战-2019-Secret-File" class="headerlink" title="[极客大挑战 2019]Secret File"></a>[极客大挑战 2019]Secret File</h1><p>查看源码发现./Archive_room.php，进入该文件。</p>
+<p>查看源码发现action.php文件，但是打开后变成end.php文件。所以判断结果为action.php出现时间很短，然后立即出现了end.php文件。所以我们这里用Bp拦截，然后发现action.php文件源码中有secr3t.php文件名，所以我们继续访问该文件。然后发现该文件中提示源码在flag.php文件中，所以我们再进入flag.php文件。进入后提示flag就在这里，只是我们看不到，找遍源码也没找到。所以猜测是被过滤了。所以这里要用到php://filter协议，所以我们让文件以base64编码的形式输出，就不会被过滤了</p>
+<p>构造<code>?file=php://filter/convert.base64-encode/resource=flag.php</code>，因为要看到输出的base64编码，所以要再secr3t.php界面输出，结果如图</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220204135439694.png" alt="image-20220204135439694"></p>
+<p>然后解码得到flag</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%88%B7%E9%A2%98/" rel="tag"># 刷题</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="prev" title="PHP环境搭建">
+      <i class="fa fa-chevron-left"></i> PHP环境搭建
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HCTF2018-WarmUp"><span class="nav-number">1.</span> <span class="nav-text">HCTF2018 WarmUp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%BA%E7%BD%91%E6%9D%AF-2019-%E9%9A%8F%E4%BE%BF%E6%B3%A8"><span class="nav-number">2.</span> <span class="nav-text">[强网杯 2019]随便注</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E9%97%AD%E5%90%88%E6%96%B9%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">判断闭合方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E5%AD%97%E6%AE%B5%E6%95%B0"><span class="nav-number">2.2.</span> <span class="nav-text">判断字段数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%86%E5%BA%93"><span class="nav-number">2.3.</span> <span class="nav-text">爆库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%86%E8%A1%A8%EF%BC%8C%E7%88%86%E5%AD%97%E6%AE%B5"><span class="nav-number">2.4.</span> <span class="nav-text">爆表，爆字段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bflag"><span class="nav-number">2.5.</span> <span class="nav-text">查看flag</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B2%97%E5%BF%83%E7%9A%84%E5%B0%8F%E6%9D%8E"><span class="nav-number">3.</span> <span class="nav-text">粗心的小李</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SUCTF-2019-EasySQL"><span class="nav-number">4.</span> <span class="nav-text">[SUCTF 2019]EasySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A"><span class="nav-number">4.1.</span> <span class="nav-text">方法一：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A"><span class="nav-number">4.2.</span> <span class="nav-text">方法二：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Exec"><span class="nav-number">5.</span> <span class="nav-text">[ACTF2020 新生赛]Exec</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-Secret-File"><span class="nav-number">6.</span> <span class="nav-text">[极客大挑战 2019]Secret File</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Harbeter"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Harbeter</p>
+  <div class="site-description" itemprop="description">愿你永远善良，永远向往未来！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:qq2300350627@163.com" title="E-Mail → mailto:qq2300350627@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">冀ICP备2021027275号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Harbeter</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
+
+

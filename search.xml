@@ -711,6 +711,66 @@
       </tags>
   </entry>
   <entry>
+    <title>Git版本穿梭及版本比较</title>
+    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
+    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
+<li><p>状态查看：<code>git status</code></p>
+</li>
+<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
+</li>
+<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
+<p>简洁显示：<code>git log --pretty=oneline</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
+<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
+<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
+<p>HEAD@{移动到当前版本所需要步数}</p>
+<p>若版本信息有多屏</p>
+<p>则空格向下翻页，b向上翻页，q退出</p>
+<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
+<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
+<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
+<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
+<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
+<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
+<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
+<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
+<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
+<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
+<p>现在状态为</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
+<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
+<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
+<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
+<p>然后删除文件，并添加到暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
+<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
+<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
+<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
+<p>上图表示第一行删去了9个a</p>
+<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git的分支管理级Git的基本原理</title>
     <url>/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<h1 id="分支的意义"><a href="#分支的意义" class="headerlink" title="分支的意义"></a>分支的意义</h1><ul>
@@ -769,66 +829,6 @@
 <p>当分支文件不一样时，才会出现分支</p>
 <p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111122101487.png" alt="image-20220111122101487"></p>
 <p><strong>Git在本地的版本控制就完结了</strong></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git版本穿梭及版本比较</title>
-    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
-    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
-<li><p>状态查看：<code>git status</code></p>
-</li>
-<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
-</li>
-<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
-<p>简洁显示：<code>git log --pretty=oneline</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
-<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
-<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
-<p>HEAD@{移动到当前版本所需要步数}</p>
-<p>若版本信息有多屏</p>
-<p>则空格向下翻页，b向上翻页，q退出</p>
-<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
-<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
-<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
-<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
-<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
-<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
-<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
-<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
-<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
-<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
-<p>现在状态为</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
-<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
-<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
-<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
-<p>然后删除文件，并添加到暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
-<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
-<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
-<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
-<p>上图表示第一行删去了9个a</p>
-<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
 ]]></content>
       <tags>
         <tag>Git</tag>
@@ -1606,26 +1606,6 @@
       </tags>
   </entry>
   <entry>
-    <title>bugku-bp</title>
-    <url>/2021/12/05/bugku-bp/</url>
-    <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185551656.png" alt="image-20211205185551656"></p>
-<p>爆破结果如下</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/05/bugku-bp/image-20211205185641750.png" alt="image-20211205185641750"></p>
-<p>结果均为908，则猜想正确结果与错误结果的length一样，则选择其他参考标准，通过观察响应包里面的内容，我们发现错误包里面都会返回一个JavaScript代码告知我们的密码有错误。因此我们通过Burpsuite的 （Grep – Match 在响应中找出存在指定的内容的一项。）过滤掉存在JavaScript代码中的{code: ‘bugku10000’}的数据包。</p>
-<p>添加如图内容，继续爆破</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185817178.png" alt="image-20211205185817178"></p>
-<p>发现可疑点</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185906383.png" alt="image-20211205185906383"></p>
-<p>输入该密码，得到flag。</p>
-]]></content>
-      <tags>
-        <tag>bp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git的介绍、安装和基本提交</title>
     <url>/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/</url>
     <content><![CDATA[<h1 id="Git的优势"><a href="#Git的优势" class="headerlink" title="Git的优势"></a>Git的优势</h1><ul>
@@ -1716,6 +1696,81 @@
 <p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225112194.png" alt="image-20220108225112194"></p>
 <p>然后进行提交，这里用<code>git commit -m &quot;备注&quot; test.txt</code>进行提交，不用再在vim编辑器里输入备注信息</p>
 <p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225410302.png" alt="image-20220108225410302"></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bugku-bp</title>
+    <url>/2021/12/05/bugku-bp/</url>
+    <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185551656.png" alt="image-20211205185551656"></p>
+<p>爆破结果如下</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/05/bugku-bp/image-20211205185641750.png" alt="image-20211205185641750"></p>
+<p>结果均为908，则猜想正确结果与错误结果的length一样，则选择其他参考标准，通过观察响应包里面的内容，我们发现错误包里面都会返回一个JavaScript代码告知我们的密码有错误。因此我们通过Burpsuite的 （Grep – Match 在响应中找出存在指定的内容的一项。）过滤掉存在JavaScript代码中的{code: ‘bugku10000’}的数据包。</p>
+<p>添加如图内容，继续爆破</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185817178.png" alt="image-20211205185817178"></p>
+<p>发现可疑点</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185906383.png" alt="image-20211205185906383"></p>
+<p>输入该密码，得到flag。</p>
+]]></content>
+      <tags>
+        <tag>bp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>php://filter 协议</title>
+    <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
+<p><strong>1</strong>是格式<br><strong>2</strong>是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br><strong>3</strong>是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br><strong>4</strong>是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
+<span id="more"></span>
+
+<p>转base64编码：<code>convert.base64-encode</code></p>
+<p>转大写：<code>string.toupper</code></p>
+<p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
+<p>例题：</p>
+<h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
+<p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
+<p>构造：<code>php://filter/read=convert.base64-encode/resource=flag.php</code></p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
+<p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
+<p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
+]]></content>
+      <tags>
+        <tag>php协议</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>scrabble的使用</title>
+    <url>/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="scrabble介绍"><a href="#scrabble介绍" class="headerlink" title="scrabble介绍"></a>scrabble介绍</h1><p>scrabble适用常规的git泄露，用于获取源码。开发人员忘记.git文件，导致攻击者可以通过.git文件夹中的信息获取开发人员所提交过的源码。</p>
+<p>安装：<code>git clone https://github.com/denny0223/scrabble</code>(用在linux系统中)</p>
+<span id="more"></span>
+
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143040320.png" alt="image-20220128143040320"></p>
+<p>有时候获取不到，多试几次，毕竟github有时候进不去，呜呜呜。</p>
+<h1 id="测试环境的搭建"><a href="#测试环境的搭建" class="headerlink" title="测试环境的搭建"></a>测试环境的搭建</h1><p>这里用Ubuntu和PHPstudy示范</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143248746.png" alt="image-20220128143248746"></p>
+<p>进入根目录后，创建test测试文件</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143340203.png" alt="image-20220128143340203"></p>
+<p>若出现如下情况，直接用命令行进入管理员模式访问吧。</p>
+<p>进入管理员模式：<code>su root</code>，然后输入密码即可，注意，密码输入后是不会显示的。</p>
+<p>然后切换到目的文件夹</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143610379.png" alt="image-20220128143610379"></p>
+<p>这里我已经创建了几个文档和一个文件夹，文档的创建过程见Git教程，文件夹的创建<code>mkdir 文件夹名</code></p>
+<p>所以，这里我们的测试网址应该是<code>http://127.0.0.1/test</code>。</p>
+<p>顺便补充一下，我这里还搭建了sqli-labs靶场，虚拟机内访问是<code>http://127.0.0.1/sqli-labs</code>，物理机访问是要把127.0.0.1换成虚拟机的IP v4地址。查看方法如下</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144009957.png" alt="image-20220128144009957"></p>
+<h1 id="开始测试"><a href="#开始测试" class="headerlink" title="开始测试"></a>开始测试</h1><p>按照图中的指令即可</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144150492.png" alt="image-20220128144150492"></p>
+<p>注意，这里用完后，原来scrabble文件夹中的内容就被目标网站中的源码取代了，所以建议备份scrabble源文件，要不还得git clone一下。获取后直接cat查看就可以了。但是我试了一下，这里并不能获得sqli-labs的源文件，目测是因为sqli-labs中.git文件夹中的信息不太友好，本地对其并没有操作。所以也就没有git提交记录。</p>
+<p><strong>还有一种情况是，flag会藏在老版本里，所以我们用scrabble获取源码后。输入<code>git log</code>查看以前版本，并切换，从而找到flag</strong></p>
+<p>再补充一下，<code>git reflog</code>版本信息更全，能够看更先进的版本（如果有的话）。而<code>git log</code>只能看老版本</p>
 ]]></content>
       <tags>
         <tag>Git</tag>
@@ -1822,61 +1877,6 @@
 ]]></content>
       <tags>
         <tag>杂谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>php://filter 协议</title>
-    <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
-    <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
-<p><strong>1</strong>是格式<br><strong>2</strong>是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br><strong>3</strong>是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br><strong>4</strong>是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
-<span id="more"></span>
-
-<p>转base64编码：<code>convert.base64-encode</code></p>
-<p>转大写：<code>string.toupper</code></p>
-<p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
-<p>例题：</p>
-<h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
-<p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
-<p>构造：<code>php://filter/read=convert.base64-encode/resource=flag.php</code></p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
-<p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
-<p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
-]]></content>
-      <tags>
-        <tag>php协议</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>scrabble的使用</title>
-    <url>/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="scrabble介绍"><a href="#scrabble介绍" class="headerlink" title="scrabble介绍"></a>scrabble介绍</h1><p>scrabble适用常规的git泄露，用于获取源码。开发人员忘记.git文件，导致攻击者可以通过.git文件夹中的信息获取开发人员所提交过的源码。</p>
-<p>安装：<code>git clone https://github.com/denny0223/scrabble</code>(用在linux系统中)</p>
-<span id="more"></span>
-
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143040320.png" alt="image-20220128143040320"></p>
-<p>有时候获取不到，多试几次，毕竟github有时候进不去，呜呜呜。</p>
-<h1 id="测试环境的搭建"><a href="#测试环境的搭建" class="headerlink" title="测试环境的搭建"></a>测试环境的搭建</h1><p>这里用Ubuntu和PHPstudy示范</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143248746.png" alt="image-20220128143248746"></p>
-<p>进入根目录后，创建test测试文件</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143340203.png" alt="image-20220128143340203"></p>
-<p>若出现如下情况，直接用命令行进入管理员模式访问吧。</p>
-<p>进入管理员模式：<code>su root</code>，然后输入密码即可，注意，密码输入后是不会显示的。</p>
-<p>然后切换到目的文件夹</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143610379.png" alt="image-20220128143610379"></p>
-<p>这里我已经创建了几个文档和一个文件夹，文档的创建过程见Git教程，文件夹的创建<code>mkdir 文件夹名</code></p>
-<p>所以，这里我们的测试网址应该是<code>http://127.0.0.1/test</code>。</p>
-<p>顺便补充一下，我这里还搭建了sqli-labs靶场，虚拟机内访问是<code>http://127.0.0.1/sqli-labs</code>，物理机访问是要把127.0.0.1换成虚拟机的IP v4地址。查看方法如下</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144009957.png" alt="image-20220128144009957"></p>
-<h1 id="开始测试"><a href="#开始测试" class="headerlink" title="开始测试"></a>开始测试</h1><p>按照图中的指令即可</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144150492.png" alt="image-20220128144150492"></p>
-<p>注意，这里用完后，原来scrabble文件夹中的内容就被目标网站中的源码取代了，所以建议备份scrabble源文件，要不还得git clone一下。获取后直接cat查看就可以了。但是我试了一下，这里并不能获得sqli-labs的源文件，目测是因为sqli-labs中.git文件夹中的信息不太友好，本地对其并没有操作。所以也就没有git提交记录。</p>
-<p><strong>还有一种情况是，flag会藏在老版本里，所以我们用scrabble获取源码后。输入<code>git log</code>查看以前版本，并切换，从而找到flag</strong></p>
-<p>再补充一下，<code>git reflog</code>版本信息更全，能够看更先进的版本（如果有的话）。而<code>git log</code>只能看老版本</p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -2271,6 +2271,164 @@
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>刷题记录</title>
+    <url>/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="HCTF2018-WarmUp"><a href="#HCTF2018-WarmUp" class="headerlink" title="HCTF2018 WarmUp"></a>HCTF2018 WarmUp</h1><p>这道题还是挺有意思的，不过还没完全吃透，看着别人的WP勉强能看懂一点。</p>
+<p>按F12发现存在source.php，进入页面后发现源码</p>
+<span id="more"></span>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);<span class="comment">// highlight_file() 函数对文件进行语法高亮显示。</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">emmm</span>//定义<span class="title">emmm</span>类①</span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">checkFile</span>(<span class="params">&amp;<span class="variable">$page</span></span>)//将传入的参数（这里是<span class="title">file</span>）赋给<span class="title">page</span>②</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="variable">$whitelist</span> = [<span class="string">&quot;source&quot;</span>=&gt;<span class="string">&quot;source.php&quot;</span>,<span class="string">&quot;hint&quot;</span>=&gt;<span class="string">&quot;hint.php&quot;</span>];<span class="comment">//定义whitelist白名单</span></span><br><span class="line">            <span class="keyword">if</span> (! <span class="keyword">isset</span>(<span class="variable">$page</span>) || !is_string(<span class="variable">$page</span>)) <span class="comment">//非定义或者非字符③</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;you can&#x27;t see it&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (in_array(<span class="variable">$page</span>, <span class="variable">$whitelist</span>)) <span class="comment">//变量page在变量whitelist的白名单内④</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$_page</span> = mb_substr(</span><br><span class="line">                <span class="variable">$page</span>,</span><br><span class="line">                <span class="number">0</span>,</span><br><span class="line">                mb_strpos(<span class="variable">$page</span> . <span class="string">&#x27;?&#x27;</span>, <span class="string">&#x27;?&#x27;</span>)</span><br><span class="line">            );<span class="comment">//过滤?</span></span><br><span class="line">            <span class="keyword">if</span> (in_array(<span class="variable">$_page</span>, <span class="variable">$whitelist</span>)) </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$_page</span> = urldecode(<span class="variable">$page</span>);<span class="comment">//url解码</span></span><br><span class="line">            <span class="variable">$_page</span> = mb_substr(</span><br><span class="line">                <span class="variable">$_page</span>,</span><br><span class="line">                <span class="number">0</span>,</span><br><span class="line">                mb_strpos(<span class="variable">$_page</span> . <span class="string">&#x27;?&#x27;</span>, <span class="string">&#x27;?&#x27;</span>)</span><br><span class="line">            );<span class="comment">//过滤?</span></span><br><span class="line">            <span class="keyword">if</span> (in_array(<span class="variable">$_page</span>, <span class="variable">$whitelist</span>)) </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;you can&#x27;t see it&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="comment">//checkFile检验</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (! <span class="keyword">empty</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">        &amp;&amp; is_string(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">        &amp;&amp; emmm::checkFile(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">    ) <span class="comment">//变量file非空，为字符串，且能通过checkFile的检验</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">include</span> <span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>];⑥</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125; </span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">	&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&lt;img src=\&quot;https://i.loli.net/2018/11/01/5bdb0d93dc794.jpg\&quot; /&gt;&quot;</span>;</span><br><span class="line">    &#125;  </span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>①class定义类<a href="http://c.biancheng.net/view/7492.html#:~:text=%E5%9C%A8%20PHP%20%E4%B8%AD%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%20class%20%E5%85%B3%E9%94%AE%E5%AD%97%E5%8A%A0%E7%B1%BB%E5%90%8D%E7%9A%84%E6%96%B9%E5%BC%8F%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E7%B1%BB%EF%BC%8C%E7%84%B6%E5%90%8E%E7%94%A8%E5%A4%A7%E6%8B%AC%E5%8F%B7%20%7B,%7D%20%E5%B0%86%E5%9C%A8%E7%B1%BB%E4%BD%93%E4%B8%AD%E5%AE%9A%E4%B9%89%E7%B1%BB%E7%9A%84%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95%E5%8C%85%E8%A3%B9%E8%B5%B7%E6%9D%A5%EF%BC%8C%E7%B1%BB%E7%9A%84%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F%E5%A6%82%E4%B8%8B%EF%BC%9A%20%5B%E4%BF%AE%E9%A5%B0%E7%B1%BB%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97%5D%20class%20%E7%B1%BB%E5%90%8D%20%7B">详细解释</a></p>
+<p>②static是定义<a href="https://www.jianshu.com/p/ab5749914f7c">静态变量</a>，function<a href="https://www.php.cn/php-notebook-178152.html">定义函数</a>。</p>
+<p>③<a href="https://www.runoob.com/php/php-isset-function.html">isset</a>判断变量是否定义，is_string判断是否为字符串。</p>
+<p>④<a href="https://www.w3school.com.cn/php/func_array_in_array.asp">in_array</a>的详细用法</p>
+<p>⑤<a href="https://www.runoob.com/php/func-string-mb_substr.html">mb_substr</a>和<a href="https://www.w3school.com.cn/php/func_string_strpos.asp">mb_strpos</a>的详细用法</p>
+<p>⑥<a href="https://www.php.cn/php-ask-432688.html#:~:text=php%E4%B8%ADinclude%E7%9A%84%E7%94%A8%E6%B3%95.%20include%20%EF%BC%88%E6%88%96%20require%EF%BC%89%E8%AF%AD%E5%8F%A5%E4%BC%9A%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E4%B8%AD%E5%AD%98%E5%9C%A8%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E6%9C%AC%2F%E4%BB%A3%E7%A0%81%2F%E6%A0%87%E8%AE%B0%EF%BC%8C%E5%B9%B6%E5%A4%8D%E5%88%B6%E5%88%B0%E4%BD%BF%E7%94%A8%20include%20%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%AD%E3%80%82.%20%E5%8C%85%E5%90%AB%E6%96%87%E4%BB%B6%E5%BE%88%E6%9C%89%E7%94%A8%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%82%A8%E9%9C%80%E8%A6%81%E5%9C%A8%E7%BD%91%E7%AB%99%E7%9A%84%E5%A4%9A%E5%BC%A0%E9%A1%B5%E9%9D%A2%E4%B8%8A%E5%BC%95%E7%94%A8%E7%9B%B8%E5%90%8C%E7%9A%84%20PHP%E3%80%81HTML,PHP%20%E6%96%87%E4%BB%B6%EF%BC%88%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%A7%E8%A1%8C%E5%AE%83%E4%B9%8B%E5%89%8D%EF%BC%89%E3%80%82.%20include%20%E5%92%8C%20require%20%E8%AF%AD%E5%8F%A5%E6%98%AF%E7%9B%B8%E5%90%8C%E7%9A%84%EF%BC%8C%E9%99%A4%E4%BA%86%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%96%B9%E9%9D%A2%EF%BC%9A.%20require%20%E4%BC%9A%E7%94%9F%E6%88%90%E8%87%B4%E5%91%BD%E9%94%99%E8%AF%AF%EF%BC%88E_COMPILE_ERROR%EF%BC%89%E5%B9%B6%E5%81%9C%E6%AD%A2%E8%84%9A%E6%9C%AC.">include</a>的使用</p>
+<p>首先尝试<code>/?file=source.php</code>页面返回的仅仅是又打印了一边source.php中的源码，接着尝试</p>
+<p><code>/?file=hint.php</code>发现页面底部出现了flag在ffffllllaaaagggg的字样。然后尝试</p>
+<p><code>/?file=hint.php?../ffffllllaaaagggg</code>至于这里的?我现在还是不太懂，然后逐渐增加../的数量，增加到第5个时，flag出现。</p>
+<h1 id="强网杯-2019-随便注"><a href="#强网杯-2019-随便注" class="headerlink" title="[强网杯 2019]随便注"></a>[强网杯 2019]随便注</h1><p>首先要了解一下PHP中的<a href="https://www.php.net/manual/zh/language.types.array.php">数组</a>，以及<a href="https://www.runoob.com/php/php-var_dump-function.html">var_dump函数</a>。</p>
+<p>这里要用到堆叠注入</p>
+<p>堆叠注入的使用条件十分有限，其可能受到API或者数据库引擎，又或者权限的限制只有当调用数据库函数支持执行多条sql语句时才能够使用，利用mysqli_multi_query()函数就支持多条sql语句同时执行，但实际情况中，如PHP为了防止sql注入机制，往往使用调用数据库的函数是mysqli_ query()函数，其只能执行一条语句，分号后面的内容将不会被执行，所以可以说堆叠注入的使用条件十分有限，一旦能够被使用，将可能对网站造成十分大的威胁。</p>
+<p>摘自：</p>
+<p>作者：dawsonenjoy<br>链接：<a href="https://www.jianshu.com/p/c50ced83414d">https://www.jianshu.com/p/c50ced83414d</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<h2 id="判断闭合方式"><a href="#判断闭合方式" class="headerlink" title="判断闭合方式"></a>判断闭合方式</h2><p>用Hackerbar，不要直接在输入框里输，会过滤。</p>
+<p>经过判断后，闭合方式为单引号。</p>
+<h2 id="判断字段数"><a href="#判断字段数" class="headerlink" title="判断字段数"></a>判断字段数</h2><p>判断判断字段数，结果为2。</p>
+<h2 id="爆库"><a href="#爆库" class="headerlink" title="爆库"></a>爆库</h2><p>接着用union 和select爆库，结果发现select被过滤了，不能用</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202194305288.png" alt="image-20220202194305288"></p>
+<p>这里要用到<code>show databases</code>，注意与<code>select database()</code>的区别，前者是显示所有数据库名称，后者是显示当前数据库名称。</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202194436341.png" alt="image-20220202194436341"></p>
+<h2 id="爆表，爆字段"><a href="#爆表，爆字段" class="headerlink" title="爆表，爆字段"></a>爆表，爆字段</h2><p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202201329717.png" alt="image-20220202201329717"></p>
+<p>words表中的字段</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202202215263.png" alt="image-20220202202215263"></p>
+<p>1919810931114514中的字段</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202202305894.png" alt="image-20220202202305894"></p>
+<h2 id="查看flag"><a href="#查看flag" class="headerlink" title="查看flag"></a>查看flag</h2><p>根据words中字段的回显，有很大可能输入的数为id，然后猜测语句为</p>
+<p><code>select id,data from words where id=</code></p>
+<p>根据<code>1&#39; or 1=1--+</code>的回显，可得words表为</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>data</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>hahahah</td>
+</tr>
+<tr>
+<td>2</td>
+<td>miaomiaomiao</td>
+</tr>
+<tr>
+<td>114514</td>
+<td>ys</td>
+</tr>
+</tbody></table>
+<p>所以，我们把表名1919810931114514改为words然后查询flag即可</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span><span class="string">&#x27;;rename table `words` to `words0`; </span></span><br><span class="line"><span class="string">rename table `1919810931114514` to `words`;</span></span><br><span class="line"><span class="string"> alter table `words` change `flag` `id` varchar(100);</span></span><br></pre></td></tr></table></figure>
+
+<p>然后用<code>1&#39; or 1=1;--+</code>查询的flag</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202224533519.png" alt="image-20220202224533519"></p>
+<h1 id="粗心的小李"><a href="#粗心的小李" class="headerlink" title="粗心的小李"></a>粗心的小李</h1><p>scrabble的用法请见<a href="https://harbeter.github.io/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/">这里</a>。用docker搭建测试环境后，用Ubuntu打开物理机的IP v4地址。</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202225656448.png" alt="image-20220202225656448"></p>
+<p>然后用scrabble直接获取源码，得到flag。</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220202234437902.png" alt="image-20220202234437902"></p>
+<h1 id="SUCTF-2019-EasySQL"><a href="#SUCTF-2019-EasySQL" class="headerlink" title="[SUCTF 2019]EasySQL"></a>[SUCTF 2019]EasySQL</h1><p>首先尝试了一波判断闭合方式，结果发现越来越不对劲，有三种回显，要么空，要么是数组，要么就是Nonono，然后尝试了堆叠注入，发现果然行！！！但是最后用到<code>show columns from Flag</code>却回显Nonono，初步判断有字符过滤，于是用Fuzz字典判断一下过滤的字符，结果如下</p>
+<table>
+<thead>
+<tr>
+<th>handler</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>like</td>
+</tr>
+<tr>
+<td>sleep</td>
+</tr>
+<tr>
+<td>delete</td>
+</tr>
+<tr>
+<td>or</td>
+</tr>
+<tr>
+<td>insert</td>
+</tr>
+<tr>
+<td>&amp;</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+</tr>
+<tr>
+<td>handler</td>
+</tr>
+<tr>
+<td>INFORMATION</td>
+</tr>
+<tr>
+<td>xor</td>
+</tr>
+<tr>
+<td>AND</td>
+</tr>
+<tr>
+<td>CREATE</td>
+</tr>
+<tr>
+<td>from</td>
+</tr>
+<tr>
+<td>“</td>
+</tr>
+</tbody></table>
+<p>然后又进行了一番尝试，发现2和2;返回值不一样，说明<strong>输入的值被嵌入了某个语句中</strong>。</p>
+<h2 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h2><p>PIPES_AS_CONCAT：将【||】原本的“或”转换为“连接字符”，就是将||前后进行拼接</p>
+<p>使用方法：PayLoad1【1;set sql_mode=PIPES_AS_CONCAT;select 1】</p>
+<p>拼接过后的结果就是【select 1;set sql_mode=PIPES_AS_CONCAT;select 1||flag from Flag】</p>
+<h2 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h2><p>我们传递过去的内容会被解析为$sql = “select “.$post[‘query’].”||flag from Flag”;</p>
+<p>因此我们可以在传递值这边做文章，让数据库进行错误的判断</p>
+<p>我们可以尝试传入1,1</p>
+<p>返回回来的结果</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220203002112267.png" alt="image-20220203002112267"></p>
+<p>在数据库中的操作<br>我们可以发现，这里的内容查询不是对【1,1】||【flag】而是对【1】，【1||flag】</p>
+<p>这就是数据库对符号的判断不严谨，导致的非预期漏洞</p>
+<p>我们就可以将”,”前的内容改为“ * ”, 从而构建PayLoad【 *,1 】</p>
+<p>PayLoad2：【 *,1】</p>
+<h1 id="ACTF2020-新生赛-Exec"><a href="#ACTF2020-新生赛-Exec" class="headerlink" title="[ACTF2020 新生赛]Exec"></a>[ACTF2020 新生赛]Exec</h1><p>这里又出现了新知识。</p>
+<p>Linux中的命令连接操作符</p>
+<ol>
+<li>和号操作符 (<strong>&amp;</strong>) ‘&amp;’的作用是使命令在后台运行。只要在命令后面跟上一个空格和 ‘&amp;’。你可以一口气在后台运行多个命令。</li>
+<li>分号操作符 (<strong>;</strong> ) 分号操作符使你可以一口气运行几个命令，命令顺序执行。</li>
+<li>与操作符 (<strong>&amp;&amp;</strong>) 如果第一个命令执行成功，与操作符 (&amp;&amp;)才会执行第二个命令，也就是说，第一个命令退出状态是0，后面的才会执行。在UNIX里面，0表示无错误，而所有非0返回值都是各种错误。</li>
+<li>或操作符 (<strong>||</strong>) 或操作符 (||)很像编程中的else语句。上面的操作符允许你在第一个命令失败的情况下执行第二个命令，但第一个命令成功则第二个不会执行</li>
+<li>非操作符 (<strong>!</strong>) 非操作符 (!)很像except语句。这个命令会执行除了提供的条件外的所有的语句。这个是纯逻辑操作符，注入很少用</li>
+<li>管道操作符 (<strong>|</strong>) PIPE在将第一个命令的输出作为第二个命令的输入时很有用。</li>
+<li>优先操作符 <strong>()</strong> 指定优先级</li>
+<li>连接符 <strong>()</strong> 连接符 ()如它名字所说，被用于连接shell中那些太长而需要分成多行的命令。可以在输入一个“\”之后就回车，然后继续输入命令行，直到输入完成。</li>
+</ol>
+<p>这里首先要判断该题的类型，题目为Exec，所以这里我们有必要知道什么是<a href="http://c.biancheng.net/view/3091.html#:~:text=exec%20%E6%98%AF%20Shell%20%E5%86%85%E7%BD%AE%E5%91%BD%E4%BB%A4%20%EF%BC%8C%E5%AE%83%E6%9C%89%E4%B8%A4%E7%A7%8D%E7%94%A8%E6%B3%95%EF%BC%8C%E4%B8%80%E7%A7%8D%E6%98%AF%E6%89%A7%E8%A1%8C%20Shell,%E5%91%BD%E4%BB%A4%EF%BC%8C%E4%B8%80%E7%A7%8D%E6%98%AF%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6%E3%80%82%20%E6%9C%AC%E8%8A%82%E5%8F%AA%E8%AE%B2%E8%A7%A3%E5%90%8E%E9%9D%A2%E4%B8%80%E7%A7%8D%EF%BC%8C%E5%89%8D%E9%9D%A2%E4%B8%80%E7%A7%8D%E8%AF%B7%E5%A4%A7%E5%AE%B6%E8%87%AA%E8%A1%8C%E5%AD%A6%E4%B9%A0%E3%80%82%20%E4%BD%BF%E7%94%A8%20exec%20%E5%91%BD%E4%BB%A4%E5%8F%AF%E4%BB%A5%E6%B0%B8%E4%B9%85%E6%80%A7%E5%9C%B0%E9%87%8D%E5%AE%9A%E5%90%91%EF%BC%8C%E5%90%8E%E7%BB%AD%E5%91%BD%E4%BB%A4%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%96%B9%E5%90%91%E4%B9%9F%E8%A2%AB%E7%A1%AE%E5%AE%9A%E4%BA%86%EF%BC%8C%E7%9B%B4%E5%88%B0%E5%86%8D%E6%AC%A1%E9%81%87%E5%88%B0%20exec%20%E5%91%BD%E4%BB%A4%E6%89%8D%E4%BC%9A%E6%94%B9%E5%8F%98%E9%87%8D%E5%AE%9A%E5%90%91%E7%9A%84%E6%96%B9%E5%90%91%EF%BC%9B%E6%8D%A2%E5%8F%A5%E8%AF%9D%E8%AF%B4%EF%BC%8C%E4%B8%80%E6%AC%A1%E9%87%8D%E5%AE%9A%E5%90%91%EF%BC%8C%E6%B0%B8%E4%B9%85%E6%9C%89%E6%95%88%E3%80%82">Exec</a>和<a href="http://c.biancheng.net/view/706.html#:~:text=Shell%20%E6%98%AF%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%EF%BC%8C%E5%AE%83%E8%BF%9E%E6%8E%A5%E4%BA%86%E7%94%A8%E6%88%B7%E5%92%8C%20Linux%20%E5%86%85%E6%A0%B8%EF%BC%8C%E8%AE%A9%E7%94%A8%E6%88%B7%E8%83%BD%E5%A4%9F%E6%9B%B4%E5%8A%A0%E9%AB%98%E6%95%88%E3%80%81%E5%AE%89%E5%85%A8%E3%80%81%E4%BD%8E%E6%88%90%E6%9C%AC%E5%9C%B0%E4%BD%BF%E7%94%A8%20Linux%20%E5%86%85%E6%A0%B8%EF%BC%8C%E8%BF%99%E5%B0%B1%E6%98%AF%20Shell%20%E7%9A%84%E6%9C%AC%E8%B4%A8%E3%80%82,%E7%9A%84%E8%AF%9D%EF%BC%8C%E7%94%A8%E6%88%B7%E5%B0%B1%E6%B2%A1%E5%8A%9E%E6%B3%95%E4%BD%BF%E7%94%A8%20Linux%E3%80%82%20Shell%20%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9E%E6%8E%A5%E7%94%A8%E6%88%B7%E5%92%8C%E5%86%85%E6%A0%B8%E7%9A%84%EF%BC%9F%20Shell%20%E8%83%BD%E5%A4%9F%E6%8E%A5%E6%94%B6%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E7%9A%84%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%B9%B6%E5%AF%B9%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86%EF%BC%8C%E5%A4%84%E7%90%86%E5%AE%8C%E6%AF%95%E5%90%8E%E5%86%8D%E5%B0%86%E7%BB%93%E6%9E%9C%E5%8F%8D%E9%A6%88%E7%BB%99%E7%94%A8%E6%88%B7%EF%BC%8C%E6%AF%94%E5%A6%82%E8%BE%93%E5%87%BA%E5%88%B0%E6%98%BE%E7%A4%BA%E5%99%A8%E3%80%81%E5%86%99%E5%85%A5%E5%88%B0%E6%96%87%E4%BB%B6%E7%AD%89%EF%BC%8C%E8%BF%99%E5%B0%B1%E6%98%AF%E5%A4%A7%E9%83%A8%E5%88%86%E8%AF%BB%E8%80%85%E5%AF%B9%20Shell%20%E7%9A%84%E8%AE%A4%E7%9F%A5%E3%80%82">Shell</a>。Exec的中文意思是”命令执行“，所以这里和SQL注入关系不大。</p>
+<p>上面我们了解了linux中的命令连接符，所以我们逐级构造<code>1;cd ../;ls</code>1处可以随便输。</p>
+<p>当构造为<code>1;cd ../../../;ls</code>时，目录中出现flag</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220204122557483.png" alt="image-20220204122557483"></p>
+<p>然后获取flag就可以了<code>1;cd ../../../;ls;cat flag</code></p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220204122646306.png" alt="image-20220204122646306"></p>
+<h1 id="极客大挑战-2019-Secret-File"><a href="#极客大挑战-2019-Secret-File" class="headerlink" title="[极客大挑战 2019]Secret File"></a>[极客大挑战 2019]Secret File</h1><p>查看源码发现./Archive_room.php，进入该文件。</p>
+<p>查看源码发现action.php文件，但是打开后变成end.php文件。所以判断结果为action.php出现时间很短，然后立即出现了end.php文件。所以我们这里用Bp拦截，然后发现action.php文件源码中有secr3t.php文件名，所以我们继续访问该文件。然后发现该文件中提示源码在flag.php文件中，所以我们再进入flag.php文件。进入后提示flag就在这里，只是我们看不到，找遍源码也没找到。所以猜测是被过滤了。所以这里要用到php://filter协议，所以我们让文件以base64编码的形式输出，就不会被过滤了</p>
+<p>构造<code>?file=php://filter/convert.base64-encode/resource=flag.php</code>，因为要看到输出的base64编码，所以要再secr3t.php界面输出，结果如图</p>
+<p><img src="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220204135439694.png" alt="image-20220204135439694"></p>
+<p>然后解码得到flag</p>
+]]></content>
+      <tags>
+        <tag>刷题</tag>
       </tags>
   </entry>
   <entry>
