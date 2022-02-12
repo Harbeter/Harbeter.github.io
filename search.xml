@@ -2280,6 +2280,8 @@
 <p><code>?username=1&#39;%23 &amp;password=1</code>这里用的是<code>%23</code>而没有用<code>--+</code>，<code>--+</code>不行的原因我也不太清楚，</p>
 <p>得到一串很像md5加密的密文。但最终没有解出来。</p>
 <p>然后进行常规的联合注入，得到</p>
+<span id="more"></span>
+
 <p>字段数：3</p>
 <p>库名：geek</p>
 <p>表名：geekuser，l0ve1ysq1</p>
