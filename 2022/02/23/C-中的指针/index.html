@@ -20,30 +20,33 @@
     var CONFIG = {"hostname":"harbeter.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="愿你永远善良，永远向往未来！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="像风吹过八千里">
-<meta property="og:url" content="https://harbeter.github.io/index.html">
+  <meta name="description" content="指针的基本概念可以通过指针来保存一个地址 指针作用可以通过指针间接访问内存  内存编号是从0开始记录的，一般用十六进制数字表示 可以利用指针的变量保存地址  指针的定义和使用指针定义语法：数据类型 * 指针变量名例如int * p; &amp;为取址符，例如 123456789101112131415#include &lt;iostream&gt;using namespace std;int">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++中的指针">
+<meta property="og:url" content="https://harbeter.github.io/2022/02/23/C-%E4%B8%AD%E7%9A%84%E6%8C%87%E9%92%88/index.html">
 <meta property="og:site_name" content="像风吹过八千里">
-<meta property="og:description" content="愿你永远善良，永远向往未来！">
+<meta property="og:description" content="指针的基本概念可以通过指针来保存一个地址 指针作用可以通过指针间接访问内存  内存编号是从0开始记录的，一般用十六进制数字表示 可以利用指针的变量保存地址  指针的定义和使用指针定义语法：数据类型 * 指针变量名例如int * p; &amp;为取址符，例如 123456789101112131415#include &lt;iostream&gt;using namespace std;int">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-23T07:56:28.284Z">
+<meta property="article:modified_time" content="2022-02-24T05:48:34.436Z">
 <meta property="article:author" content="Harbeter">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://harbeter.github.io/">
+<link rel="canonical" href="https://harbeter.github.io/2022/02/23/C-%E4%B8%AD%E7%9A%84%E6%8C%87%E9%92%88/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>像风吹过八千里</title>
+  <title>C++中的指针 | 像风吹过八千里</title>
   
 
 
@@ -176,9 +179,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -194,10 +198,9 @@
       <meta itemprop="name" content="像风吹过八千里">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/23/C-%E4%B8%AD%E7%9A%84%E6%8C%87%E9%92%88/" class="post-title-link" itemprop="url">C++中的指针</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          C++中的指针
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -227,7 +230,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="指针的基本概念"><a href="#指针的基本概念" class="headerlink" title="指针的基本概念"></a>指针的基本概念</h1><p>可以通过指针来保存一个地址</p>
+        <h1 id="指针的基本概念"><a href="#指针的基本概念" class="headerlink" title="指针的基本概念"></a>指针的基本概念</h1><p>可以通过指针来保存一个地址</p>
 <h2 id="指针作用"><a href="#指针作用" class="headerlink" title="指针作用"></a>指针作用</h2><p>可以通过指针间接访问内存</p>
 <ul>
 <li>内存编号是从0开始记录的，一般用十六进制数字表示</li>
@@ -281,679 +284,34 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//冒泡排序函数  参数一：数组的首地址，参数二：数组的长度</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span> * arr,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;i;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i]&lt;arr[j])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> t;</span><br><span class="line">                t=arr[i];</span><br><span class="line">                arr[i]=arr[j];</span><br><span class="line">                arr[j]=t;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//打印数组</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span> *arr,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;arr[i]&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建数组</span></span><br><span class="line">    <span class="keyword">int</span> arr[]=&#123;<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">10</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">14</span>,<span class="number">13</span>,<span class="number">5</span>&#125;;</span><br><span class="line">    <span class="comment">//数组的长度</span></span><br><span class="line">    <span class="keyword">int</span> len=<span class="built_in"><span class="keyword">sizeof</span></span>(arr)/<span class="built_in"><span class="keyword">sizeof</span></span>(arr[<span class="number">0</span>]);</span><br><span class="line">    <span class="comment">//创建冒泡排序函数</span></span><br><span class="line">    <span class="built_in">bubbleSort</span>(arr,len);</span><br><span class="line">    <span class="comment">//打印排序后的数组</span></span><br><span class="line">    <span class="built_in">printArray</span>(arr,len);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2022/02/23/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Harbeter">
-      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="像风吹过八千里">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/23/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-5/" class="post-title-link" itemprop="url">刷题记录-5（命令执行）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-02-23 12:17:13 / 修改时间：13:21:30" itemprop="dateCreated datePublished" datetime="2022-02-23T12:17:13+08:00">2022-02-23</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="WEB29"><a href="#WEB29" class="headerlink" title="WEB29"></a>WEB29</h1><p>首先认识几个函数<a target="_blank" rel="noopener" href="https://www.runoob.com/php/php-preg_match.html">preg_match</a>、<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/php/func_misc_eval.asp">eval</a>、<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.system.php">system</a></p>
-<p>payload1：/?c=system(“ls”);   发现flag.php文件，由于c中不能包含flag字符串，所以用通配符绕过</p>
-<p>payload2：/?c=system(“cat fla*”);  然后查看源码得到flag</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/02/23/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Harbeter">
-      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="像风吹过八千里">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/" class="post-title-link" itemprop="url">刷题记录-4（爆破）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-14 11:17:40" itemprop="dateCreated datePublished" datetime="2022-02-14T11:17:40+08:00">2022-02-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-17 20:54:16" itemprop="dateModified" datetime="2022-02-17T20:54:16+08:00">2022-02-17</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="WEB21"><a href="#WEB21" class="headerlink" title="WEB21"></a>WEB21</h1><p>这道题有点意思，不只是单纯的爆破，还进行了base64加密，首先下载给的字典。然后用字典进行爆破，爆破时要用custom iterator（自定义迭代器），然后通过base64解码得知格式为 <code>用户名:密码</code>攻击类型为Sniper</p>
-<p>设置如下</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/23/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-5/" rel="prev" title="刷题记录-5（命令执行）">
+      <i class="fa fa-chevron-left"></i> 刷题记录-5（命令执行）
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
   
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2022/02/12/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Harbeter">
-      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="像风吹过八千里">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/12/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-3/" class="post-title-link" itemprop="url">刷题记录-3（信息收集）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-12 22:30:37" itemprop="dateCreated datePublished" datetime="2022-02-12T22:30:37+08:00">2022-02-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-14 11:14:39" itemprop="dateModified" datetime="2022-02-14T11:14:39+08:00">2022-02-14</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="vim临时文件泄露（CTFshow）"><a href="#vim临时文件泄露（CTFshow）" class="headerlink" title="vim临时文件泄露（CTFshow）"></a>vim临时文件泄露（CTFshow）</h1><p>直接进入index.php.swp下载文件即可得到flag。用dirsearch扫描无结果</p>
-<p>即构造<code>/index.php.swp</code>index.php使传统意义上的默认主页</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/02/12/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2022/02/04/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Harbeter">
-      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="像风吹过八千里">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/04/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-1/" class="post-title-link" itemprop="url">刷题记录-2</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-04 15:40:38" itemprop="dateCreated datePublished" datetime="2022-02-04T15:40:38+08:00">2022-02-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-12 20:48:56" itemprop="dateModified" datetime="2022-02-12T20:48:56+08:00">2022-02-12</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="极客大挑战-2019-LoveSQL"><a href="#极客大挑战-2019-LoveSQL" class="headerlink" title="[极客大挑战 2019]LoveSQL"></a>[极客大挑战 2019]LoveSQL</h1><p>尝试用万能密码，万能密码原理<a target="_blank" rel="noopener" href="https://blog.csdn.net/hxhxhxhxx/article/details/108020010">点这</a>。</p>
-<p><code>?username=1&#39;%23 &amp;password=1</code>这里用的是<code>%23</code>而没有用<code>--+</code>，<code>--+</code>不行的原因我也不太清楚，</p>
-<p>得到一串很像md5加密的密文。但最终没有解出来。</p>
-<p>然后进行常规的联合注入，得到</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/02/04/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Harbeter">
-      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="像风吹过八千里">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">刷题记录-1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-02 16:53:08" itemprop="dateCreated datePublished" datetime="2022-02-02T16:53:08+08:00">2022-02-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-04 15:41:37" itemprop="dateModified" datetime="2022-02-04T15:41:37+08:00">2022-02-04</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="HCTF2018-WarmUp"><a href="#HCTF2018-WarmUp" class="headerlink" title="HCTF2018 WarmUp"></a>HCTF2018 WarmUp</h1><p>这道题还是挺有意思的，不过还没完全吃透，看着别人的WP勉强能看懂一点。</p>
-<p>按F12发现存在source.php，进入页面后发现源码</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Harbeter">
-      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="像风吹过八千里">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">PHP环境搭建</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-29 21:28:00" itemprop="dateCreated datePublished" datetime="2022-01-29T21:28:00+08:00">2022-01-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-30 20:45:43" itemprop="dateModified" datetime="2022-01-30T20:45:43+08:00">2022-01-30</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="PHP简介"><a href="#PHP简介" class="headerlink" title="PHP简介"></a>PHP简介</h1><h2 id="PHP定义"><a href="#PHP定义" class="headerlink" title="PHP定义"></a>PHP定义</h2><p>PHP定义：一种<strong>服务器端</strong>的 HTML <strong>脚本/编程语言</strong>,是一种简单的、面向对象的、解释型的、健壮的、安全的、性能非常之高的、独立于架构的、可移植的、动态的脚本语言。是一种广泛用于 Open Source（开放源代码）的尤其适合 Web 开发并可以嵌入 HTML 的多用途脚本语言。它的语法接近 C，Java 和 Perl，而且容易学习。该语言让 Web 开发人员快速的书写<strong>动态</strong>生成的网页。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Harbeter">
-      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="像风吹过八千里">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">scrabble的使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-28 14:23:04 / 修改时间：16:47:09" itemprop="dateCreated datePublished" datetime="2022-01-28T14:23:04+08:00">2022-01-28</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="scrabble介绍"><a href="#scrabble介绍" class="headerlink" title="scrabble介绍"></a>scrabble介绍</h1><p>scrabble适用常规的git泄露，用于获取源码。开发人员忘记.git文件，导致攻击者可以通过.git文件夹中的信息获取开发人员所提交过的源码。</p>
-<p>安装：<code>git clone https://github.com/denny0223/scrabble</code>(用在linux系统中)</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Harbeter">
-      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="像风吹过八千里">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/" class="post-title-link" itemprop="url">sqlilabs第8-10关（盲注）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-26 10:16:15" itemprop="dateCreated datePublished" datetime="2022-01-26T10:16:15+08:00">2022-01-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-29 18:49:51" itemprop="dateModified" datetime="2022-01-29T18:49:51+08:00">2022-01-29</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="第八关"><a href="#第八关" class="headerlink" title="第八关"></a>第八关</h1><h2 id="判断闭合类型"><a href="#判断闭合类型" class="headerlink" title="判断闭合类型"></a>判断闭合类型</h2><p>?id=1’报错，?id=1’–+不报错，说明是单引号包裹。</p>
-<h2 id="爆库"><a href="#爆库" class="headerlink" title="爆库"></a>爆库</h2><p>这里要用到substr函数和ascii函数，顺便了解一下length函数</p>
-<p>substr函数是截取某一字段的第几个字母，ascii函数是将某一字符转变成ascii码的形式，而length函数则是判断字符串的长度。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Harbeter">
-      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="像风吹过八千里">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/" class="post-title-link" itemprop="url">sqlilabs第7关（上传木马）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-24 20:18:47" itemprop="dateCreated datePublished" datetime="2022-01-24T20:18:47+08:00">2022-01-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-29 18:49:39" itemprop="dateModified" datetime="2022-01-29T18:49:39+08:00">2022-01-29</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="配置关卡文件"><a href="#配置关卡文件" class="headerlink" title="配置关卡文件"></a>配置关卡文件</h1><p>首先，MySQL默认是不能通过sql上传文件的，具体请输入命令<code>show variables like &#39;%secure%&#39;</code> 查看</p>
-<p>若图中划红线的框为</p>
-<ul>
-<li><p>Null  不可上传</p>
-</li>
-<li><p>某一路径 只能在该路径及其子路径中上传</p>
-</li>
-<li><p>空   可以上传</p></li></ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
@@ -1005,6 +363,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">指针的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E4%BD%9C%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">指针作用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">指针的定义和使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E6%89%80%E5%8D%A0%E7%94%A8%E7%9A%84%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4"><span class="nav-number">3.</span> <span class="nav-text">指针所占用的内存空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A9%BA%E6%8C%87%E9%92%88%E5%92%8C%E9%87%8E%E6%8C%87%E9%92%88"><span class="nav-number">4.</span> <span class="nav-text">空指针和野指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E6%8C%87%E9%92%88"><span class="nav-number">4.1.</span> <span class="nav-text">空指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8E%E6%8C%87%E9%92%88"><span class="nav-number">4.2.</span> <span class="nav-text">野指针</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#const%E4%BF%AE%E9%A5%B0%E6%8C%87%E9%92%88"><span class="nav-number">5.</span> <span class="nav-text">const修饰指针</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E5%92%8C%E6%95%B0%E7%BB%84"><span class="nav-number">6.</span> <span class="nav-text">指针和数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E5%92%8C%E5%87%BD%E6%95%B0"><span class="nav-number">7.</span> <span class="nav-text">指针和函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="nav-number">8.</span> <span class="nav-text">冒泡排序</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
