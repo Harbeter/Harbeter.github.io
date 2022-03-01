@@ -36,6 +36,53 @@
       </tags>
   </entry>
   <entry>
+    <title>C++中的循环结构和跳转语句</title>
+    <url>/2021/12/16/C-%E4%B8%AD%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<h1 id="一、循环结构"><a href="#一、循环结构" class="headerlink" title="一、循环结构"></a>一、循环结构</h1><h2 id="1-while循环结构"><a href="#1-while循环结构" class="headerlink" title="1.while循环结构"></a>1.while循环结构</h2><p>作用：满足循环条件，执行循环语句</p>
+<p>语法：<code>while(循环条件)&#123;循环语句&#125;</code></p>
+<p>解释：只要满足循环条件即执行循环语句，直到条件不符合时才停止</p>
+<span id="more"></span>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n=<span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(n&lt;<span class="number">10</span>)          <span class="comment">//打印1~10</span></span><br><span class="line">    &#123;</span><br><span class="line">        n++;</span><br><span class="line">        cout&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-do…while循环语句"><a href="#2-do…while循环语句" class="headerlink" title="2.do…while循环语句"></a>2.do…while循环语句</h2><p>作用：先执行一次循环语句，再判断循环条件</p>
+<p>语法：<code>do&#123;循环语句&#125; while(循环条件);</code></p>
+<p>注意：与while循环语句的主要区别就是第一次判断的先后</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> n=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        n++;</span><br><span class="line">        cout&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(n&gt;<span class="number">10</span>);<span class="comment">//此程序会输出1，而while程序则什么也不输出</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-for循环语句"><a href="#3-for循环语句" class="headerlink" title="3.for循环语句"></a>3.for循环语句</h2><p>语法：<code>for(起始表达式；条件表达式；末尾循环体)&#123;循环语句；&#125;</code></p>
+<p>示例：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> n=<span class="number">0</span>;n&lt;<span class="number">10</span>;n++)<span class="comment">//此处用分号分割</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-嵌套循环"><a href="#4-嵌套循环" class="headerlink" title="4.嵌套循环"></a>4.嵌套循环</h2><p>作用：在循环体中再嵌套一层循环，解决一些实际问题</p>
+<p>示例：</p>
+<p>打印*阵图</p>
+<p><img src="/2021/12/16/C-%E4%B8%AD%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/image-20211217200102802.png" alt="image-20211217200102802"></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;* &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、跳转语句"><a href="#二、跳转语句" class="headerlink" title="二、跳转语句"></a>二、跳转语句</h1><h2 id="1-break语句"><a href="#1-break语句" class="headerlink" title="1.break语句"></a>1.break语句</h2><p>作用：用于跳出选择结构或者循环结构</p>
+<p>break的使用时机</p>
+<ul>
+<li>出现在switch条件语句中，作用是终止case并跳出switch</li>
+<li>出现在循环语句中，作用是跳出当前循环语句</li>
+<li>出现在嵌套中，作用是跳出最近的内层嵌套语句</li>
+</ul>
+<h2 id="2-continue语句"><a href="#2-continue语句" class="headerlink" title="2.continue语句"></a>2.continue语句</h2><p>作用：在循环语句中，跳过本次循环中余下尚未执行的语句，继续执行下一次循环</p>
+<p>示例</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(i%<span class="number">2</span>==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">continue</span>;<span class="comment">//不输出偶数  </span></span><br><span class="line">        &#125;</span><br><span class="line">            </span><br><span class="line">        cout&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-goto语句"><a href="#3-goto语句" class="headerlink" title="3.goto语句"></a>3.goto语句</h2><p>作用：无条件跳转语句</p>
+<p>语法：<code>goto 标记;</code></p>
+<p>解释：如果标记的名称存在的，执行goto语句时，会跳转到标记位置。（但是一般不用）</p>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;1&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">goto</span> flag;<span class="comment">//跳转到flag语句</span></span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;2&quot;</span>&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;3&quot;</span>&lt;&lt;endl;</span><br><span class="line">    flag:</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;4&quot;</span>&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++中的指针</title>
     <url>/2022/02/23/C-%E4%B8%AD%E7%9A%84%E6%8C%87%E9%92%88/</url>
     <content><![CDATA[<h1 id="指针的基本概念"><a href="#指针的基本概念" class="headerlink" title="指针的基本概念"></a>指针的基本概念</h1><p>可以通过指针来保存一个地址</p>
@@ -92,53 +139,6 @@
 
 <p>和指针联合利用</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//冒泡排序函数  参数一：数组的首地址，参数二：数组的长度</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span> * arr,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;i;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i]&lt;arr[j])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> t;</span><br><span class="line">                t=arr[i];</span><br><span class="line">                arr[i]=arr[j];</span><br><span class="line">                arr[j]=t;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//打印数组</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span> *arr,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;arr[i]&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建数组</span></span><br><span class="line">    <span class="keyword">int</span> arr[]=&#123;<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">10</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">14</span>,<span class="number">13</span>,<span class="number">5</span>&#125;;</span><br><span class="line">    <span class="comment">//数组的长度</span></span><br><span class="line">    <span class="keyword">int</span> len=<span class="built_in"><span class="keyword">sizeof</span></span>(arr)/<span class="built_in"><span class="keyword">sizeof</span></span>(arr[<span class="number">0</span>]);</span><br><span class="line">    <span class="comment">//创建冒泡排序函数</span></span><br><span class="line">    <span class="built_in">bubbleSort</span>(arr,len);</span><br><span class="line">    <span class="comment">//打印排序后的数组</span></span><br><span class="line">    <span class="built_in">printArray</span>(arr,len);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++中的循环结构和跳转语句</title>
-    <url>/2021/12/16/C-%E4%B8%AD%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<h1 id="一、循环结构"><a href="#一、循环结构" class="headerlink" title="一、循环结构"></a>一、循环结构</h1><h2 id="1-while循环结构"><a href="#1-while循环结构" class="headerlink" title="1.while循环结构"></a>1.while循环结构</h2><p>作用：满足循环条件，执行循环语句</p>
-<p>语法：<code>while(循环条件)&#123;循环语句&#125;</code></p>
-<p>解释：只要满足循环条件即执行循环语句，直到条件不符合时才停止</p>
-<span id="more"></span>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n=<span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(n&lt;<span class="number">10</span>)          <span class="comment">//打印1~10</span></span><br><span class="line">    &#123;</span><br><span class="line">        n++;</span><br><span class="line">        cout&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-do…while循环语句"><a href="#2-do…while循环语句" class="headerlink" title="2.do…while循环语句"></a>2.do…while循环语句</h2><p>作用：先执行一次循环语句，再判断循环条件</p>
-<p>语法：<code>do&#123;循环语句&#125; while(循环条件);</code></p>
-<p>注意：与while循环语句的主要区别就是第一次判断的先后</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> n=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        n++;</span><br><span class="line">        cout&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(n&gt;<span class="number">10</span>);<span class="comment">//此程序会输出1，而while程序则什么也不输出</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-for循环语句"><a href="#3-for循环语句" class="headerlink" title="3.for循环语句"></a>3.for循环语句</h2><p>语法：<code>for(起始表达式；条件表达式；末尾循环体)&#123;循环语句；&#125;</code></p>
-<p>示例：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> n=<span class="number">0</span>;n&lt;<span class="number">10</span>;n++)<span class="comment">//此处用分号分割</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-嵌套循环"><a href="#4-嵌套循环" class="headerlink" title="4.嵌套循环"></a>4.嵌套循环</h2><p>作用：在循环体中再嵌套一层循环，解决一些实际问题</p>
-<p>示例：</p>
-<p>打印*阵图</p>
-<p><img src="/2021/12/16/C-%E4%B8%AD%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/image-20211217200102802.png" alt="image-20211217200102802"></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;* &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="二、跳转语句"><a href="#二、跳转语句" class="headerlink" title="二、跳转语句"></a>二、跳转语句</h1><h2 id="1-break语句"><a href="#1-break语句" class="headerlink" title="1.break语句"></a>1.break语句</h2><p>作用：用于跳出选择结构或者循环结构</p>
-<p>break的使用时机</p>
-<ul>
-<li>出现在switch条件语句中，作用是终止case并跳出switch</li>
-<li>出现在循环语句中，作用是跳出当前循环语句</li>
-<li>出现在嵌套中，作用是跳出最近的内层嵌套语句</li>
-</ul>
-<h2 id="2-continue语句"><a href="#2-continue语句" class="headerlink" title="2.continue语句"></a>2.continue语句</h2><p>作用：在循环语句中，跳过本次循环中余下尚未执行的语句，继续执行下一次循环</p>
-<p>示例</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(i%<span class="number">2</span>==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">continue</span>;<span class="comment">//不输出偶数  </span></span><br><span class="line">        &#125;</span><br><span class="line">            </span><br><span class="line">        cout&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-goto语句"><a href="#3-goto语句" class="headerlink" title="3.goto语句"></a>3.goto语句</h2><p>作用：无条件跳转语句</p>
-<p>语法：<code>goto 标记;</code></p>
-<p>解释：如果标记的名称存在的，执行goto语句时，会跳转到标记位置。（但是一般不用）</p>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;1&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">goto</span> flag;<span class="comment">//跳转到flag语句</span></span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;2&quot;</span>&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;3&quot;</span>&lt;&lt;endl;</span><br><span class="line">    flag:</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;4&quot;</span>&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
@@ -1679,26 +1679,6 @@
       </tags>
   </entry>
   <entry>
-    <title>bugku-bp</title>
-    <url>/2021/12/05/bugku-bp/</url>
-    <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185551656.png" alt="image-20211205185551656"></p>
-<p>爆破结果如下</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/05/bugku-bp/image-20211205185641750.png" alt="image-20211205185641750"></p>
-<p>结果均为908，则猜想正确结果与错误结果的length一样，则选择其他参考标准，通过观察响应包里面的内容，我们发现错误包里面都会返回一个JavaScript代码告知我们的密码有错误。因此我们通过Burpsuite的 （Grep – Match 在响应中找出存在指定的内容的一项。）过滤掉存在JavaScript代码中的{code: ‘bugku10000’}的数据包。</p>
-<p>添加如图内容，继续爆破</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185817178.png" alt="image-20211205185817178"></p>
-<p>发现可疑点</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185906383.png" alt="image-20211205185906383"></p>
-<p>输入该密码，得到flag。</p>
-]]></content>
-      <tags>
-        <tag>bp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Win7搭建sqlilabs</title>
     <url>/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/</url>
     <content><![CDATA[<h1 id="下载sqli-labs"><a href="#下载sqli-labs" class="headerlink" title="下载sqli-labs"></a>下载sqli-labs</h1><p><a href="https://github.com/Audi-1/sqli-labs">点击此处下载</a>sqli-labs</p>
@@ -1722,6 +1702,122 @@
 ]]></content>
       <tags>
         <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bugku-bp</title>
+    <url>/2021/12/05/bugku-bp/</url>
+    <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185551656.png" alt="image-20211205185551656"></p>
+<p>爆破结果如下</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/05/bugku-bp/image-20211205185641750.png" alt="image-20211205185641750"></p>
+<p>结果均为908，则猜想正确结果与错误结果的length一样，则选择其他参考标准，通过观察响应包里面的内容，我们发现错误包里面都会返回一个JavaScript代码告知我们的密码有错误。因此我们通过Burpsuite的 （Grep – Match 在响应中找出存在指定的内容的一项。）过滤掉存在JavaScript代码中的{code: ‘bugku10000’}的数据包。</p>
+<p>添加如图内容，继续爆破</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185817178.png" alt="image-20211205185817178"></p>
+<p>发现可疑点</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185906383.png" alt="image-20211205185906383"></p>
+<p>输入该密码，得到flag。</p>
+]]></content>
+      <tags>
+        <tag>bp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git的介绍、安装和基本提交</title>
+    <url>/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/</url>
+    <content><![CDATA[<h1 id="Git的优势"><a href="#Git的优势" class="headerlink" title="Git的优势"></a>Git的优势</h1><ul>
+<li><p>大部分操作在本地完成，不需要连接互联网</p>
+</li>
+<li><p>完整性保证（利用Hash值）</p>
+</li>
+<li><p>尽可能添加数据而不是删除数据或修改数据，从而避免了不可逆操作（为每个版本拍摄快照）</p>
+</li>
+<li><p>分支操作非常快捷流畅</p>
+</li>
+<li><p>与Linux命令全面兼容（二者是一个爹）</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h1><p>首先去<a href="https://git-scm.com/download/win">git官网下载</a>并根据自己电脑的位数选择相应的版本</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108191953930.png" alt="image-20220108191953930"></p>
+<p>下载完成后安装，选择一个非中文没有空格的目录</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192101316.png" alt="image-20220108192101316"></p>
+<p>然后下一步，按照下面图片的选项即可</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192700075.png" alt="image-20220108192700075"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192807726.png" alt="image-20220108192807726"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192853679.png" alt="image-20220108192853679"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193229371.png" alt="image-20220108193229371"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193435463.png" alt="image-20220108193435463"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193801302.png" alt="image-20220108193801302"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193945547.png" alt="image-20220108193945547"></p>
+<p>然后安装即可，装完效果如下</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194259961.png" alt="image-20220108194259961"></p>
+<h1 id="Git在本地的结构"><a href="#Git在本地的结构" class="headerlink" title="Git在本地的结构"></a>Git在本地的结构</h1><p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194609170.png" alt="image-20220108194609170"></p>
+<h1 id="Git和代码托管中心"><a href="#Git和代码托管中心" class="headerlink" title="Git和代码托管中心"></a>Git和代码托管中心</h1><p>代码托管中心有很多，如外网环境下的GitHub、码云，局域网里的GitLab服务器（Git和Github的历史发展没有渊源）代码托管中心的任务是维护远程库</p>
+<h1 id="Git的本地库和远程库的交互"><a href="#Git的本地库和远程库的交互" class="headerlink" title="Git的本地库和远程库的交互"></a>Git的本地库和远程库的交互</h1><p>团队内协作（不加入团队不可push修改远程库代码）</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108202115421.png" alt="image-20220108202115421"></p>
+<p>跨团队协作</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108211729222.png" alt="image-20220108211729222"></p>
+<h1 id="Git命令行操作"><a href="#Git命令行操作" class="headerlink" title="Git命令行操作"></a>Git命令行操作</h1><h2 id="本地库操作"><a href="#本地库操作" class="headerlink" title="本地库操作"></a>本地库操作</h2><h3 id="本地库初始化"><a href="#本地库初始化" class="headerlink" title="本地库初始化"></a>本地库初始化</h3><p>命令：<code>git init</code></p>
+<p>效果：<img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108212311272.png" alt="image-20220108212311272"></p>
+<p>注意：.git目录中存放的是本地库相关的子目录和文件，不要删除和修改</p>
+<h3 id="设置签名"><a href="#设置签名" class="headerlink" title="设置签名"></a>设置签名</h3><p>形式：</p>
+<p>用户名：随便输</p>
+<p>Email地址：随便输，不存在也没关系</p>
+<p>作用：区分不同开发人员</p>
+<p>辨析：这里设置的签名和远程库（代码托管中心）的账号和密码一点关系没有</p>
+<p>命令：<code>git config user.name 用户名</code>  </p>
+<p>​        ：<code>git config user.email 邮件地址</code>    项目级别</p>
+<p>​        ：<code>git config --global user.name 用户名</code></p>
+<p>​         :  <code>git config --global user.email 邮件地址</code>    系统用户级别</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108214655319.png" alt="image-20220108214655319"></p>
+<p>项目级别/仓库级别：仅在当前本地库范围内有效（即只在test文件夹内有效）</p>
+<p>系统用户级别：登录当前操作系统的用户范围，如图</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108213618080.png" alt="image-20220108213618080"></p>
+<p>若没设置，则默认是系统用户级别，若两个都有，则是项目级别。也就是项目级别优先于系统用户级别。</p>
+<p>若二者都没有是不允许的</p>
+<p>项目级别用户名和邮件地址保存在.git/config里面，如上图</p>
+<p>系统用户级别用户名和邮件地址保存在当前用户文件夹里，如图</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108215432512.png" alt="image-20220108215432512"></p>
+<p>通常只设置一个系统用户级别</p>
+<h3 id="添加提交和查看状态操作"><a href="#添加提交和查看状态操作" class="headerlink" title="添加提交和查看状态操作"></a>添加提交和查看状态操作</h3><p>查看当前库状态命令：<code>git status</code></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220013324.png" alt="image-20220108220013324"></p>
+<p>创建文件命令：<code>vim 文件名.文件类型</code>（创建后即使未提交，在windows文件夹中也可看到该文件）</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220229743.png" alt="image-20220108220229743"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220240175.png" alt="image-20220108220240175"></p>
+<p>按I键开始输入内容</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220517621.png" alt="image-20220108220517621"></p>
+<p>编辑完成后按ESC然后输入<code>:wq</code>退出</p>
+<p>此时再输入<code>git status</code>可看到</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
+<p>将工作区文件放入暂存区命令：<code>git add 文件名.文件类型</code></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221653353.png" alt="image-20220108221653353"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
+<p>放进去后，在用<code>git status</code>看一下状态，可知test.txt已经进入暂存区</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222245958.png" alt="image-20220108222245958"></p>
+<p>若使用<code>git rm --cached test.txt</code>则又回到此状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
+<p>将暂存区文件提交到本地库命令：<code>git commit 文件名.文件类型</code></p>
+<p>vim编辑器中输入<code>:set nu</code>来查看行号</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222950393.png" alt="image-20220108222950393"></p>
+<p>然后按I键来进行输入更改备注信息</p>
+<p>输入好后按ESC然后输入<code>:wq</code>退出</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223450538.png" alt="image-20220108223450538"></p>
+<p>然后再看一下状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223535612.png" alt="image-20220108223535612"></p>
+<p>利用<code>git commit --amend - “新的备注”</code>来更改备注信息，并用<code>git log</code>来查看历史版本</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224049105.png" alt="image-20220108224049105"></p>
+<p>用<code>vim test.txt</code>继续编辑文件，加入一行“d”然后再查看状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224800559.png" alt="image-20220108224800559"></p>
+<p>这里用<code>git add test.txt</code>按部就班的进行提交，然后查看状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225112194.png" alt="image-20220108225112194"></p>
+<p>然后进行提交，这里用<code>git commit -m &quot;备注&quot; test.txt</code>进行提交，不用再在vim编辑器里输入备注信息</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225410302.png" alt="image-20220108225410302"></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -1825,102 +1921,6 @@
 ]]></content>
       <tags>
         <tag>杂谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git的介绍、安装和基本提交</title>
-    <url>/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/</url>
-    <content><![CDATA[<h1 id="Git的优势"><a href="#Git的优势" class="headerlink" title="Git的优势"></a>Git的优势</h1><ul>
-<li><p>大部分操作在本地完成，不需要连接互联网</p>
-</li>
-<li><p>完整性保证（利用Hash值）</p>
-</li>
-<li><p>尽可能添加数据而不是删除数据或修改数据，从而避免了不可逆操作（为每个版本拍摄快照）</p>
-</li>
-<li><p>分支操作非常快捷流畅</p>
-</li>
-<li><p>与Linux命令全面兼容（二者是一个爹）</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h1><p>首先去<a href="https://git-scm.com/download/win">git官网下载</a>并根据自己电脑的位数选择相应的版本</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108191953930.png" alt="image-20220108191953930"></p>
-<p>下载完成后安装，选择一个非中文没有空格的目录</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192101316.png" alt="image-20220108192101316"></p>
-<p>然后下一步，按照下面图片的选项即可</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192700075.png" alt="image-20220108192700075"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192807726.png" alt="image-20220108192807726"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192853679.png" alt="image-20220108192853679"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193229371.png" alt="image-20220108193229371"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193435463.png" alt="image-20220108193435463"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193801302.png" alt="image-20220108193801302"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193945547.png" alt="image-20220108193945547"></p>
-<p>然后安装即可，装完效果如下</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194259961.png" alt="image-20220108194259961"></p>
-<h1 id="Git在本地的结构"><a href="#Git在本地的结构" class="headerlink" title="Git在本地的结构"></a>Git在本地的结构</h1><p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194609170.png" alt="image-20220108194609170"></p>
-<h1 id="Git和代码托管中心"><a href="#Git和代码托管中心" class="headerlink" title="Git和代码托管中心"></a>Git和代码托管中心</h1><p>代码托管中心有很多，如外网环境下的GitHub、码云，局域网里的GitLab服务器（Git和Github的历史发展没有渊源）代码托管中心的任务是维护远程库</p>
-<h1 id="Git的本地库和远程库的交互"><a href="#Git的本地库和远程库的交互" class="headerlink" title="Git的本地库和远程库的交互"></a>Git的本地库和远程库的交互</h1><p>团队内协作（不加入团队不可push修改远程库代码）</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108202115421.png" alt="image-20220108202115421"></p>
-<p>跨团队协作</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108211729222.png" alt="image-20220108211729222"></p>
-<h1 id="Git命令行操作"><a href="#Git命令行操作" class="headerlink" title="Git命令行操作"></a>Git命令行操作</h1><h2 id="本地库操作"><a href="#本地库操作" class="headerlink" title="本地库操作"></a>本地库操作</h2><h3 id="本地库初始化"><a href="#本地库初始化" class="headerlink" title="本地库初始化"></a>本地库初始化</h3><p>命令：<code>git init</code></p>
-<p>效果：<img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108212311272.png" alt="image-20220108212311272"></p>
-<p>注意：.git目录中存放的是本地库相关的子目录和文件，不要删除和修改</p>
-<h3 id="设置签名"><a href="#设置签名" class="headerlink" title="设置签名"></a>设置签名</h3><p>形式：</p>
-<p>用户名：随便输</p>
-<p>Email地址：随便输，不存在也没关系</p>
-<p>作用：区分不同开发人员</p>
-<p>辨析：这里设置的签名和远程库（代码托管中心）的账号和密码一点关系没有</p>
-<p>命令：<code>git config user.name 用户名</code>  </p>
-<p>​        ：<code>git config user.email 邮件地址</code>    项目级别</p>
-<p>​        ：<code>git config --global user.name 用户名</code></p>
-<p>​         :  <code>git config --global user.email 邮件地址</code>    系统用户级别</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108214655319.png" alt="image-20220108214655319"></p>
-<p>项目级别/仓库级别：仅在当前本地库范围内有效（即只在test文件夹内有效）</p>
-<p>系统用户级别：登录当前操作系统的用户范围，如图</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108213618080.png" alt="image-20220108213618080"></p>
-<p>若没设置，则默认是系统用户级别，若两个都有，则是项目级别。也就是项目级别优先于系统用户级别。</p>
-<p>若二者都没有是不允许的</p>
-<p>项目级别用户名和邮件地址保存在.git/config里面，如上图</p>
-<p>系统用户级别用户名和邮件地址保存在当前用户文件夹里，如图</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108215432512.png" alt="image-20220108215432512"></p>
-<p>通常只设置一个系统用户级别</p>
-<h3 id="添加提交和查看状态操作"><a href="#添加提交和查看状态操作" class="headerlink" title="添加提交和查看状态操作"></a>添加提交和查看状态操作</h3><p>查看当前库状态命令：<code>git status</code></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220013324.png" alt="image-20220108220013324"></p>
-<p>创建文件命令：<code>vim 文件名.文件类型</code>（创建后即使未提交，在windows文件夹中也可看到该文件）</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220229743.png" alt="image-20220108220229743"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220240175.png" alt="image-20220108220240175"></p>
-<p>按I键开始输入内容</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220517621.png" alt="image-20220108220517621"></p>
-<p>编辑完成后按ESC然后输入<code>:wq</code>退出</p>
-<p>此时再输入<code>git status</code>可看到</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
-<p>将工作区文件放入暂存区命令：<code>git add 文件名.文件类型</code></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221653353.png" alt="image-20220108221653353"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
-<p>放进去后，在用<code>git status</code>看一下状态，可知test.txt已经进入暂存区</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222245958.png" alt="image-20220108222245958"></p>
-<p>若使用<code>git rm --cached test.txt</code>则又回到此状态</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
-<p>将暂存区文件提交到本地库命令：<code>git commit 文件名.文件类型</code></p>
-<p>vim编辑器中输入<code>:set nu</code>来查看行号</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222950393.png" alt="image-20220108222950393"></p>
-<p>然后按I键来进行输入更改备注信息</p>
-<p>输入好后按ESC然后输入<code>:wq</code>退出</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223450538.png" alt="image-20220108223450538"></p>
-<p>然后再看一下状态</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223535612.png" alt="image-20220108223535612"></p>
-<p>利用<code>git commit --amend - “新的备注”</code>来更改备注信息，并用<code>git log</code>来查看历史版本</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224049105.png" alt="image-20220108224049105"></p>
-<p>用<code>vim test.txt</code>继续编辑文件，加入一行“d”然后再查看状态</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224800559.png" alt="image-20220108224800559"></p>
-<p>这里用<code>git add test.txt</code>按部就班的进行提交，然后查看状态</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225112194.png" alt="image-20220108225112194"></p>
-<p>然后进行提交，这里用<code>git commit -m &quot;备注&quot; test.txt</code>进行提交，不用再在vim编辑器里输入备注信息</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225410302.png" alt="image-20220108225410302"></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -2468,46 +2468,6 @@
       </tags>
   </entry>
   <entry>
-    <title>刷题记录-4（爆破）</title>
-    <url>/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/</url>
-    <content><![CDATA[<h1 id="WEB21"><a href="#WEB21" class="headerlink" title="WEB21"></a>WEB21</h1><p>这道题有点意思，不只是单纯的爆破，还进行了base64加密，首先下载给的字典。然后用字典进行爆破，爆破时要用custom iterator（自定义迭代器），然后通过base64解码得知格式为 <code>用户名:密码</code>攻击类型为Sniper</p>
-<p>设置如下</p>
-<span id="more"></span>
-
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175309858.png" alt="image-20220217175309858"></p>
-<p>这里的admin只是猜测，没想到真能搞出来</p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175341802.png" alt="image-20220217175341802"></p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175430654.png" alt="image-20220217175430654"></p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217180350198.png" alt="image-20220217180350198"></p>
-<p>最终得到flag</p>
-<h1 id="WEB22"><a href="#WEB22" class="headerlink" title="WEB22"></a>WEB22</h1><p>爆破子域名，这个还真不会，但是这个<a href="http://z.zcjun.com/?http=baidu.com">在线爆破子域名</a>可还行</p>
-<h1 id="WEB23"><a href="#WEB23" class="headerlink" title="WEB23"></a>WEB23</h1><p>呜呜呜，这个也不会，等着以后学了php再回来搞，码子先放这了</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">error_reporting(<span class="number">0</span>); </span><br><span class="line"> </span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;asdfghjklqwertyuiopzxcvbnm1234567890&quot;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="number">36</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$j</span>=<span class="number">0</span>;<span class="variable">$j</span>&lt;<span class="number">36</span>;<span class="variable">$j</span>++)&#123;</span><br><span class="line">        <span class="variable">$token</span>=<span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];    </span><br><span class="line">        <span class="variable">$token</span> = md5(<span class="variable">$token</span>); </span><br><span class="line">        <span class="keyword">if</span>(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) &amp;&amp; substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) ===substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))&#123; </span><br><span class="line">            <span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>))+intval(substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>))+substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))/substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===intval(substr(<span class="variable">$token</span>, <span class="number">31</span>,<span class="number">1</span>)))&#123; </span><br><span class="line">                <span class="keyword">echo</span> <span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];</span><br><span class="line">                <span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="meta">?&gt;</span> </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="WEB24"><a href="#WEB24" class="headerlink" title="WEB24"></a>WEB24</h1><p>这里首先要认识一个函数<a href="https://www.w3school.com.cn/php/func_math_mt_rand.asp">mt_rand() 函数</a>，代码可以<a href="https://c.runoob.com/compile/1/">在线上执行</a></p>
-<p>首先要知道题目中的mt_srand(372619038)是多少</p>
-<p>所以我们运行</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">mt_srand(<span class="number">372619038</span>);</span><br><span class="line"><span class="keyword">echo</span>(mt_rand());</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>得到1155388967所以令r=1155388967，得到flag</p>
-<h1 id="WEB25"><a href="#WEB25" class="headerlink" title="WEB25"></a>WEB25</h1><p>有点复杂呜呜呜，留给“明天”吧</p>
-<h1 id="WEB26"><a href="#WEB26" class="headerlink" title="WEB26"></a>WEB26</h1><p>查看源码发现js，直接进入代码中的checkdb.php，然后直接post提交（原理不太清楚）</p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217200641171.png" alt="image-20220217200641171"></p>
-<p>得到flag</p>
-<h1 id="WEB27"><a href="#WEB27" class="headerlink" title="WEB27"></a>WEB27</h1><p>这里是爆破身份证号中的生日，设置如下，如果线程太多的话，很可能出现503报错，导致爆破结果不准确</p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217203239020.png" alt="image-20220217203239020"></p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217204616803.png" alt="image-20220217204616803"></p>
-<p>得出结果后，Unicode解码后用学号登入，得到flag</p>
-<h1 id="WEB28"><a href="#WEB28" class="headerlink" title="WEB28"></a>WEB28</h1><p>看到url中诡异的0/1则用集束炸弹爆破这两个地方，最后得到flag</p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217205359730.png" alt="image-20220217205359730"></p>
-]]></content>
-      <tags>
-        <tag>刷题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>刷题记录-3（信息收集）</title>
     <url>/2022/02/12/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-3/</url>
     <content><![CDATA[<h1 id="vim临时文件泄露（CTFshow）"><a href="#vim临时文件泄露（CTFshow）" class="headerlink" title="vim临时文件泄露（CTFshow）"></a>vim临时文件泄露（CTFshow）</h1><p>直接进入index.php.swp下载文件即可得到flag。用dirsearch扫描无结果</p>
@@ -2551,6 +2511,46 @@
 <h1 id="WEB19"><a href="#WEB19" class="headerlink" title="WEB19"></a>WEB19</h1><p><img src="/2022/02/12/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-3/image-20220214110909063.png" alt="image-20220214110909063"></p>
 <p>用hackbar传参得到flag</p>
 <h1 id="WEB20"><a href="#WEB20" class="headerlink" title="WEB20"></a>WEB20</h1><p>根据提示mdb文件是早期asp+access构架的数据库文件 访问<code>url/db/db.mdb</code> 下载文件通过txt打开然后搜索flag得到flag</p>
+]]></content>
+      <tags>
+        <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>刷题记录-4（爆破）</title>
+    <url>/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/</url>
+    <content><![CDATA[<h1 id="WEB21"><a href="#WEB21" class="headerlink" title="WEB21"></a>WEB21</h1><p>这道题有点意思，不只是单纯的爆破，还进行了base64加密，首先下载给的字典。然后用字典进行爆破，爆破时要用custom iterator（自定义迭代器），然后通过base64解码得知格式为 <code>用户名:密码</code>攻击类型为Sniper</p>
+<p>设置如下</p>
+<span id="more"></span>
+
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175309858.png" alt="image-20220217175309858"></p>
+<p>这里的admin只是猜测，没想到真能搞出来</p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175341802.png" alt="image-20220217175341802"></p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175430654.png" alt="image-20220217175430654"></p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217180350198.png" alt="image-20220217180350198"></p>
+<p>最终得到flag</p>
+<h1 id="WEB22"><a href="#WEB22" class="headerlink" title="WEB22"></a>WEB22</h1><p>爆破子域名，这个还真不会，但是这个<a href="http://z.zcjun.com/?http=baidu.com">在线爆破子域名</a>可还行</p>
+<h1 id="WEB23"><a href="#WEB23" class="headerlink" title="WEB23"></a>WEB23</h1><p>呜呜呜，这个也不会，等着以后学了php再回来搞，码子先放这了</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">error_reporting(<span class="number">0</span>); </span><br><span class="line"> </span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;asdfghjklqwertyuiopzxcvbnm1234567890&quot;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="number">36</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$j</span>=<span class="number">0</span>;<span class="variable">$j</span>&lt;<span class="number">36</span>;<span class="variable">$j</span>++)&#123;</span><br><span class="line">        <span class="variable">$token</span>=<span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];    </span><br><span class="line">        <span class="variable">$token</span> = md5(<span class="variable">$token</span>); </span><br><span class="line">        <span class="keyword">if</span>(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) &amp;&amp; substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) ===substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))&#123; </span><br><span class="line">            <span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>))+intval(substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>))+substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))/substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===intval(substr(<span class="variable">$token</span>, <span class="number">31</span>,<span class="number">1</span>)))&#123; </span><br><span class="line">                <span class="keyword">echo</span> <span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];</span><br><span class="line">                <span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="meta">?&gt;</span> </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="WEB24"><a href="#WEB24" class="headerlink" title="WEB24"></a>WEB24</h1><p>这里首先要认识一个函数<a href="https://www.w3school.com.cn/php/func_math_mt_rand.asp">mt_rand() 函数</a>，代码可以<a href="https://c.runoob.com/compile/1/">在线上执行</a></p>
+<p>首先要知道题目中的mt_srand(372619038)是多少</p>
+<p>所以我们运行</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">mt_srand(<span class="number">372619038</span>);</span><br><span class="line"><span class="keyword">echo</span>(mt_rand());</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>得到1155388967所以令r=1155388967，得到flag</p>
+<h1 id="WEB25"><a href="#WEB25" class="headerlink" title="WEB25"></a>WEB25</h1><p>有点复杂呜呜呜，留给“明天”吧</p>
+<h1 id="WEB26"><a href="#WEB26" class="headerlink" title="WEB26"></a>WEB26</h1><p>查看源码发现js，直接进入代码中的checkdb.php，然后直接post提交（原理不太清楚）</p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217200641171.png" alt="image-20220217200641171"></p>
+<p>得到flag</p>
+<h1 id="WEB27"><a href="#WEB27" class="headerlink" title="WEB27"></a>WEB27</h1><p>这里是爆破身份证号中的生日，设置如下，如果线程太多的话，很可能出现503报错，导致爆破结果不准确</p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217203239020.png" alt="image-20220217203239020"></p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217204616803.png" alt="image-20220217204616803"></p>
+<p>得出结果后，Unicode解码后用学号登入，得到flag</p>
+<h1 id="WEB28"><a href="#WEB28" class="headerlink" title="WEB28"></a>WEB28</h1><p>看到url中诡异的0/1则用集束炸弹爆破这两个地方，最后得到flag</p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217205359730.png" alt="image-20220217205359730"></p>
 ]]></content>
       <tags>
         <tag>刷题</tag>
@@ -2619,6 +2619,25 @@
 
 <p> .php 因为前面的php语句已经闭合了，所以后面的.php会被当成html页面直接显示在页面上，起不到什么作用</p>
 <p>payload和WEB37一样</p>
+]]></content>
+      <tags>
+        <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>刷题记录-6</title>
+    <url>/2022/03/01/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-6/</url>
+    <content><![CDATA[<h1 id="WEB171"><a href="#WEB171" class="headerlink" title="WEB171"></a>WEB171</h1><p>很经典的联合注入，这次相当于又复习了一遍，感觉以前的都忘了，好难过。</p>
+<p>详细方法见sqlilabs中的第一关讲解</p>
+<h1 id="WEB172"><a href="#WEB172" class="headerlink" title="WEB172"></a>WEB172</h1><p>与171相比，仅仅多了一个table，还是联合注入</p>
+<span id="more"></span>
+
+<h1 id="WEB173"><a href="#WEB173" class="headerlink" title="WEB173"></a>WEB173</h1><p>与171相比多了两个table，还是联合注入</p>
+<h1 id="萌新计划web1"><a href="#萌新计划web1" class="headerlink" title="萌新计划web1"></a>萌新计划web1</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;ctf.show萌新计划web1&lt;/title&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;?php</span><br><span class="line"># 包含数据库连接文件</span><br><span class="line">include(&quot;config.php&quot;);</span><br><span class="line"># 判断get提交的参数id是否存在</span><br><span class="line">if(isset($_GET[&#x27;id&#x27;]))&#123;</span><br><span class="line">    $id = $_GET[&#x27;id&#x27;];</span><br><span class="line">    # 判断id的值是否大于999</span><br><span class="line">    if(intval($id) &gt; 999)&#123;</span><br><span class="line">        # id 大于 999 直接退出并返回错误</span><br><span class="line">        die(&quot;id error&quot;);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        # id 小于 999 拼接sql语句</span><br><span class="line">        $sql = &quot;select * from article where id = $id order by id limit 1 &quot;;</span><br><span class="line">        echo &quot;执行的sql为：$sql&lt;br&gt;&quot;;</span><br><span class="line">        # 执行sql 语句</span><br><span class="line">        $result = $conn-&gt;query($sql);</span><br><span class="line">        # 判断有没有查询结果</span><br><span class="line">        if ($result-&gt;num_rows &gt; 0) &#123;</span><br><span class="line">            # 如果有结果，获取结果对象的值$row</span><br><span class="line">            while($row = $result-&gt;fetch_assoc()) &#123;</span><br><span class="line">                echo &quot;id: &quot; . $row[&quot;id&quot;]. &quot; - title: &quot; . $row[&quot;title&quot;]. &quot; &lt;br&gt;&lt;hr&gt;&quot; . $row[&quot;content&quot;]. &quot;&lt;br&gt;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        # 关闭数据库连接</span><br><span class="line">        $conn-&gt;close();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;else&#123;</span><br><span class="line">    highlight_file(__FILE__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;!-- flag in id = 1000 --&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>方法很多</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">‘1000’</span><br><span class="line">“1000”</span><br><span class="line">123&lt;&lt;3</span><br><span class="line">680|320</span><br><span class="line">16进制（0x3e8）</span><br><span class="line">999+1</span><br><span class="line">10*100</span><br><span class="line">999-(-1)/999–1/999- -1</span><br><span class="line">(1000)</span><br><span class="line">144^888（MySQL会报错，但也能执行）按位异或</span><br><span class="line">~~1000 (双重取反)</span><br><span class="line">0b1111101000（二进制）</span><br><span class="line">1 or 1=1%23（万能密码显示所有）</span><br><span class="line">id#（显示所有）</span><br><span class="line">看下一道题的过滤，应该是！、\、/、&gt;、hex可以绕过，不知道怎么弄</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
         <tag>刷题</tag>
