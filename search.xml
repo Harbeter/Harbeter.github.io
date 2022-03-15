@@ -83,6 +83,69 @@
       </tags>
   </entry>
   <entry>
+    <title>C++中的指针</title>
+    <url>/2022/02/23/C-%E4%B8%AD%E7%9A%84%E6%8C%87%E9%92%88/</url>
+    <content><![CDATA[<h1 id="指针的基本概念"><a href="#指针的基本概念" class="headerlink" title="指针的基本概念"></a>指针的基本概念</h1><p>可以通过指针来保存一个地址</p>
+<h2 id="指针作用"><a href="#指针作用" class="headerlink" title="指针作用"></a>指针作用</h2><p>可以通过指针间接访问内存</p>
+<ul>
+<li>内存编号是从0开始记录的，一般用十六进制数字表示</li>
+<li>可以利用指针的变量保存地址</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="指针的定义和使用"><a href="#指针的定义和使用" class="headerlink" title="指针的定义和使用"></a>指针的定义和使用</h1><p>指针定义语法：<code>数据类型 * 指针变量名</code>例如int * p;</p>
+<p>&amp;为取址符，例如</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> * p;</span><br><span class="line">    p=&amp;a;</span><br><span class="line">    cout &lt;&lt;<span class="string">&quot;a的地址为&quot;</span>&lt;&lt;&amp;a&lt;&lt; endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;指针p为&quot;</span>&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    *p=<span class="number">1000</span>;</span><br><span class="line">    cout&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>使用指针可以通过解引用（解引用就是指针前加一个星号，例如*p）的方式来找到指针指向的内存所代表的数据</p>
+<h1 id="指针所占用的内存空间"><a href="#指针所占用的内存空间" class="headerlink" title="指针所占用的内存空间"></a>指针所占用的内存空间</h1><p>指针保存的是一个地址（十六进制），在32位操作系统中占用4个字节，在64位操作系统中占用8个字节，这个可以在visual studio中修改</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> * p=&amp;a;</span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(p)&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span> *)&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">double</span> *)&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">char</span> *)&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="空指针和野指针"><a href="#空指针和野指针" class="headerlink" title="空指针和野指针"></a>空指针和野指针</h1><h2 id="空指针"><a href="#空指针" class="headerlink" title="空指针"></a>空指针</h2><p>空指针：指针变量指向内存中编号为0的空间</p>
+<p>用途：初始化指针变量</p>
+<p>注意：空指针指向的内存是不可访问的（0~255的内存编号是系统占用的，因此不可访问）</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> * p=<span class="literal">NULL</span>;</span><br><span class="line">    cout&lt;&lt;*p&lt;&lt;endl;<span class="comment">//访问报错，不允许访问</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="野指针"><a href="#野指针" class="headerlink" title="野指针"></a>野指针</h2><p>野指针：指向一块非法的地址（随便指向了一块内存）</p>
+<p>注意：在我们编程中，要避免出现野指针</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> * p=(<span class="keyword">int</span> *)<span class="number">0x1100</span>;</span><br><span class="line">    cout&lt;&lt;*p&lt;&lt;endl;<span class="comment">//访问野指针，访问出错</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>空指针和野指针都不是我们申请的空间，因此不要访问。</strong></p>
+<h1 id="const修饰指针"><a href="#const修饰指针" class="headerlink" title="const修饰指针"></a>const修饰指针</h1><p>const修饰指针有三种情况：</p>
+<ol>
+<li>const修饰指针——常量指针</li>
+<li>const修饰常量——指针常量</li>
+<li>const既修饰指针，又修饰常量</li>
+</ol>
+<p>常量指针：指针指向可以修改，但是指针指向的值不可以修改</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>;<span class="keyword">int</span> b;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> *p=&amp;a;</span><br><span class="line">    cout&lt;&lt;*p&lt;&lt;endl;<span class="comment">//输出指针指向的值</span></span><br><span class="line">    cout&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    *p=<span class="number">20</span><span class="comment">//错误，指针指向的值不可修改</span></span><br><span class="line">    p=&amp;b;<span class="comment">//正确，指针指向可以修改</span></span><br><span class="line">    cout&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>指针常量：指针指向不可以修改，但是指针指向的值可以修改</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>;<span class="keyword">int</span> b;</span><br><span class="line">     <span class="keyword">int</span> * <span class="keyword">const</span> p=&amp;a;</span><br><span class="line">    cout&lt;&lt;*p&lt;&lt;endl;<span class="comment">//输出指针指向的值</span></span><br><span class="line">    *p=<span class="number">20</span>;<span class="comment">//正确，指针指向的值可修改</span></span><br><span class="line">    cout&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    p=&amp;b;<span class="comment">//错误，指针指向不可以修改</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>const既修饰指针，又修饰常量：指针指向和指针指向的值都不可修改</p>
+<h1 id="指针和数组"><a href="#指针和数组" class="headerlink" title="指针和数组"></a>指针和数组</h1><p>作用：利用指针访问数组中的元素</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> arr[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;第一个元素&quot;</span>&lt;&lt;arr[<span class="number">0</span>]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">int</span> *p=arr;<span class="comment">//arr就是数组首地址</span></span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;利用指针访问第一个元素&quot;</span>&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    p++;<span class="comment">//让指针向后偏移4个字节</span></span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;利用指针访问第二个元素&quot;</span>&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    p--;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;利用指针遍历数组&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">for</span>(;*p&lt;=<span class="number">5</span>;p++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="指针和函数"><a href="#指针和函数" class="headerlink" title="指针和函数"></a>指针和函数</h1><p>作用：利用指针作为函数参数，可以修改实参的值</p>
+<p>值传递</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ex</span> <span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span><span class="comment">//void为不限制数据类型</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t=a;</span><br><span class="line">    a=b;</span><br><span class="line">    b=t;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;形参a=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;形参b=&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    <span class="built_in">ex</span>(a,b);</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;实参a=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;实参b=&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>地址传递（地址传递可以修饰实参）</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ex</span> <span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> *b)</span><span class="comment">//void为不限制数据类型</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t=*a;</span><br><span class="line">    *a=*b;</span><br><span class="line">    *b=t;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;形参a=&quot;</span>&lt;&lt;*a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;形参b=&quot;</span>&lt;&lt;*b&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    <span class="built_in">ex</span>(&amp;a,&amp;b);</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;实参a=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;实参b=&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><p>经典利用</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,t,n;</span><br><span class="line">    <span class="keyword">int</span> arr[]=&#123;<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">10</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">14</span>,<span class="number">13</span>,<span class="number">5</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> len;</span><br><span class="line">    len=<span class="built_in"><span class="keyword">sizeof</span></span>(arr)/<span class="built_in"><span class="keyword">sizeof</span></span>(arr[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;i;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[j]&gt;arr[i])</span><br><span class="line">            &#123;</span><br><span class="line">                t=arr[j];</span><br><span class="line">                arr[j]=arr[i];</span><br><span class="line">                arr[i]=t;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(n=<span class="number">0</span>;n&lt;=len<span class="number">-1</span>;n++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;arr[n]&lt;&lt;endl;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>和指针联合利用</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//冒泡排序函数  参数一：数组的首地址，参数二：数组的长度</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span> * arr,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;i;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i]&lt;arr[j])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> t;</span><br><span class="line">                t=arr[i];</span><br><span class="line">                arr[i]=arr[j];</span><br><span class="line">                arr[j]=t;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//打印数组</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span> *arr,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;arr[i]&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建数组</span></span><br><span class="line">    <span class="keyword">int</span> arr[]=&#123;<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">10</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">14</span>,<span class="number">13</span>,<span class="number">5</span>&#125;;</span><br><span class="line">    <span class="comment">//数组的长度</span></span><br><span class="line">    <span class="keyword">int</span> len=<span class="built_in"><span class="keyword">sizeof</span></span>(arr)/<span class="built_in"><span class="keyword">sizeof</span></span>(arr[<span class="number">0</span>]);</span><br><span class="line">    <span class="comment">//创建冒泡排序函数</span></span><br><span class="line">    <span class="built_in">bubbleSort</span>(arr,len);</span><br><span class="line">    <span class="comment">//打印排序后的数组</span></span><br><span class="line">    <span class="built_in">printArray</span>(arr,len);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++中的数组</title>
     <url>/2022/01/15/C-%E4%B8%AD%E7%9A%84%E6%95%B0%E7%BB%84/</url>
     <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>所谓数组，就是一个集合，里面存放了相同类型的数据元素</p>
@@ -148,69 +211,6 @@
       </tags>
   </entry>
   <entry>
-    <title>C++中的指针</title>
-    <url>/2022/02/23/C-%E4%B8%AD%E7%9A%84%E6%8C%87%E9%92%88/</url>
-    <content><![CDATA[<h1 id="指针的基本概念"><a href="#指针的基本概念" class="headerlink" title="指针的基本概念"></a>指针的基本概念</h1><p>可以通过指针来保存一个地址</p>
-<h2 id="指针作用"><a href="#指针作用" class="headerlink" title="指针作用"></a>指针作用</h2><p>可以通过指针间接访问内存</p>
-<ul>
-<li>内存编号是从0开始记录的，一般用十六进制数字表示</li>
-<li>可以利用指针的变量保存地址</li>
-</ul>
-<span id="more"></span>
-
-<h1 id="指针的定义和使用"><a href="#指针的定义和使用" class="headerlink" title="指针的定义和使用"></a>指针的定义和使用</h1><p>指针定义语法：<code>数据类型 * 指针变量名</code>例如int * p;</p>
-<p>&amp;为取址符，例如</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> * p;</span><br><span class="line">    p=&amp;a;</span><br><span class="line">    cout &lt;&lt;<span class="string">&quot;a的地址为&quot;</span>&lt;&lt;&amp;a&lt;&lt; endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;指针p为&quot;</span>&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    *p=<span class="number">1000</span>;</span><br><span class="line">    cout&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>使用指针可以通过解引用（解引用就是指针前加一个星号，例如*p）的方式来找到指针指向的内存所代表的数据</p>
-<h1 id="指针所占用的内存空间"><a href="#指针所占用的内存空间" class="headerlink" title="指针所占用的内存空间"></a>指针所占用的内存空间</h1><p>指针保存的是一个地址（十六进制），在32位操作系统中占用4个字节，在64位操作系统中占用8个字节，这个可以在visual studio中修改</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> * p=&amp;a;</span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(p)&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span> *)&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">double</span> *)&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">char</span> *)&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="空指针和野指针"><a href="#空指针和野指针" class="headerlink" title="空指针和野指针"></a>空指针和野指针</h1><h2 id="空指针"><a href="#空指针" class="headerlink" title="空指针"></a>空指针</h2><p>空指针：指针变量指向内存中编号为0的空间</p>
-<p>用途：初始化指针变量</p>
-<p>注意：空指针指向的内存是不可访问的（0~255的内存编号是系统占用的，因此不可访问）</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> * p=<span class="literal">NULL</span>;</span><br><span class="line">    cout&lt;&lt;*p&lt;&lt;endl;<span class="comment">//访问报错，不允许访问</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="野指针"><a href="#野指针" class="headerlink" title="野指针"></a>野指针</h2><p>野指针：指向一块非法的地址（随便指向了一块内存）</p>
-<p>注意：在我们编程中，要避免出现野指针</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> * p=(<span class="keyword">int</span> *)<span class="number">0x1100</span>;</span><br><span class="line">    cout&lt;&lt;*p&lt;&lt;endl;<span class="comment">//访问野指针，访问出错</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>空指针和野指针都不是我们申请的空间，因此不要访问。</strong></p>
-<h1 id="const修饰指针"><a href="#const修饰指针" class="headerlink" title="const修饰指针"></a>const修饰指针</h1><p>const修饰指针有三种情况：</p>
-<ol>
-<li>const修饰指针——常量指针</li>
-<li>const修饰常量——指针常量</li>
-<li>const既修饰指针，又修饰常量</li>
-</ol>
-<p>常量指针：指针指向可以修改，但是指针指向的值不可以修改</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>;<span class="keyword">int</span> b;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> *p=&amp;a;</span><br><span class="line">    cout&lt;&lt;*p&lt;&lt;endl;<span class="comment">//输出指针指向的值</span></span><br><span class="line">    cout&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    *p=<span class="number">20</span><span class="comment">//错误，指针指向的值不可修改</span></span><br><span class="line">    p=&amp;b;<span class="comment">//正确，指针指向可以修改</span></span><br><span class="line">    cout&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>指针常量：指针指向不可以修改，但是指针指向的值可以修改</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>;<span class="keyword">int</span> b;</span><br><span class="line">     <span class="keyword">int</span> * <span class="keyword">const</span> p=&amp;a;</span><br><span class="line">    cout&lt;&lt;*p&lt;&lt;endl;<span class="comment">//输出指针指向的值</span></span><br><span class="line">    *p=<span class="number">20</span>;<span class="comment">//正确，指针指向的值可修改</span></span><br><span class="line">    cout&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    p=&amp;b;<span class="comment">//错误，指针指向不可以修改</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>const既修饰指针，又修饰常量：指针指向和指针指向的值都不可修改</p>
-<h1 id="指针和数组"><a href="#指针和数组" class="headerlink" title="指针和数组"></a>指针和数组</h1><p>作用：利用指针访问数组中的元素</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> arr[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;第一个元素&quot;</span>&lt;&lt;arr[<span class="number">0</span>]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">int</span> *p=arr;<span class="comment">//arr就是数组首地址</span></span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;利用指针访问第一个元素&quot;</span>&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    p++;<span class="comment">//让指针向后偏移4个字节</span></span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;利用指针访问第二个元素&quot;</span>&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">    p--;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;利用指针遍历数组&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">for</span>(;*p&lt;=<span class="number">5</span>;p++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;*p&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="指针和函数"><a href="#指针和函数" class="headerlink" title="指针和函数"></a>指针和函数</h1><p>作用：利用指针作为函数参数，可以修改实参的值</p>
-<p>值传递</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ex</span> <span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span><span class="comment">//void为不限制数据类型</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t=a;</span><br><span class="line">    a=b;</span><br><span class="line">    b=t;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;形参a=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;形参b=&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    <span class="built_in">ex</span>(a,b);</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;实参a=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;实参b=&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>地址传递（地址传递可以修饰实参）</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ex</span> <span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> *b)</span><span class="comment">//void为不限制数据类型</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t=*a;</span><br><span class="line">    *a=*b;</span><br><span class="line">    *b=t;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;形参a=&quot;</span>&lt;&lt;*a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;形参b=&quot;</span>&lt;&lt;*b&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    <span class="built_in">ex</span>(&amp;a,&amp;b);</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;实参a=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;实参b=&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><p>经典利用</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,t,n;</span><br><span class="line">    <span class="keyword">int</span> arr[]=&#123;<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">10</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">14</span>,<span class="number">13</span>,<span class="number">5</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> len;</span><br><span class="line">    len=<span class="built_in"><span class="keyword">sizeof</span></span>(arr)/<span class="built_in"><span class="keyword">sizeof</span></span>(arr[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;i;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[j]&gt;arr[i])</span><br><span class="line">            &#123;</span><br><span class="line">                t=arr[j];</span><br><span class="line">                arr[j]=arr[i];</span><br><span class="line">                arr[i]=t;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(n=<span class="number">0</span>;n&lt;=len<span class="number">-1</span>;n++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;arr[n]&lt;&lt;endl;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>和指针联合利用</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//冒泡排序函数  参数一：数组的首地址，参数二：数组的长度</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span> * arr,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;i;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i]&lt;arr[j])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> t;</span><br><span class="line">                t=arr[i];</span><br><span class="line">                arr[i]=arr[j];</span><br><span class="line">                arr[j]=t;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//打印数组</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printArray</span><span class="params">(<span class="keyword">int</span> *arr,<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;arr[i]&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建数组</span></span><br><span class="line">    <span class="keyword">int</span> arr[]=&#123;<span class="number">4</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">10</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">14</span>,<span class="number">13</span>,<span class="number">5</span>&#125;;</span><br><span class="line">    <span class="comment">//数组的长度</span></span><br><span class="line">    <span class="keyword">int</span> len=<span class="built_in"><span class="keyword">sizeof</span></span>(arr)/<span class="built_in"><span class="keyword">sizeof</span></span>(arr[<span class="number">0</span>]);</span><br><span class="line">    <span class="comment">//创建冒泡排序函数</span></span><br><span class="line">    <span class="built_in">bubbleSort</span>(arr,len);</span><br><span class="line">    <span class="comment">//打印排序后的数组</span></span><br><span class="line">    <span class="built_in">printArray</span>(arr,len);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++中的结构体</title>
     <url>/2022/02/28/C-%E4%B8%AD%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93/</url>
     <content><![CDATA[<h1 id="结构体基本概念"><a href="#结构体基本概念" class="headerlink" title="结构体基本概念"></a>结构体基本概念</h1><p>结构体属于用户自定义的数据类型，允许用户存储不同的数据类型</p>
@@ -241,6 +241,52 @@
 <p>例如：每个老师辅导一个学生，一个老师的结构体中，记录一个学生的结构体</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">    <span class="comment">//创建学生结构体</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        string name;</span><br><span class="line">        <span class="keyword">int</span> age;</span><br><span class="line">        <span class="keyword">int</span> score;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建老师结构体</span></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">teacher</span></span></span><br><span class="line"><span class="class">   &#123;</span></span><br><span class="line">       string name;</span><br><span class="line">       <span class="keyword">int</span> age;</span><br><span class="line">       <span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">stu</span>;</span></span><br><span class="line">   &#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建老师</span></span><br><span class="line">    teacher t;</span><br><span class="line">    t.name=<span class="string">&quot;老王&quot;</span>;</span><br><span class="line">    t.age=<span class="number">60</span>;</span><br><span class="line">    t.stu.name=<span class="string">&quot;小王&quot;</span>;</span><br><span class="line">    t.stu.age=<span class="number">20</span>;</span><br><span class="line">    t.stu.score=<span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;teacher&#x27;s name:&quot;</span>&lt;&lt;t.name&lt;&lt;<span class="string">&quot;\nteacher&#x27;s age:&quot;</span>&lt;&lt;t.age</span><br><span class="line">    &lt;&lt;<span class="string">&quot;\nteacher&#x27;s student&#x27;s name:&quot;</span>&lt;&lt;t.stu.name&lt;&lt;<span class="string">&quot;\nteacher&#x27;s student&#x27;s age&quot;</span>&lt;&lt;t.stu.age</span><br><span class="line">    &lt;&lt;<span class="string">&quot;\nteacher&#x27;s student&#x27;s score:&quot;</span>&lt;&lt;t.stu.score&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++中的选择选择语句</title>
+    <url>/2021/12/11/C-%E4%B8%AD%E7%9A%84%E9%80%89%E6%8B%A9%E8%AF%AD%E5%8F%A5/</url>
+    <content><![CDATA[<h1 id="一、if条件语句"><a href="#一、if条件语句" class="headerlink" title="一、if条件语句"></a>一、if条件语句</h1><p>作用：执行满足条件的语句</p>
+<p>if语句的三种形式</p>
+<ul>
+<li>单行格式if语句</li>
+<li>多行格式if语句</li>
+<li>多条件的if语句</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="1-单行格式if语句"><a href="#1-单行格式if语句" class="headerlink" title="1.单行格式if语句"></a>1.单行格式if语句</h2><p>语法：<code>if(条件)&#123;条件满足时执行的语句&#125;</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)<span class="comment">//注意此处没有;</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-多行格式if语句"><a href="#2-多行格式if语句" class="headerlink" title="2.多行格式if语句"></a>2.多行格式if语句</h2><p>语法：<code>if(条件)&#123;条件满足时执行的语句&#125;else&#123;条件不满足是执行的语句&#125;;</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;继续加油吧&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-多条件的if语句"><a href="#3-多条件的if语句" class="headerlink" title="3.多条件的if语句"></a>3.多条件的if语句</h2><p>语法：<code>if(条件1)&#123;条件1满足时执行的代码&#125;else if(条件2)&#123;条件2满足时执行的代码&#125; ... else&#123;以上条件都不满足执行的语句&#125;</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)<span class="comment">//第一个条件</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(score&gt;<span class="number">400</span>)<span class="comment">//第二个条件</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得还行&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(score&gt;<span class="number">300</span>)<span class="comment">//第三个条件</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得有点差&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;继续加油吧&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-嵌套if语句"><a href="#4-嵌套if语句" class="headerlink" title="4.嵌套if语句"></a>4.嵌套if语句</h2><p>if语句里面还有if语句</p>
+<p>注意if嵌套语句中条件的大小顺序</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;<span class="comment">//此处判断条件要从大到小，否则无法正常运行</span></span><br><span class="line">        <span class="keyword">if</span>(score&gt;<span class="number">650</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;有望985&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(score&gt;<span class="number">600</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;有望211&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;有望一本&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;继续加油吧&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、三目运算符"><a href="#二、三目运算符" class="headerlink" title="二、三目运算符"></a>二、三目运算符</h1><p>作用：通过三目运算符实现简单的判断</p>
+<p>语法：<code>条件 ? 代码1 : 代码2</code></p>
+<p>解释：</p>
+<p>如果满足条件，则执行代码1，否则执行代码2</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a,b,c;</span><br><span class="line">    cin&gt;&gt;a&gt;&gt;b;<span class="comment">//注意此处为&gt;&gt;而不是,</span></span><br><span class="line">    </span><br><span class="line">    c=(a&gt;b?a:b);</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;c&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    (a&gt;b?a:b)=<span class="number">50</span>;<span class="comment">//三目运算符同样可以这样使用，表示将a b中较大的一个赋值为50</span></span><br><span class="line">    cout&lt;&lt;a&lt;&lt;<span class="string">&quot;\n&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、switch条件语句"><a href="#三、switch条件语句" class="headerlink" title="三、switch条件语句"></a>三、switch条件语句</h1><p>作用：执行多条件分支语句</p>
+<p>语法：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in"><span class="keyword">switch</span></span>(表达式)</span><br><span class="line">    </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> 结果<span class="number">1</span>:执行语句;<span class="keyword">break</span>;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">case</span> 结果<span class="number">2</span>:执行语句;<span class="keyword">break</span>;  </span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">default</span>:执行语句;<span class="keyword">break</span>;    </span><br><span class="line">      </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    cin&gt;&gt;a;</span><br><span class="line">    <span class="built_in"><span class="keyword">switch</span></span>(a)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">8</span>:</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;prefect&quot;</span>&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">break</span>;<span class="comment">//此处一定不要忘记break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;normal&quot;</span>&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;bad&quot;</span>&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"> </span><br><span class="line">            </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<p>switch缺点：判断时只能是整型或者字符型，不可以是区间，而if可以</p>
+<p>switch有点：结构清晰，执行效率高</p>
 ]]></content>
       <tags>
         <tag>C++</tag>
@@ -458,52 +504,6 @@
       </tags>
   </entry>
   <entry>
-    <title>C++中的选择选择语句</title>
-    <url>/2021/12/11/C-%E4%B8%AD%E7%9A%84%E9%80%89%E6%8B%A9%E8%AF%AD%E5%8F%A5/</url>
-    <content><![CDATA[<h1 id="一、if条件语句"><a href="#一、if条件语句" class="headerlink" title="一、if条件语句"></a>一、if条件语句</h1><p>作用：执行满足条件的语句</p>
-<p>if语句的三种形式</p>
-<ul>
-<li>单行格式if语句</li>
-<li>多行格式if语句</li>
-<li>多条件的if语句</li>
-</ul>
-<span id="more"></span>
-
-<h2 id="1-单行格式if语句"><a href="#1-单行格式if语句" class="headerlink" title="1.单行格式if语句"></a>1.单行格式if语句</h2><p>语法：<code>if(条件)&#123;条件满足时执行的语句&#125;</code></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)<span class="comment">//注意此处没有;</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-多行格式if语句"><a href="#2-多行格式if语句" class="headerlink" title="2.多行格式if语句"></a>2.多行格式if语句</h2><p>语法：<code>if(条件)&#123;条件满足时执行的语句&#125;else&#123;条件不满足是执行的语句&#125;;</code></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;继续加油吧&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-多条件的if语句"><a href="#3-多条件的if语句" class="headerlink" title="3.多条件的if语句"></a>3.多条件的if语句</h2><p>语法：<code>if(条件1)&#123;条件1满足时执行的代码&#125;else if(条件2)&#123;条件2满足时执行的代码&#125; ... else&#123;以上条件都不满足执行的语句&#125;</code></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)<span class="comment">//第一个条件</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(score&gt;<span class="number">400</span>)<span class="comment">//第二个条件</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得还行&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(score&gt;<span class="number">300</span>)<span class="comment">//第三个条件</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得有点差&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;继续加油吧&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-嵌套if语句"><a href="#4-嵌套if语句" class="headerlink" title="4.嵌套if语句"></a>4.嵌套if语句</h2><p>if语句里面还有if语句</p>
-<p>注意if嵌套语句中条件的大小顺序</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;<span class="comment">//此处判断条件要从大到小，否则无法正常运行</span></span><br><span class="line">        <span class="keyword">if</span>(score&gt;<span class="number">650</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;有望985&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(score&gt;<span class="number">600</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;有望211&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;有望一本&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;继续加油吧&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="二、三目运算符"><a href="#二、三目运算符" class="headerlink" title="二、三目运算符"></a>二、三目运算符</h1><p>作用：通过三目运算符实现简单的判断</p>
-<p>语法：<code>条件 ? 代码1 : 代码2</code></p>
-<p>解释：</p>
-<p>如果满足条件，则执行代码1，否则执行代码2</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a,b,c;</span><br><span class="line">    cin&gt;&gt;a&gt;&gt;b;<span class="comment">//注意此处为&gt;&gt;而不是,</span></span><br><span class="line">    </span><br><span class="line">    c=(a&gt;b?a:b);</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;c&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    (a&gt;b?a:b)=<span class="number">50</span>;<span class="comment">//三目运算符同样可以这样使用，表示将a b中较大的一个赋值为50</span></span><br><span class="line">    cout&lt;&lt;a&lt;&lt;<span class="string">&quot;\n&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="三、switch条件语句"><a href="#三、switch条件语句" class="headerlink" title="三、switch条件语句"></a>三、switch条件语句</h1><p>作用：执行多条件分支语句</p>
-<p>语法：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in"><span class="keyword">switch</span></span>(表达式)</span><br><span class="line">    </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> 结果<span class="number">1</span>:执行语句;<span class="keyword">break</span>;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">case</span> 结果<span class="number">2</span>:执行语句;<span class="keyword">break</span>;  </span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">default</span>:执行语句;<span class="keyword">break</span>;    </span><br><span class="line">      </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    cin&gt;&gt;a;</span><br><span class="line">    <span class="built_in"><span class="keyword">switch</span></span>(a)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">8</span>:</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;prefect&quot;</span>&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">break</span>;<span class="comment">//此处一定不要忘记break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;normal&quot;</span>&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;bad&quot;</span>&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"> </span><br><span class="line">            </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
-<p>switch缺点：判断时只能是整型或者字符型，不可以是区间，而if可以</p>
-<p>switch有点：结构清晰，执行效率高</p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++的函数</title>
     <url>/2022/01/17/C-%E7%9A%84%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>将一串经常会使用的代码封装起来，减少重复代码。一个较大的程序，一般分为若干个程序块，每个模块实现特定的功能。</p>
@@ -578,130 +578,6 @@
 ]]></content>
       <tags>
         <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git版本穿梭及版本比较</title>
-    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
-    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
-<li><p>状态查看：<code>git status</code></p>
-</li>
-<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
-</li>
-<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
-<p>简洁显示：<code>git log --pretty=oneline</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
-<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
-<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
-<p>HEAD@{移动到当前版本所需要步数}</p>
-<p>若版本信息有多屏</p>
-<p>则空格向下翻页，b向上翻页，q退出</p>
-<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
-<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
-<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
-<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
-<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
-<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
-<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
-<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
-<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
-<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
-<p>现在状态为</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
-<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
-<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
-<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
-<p>然后删除文件，并添加到暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
-<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
-<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
-<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
-<p>上图表示第一行删去了9个a</p>
-<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git的分支管理级Git的基本原理</title>
-    <url>/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h1 id="分支的意义"><a href="#分支的意义" class="headerlink" title="分支的意义"></a>分支的意义</h1><ul>
-<li><p>分支是主干（master）的复制品，可以进行试错，可以删除，也也可以合并回主干</p>
-</li>
-<li><p>分支更加专业化，分支之间互不干扰</p>
-</li>
-<li><p>可以多人同时开发不同分支，增加开发效率</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h1><p>查看所有分支命令：<code>git branch -v</code></p>
-<p>创建新的分支：<code>git branch 分支名</code></p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110195627374.png" alt="image-20220110195627374"></p>
-<p>分支的切换：<code>git checkout 分支名</code></p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110195754653.png" alt="image-20220110195754653"></p>
-<p>用hot_fix分支修改文件</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110200141530.png" alt="image-20220110200141530"></p>
-<p>若要将hot_fix分支合并到master分支上，则要切换到master分支上（即被合并的分支）</p>
-<p>合并命令：<code>git merge 分支名</code></p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110200612093.png" alt="image-20220110200612093"></p>
-<p>当分支有冲突时（即两个分支都对同一地方进行了修改）</p>
-<p>首先要产生冲突</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110201910358.png" alt="image-20220110201910358"></p>
-<p>产生冲突后看产生冲突的文件内容</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110202059391.png" alt="image-20220110202059391"></p>
-<p>删除多于内容后（可在阅览模式下双击d键删除一行）</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110202632027.png" alt="image-20220110202632027"></p>
-<p>保留自己想要的内容，然后<code>git add 文件名</code>，<code>git commit -m &quot;备注&quot;</code>提交</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110203321229.png" alt="image-20220110203321229"></p>
-<h1 id="Git基本原理"><a href="#Git基本原理" class="headerlink" title="Git基本原理"></a>Git基本原理</h1><h2 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h2><p>哈希是一个系列的加密算法，各个不同的哈希加密虽然加密强度不同，但是有以下几个共同点</p>
-<ul>
-<li>不管输入的数据量有多大，输入同一个哈希算法，得到的加密结果长度固定。</li>
-<li>哈希加密确定，输入数据有变化，输出数据一定有变化，而且变化程度很大。</li>
-<li>哈希算法确定，输入数据确定，输出数据能够保证不变。</li>
-<li>哈希算法不可逆</li>
-</ul>
-<p>Git底层采用的是SHA-1算法。</p>
-<p>哈希算法可以被用来验证文件。原理如下</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111095840028.png" alt="image-20220111095840028"></p>
-<p>Git就是靠这种操作从根本上保证数据的完整性。</p>
-<h2 id="Git保存版本机制"><a href="#Git保存版本机制" class="headerlink" title="Git保存版本机制"></a>Git保存版本机制</h2><p>首先讲一下集中式版本控制工具的文件管理机制</p>
-<p>以文件变更列表的方式存储信息。这类系统将它们保存的信息看作时一组基本文件和每个文件随时间逐步积累的差异。也就是只保存更改的地方</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111101222004.png" alt="image-20220111101222004"></p>
-<p>然后是Git的文件管理机制</p>
-<p>Git把数据看作是小型文件系统的一组快照，每次提交更新时，Git都会对当前的全部文件制作一个快照并保存这个快照的索引。为了高效，<u>如果文件没有修改，Git不再重新存储该文件</u>。所以Git的工作方式可以称之为快照流。</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103051918.png" alt="image-20220111103051918"></p>
-<p>Git的提交对象</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103632587.png" alt="image-20220111103632587"></p>
-<p>提交对象及其父对象形成的链条</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103823481.png" alt="image-20220111103823481"></p>
-<h2 id="Git分支管理机制"><a href="#Git分支管理机制" class="headerlink" title="Git分支管理机制"></a>Git分支管理机制</h2><p>分支的创建</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111104023440.png" alt="image-20220111104023440"></p>
-<p>testing指针和master指针在同一链条，而不是为testing单搞一条链，节省了储存空间</p>
-<p>分支切换（改变HEAD指针的位置）</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111121831087.png" alt="image-20220111121831087"></p>
-<p>当分支文件不一样时，才会出现分支</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111122101487.png" alt="image-20220111122101487"></p>
-<p><strong>Git在本地的版本控制就完结了</strong></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -931,6 +807,130 @@
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git版本穿梭及版本比较</title>
+    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
+    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
+<li><p>状态查看：<code>git status</code></p>
+</li>
+<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
+</li>
+<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
+<p>简洁显示：<code>git log --pretty=oneline</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
+<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
+<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
+<p>HEAD@{移动到当前版本所需要步数}</p>
+<p>若版本信息有多屏</p>
+<p>则空格向下翻页，b向上翻页，q退出</p>
+<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
+<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
+<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
+<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
+<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
+<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
+<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
+<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
+<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
+<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
+<p>现在状态为</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
+<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
+<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
+<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
+<p>然后删除文件，并添加到暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
+<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
+<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
+<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
+<p>上图表示第一行删去了9个a</p>
+<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git的分支管理级Git的基本原理</title>
+    <url>/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="分支的意义"><a href="#分支的意义" class="headerlink" title="分支的意义"></a>分支的意义</h1><ul>
+<li><p>分支是主干（master）的复制品，可以进行试错，可以删除，也也可以合并回主干</p>
+</li>
+<li><p>分支更加专业化，分支之间互不干扰</p>
+</li>
+<li><p>可以多人同时开发不同分支，增加开发效率</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h1><p>查看所有分支命令：<code>git branch -v</code></p>
+<p>创建新的分支：<code>git branch 分支名</code></p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110195627374.png" alt="image-20220110195627374"></p>
+<p>分支的切换：<code>git checkout 分支名</code></p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110195754653.png" alt="image-20220110195754653"></p>
+<p>用hot_fix分支修改文件</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110200141530.png" alt="image-20220110200141530"></p>
+<p>若要将hot_fix分支合并到master分支上，则要切换到master分支上（即被合并的分支）</p>
+<p>合并命令：<code>git merge 分支名</code></p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110200612093.png" alt="image-20220110200612093"></p>
+<p>当分支有冲突时（即两个分支都对同一地方进行了修改）</p>
+<p>首先要产生冲突</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110201910358.png" alt="image-20220110201910358"></p>
+<p>产生冲突后看产生冲突的文件内容</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110202059391.png" alt="image-20220110202059391"></p>
+<p>删除多于内容后（可在阅览模式下双击d键删除一行）</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110202632027.png" alt="image-20220110202632027"></p>
+<p>保留自己想要的内容，然后<code>git add 文件名</code>，<code>git commit -m &quot;备注&quot;</code>提交</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110203321229.png" alt="image-20220110203321229"></p>
+<h1 id="Git基本原理"><a href="#Git基本原理" class="headerlink" title="Git基本原理"></a>Git基本原理</h1><h2 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h2><p>哈希是一个系列的加密算法，各个不同的哈希加密虽然加密强度不同，但是有以下几个共同点</p>
+<ul>
+<li>不管输入的数据量有多大，输入同一个哈希算法，得到的加密结果长度固定。</li>
+<li>哈希加密确定，输入数据有变化，输出数据一定有变化，而且变化程度很大。</li>
+<li>哈希算法确定，输入数据确定，输出数据能够保证不变。</li>
+<li>哈希算法不可逆</li>
+</ul>
+<p>Git底层采用的是SHA-1算法。</p>
+<p>哈希算法可以被用来验证文件。原理如下</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111095840028.png" alt="image-20220111095840028"></p>
+<p>Git就是靠这种操作从根本上保证数据的完整性。</p>
+<h2 id="Git保存版本机制"><a href="#Git保存版本机制" class="headerlink" title="Git保存版本机制"></a>Git保存版本机制</h2><p>首先讲一下集中式版本控制工具的文件管理机制</p>
+<p>以文件变更列表的方式存储信息。这类系统将它们保存的信息看作时一组基本文件和每个文件随时间逐步积累的差异。也就是只保存更改的地方</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111101222004.png" alt="image-20220111101222004"></p>
+<p>然后是Git的文件管理机制</p>
+<p>Git把数据看作是小型文件系统的一组快照，每次提交更新时，Git都会对当前的全部文件制作一个快照并保存这个快照的索引。为了高效，<u>如果文件没有修改，Git不再重新存储该文件</u>。所以Git的工作方式可以称之为快照流。</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103051918.png" alt="image-20220111103051918"></p>
+<p>Git的提交对象</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103632587.png" alt="image-20220111103632587"></p>
+<p>提交对象及其父对象形成的链条</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103823481.png" alt="image-20220111103823481"></p>
+<h2 id="Git分支管理机制"><a href="#Git分支管理机制" class="headerlink" title="Git分支管理机制"></a>Git分支管理机制</h2><p>分支的创建</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111104023440.png" alt="image-20220111104023440"></p>
+<p>testing指针和master指针在同一链条，而不是为testing单搞一条链，节省了储存空间</p>
+<p>分支切换（改变HEAD指针的位置）</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111121831087.png" alt="image-20220111121831087"></p>
+<p>当分支文件不一样时，才会出现分支</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111122101487.png" alt="image-20220111122101487"></p>
+<p><strong>Git在本地的版本控制就完结了</strong></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -1725,6 +1725,41 @@
       </tags>
   </entry>
   <entry>
+    <title>bugku刷题记录</title>
+    <url>/2022/03/15/bugku%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h1><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">include</span> <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line">    <span class="variable">$a</span> = @<span class="variable">$_REQUEST</span>[<span class="string">&#x27;hello&#x27;</span>];</span><br><span class="line">    <span class="keyword">eval</span>( <span class="string">&quot;var_dump(<span class="subst">$a</span>);&quot;</span>);</span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这里相当于用到了两个函数</p>
+<span id="more"></span>
+
+<p>第一个file()，这个函数是把一整个文件读入到一个数组中</p>
+<p>然后var_dump()是输出变量相关信息</p>
+<p>所以payload为</p>
+<p><code>/?hello=file(&quot;flag.php&quot;)</code></p>
+<p>注意要有双引号奥</p>
+<h1 id="头等舱"><a href="#头等舱" class="headerlink" title="头等舱"></a>头等舱</h1><p>进去页面提示什么也没有，题目为头等舱，联想到网页头，然后我们用bp抓包，然后发往repeater，最后在Respones中的Headers里面发现flag</p>
+<h1 id="网站被黑"><a href="#网站被黑" class="headerlink" title="网站被黑"></a>网站被黑</h1><p>题目提示有后门</p>
+<p>后门：用于获得对程序或在线服务访问权限的秘密方式</p>
+<p>也就是说，有别的网页喽，先用御剑扫一下，扫不出来换kali里面的dirsearch</p>
+<p>我们用御剑扫描php文件，很快就会发现存在shell.php文件，进入后需要密码，先尝试了一下万能密码，似乎不行，然后我们直接上Bp进行爆破</p>
+<p>最后得到密码 hack，进去后得到flag</p>
+<h1 id="变量1"><a href="#变量1" class="headerlink" title="变量1"></a>变量1</h1><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//flag In the variable ! </span></span><br><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line"></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;flag1.php&quot;</span>;</span><br><span class="line">highlight_file(<span class="keyword">__file__</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;args&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$args</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;args&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(!preg_match(<span class="string">&quot;/^\w+$/&quot;</span>,<span class="variable">$args</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;args error!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">eval</span>(<span class="string">&quot;var_dump($<span class="subst">$args</span>);&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>^\w+$</code> 表示的是匹配都是字母的串，$$args是一个可变变量，而如果$args的值为另一个变量的变量名，$$args就可以代表另一个变量，也就是说，我们要输入包含flag的变量名，打印这个变量所包含的值才能得到flag，但是我们根本不知道该变量名。</p>
+<p>所以可以考虑依次给args赋值php中的九大全局变量（<code>$_POST，$_GET，$_FILES，$_COOKIE，$_SESSION，$_REQUEST，$SERVER，$GLOBALS，$_ENV</code>）</p>
+<p>所以让args=GLOBALS来打印全部变量，从而得到flag</p>
+<h1 id="本地管理员"><a href="#本地管理员" class="headerlink" title="本地管理员"></a>本地管理员</h1><p>由题可知，要有本地的许可，所以我们在Request中添加</p>
+<p><code>X-Forwarded-For:127.0.0.1</code></p>
+<p>然后接着我想用Bp爆破，可是终究没有出来，观察爆破结果，可以发现nnnnn后面有一段base64密文，解密后得到test123，所以我们猜测这是密码，然后尝试admin登录，得到flag</p>
+<h1 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h1><p>提示查看源代码，查看后发现一大堆url编码，按要求解码后得到</p>
+<p><img src="/2022/03/15/bugku%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220315222702123.png" alt="image-20220315222702123"></p>
+<p>看不懂啊看不懂，但是有一段很神奇的密文，看wp都说提交后得到flag，我也不知道为啥呜呜呜</p>
+]]></content>
+      <tags>
+        <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git的介绍、安装和基本提交</title>
     <url>/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/</url>
     <content><![CDATA[<h1 id="Git的优势"><a href="#Git的优势" class="headerlink" title="Git的优势"></a>Git的优势</h1><ul>
@@ -2406,7 +2441,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">方法一：我们构造/?ip=1;a=g;cat$IFS$1fla$a.php然后在注释里面得到flag</span><br><span class="line">方法二：cat$IFS$9`ls`,这里的反引号是内联，所谓内联，就是将反引号内命令的输出作为输入执行。</span><br><span class="line">方法三：echo$IFS$1Y2F0IGZsYWcucGhw|base64$IFS$1-d|sh这句是先输出cat flag.php的base64编码，然后再解码，然后再执行。其中的|表示将前一个命令的输出作为后一个命令的输入。</span><br></pre></td></tr></table></figure>
 
 <h1 id="极客大挑战-2019-Http"><a href="#极客大挑战-2019-Http" class="headerlink" title="[极客大挑战 2019]Http"></a>[极客大挑战 2019]Http</h1><p>进入题目后检查源码发现Secret.php文件，进入后查看源码未发现任何东西，而且给出的网址进不去。根据提示</p>
-<p>**It doesn’t come from ‘<a href="https://sycsecret.buuoj.cn&/#39;**%E6%84%8F%E6%80%9D%E5%B0%B1%E6%98%AF%E4%B8%8D%E6%98%AF%E6%9D%A5%E6%BA%90%E4%BA%8Ehttps://Sycsecret.buuoj.cn%E7%9A%84%E8%B5%84%E6%BA%90%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AFReferer%E4%B8%8D%E6%98%AFhttps://Sycsecret.buuoj.cn%E3%80%82%E6%89%80%E4%BB%A5%E6%88%91%E4%BB%AC%E8%A6%81%E4%BF%AE%E6%94%B9header%E5%A4%B4%EF%BC%8C%E6%B7%BB%E5%8A%A0[Referer](https://blog.csdn.net/shenqueying/article/details/79426884)%EF%BC%8C%E8%BF%99%E9%87%8C%E7%94%A8Bp%E4%BF%AE%E6%94%B9%E3%80%82">https://Sycsecret.buuoj.cn&#39;**意思就是不是来源于https://Sycsecret.buuoj.cn的资源，也就是Referer不是https://Sycsecret.buuoj.cn。所以我们要修改header头，添加[Referer](https://blog.csdn.net/shenqueying/article/details/79426884)，这里用Bp修改。</a></p>
+<p>It doesn’t come from ‘<code>https://Sycsecret.buuoj.cn</code>‘意思就是不是来源于<code>https://Sycsecret.buuoj.cn</code>的资源，也就是Referer不是<code>https://Sycsecret.buuoj.cn</code>。所以我们要修改header头，添加<a href="https://blog.csdn.net/shenqueying/article/details/79426884">Referer</a>，这里用Bp修改。</p>
 <p><code>Referer:https://Sycsecret.buuoj.cn</code></p>
 <p>Request为</p>
 <figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/Secret.php</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>node4.buuoj.cn:28174</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-age=0</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>0</span><br><span class="line">Referer:https://Sycsecret.buuoj.cn</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>UM_distinctid=17d26e27951337-0f7088736cbf9a-b7a1438-144000-17d26e27952da6</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"></span><br></pre></td></tr></table></figure>

