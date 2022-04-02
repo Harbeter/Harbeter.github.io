@@ -323,83 +323,6 @@
       </tags>
   </entry>
   <entry>
-    <title>C++的函数</title>
-    <url>/2022/01/17/C-%E7%9A%84%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>将一串经常会使用的代码封装起来，减少重复代码。一个较大的程序，一般分为若干个程序块，每个模块实现特定的功能。</p>
-<h1 id="函数的定义"><a href="#函数的定义" class="headerlink" title="函数的定义"></a>函数的定义</h1><p>函数的定义一般分为5个步骤：</p>
-<ul>
-<li><p>返回值类型</p>
-</li>
-<li><p>函数名</p>
-</li>
-<li><p>参数表列</p>
-</li>
-<li><p>函数体语句</p>
-</li>
-<li><p>return表达式</p>
-<span id="more"></span>
-
-<p>语法：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">返回值类型 函数名  (参数列表)</span><br><span class="line">&#123;</span><br><span class="line">	函数体语句</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span>表达式</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>例如</p>
-<p>实现一个加法函数</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> s=a+b;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="函数的调用"><a href="#函数的调用" class="headerlink" title="函数的调用"></a>函数的调用</h1><p>语法：<code>函数名(参数)</code></p>
-<p>例如</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> s=a+b;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m,n;</span><br><span class="line">    cin&gt;&gt;m&gt;&gt;n;</span><br><span class="line">	<span class="keyword">int</span> c=<span class="built_in">add</span>(m,n); <span class="comment">//此处m和n均为整型,叫实际参数，简称实参</span></span><br><span class="line">	cout&lt;&lt;c&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：定义时a，b并没有真实数据，只是一个形式，叫做形参。当调用函数时，实参的值会传给形参</strong></p>
-<h1 id="值传递"><a href="#值传递" class="headerlink" title="值传递"></a>值传递</h1><p>定义：值传递就是函数调用时实参将数值传给形参</p>
-<p>形参发生变化，不会影响实参</p>
-<p>示例</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ex</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;交换前第一个数&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;交换前第二个数&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">        <span class="keyword">int</span> t=a;</span><br><span class="line">        a=b;</span><br><span class="line">        b=t;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;交换后第一个数&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;交换后第二个数&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">        <span class="comment">//return s;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m,n;</span><br><span class="line">    cin&gt;&gt;m&gt;&gt;n;</span><br><span class="line">	<span class="built_in">ex</span>(m,n);</span><br><span class="line">	cout&lt;&lt;m&lt;&lt;n&lt;&lt;endl;<span class="comment">//实参不变，也就是m还是第一个输入的数,变化的是形参</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="函数常见样式"><a href="#函数常见样式" class="headerlink" title="函数常见样式"></a>函数常见样式</h1><ul>
-<li><p>无参无返</p>
-</li>
-<li><p>有参有返</p>
-</li>
-<li><p>无参有返</p>
-</li>
-<li><p>有参有返</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//无参无返</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;无参无返&quot;</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//有参无返</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test2</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;有参无返 a=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//无参有返</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">test3</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;无参有返&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">555</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//有参有返</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">test4</span><span class="params">(<span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;有参有返 t=&quot;</span>&lt;&lt;t&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">666</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">test1</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n=<span class="number">100</span>;</span><br><span class="line">    <span class="built_in">test2</span>(n);<span class="comment">//传参100</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> c;</span><br><span class="line">    c=<span class="built_in">test3</span>();</span><br><span class="line">    cout&lt;&lt;c&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> d;</span><br><span class="line">    d=<span class="built_in">test4</span>(<span class="number">100</span>);<span class="comment">//100传给t 返回666</span></span><br><span class="line">    cout&lt;&lt;d&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="函数的声明"><a href="#函数的声明" class="headerlink" title="函数的声明"></a>函数的声明</h1><p>作用：告诉编译器函数名称及如何调用函数。函数的实际本体可以单独定义。</p>
-<ul>
-<li>函数的<strong>声明可以多次</strong>，但是函数的<strong>定义只能有一次</strong></li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a&gt;b?a:b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">m</span>(a,b)&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>若不声明，定义只能在main函数之前，如上。</p>
-<p>定义后</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;<span class="comment">//声明(可以有多次，如此,一般就写一次.定义不能这样)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">m</span>(a,b)&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a&gt;b?a:b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="函数的分文件编写"><a href="#函数的分文件编写" class="headerlink" title="函数的分文件编写"></a>函数的分文件编写</h1><p>作用：让代码块结构更加清晰</p>
-<p>函数分文件编写一般有4个步骤</p>
-<ol>
-<li>创建后缀名为**.h**的头文件</li>
-<li>创建后缀名为**.cpp**的源文件</li>
-<li>在头文件中写函数声明</li>
-<li>在源文件中写函数定义</li>
-</ol>
-<p>示例</p>
-<p>头文件 max.h</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;<span class="comment">//声明</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>源文件max.cpp</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span><span class="comment">//定义</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a&gt;b?a:b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>main.cpp</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;max.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">m</span>(a,b)&lt;&lt;endl; <span class="comment">//直接引用</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++数据类型及数据的运用</title>
     <url>/2021/12/08/C-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h1 id="C-程序初始代码"><a href="#C-程序初始代码" class="headerlink" title="C++程序初始代码"></a>C++程序初始代码</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -604,6 +527,83 @@
 <h2 id="数据的输入"><a href="#数据的输入" class="headerlink" title="数据的输入"></a>数据的输入</h2><p>作用：用于从键盘获取数据</p>
 <p>用法：<code>cin&gt;&gt; 变量</code></p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    cin&gt;&gt;a;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;你输入的数为&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">bool</span> b = <span class="literal">false</span>;</span><br><span class="line">    cin&gt;&gt;b;<span class="comment">//除了0之外的数字都是真的，字母是假的。若数字后面有字母，则直接看数字，若字母后面有数字，则就是假</span></span><br><span class="line">    cout&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    <span class="comment">//也可这样用</span></span><br><span class="line">    <span class="keyword">int</span> b,c,d;</span><br><span class="line">    cin&gt;&gt;b&gt;&gt;c&gt;&gt;d;</span><br><span class="line">    cout&lt;&lt;b&lt;&lt;c&lt;&lt;d;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++的函数</title>
+    <url>/2022/01/17/C-%E7%9A%84%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>将一串经常会使用的代码封装起来，减少重复代码。一个较大的程序，一般分为若干个程序块，每个模块实现特定的功能。</p>
+<h1 id="函数的定义"><a href="#函数的定义" class="headerlink" title="函数的定义"></a>函数的定义</h1><p>函数的定义一般分为5个步骤：</p>
+<ul>
+<li><p>返回值类型</p>
+</li>
+<li><p>函数名</p>
+</li>
+<li><p>参数表列</p>
+</li>
+<li><p>函数体语句</p>
+</li>
+<li><p>return表达式</p>
+<span id="more"></span>
+
+<p>语法：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">返回值类型 函数名  (参数列表)</span><br><span class="line">&#123;</span><br><span class="line">	函数体语句</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span>表达式</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>例如</p>
+<p>实现一个加法函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> s=a+b;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="函数的调用"><a href="#函数的调用" class="headerlink" title="函数的调用"></a>函数的调用</h1><p>语法：<code>函数名(参数)</code></p>
+<p>例如</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> s=a+b;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m,n;</span><br><span class="line">    cin&gt;&gt;m&gt;&gt;n;</span><br><span class="line">	<span class="keyword">int</span> c=<span class="built_in">add</span>(m,n); <span class="comment">//此处m和n均为整型,叫实际参数，简称实参</span></span><br><span class="line">	cout&lt;&lt;c&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：定义时a，b并没有真实数据，只是一个形式，叫做形参。当调用函数时，实参的值会传给形参</strong></p>
+<h1 id="值传递"><a href="#值传递" class="headerlink" title="值传递"></a>值传递</h1><p>定义：值传递就是函数调用时实参将数值传给形参</p>
+<p>形参发生变化，不会影响实参</p>
+<p>示例</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ex</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;交换前第一个数&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;交换前第二个数&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">        <span class="keyword">int</span> t=a;</span><br><span class="line">        a=b;</span><br><span class="line">        b=t;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;交换后第一个数&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;交换后第二个数&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">        <span class="comment">//return s;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m,n;</span><br><span class="line">    cin&gt;&gt;m&gt;&gt;n;</span><br><span class="line">	<span class="built_in">ex</span>(m,n);</span><br><span class="line">	cout&lt;&lt;m&lt;&lt;n&lt;&lt;endl;<span class="comment">//实参不变，也就是m还是第一个输入的数,变化的是形参</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="函数常见样式"><a href="#函数常见样式" class="headerlink" title="函数常见样式"></a>函数常见样式</h1><ul>
+<li><p>无参无返</p>
+</li>
+<li><p>有参有返</p>
+</li>
+<li><p>无参有返</p>
+</li>
+<li><p>有参有返</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//无参无返</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;无参无返&quot;</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//有参无返</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test2</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;有参无返 a=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//无参有返</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">test3</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;无参有返&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">555</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//有参有返</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">test4</span><span class="params">(<span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;有参有返 t=&quot;</span>&lt;&lt;t&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">666</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">test1</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n=<span class="number">100</span>;</span><br><span class="line">    <span class="built_in">test2</span>(n);<span class="comment">//传参100</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> c;</span><br><span class="line">    c=<span class="built_in">test3</span>();</span><br><span class="line">    cout&lt;&lt;c&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> d;</span><br><span class="line">    d=<span class="built_in">test4</span>(<span class="number">100</span>);<span class="comment">//100传给t 返回666</span></span><br><span class="line">    cout&lt;&lt;d&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="函数的声明"><a href="#函数的声明" class="headerlink" title="函数的声明"></a>函数的声明</h1><p>作用：告诉编译器函数名称及如何调用函数。函数的实际本体可以单独定义。</p>
+<ul>
+<li>函数的<strong>声明可以多次</strong>，但是函数的<strong>定义只能有一次</strong></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a&gt;b?a:b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">m</span>(a,b)&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>若不声明，定义只能在main函数之前，如上。</p>
+<p>定义后</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;<span class="comment">//声明(可以有多次，如此,一般就写一次.定义不能这样)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">m</span>(a,b)&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a&gt;b?a:b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="函数的分文件编写"><a href="#函数的分文件编写" class="headerlink" title="函数的分文件编写"></a>函数的分文件编写</h1><p>作用：让代码块结构更加清晰</p>
+<p>函数分文件编写一般有4个步骤</p>
+<ol>
+<li>创建后缀名为**.h**的头文件</li>
+<li>创建后缀名为**.cpp**的源文件</li>
+<li>在头文件中写函数声明</li>
+<li>在源文件中写函数定义</li>
+</ol>
+<p>示例</p>
+<p>头文件 max.h</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;<span class="comment">//声明</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>源文件max.cpp</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span><span class="comment">//定义</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a&gt;b?a:b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>main.cpp</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;max.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">m</span>(a,b)&lt;&lt;endl; <span class="comment">//直接引用</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
@@ -1029,40 +1029,6 @@
       </tags>
   </entry>
   <entry>
-    <title>PHPstudy+Win7搭建ＤＶＷＡ靶场</title>
-    <url>/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/</url>
-    <content><![CDATA[<h1 id="1-安装虚拟机"><a href="#1-安装虚拟机" class="headerlink" title="1.安装虚拟机"></a>1.安装虚拟机</h1><p>这里我用的时VMware，可以直接百度搜索，然后下载即可。之后要去找一个Win7的系统静像，这里推荐去<a href="https://msdn.itellyou.cn/"> I Tell You</a>下载。然后就是配置虚拟机</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174106598.png" alt="image-20211211174106598"></p>
-<p>点击创建新的虚拟机，然后选定刚才下载的Win7静像，即可创建。创建完成后要进行VMware Tools的安装（目的是要实现与物理机的粘贴与复制），打开此处的设置</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174722062.png" alt="image-20211211174722062"></p>
-<p>这里要将CD和软盘的连接都设置为 使用物理驱动器 </p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174757258.png" alt="image-20211211174757258"></p>
-<p>然后进行VMware Tools的安装（如果不设置无法安装）。这里建议安装后为系统拍摄快照。</p>
-<h1 id="2-安装PHPstudy和DVWA"><a href="#2-安装PHPstudy和DVWA" class="headerlink" title="2.安装PHPstudy和DVWA"></a>2.安装PHPstudy和DVWA</h1><p>安装之后直接直接在浏览器里面下载phpstudy，之后安装以下套件</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211181907791.png" alt="image-20211211181907791"></p>
-<p>然后找到以下文件夹</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182353767.png" alt="image-20211211182353767"></p>
-<p>将事先下载好的DVWA-master文件夹移入，然后打开文件夹的如下位置</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182626782.png" alt="image-20211211182626782"></p>
-<p>并将里面文件复制后去掉.dist保存，再将其打开，修改其中数据：</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182721061.png" alt="image-20211211182721061"></p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182928405.png" alt="image-20211211182928405"></p>
-<p>然后在浏览器中输入地址 ：<a href="http://127.0.0.1/DVWA-master/setup.php">http://127.0.0.1/DVWA-master/setup.php</a></p>
-<p>拉到最下面点击按钮</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182947997.png" alt="image-20211211182947997"></p>
-<p>之后进入登录页面</p>
-<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211183019265.png" alt="image-20211211183019265"></p>
-<p>账号：admin</p>
-<p>密码：password</p>
-<p>登录成功后即可进入</p>
-]]></content>
-      <tags>
-        <tag>PHPstudy</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL常用的图形管理工具</title>
     <url>/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>日常开发中，如果在类似dos窗口中进行，对于初学者来说，上手难度高，也显得枯燥乏味，所以我们用MySQL图形管理工具来连接MySQL，然后在图形化界面上操作。</p>
@@ -1100,6 +1066,40 @@
 ]]></content>
       <tags>
         <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHPstudy+Win7搭建ＤＶＷＡ靶场</title>
+    <url>/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/</url>
+    <content><![CDATA[<h1 id="1-安装虚拟机"><a href="#1-安装虚拟机" class="headerlink" title="1.安装虚拟机"></a>1.安装虚拟机</h1><p>这里我用的时VMware，可以直接百度搜索，然后下载即可。之后要去找一个Win7的系统静像，这里推荐去<a href="https://msdn.itellyou.cn/"> I Tell You</a>下载。然后就是配置虚拟机</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174106598.png" alt="image-20211211174106598"></p>
+<p>点击创建新的虚拟机，然后选定刚才下载的Win7静像，即可创建。创建完成后要进行VMware Tools的安装（目的是要实现与物理机的粘贴与复制），打开此处的设置</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174722062.png" alt="image-20211211174722062"></p>
+<p>这里要将CD和软盘的连接都设置为 使用物理驱动器 </p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211174757258.png" alt="image-20211211174757258"></p>
+<p>然后进行VMware Tools的安装（如果不设置无法安装）。这里建议安装后为系统拍摄快照。</p>
+<h1 id="2-安装PHPstudy和DVWA"><a href="#2-安装PHPstudy和DVWA" class="headerlink" title="2.安装PHPstudy和DVWA"></a>2.安装PHPstudy和DVWA</h1><p>安装之后直接直接在浏览器里面下载phpstudy，之后安装以下套件</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211181907791.png" alt="image-20211211181907791"></p>
+<p>然后找到以下文件夹</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182353767.png" alt="image-20211211182353767"></p>
+<p>将事先下载好的DVWA-master文件夹移入，然后打开文件夹的如下位置</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182626782.png" alt="image-20211211182626782"></p>
+<p>并将里面文件复制后去掉.dist保存，再将其打开，修改其中数据：</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182721061.png" alt="image-20211211182721061"></p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182928405.png" alt="image-20211211182928405"></p>
+<p>然后在浏览器中输入地址 ：<a href="http://127.0.0.1/DVWA-master/setup.php">http://127.0.0.1/DVWA-master/setup.php</a></p>
+<p>拉到最下面点击按钮</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211182947997.png" alt="image-20211211182947997"></p>
+<p>之后进入登录页面</p>
+<p><img src="/2021/12/11/PHPstudy-Win7%E6%90%AD%E5%BB%BADVWA%E9%9D%B6%E5%9C%BA/image-20211211183019265.png" alt="image-20211211183019265"></p>
+<p>账号：admin</p>
+<p>密码：password</p>
+<p>登录成功后即可进入</p>
+]]></content>
+      <tags>
+        <tag>PHPstudy</tag>
       </tags>
   </entry>
   <entry>
@@ -2444,41 +2444,6 @@
       </tags>
   </entry>
   <entry>
-    <title>sqlilabs第四关</title>
-    <url>/2022/01/22/sqlilabs%E7%AC%AC%E5%9B%9B%E5%85%B3/</url>
-    <content><![CDATA[<p>p判断闭合方式</p>
-<p>首先</p>
-<p><code>id=1&#39;</code></p>
-<p><code>id=1&quot;</code></p>
-<p>若都报错是整型</p>
-<p>若仅有单引号报错，则尝试</p>
-<p><code>id=1&#39;--+</code></p>
-<p>不报错就是单引号闭合，否则为单引号加括号</p>
-<p>若仅有双引号报错，则尝试</p>
-<p><code>id=1&quot;--+</code></p>
-<p>不报错就是双引号闭合，否则为双引号加括号</p>
-<span id="more"></span>
-
-
-
-<p>开始判断</p>
-<p>单引号</p>
-<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E5%9B%9B%E5%85%B3/image-20220122202426648.png" alt="image-20220122202426648"></p>
-<p>双引号</p>
-<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E5%9B%9B%E5%85%B3/image-20220122202438806.png" alt="image-20220122202438806"></p>
-<p>尝试<code>id=1&quot;--+</code></p>
-<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E5%9B%9B%E5%85%B3/image-20220122202506543.png" alt="image-20220122202506543"></p>
-<p>则这是双引号加括号闭合</p>
-<p>其余都一样了，不做解释了</p>
-<p>最终结果</p>
-<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E5%9B%9B%E5%85%B3/image-20220122202932430.png" alt="image-20220122202932430"></p>
-<p>总结一下前四关，都可以用联合注入，比较简单，后面就是别的注入方式了（呜呜呜，我是菜鸡），接下来也要好好加油呀！！！</p>
-]]></content>
-      <tags>
-        <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>“解决codeblocks无法运行c++程序&quot;</title>
     <url>/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/</url>
     <content><![CDATA[<p>下载Codeblocks后，创建新程序后，发现点击运行后无法弹出控制台，如图</p>
@@ -2595,6 +2560,41 @@
 ]]></content>
       <tags>
         <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqlilabs第四关</title>
+    <url>/2022/01/22/sqlilabs%E7%AC%AC%E5%9B%9B%E5%85%B3/</url>
+    <content><![CDATA[<p>p判断闭合方式</p>
+<p>首先</p>
+<p><code>id=1&#39;</code></p>
+<p><code>id=1&quot;</code></p>
+<p>若都报错是整型</p>
+<p>若仅有单引号报错，则尝试</p>
+<p><code>id=1&#39;--+</code></p>
+<p>不报错就是单引号闭合，否则为单引号加括号</p>
+<p>若仅有双引号报错，则尝试</p>
+<p><code>id=1&quot;--+</code></p>
+<p>不报错就是双引号闭合，否则为双引号加括号</p>
+<span id="more"></span>
+
+
+
+<p>开始判断</p>
+<p>单引号</p>
+<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E5%9B%9B%E5%85%B3/image-20220122202426648.png" alt="image-20220122202426648"></p>
+<p>双引号</p>
+<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E5%9B%9B%E5%85%B3/image-20220122202438806.png" alt="image-20220122202438806"></p>
+<p>尝试<code>id=1&quot;--+</code></p>
+<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E5%9B%9B%E5%85%B3/image-20220122202506543.png" alt="image-20220122202506543"></p>
+<p>则这是双引号加括号闭合</p>
+<p>其余都一样了，不做解释了</p>
+<p>最终结果</p>
+<p><img src="/2022/01/22/sqlilabs%E7%AC%AC%E5%9B%9B%E5%85%B3/image-20220122202932430.png" alt="image-20220122202932430"></p>
+<p>总结一下前四关，都可以用联合注入，比较简单，后面就是别的注入方式了（呜呜呜，我是菜鸡），接下来也要好好加油呀！！！</p>
+]]></content>
+      <tags>
+        <tag>SQL</tag>
       </tags>
   </entry>
   <entry>
@@ -2798,6 +2798,42 @@
 
 <p><img src="/2022/03/01/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-6/image-20220305171333948.png" alt="image-20220305171333948"></p>
 <p>每个都cat一下，最终得到flag</p>
+]]></content>
+      <tags>
+        <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>刷题记录-7</title>
+    <url>/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/</url>
+    <content><![CDATA[<h1 id="Pretty-Horrible-Program-1"><a href="#Pretty-Horrible-Program-1" class="headerlink" title="Pretty Horrible Program 1"></a>Pretty Horrible Program 1</h1><p>这道题水得很，虽然我没有完全看懂源码，但也能稍作注释</p>
+<span id="more"></span>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;bingus&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$input</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;bingus&#x27;</span>];  <span class="comment">//把get到的值赋给input</span></span><br><span class="line">    <span class="variable">$to_replace</span> = <span class="string">&#x27;bingus&#x27;</span>;  <span class="comment">//让to_replace为bingus</span></span><br><span class="line">    <span class="variable">$clean_string</span> = preg_replace(<span class="string">&quot;/<span class="subst">$to_replace</span>/&quot;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$input</span>);<span class="comment">//让clean_string为input中把bingus替换为空格后的值</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Your string is: <span class="subst">$clean_string</span>&lt;/p&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$clean_string</span> == <span class="variable">$to_replace</span>) &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=\&quot;answer\&quot;&gt;Bingus &lt;span style=\&quot;color: green;\&quot;&gt;IS&lt;/span&gt; your beloved&lt;/h2&gt;&quot;</span>;  <span class="comment">//如果clean_string的值为bingus，那么输出flag</span></span><br><span class="line">      output_flag();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=\&quot;answer\&quot;&gt;Bingus &lt;span style=\&quot;color: red;\&quot;&gt;IS NOT&lt;/span&gt; your beloved&lt;/h2&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是通过输入bingus回显空，输入aaa回显aaa，所以我们双写绕过，也就是binbingusgus，得到flag</p>
+<h1 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h1><p>首先要知道什么是shell，这里我们摘自百度百科：</p>
+<p>Shell 是一个应用程序，它连接了用户和 Linux 内核，让用户能够更加高效、安全、低成本地使用 Linux 内核，这就是 Shell 的本质。 Shell 本身并不是内核的一部分，它只是站在内核的基础上编写的一个应用程序，它和 QQ、迅雷、Firefox 等其它软件没有什么区别。 然而 Shell 也有着它的特殊性，就是开机立马启动，并呈现在用户面前；用户通过 Shell 来使用 Linux，不启动 Shell 的话，用户就没办法使用 Linux。 Shell 是如何连接用户和内核的？ Shell 能够接收用户输入的命令，并对命令进行处理，处理完毕后再将结果反馈给用户，比如输出到显示器、写入到文件等，这就是大部分读者对 Shell 的认知。</p>
+<p>简单来说，shell就是运行linux命令的前提，所以这里绝对和命令执行相关</p>
+<p>题目提示为：送给大家一个过狗一句话 $poc=”a#s#s#e#r#t”; $poc_1=explode(“#”,$poc); $poc_2=$poc_1[0].$poc_1[1].$poc_1[2].$poc_1[3].$poc_1[4].$poc_1[5]; $poc_2($_GET[‘s’])</p>
+<p>这里我们可以发现存在变量s，并由我们接收我们输入的内容，所以我们直接令s=ls，无回显，那么我们在最后加一个;  可是还是没有回显，接着我们令s=system(“ls”) ，有回显关键字，我们cat一下文档得到flag。</p>
+<p>由此可推出，这里s输入的是一段命令，并且可被执行。</p>
+<h1 id="社工-伪造"><a href="#社工-伪造" class="headerlink" title="社工-伪造"></a>社工-伪造</h1><p>真的很无语，想来想去找不到办法，结果看了一下wp，我直接当场去世，要把自己的qq昵称和头像换成他的男友才行，直接登录他男友的账号是不行的，有字符过滤。头一次见这个，很牛p。</p>
+<h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
+<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
+<p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
+<p>User：<a href="mailto:&#x62;&#117;&#x67;&#x6b;&#x75;&#x6b;&#x75;&#64;&#49;&#x36;&#51;&#x2e;&#x63;&#x6f;&#x6d;">&#x62;&#117;&#x67;&#x6b;&#x75;&#x6b;&#x75;&#64;&#49;&#x36;&#51;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
+<p>Pass：XSLROCPMNWWZQDZL</p>
+<p>登录显示密码错误，然后继续看wp</p>
+<p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
+<p>用win10自带的邮箱登录成功</p>
+<p>然后找了半天也没找的关键邮件，可能是被删了，但是按照wp上说，会有一个如下的邮件</p>
+<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181540251.png" alt="image-20220402181540251"></p>
+<p>我们猜测可能是生日为密码，mara为账户</p>
+<p>推算的生日为20010206，登录后台得到flag</p>
+<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181728774.png" alt="image-20220402181728774"></p>
+<h1 id="程序员本地网站"><a href="#程序员本地网站" class="headerlink" title="程序员本地网站"></a>程序员本地网站</h1><p>X-Forwarded-For:127.0.0.1</p>
+<p>无语住了</p>
 ]]></content>
       <tags>
         <tag>刷题</tag>

@@ -20,26 +20,24 @@
     var CONFIG = {"hostname":"harbeter.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="php:&#x2F;&#x2F;filter 协议 1是格式2是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）3是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag">
+  <meta name="description" content="Pretty Horrible Program 1这道题水得很，虽然我没有完全看懂源码，但也能稍作注释">
 <meta property="og:type" content="article">
-<meta property="og:title" content="php:&#x2F;&#x2F;filter 协议">
-<meta property="og:url" content="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:title" content="刷题记录-7">
+<meta property="og:url" content="https://harbeter.github.io/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/index.html">
 <meta property="og:site_name" content="像风吹过八千里">
-<meta property="og:description" content="php:&#x2F;&#x2F;filter 协议 1是格式2是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）3是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag">
+<meta property="og:description" content="Pretty Horrible Program 1这道题水得很，虽然我没有完全看懂源码，但也能稍作注释">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png">
-<meta property="og:image" content="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png">
-<meta property="og:image" content="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png">
-<meta property="og:image" content="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png">
-<meta property="og:image" content="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png">
-<meta property="article:published_time" content="2021-12-05T08:36:20.251Z">
-<meta property="article:modified_time" content="2022-01-29T12:28:20.473Z">
+<meta property="og:image" content="https://harbeter.github.io/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181540251.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181728774.png">
+<meta property="article:published_time" content="2022-04-02T03:45:22.365Z">
+<meta property="article:modified_time" content="2022-04-02T10:31:23.768Z">
 <meta property="article:author" content="Harbeter">
-<meta property="article:tag" content="php协议">
+<meta property="article:tag" content="刷题">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png">
+<meta name="twitter:image" content="https://harbeter.github.io/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png">
 
-<link rel="canonical" href="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/">
+<link rel="canonical" href="https://harbeter.github.io/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/">
 
 
 <script id="page-configurations">
@@ -52,7 +50,7 @@
   };
 </script>
 
-  <title>php://filter 协议 | 像风吹过八千里</title>
+  <title>刷题记录-7 | 像风吹过八千里</title>
   
 
 
@@ -192,7 +190,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/">
+    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -205,7 +203,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          php://filter 协议
+          刷题记录-7
         </h1>
 
         <div class="post-meta">
@@ -214,16 +212,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-12-05 16:36:20" itemprop="dateCreated datePublished" datetime="2021-12-05T16:36:20+08:00">2021-12-05</time>
+              <time title="创建时间：2022-04-02 11:45:22 / 修改时间：18:31:23" itemprop="dateCreated datePublished" datetime="2022-04-02T11:45:22+08:00">2022-04-02</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-29 20:28:20" itemprop="dateModified" datetime="2022-01-29T20:28:20+08:00">2022-01-29</time>
-              </span>
 
           
 
@@ -236,22 +228,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
-<p><strong>1</strong>是格式<br><strong>2</strong>是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br><strong>3</strong>是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br><strong>4</strong>是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
+        <h1 id="Pretty-Horrible-Program-1"><a href="#Pretty-Horrible-Program-1" class="headerlink" title="Pretty Horrible Program 1"></a>Pretty Horrible Program 1</h1><p>这道题水得很，虽然我没有完全看懂源码，但也能稍作注释</p>
 <span id="more"></span>
 
-<p>转base64编码：<code>convert.base64-encode</code></p>
-<p>转大写：<code>string.toupper</code></p>
-<p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
-<p>例题：</p>
-<h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
-<p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
-<p>构造：<code>php://filter/read=convert.base64-encode/resource=flag.php</code></p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
-<p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
-<p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;bingus&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$input</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;bingus&#x27;</span>];  <span class="comment">//把get到的值赋给input</span></span><br><span class="line">    <span class="variable">$to_replace</span> = <span class="string">&#x27;bingus&#x27;</span>;  <span class="comment">//让to_replace为bingus</span></span><br><span class="line">    <span class="variable">$clean_string</span> = preg_replace(<span class="string">&quot;/<span class="subst">$to_replace</span>/&quot;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$input</span>);<span class="comment">//让clean_string为input中把bingus替换为空格后的值</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Your string is: <span class="subst">$clean_string</span>&lt;/p&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$clean_string</span> == <span class="variable">$to_replace</span>) &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=\&quot;answer\&quot;&gt;Bingus &lt;span style=\&quot;color: green;\&quot;&gt;IS&lt;/span&gt; your beloved&lt;/h2&gt;&quot;</span>;  <span class="comment">//如果clean_string的值为bingus，那么输出flag</span></span><br><span class="line">      output_flag();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=\&quot;answer\&quot;&gt;Bingus &lt;span style=\&quot;color: red;\&quot;&gt;IS NOT&lt;/span&gt; your beloved&lt;/h2&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是通过输入bingus回显空，输入aaa回显aaa，所以我们双写绕过，也就是binbingusgus，得到flag</p>
+<h1 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h1><p>首先要知道什么是shell，这里我们摘自百度百科：</p>
+<p>Shell 是一个应用程序，它连接了用户和 Linux 内核，让用户能够更加高效、安全、低成本地使用 Linux 内核，这就是 Shell 的本质。 Shell 本身并不是内核的一部分，它只是站在内核的基础上编写的一个应用程序，它和 QQ、迅雷、Firefox 等其它软件没有什么区别。 然而 Shell 也有着它的特殊性，就是开机立马启动，并呈现在用户面前；用户通过 Shell 来使用 Linux，不启动 Shell 的话，用户就没办法使用 Linux。 Shell 是如何连接用户和内核的？ Shell 能够接收用户输入的命令，并对命令进行处理，处理完毕后再将结果反馈给用户，比如输出到显示器、写入到文件等，这就是大部分读者对 Shell 的认知。</p>
+<p>简单来说，shell就是运行linux命令的前提，所以这里绝对和命令执行相关</p>
+<p>题目提示为：送给大家一个过狗一句话 $poc=”a#s#s#e#r#t”; $poc_1=explode(“#”,$poc); $poc_2=$poc_1[0].$poc_1[1].$poc_1[2].$poc_1[3].$poc_1[4].$poc_1[5]; $poc_2($_GET[‘s’])</p>
+<p>这里我们可以发现存在变量s，并由我们接收我们输入的内容，所以我们直接令s=ls，无回显，那么我们在最后加一个;  可是还是没有回显，接着我们令s=system(“ls”) ，有回显关键字，我们cat一下文档得到flag。</p>
+<p>由此可推出，这里s输入的是一段命令，并且可被执行。</p>
+<h1 id="社工-伪造"><a href="#社工-伪造" class="headerlink" title="社工-伪造"></a>社工-伪造</h1><p>真的很无语，想来想去找不到办法，结果看了一下wp，我直接当场去世，要把自己的qq昵称和头像换成他的男友才行，直接登录他男友的账号是不行的，有字符过滤。头一次见这个，很牛p。</p>
+<h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
+<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
+<p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
+<p>User：<a href="mailto:&#x62;&#117;&#x67;&#x6b;&#x75;&#x6b;&#x75;&#64;&#49;&#x36;&#51;&#x2e;&#x63;&#x6f;&#x6d;">&#x62;&#117;&#x67;&#x6b;&#x75;&#x6b;&#x75;&#64;&#49;&#x36;&#51;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
+<p>Pass：XSLROCPMNWWZQDZL</p>
+<p>登录显示密码错误，然后继续看wp</p>
+<p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
+<p>用win10自带的邮箱登录成功</p>
+<p>然后找了半天也没找的关键邮件，可能是被删了，但是按照wp上说，会有一个如下的邮件</p>
+<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181540251.png" alt="image-20220402181540251"></p>
+<p>我们猜测可能是生日为密码，mara为账户</p>
+<p>推算的生日为20010206，登录后台得到flag</p>
+<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181728774.png" alt="image-20220402181728774"></p>
+<h1 id="程序员本地网站"><a href="#程序员本地网站" class="headerlink" title="程序员本地网站"></a>程序员本地网站</h1><p>X-Forwarded-For:127.0.0.1</p>
+<p>无语住了</p>
 
     </div>
 
@@ -261,7 +265,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/php%E5%8D%8F%E8%AE%AE/" rel="tag"># php协议</a>
+              <a href="/tags/%E5%88%B7%E9%A2%98/" rel="tag"># 刷题</a>
           </div>
 
         
@@ -270,13 +274,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/12/05/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98%202019Havefun/" rel="prev" title="极客大挑战 2019Havefun">
-      <i class="fa fa-chevron-left"></i> 极客大挑战 2019Havefun
+    <a href="/2022/03/26/bugku%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%952/" rel="prev" title="bugku刷题记录2">
+      <i class="fa fa-chevron-left"></i> bugku刷题记录2
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/12/05/bugku-bp/" rel="next" title="bugku-bp">
-      bugku-bp <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -335,7 +336,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#php-filter-%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.</span> <span class="nav-text">php:&#x2F;&#x2F;filter 协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9BInclude"><span class="nav-number">2.</span> <span class="nav-text">ACTF2020 新生赛Include</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pretty-Horrible-Program-1"><span class="nav-number">1.</span> <span class="nav-text">Pretty Horrible Program 1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Shell"><span class="nav-number">2.</span> <span class="nav-text">Shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A4%BE%E5%B7%A5-%E4%BC%AA%E9%80%A0"><span class="nav-number">3.</span> <span class="nav-text">社工-伪造</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A4%BE%E5%B7%A5-%E5%88%9D%E6%AD%A5%E6%94%B6%E9%9B%86"><span class="nav-number">4.</span> <span class="nav-text">社工-初步收集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E5%91%98%E6%9C%AC%E5%9C%B0%E7%BD%91%E7%AB%99"><span class="nav-number">5.</span> <span class="nav-text">程序员本地网站</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
