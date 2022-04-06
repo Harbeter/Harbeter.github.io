@@ -250,7 +250,7 @@
 <h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
 <p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
 <p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
-<p>User：<a href="mailto:&#x62;&#117;&#x67;&#107;&#x75;&#x6b;&#x75;&#64;&#x31;&#x36;&#x33;&#x2e;&#99;&#111;&#109;">&#x62;&#117;&#x67;&#107;&#x75;&#x6b;&#x75;&#64;&#x31;&#x36;&#x33;&#x2e;&#99;&#111;&#109;</a></p>
+<p>User：<a href="mailto:&#98;&#117;&#x67;&#x6b;&#117;&#107;&#x75;&#64;&#x31;&#x36;&#51;&#x2e;&#x63;&#x6f;&#109;">&#98;&#117;&#x67;&#x6b;&#117;&#107;&#x75;&#64;&#x31;&#x36;&#51;&#x2e;&#x63;&#x6f;&#109;</a></p>
 <p>Pass：XSLROCPMNWWZQDZL</p>
 <p>登录显示密码错误，然后继续看wp</p>
 <p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
@@ -283,7 +283,10 @@
     <a href="/2022/03/26/bugku%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%952/" rel="prev" title="bugku刷题记录2">
       <i class="fa fa-chevron-left"></i> bugku刷题记录2
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/06/C-%E7%9A%84%E4%B8%89%E7%A7%8D%E4%BC%A0%E5%80%BC%E6%96%B9%E5%BC%8F/" rel="next" title="C++的三种传值方式">
+      C++的三种传值方式 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -358,7 +361,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
