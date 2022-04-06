@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://harbeter.github.io/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181540251.png">
 <meta property="og:image" content="https://harbeter.github.io/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181728774.png">
 <meta property="article:published_time" content="2022-04-02T03:45:22.365Z">
-<meta property="article:modified_time" content="2022-04-02T10:31:23.768Z">
+<meta property="article:modified_time" content="2022-04-03T05:18:38.597Z">
 <meta property="article:author" content="Harbeter">
 <meta property="article:tag" content="刷题">
 <meta name="twitter:card" content="summary">
@@ -212,10 +212,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-04-02 11:45:22 / 修改时间：18:31:23" itemprop="dateCreated datePublished" datetime="2022-04-02T11:45:22+08:00">2022-04-02</time>
+              <time title="创建时间：2022-04-02 11:45:22" itemprop="dateCreated datePublished" datetime="2022-04-02T11:45:22+08:00">2022-04-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-04-03 13:18:38" itemprop="dateModified" datetime="2022-04-03T13:18:38+08:00">2022-04-03</time>
+              </span>
 
           
 
@@ -244,7 +250,7 @@
 <h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
 <p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
 <p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
-<p>User：<a href="mailto:&#x62;&#117;&#x67;&#x6b;&#x75;&#x6b;&#x75;&#64;&#49;&#x36;&#51;&#x2e;&#x63;&#x6f;&#x6d;">&#x62;&#117;&#x67;&#x6b;&#x75;&#x6b;&#x75;&#64;&#49;&#x36;&#51;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
+<p>User：<a href="mailto:&#98;&#117;&#x67;&#x6b;&#x75;&#x6b;&#117;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#x6f;&#109;">&#98;&#117;&#x67;&#x6b;&#x75;&#x6b;&#117;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#x6f;&#109;</a></p>
 <p>Pass：XSLROCPMNWWZQDZL</p>
 <p>登录显示密码错误，然后继续看wp</p>
 <p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
