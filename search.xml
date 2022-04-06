@@ -534,83 +534,6 @@
       </tags>
   </entry>
   <entry>
-    <title>C++的函数</title>
-    <url>/2022/01/17/C-%E7%9A%84%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>将一串经常会使用的代码封装起来，减少重复代码。一个较大的程序，一般分为若干个程序块，每个模块实现特定的功能。</p>
-<h1 id="函数的定义"><a href="#函数的定义" class="headerlink" title="函数的定义"></a>函数的定义</h1><p>函数的定义一般分为5个步骤：</p>
-<ul>
-<li><p>返回值类型</p>
-</li>
-<li><p>函数名</p>
-</li>
-<li><p>参数表列</p>
-</li>
-<li><p>函数体语句</p>
-</li>
-<li><p>return表达式</p>
-<span id="more"></span>
-
-<p>语法：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">返回值类型 函数名  (参数列表)</span><br><span class="line">&#123;</span><br><span class="line">	函数体语句</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span>表达式</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>例如</p>
-<p>实现一个加法函数</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> s=a+b;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="函数的调用"><a href="#函数的调用" class="headerlink" title="函数的调用"></a>函数的调用</h1><p>语法：<code>函数名(参数)</code></p>
-<p>例如</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> s=a+b;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m,n;</span><br><span class="line">    cin&gt;&gt;m&gt;&gt;n;</span><br><span class="line">	<span class="keyword">int</span> c=<span class="built_in">add</span>(m,n); <span class="comment">//此处m和n均为整型,叫实际参数，简称实参</span></span><br><span class="line">	cout&lt;&lt;c&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：定义时a，b并没有真实数据，只是一个形式，叫做形参。当调用函数时，实参的值会传给形参</strong></p>
-<h1 id="值传递"><a href="#值传递" class="headerlink" title="值传递"></a>值传递</h1><p>定义：值传递就是函数调用时实参将数值传给形参</p>
-<p>形参发生变化，不会影响实参</p>
-<p>示例</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ex</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;交换前第一个数&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;交换前第二个数&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">        <span class="keyword">int</span> t=a;</span><br><span class="line">        a=b;</span><br><span class="line">        b=t;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;交换后第一个数&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;交换后第二个数&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">        <span class="comment">//return s;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m,n;</span><br><span class="line">    cin&gt;&gt;m&gt;&gt;n;</span><br><span class="line">	<span class="built_in">ex</span>(m,n);</span><br><span class="line">	cout&lt;&lt;m&lt;&lt;n&lt;&lt;endl;<span class="comment">//实参不变，也就是m还是第一个输入的数,变化的是形参</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="函数常见样式"><a href="#函数常见样式" class="headerlink" title="函数常见样式"></a>函数常见样式</h1><ul>
-<li><p>无参无返</p>
-</li>
-<li><p>有参有返</p>
-</li>
-<li><p>无参有返</p>
-</li>
-<li><p>有参有返</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//无参无返</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;无参无返&quot;</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//有参无返</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test2</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;有参无返 a=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//无参有返</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">test3</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;无参有返&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">555</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//有参有返</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">test4</span><span class="params">(<span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;有参有返 t=&quot;</span>&lt;&lt;t&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">666</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">test1</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n=<span class="number">100</span>;</span><br><span class="line">    <span class="built_in">test2</span>(n);<span class="comment">//传参100</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> c;</span><br><span class="line">    c=<span class="built_in">test3</span>();</span><br><span class="line">    cout&lt;&lt;c&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> d;</span><br><span class="line">    d=<span class="built_in">test4</span>(<span class="number">100</span>);<span class="comment">//100传给t 返回666</span></span><br><span class="line">    cout&lt;&lt;d&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="函数的声明"><a href="#函数的声明" class="headerlink" title="函数的声明"></a>函数的声明</h1><p>作用：告诉编译器函数名称及如何调用函数。函数的实际本体可以单独定义。</p>
-<ul>
-<li>函数的<strong>声明可以多次</strong>，但是函数的<strong>定义只能有一次</strong></li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a&gt;b?a:b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">m</span>(a,b)&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>若不声明，定义只能在main函数之前，如上。</p>
-<p>定义后</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;<span class="comment">//声明(可以有多次，如此,一般就写一次.定义不能这样)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">m</span>(a,b)&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a&gt;b?a:b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="函数的分文件编写"><a href="#函数的分文件编写" class="headerlink" title="函数的分文件编写"></a>函数的分文件编写</h1><p>作用：让代码块结构更加清晰</p>
-<p>函数分文件编写一般有4个步骤</p>
-<ol>
-<li>创建后缀名为**.h**的头文件</li>
-<li>创建后缀名为**.cpp**的源文件</li>
-<li>在头文件中写函数声明</li>
-<li>在源文件中写函数定义</li>
-</ol>
-<p>示例</p>
-<p>头文件 max.h</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;<span class="comment">//声明</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>源文件max.cpp</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span><span class="comment">//定义</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a&gt;b?a:b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>main.cpp</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;max.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">m</span>(a,b)&lt;&lt;endl; <span class="comment">//直接引用</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++运算符</title>
     <url>/2021/12/10/C-%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
     <content><![CDATA[<h1 id="1-运算符类型"><a href="#1-运算符类型" class="headerlink" title="1.运算符类型"></a>1.运算符类型</h1><p>运算运算符：用于四则运算</p>
@@ -897,6 +820,83 @@
 ]]></content>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++的函数</title>
+    <url>/2022/01/17/C-%E7%9A%84%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>将一串经常会使用的代码封装起来，减少重复代码。一个较大的程序，一般分为若干个程序块，每个模块实现特定的功能。</p>
+<h1 id="函数的定义"><a href="#函数的定义" class="headerlink" title="函数的定义"></a>函数的定义</h1><p>函数的定义一般分为5个步骤：</p>
+<ul>
+<li><p>返回值类型</p>
+</li>
+<li><p>函数名</p>
+</li>
+<li><p>参数表列</p>
+</li>
+<li><p>函数体语句</p>
+</li>
+<li><p>return表达式</p>
+<span id="more"></span>
+
+<p>语法：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">返回值类型 函数名  (参数列表)</span><br><span class="line">&#123;</span><br><span class="line">	函数体语句</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span>表达式</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>例如</p>
+<p>实现一个加法函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> s=a+b;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="函数的调用"><a href="#函数的调用" class="headerlink" title="函数的调用"></a>函数的调用</h1><p>语法：<code>函数名(参数)</code></p>
+<p>例如</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> s=a+b;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m,n;</span><br><span class="line">    cin&gt;&gt;m&gt;&gt;n;</span><br><span class="line">	<span class="keyword">int</span> c=<span class="built_in">add</span>(m,n); <span class="comment">//此处m和n均为整型,叫实际参数，简称实参</span></span><br><span class="line">	cout&lt;&lt;c&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：定义时a，b并没有真实数据，只是一个形式，叫做形参。当调用函数时，实参的值会传给形参</strong></p>
+<h1 id="值传递"><a href="#值传递" class="headerlink" title="值传递"></a>值传递</h1><p>定义：值传递就是函数调用时实参将数值传给形参</p>
+<p>形参发生变化，不会影响实参</p>
+<p>示例</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ex</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;交换前第一个数&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;交换前第二个数&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">        <span class="keyword">int</span> t=a;</span><br><span class="line">        a=b;</span><br><span class="line">        b=t;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;交换后第一个数&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;交换后第二个数&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">        <span class="comment">//return s;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m,n;</span><br><span class="line">    cin&gt;&gt;m&gt;&gt;n;</span><br><span class="line">	<span class="built_in">ex</span>(m,n);</span><br><span class="line">	cout&lt;&lt;m&lt;&lt;n&lt;&lt;endl;<span class="comment">//实参不变，也就是m还是第一个输入的数,变化的是形参</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="函数常见样式"><a href="#函数常见样式" class="headerlink" title="函数常见样式"></a>函数常见样式</h1><ul>
+<li><p>无参无返</p>
+</li>
+<li><p>有参有返</p>
+</li>
+<li><p>无参有返</p>
+</li>
+<li><p>有参有返</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//无参无返</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;无参无返&quot;</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//有参无返</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test2</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;有参无返 a=&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//无参有返</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">test3</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;无参有返&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">555</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//有参有返</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">test4</span><span class="params">(<span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;有参有返 t=&quot;</span>&lt;&lt;t&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">666</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">test1</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n=<span class="number">100</span>;</span><br><span class="line">    <span class="built_in">test2</span>(n);<span class="comment">//传参100</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> c;</span><br><span class="line">    c=<span class="built_in">test3</span>();</span><br><span class="line">    cout&lt;&lt;c&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> d;</span><br><span class="line">    d=<span class="built_in">test4</span>(<span class="number">100</span>);<span class="comment">//100传给t 返回666</span></span><br><span class="line">    cout&lt;&lt;d&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="函数的声明"><a href="#函数的声明" class="headerlink" title="函数的声明"></a>函数的声明</h1><p>作用：告诉编译器函数名称及如何调用函数。函数的实际本体可以单独定义。</p>
+<ul>
+<li>函数的<strong>声明可以多次</strong>，但是函数的<strong>定义只能有一次</strong></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a&gt;b?a:b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">m</span>(a,b)&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>若不声明，定义只能在main函数之前，如上。</p>
+<p>定义后</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;<span class="comment">//声明(可以有多次，如此,一般就写一次.定义不能这样)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">m</span>(a,b)&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a&gt;b?a:b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="函数的分文件编写"><a href="#函数的分文件编写" class="headerlink" title="函数的分文件编写"></a>函数的分文件编写</h1><p>作用：让代码块结构更加清晰</p>
+<p>函数分文件编写一般有4个步骤</p>
+<ol>
+<li>创建后缀名为**.h**的头文件</li>
+<li>创建后缀名为**.cpp**的源文件</li>
+<li>在头文件中写函数声明</li>
+<li>在源文件中写函数定义</li>
+</ol>
+<p>示例</p>
+<p>头文件 max.h</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;<span class="comment">//声明</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>源文件max.cpp</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">m</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span><span class="comment">//定义</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a&gt;b?a:b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>main.cpp</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;max.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">m</span>(a,b)&lt;&lt;endl; <span class="comment">//直接引用</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -1755,50 +1755,6 @@
       </tags>
   </entry>
   <entry>
-    <title>bugku刷题记录</title>
-    <url>/2022/03/15/bugku%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h1 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h1><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">include</span> <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line">    <span class="variable">$a</span> = @<span class="variable">$_REQUEST</span>[<span class="string">&#x27;hello&#x27;</span>];</span><br><span class="line">    <span class="keyword">eval</span>( <span class="string">&quot;var_dump(<span class="subst">$a</span>);&quot;</span>);</span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br></pre></td></tr></table></figure>
-
-<p>这里相当于用到了两个函数</p>
-<span id="more"></span>
-
-<p>第一个file()，这个函数是把一整个文件读入到一个数组中</p>
-<p>然后var_dump()是输出变量相关信息</p>
-<p>所以payload为</p>
-<p><code>/?hello=file(&quot;flag.php&quot;)</code></p>
-<p>注意要有双引号奥</p>
-<h1 id="头等舱"><a href="#头等舱" class="headerlink" title="头等舱"></a>头等舱</h1><p>进去页面提示什么也没有，题目为头等舱，联想到网页头，然后我们用bp抓包，然后发往repeater，最后在Respones中的Headers里面发现flag</p>
-<h1 id="网站被黑"><a href="#网站被黑" class="headerlink" title="网站被黑"></a>网站被黑</h1><p>题目提示有后门</p>
-<p>后门：用于获得对程序或在线服务访问权限的秘密方式</p>
-<p>也就是说，有别的网页喽，先用御剑扫一下，扫不出来换kali里面的dirsearch</p>
-<p>我们用御剑扫描php文件，很快就会发现存在shell.php文件，进入后需要密码，先尝试了一下万能密码，似乎不行，然后我们直接上Bp进行爆破</p>
-<p>最后得到密码 hack，进去后得到flag</p>
-<h1 id="变量1"><a href="#变量1" class="headerlink" title="变量1"></a>变量1</h1><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//flag In the variable ! </span></span><br><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line"></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;flag1.php&quot;</span>;</span><br><span class="line">highlight_file(<span class="keyword">__file__</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;args&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$args</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;args&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(!preg_match(<span class="string">&quot;/^\w+$/&quot;</span>,<span class="variable">$args</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;args error!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">eval</span>(<span class="string">&quot;var_dump($<span class="subst">$args</span>);&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><code>^\w+$</code> 表示的是匹配都是字母的串，$$args是一个可变变量，而如果$args的值为另一个变量的变量名，$$args就可以代表另一个变量，也就是说，我们要输入包含flag的变量名，打印这个变量所包含的值才能得到flag，但是我们根本不知道该变量名。</p>
-<p>所以可以考虑依次给args赋值php中的九大全局变量（<code>$_POST，$_GET，$_FILES，$_COOKIE，$_SESSION，$_REQUEST，$SERVER，$GLOBALS，$_ENV</code>）</p>
-<p>所以让args=GLOBALS来打印全部变量，从而得到flag</p>
-<h1 id="本地管理员"><a href="#本地管理员" class="headerlink" title="本地管理员"></a>本地管理员</h1><p>由题可知，要有本地的许可，所以我们在Request中添加</p>
-<p><code>X-Forwarded-For:127.0.0.1</code></p>
-<p>然后接着我想用Bp爆破，可是终究没有出来，观察爆破结果，可以发现nnnnn后面有一段base64密文，解密后得到test123，所以我们猜测这是密码，然后尝试admin登录，得到flag</p>
-<h1 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h1><p>提示查看源代码，查看后发现一大堆url编码，按要求解码后得到</p>
-<p><img src="/2022/03/15/bugku%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220315222702123.png" alt="image-20220315222702123"></p>
-<p>看不懂啊看不懂，但是有一段很神奇的密文，看wp都说提交后得到flag，我也不知道为啥呜呜呜</p>
-<h1 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h1><p>这种题一般都有<code>/?file=</code>这种格式，然后我们要用的就是filter协议，让源码转换成base64密文输出后再解密，</p>
-<p><code>?file=php://filter/read=convert.base64-encode/resource=index.php</code></p>
-<p>然后解密即可得到flag</p>
-<p>文件包含这里也会有命令执行的部分，比如<code>/?file=../flag</code>，这里的意思一目了然。</p>
-<p>关键函数是include，但是一般没这么容易，会有很多过滤</p>
-<h1 id="好像需要密码"><a href="#好像需要密码" class="headerlink" title="好像需要密码"></a>好像需要密码</h1><p>经典爆破，这里提示我们是5位数，所以我们从00001到99999逐个爆破，并且选择有效整数为5位，然后静静等待便可得到flag</p>
-<p><img src="/2022/03/15/bugku%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220319211909723.png" alt="image-20220319211909723"></p>
-<h1 id="成绩查询"><a href="#成绩查询" class="headerlink" title="成绩查询"></a>成绩查询</h1><p>一开始我以为没有回显，原来是id设置的太小了呜呜呜，果断放弃盲注，虽然我也没有注入出来，好垃圾</p>
-<p>然后就是经典的联合注入了。不知道为啥盲注不行，很烦。</p>
-]]></content>
-      <tags>
-        <tag>刷题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>bugku刷题记录2</title>
     <url>/2022/03/26/bugku%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%952/</url>
     <content><![CDATA[<h1 id="备份是个好习惯"><a href="#备份是个好习惯" class="headerlink" title="备份是个好习惯"></a>备份是个好习惯</h1><p>既然是备份题，废话不多说，直接御剑扫描，结果出来index.php.bak文件，下载之后打开</p>
@@ -1849,6 +1805,50 @@
 <p><img src="/2022/03/26/bugku%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%952/image-20220327112636895.png" alt="image-20220327112636895"></p>
 <p>然后我们就一个一个的<code>git show 哈希值</code>不用切换，直接查看（新学的git show 以前不知道）</p>
 <p>最后得到flag</p>
+]]></content>
+      <tags>
+        <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bugku刷题记录</title>
+    <url>/2022/03/15/bugku%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h1><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">include</span> <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line">    <span class="variable">$a</span> = @<span class="variable">$_REQUEST</span>[<span class="string">&#x27;hello&#x27;</span>];</span><br><span class="line">    <span class="keyword">eval</span>( <span class="string">&quot;var_dump(<span class="subst">$a</span>);&quot;</span>);</span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这里相当于用到了两个函数</p>
+<span id="more"></span>
+
+<p>第一个file()，这个函数是把一整个文件读入到一个数组中</p>
+<p>然后var_dump()是输出变量相关信息</p>
+<p>所以payload为</p>
+<p><code>/?hello=file(&quot;flag.php&quot;)</code></p>
+<p>注意要有双引号奥</p>
+<h1 id="头等舱"><a href="#头等舱" class="headerlink" title="头等舱"></a>头等舱</h1><p>进去页面提示什么也没有，题目为头等舱，联想到网页头，然后我们用bp抓包，然后发往repeater，最后在Respones中的Headers里面发现flag</p>
+<h1 id="网站被黑"><a href="#网站被黑" class="headerlink" title="网站被黑"></a>网站被黑</h1><p>题目提示有后门</p>
+<p>后门：用于获得对程序或在线服务访问权限的秘密方式</p>
+<p>也就是说，有别的网页喽，先用御剑扫一下，扫不出来换kali里面的dirsearch</p>
+<p>我们用御剑扫描php文件，很快就会发现存在shell.php文件，进入后需要密码，先尝试了一下万能密码，似乎不行，然后我们直接上Bp进行爆破</p>
+<p>最后得到密码 hack，进去后得到flag</p>
+<h1 id="变量1"><a href="#变量1" class="headerlink" title="变量1"></a>变量1</h1><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//flag In the variable ! </span></span><br><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line"></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;flag1.php&quot;</span>;</span><br><span class="line">highlight_file(<span class="keyword">__file__</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;args&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$args</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;args&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(!preg_match(<span class="string">&quot;/^\w+$/&quot;</span>,<span class="variable">$args</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;args error!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">eval</span>(<span class="string">&quot;var_dump($<span class="subst">$args</span>);&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>^\w+$</code> 表示的是匹配都是字母的串，$$args是一个可变变量，而如果$args的值为另一个变量的变量名，$$args就可以代表另一个变量，也就是说，我们要输入包含flag的变量名，打印这个变量所包含的值才能得到flag，但是我们根本不知道该变量名。</p>
+<p>所以可以考虑依次给args赋值php中的九大全局变量（<code>$_POST，$_GET，$_FILES，$_COOKIE，$_SESSION，$_REQUEST，$SERVER，$GLOBALS，$_ENV</code>）</p>
+<p>所以让args=GLOBALS来打印全部变量，从而得到flag</p>
+<h1 id="本地管理员"><a href="#本地管理员" class="headerlink" title="本地管理员"></a>本地管理员</h1><p>由题可知，要有本地的许可，所以我们在Request中添加</p>
+<p><code>X-Forwarded-For:127.0.0.1</code></p>
+<p>然后接着我想用Bp爆破，可是终究没有出来，观察爆破结果，可以发现nnnnn后面有一段base64密文，解密后得到test123，所以我们猜测这是密码，然后尝试admin登录，得到flag</p>
+<h1 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h1><p>提示查看源代码，查看后发现一大堆url编码，按要求解码后得到</p>
+<p><img src="/2022/03/15/bugku%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220315222702123.png" alt="image-20220315222702123"></p>
+<p>看不懂啊看不懂，但是有一段很神奇的密文，看wp都说提交后得到flag，我也不知道为啥呜呜呜</p>
+<h1 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h1><p>这种题一般都有<code>/?file=</code>这种格式，然后我们要用的就是filter协议，让源码转换成base64密文输出后再解密，</p>
+<p><code>?file=php://filter/read=convert.base64-encode/resource=index.php</code></p>
+<p>然后解密即可得到flag</p>
+<p>文件包含这里也会有命令执行的部分，比如<code>/?file=../flag</code>，这里的意思一目了然。</p>
+<p>关键函数是include，但是一般没这么容易，会有很多过滤</p>
+<h1 id="好像需要密码"><a href="#好像需要密码" class="headerlink" title="好像需要密码"></a>好像需要密码</h1><p>经典爆破，这里提示我们是5位数，所以我们从00001到99999逐个爆破，并且选择有效整数为5位，然后静静等待便可得到flag</p>
+<p><img src="/2022/03/15/bugku%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220319211909723.png" alt="image-20220319211909723"></p>
+<h1 id="成绩查询"><a href="#成绩查询" class="headerlink" title="成绩查询"></a>成绩查询</h1><p>一开始我以为没有回显，原来是id设置的太小了呜呜呜，果断放弃盲注，虽然我也没有注入出来，好垃圾</p>
+<p>然后就是经典的联合注入了。不知道为啥盲注不行，很烦。</p>
 ]]></content>
       <tags>
         <tag>刷题</tag>
@@ -2822,7 +2822,7 @@
 <h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
 <p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
 <p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
-<p>User：<a href="mailto:&#98;&#117;&#x67;&#x6b;&#x75;&#x6b;&#117;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#x6f;&#109;">&#98;&#117;&#x67;&#x6b;&#x75;&#x6b;&#117;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#x6f;&#109;</a></p>
+<p>User：<a href="mailto:&#x62;&#117;&#x67;&#107;&#x75;&#x6b;&#x75;&#64;&#x31;&#x36;&#x33;&#x2e;&#99;&#111;&#109;">&#x62;&#117;&#x67;&#107;&#x75;&#x6b;&#x75;&#64;&#x31;&#x36;&#x33;&#x2e;&#99;&#111;&#109;</a></p>
 <p>Pass：XSLROCPMNWWZQDZL</p>
 <p>登录显示密码错误，然后继续看wp</p>
 <p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
