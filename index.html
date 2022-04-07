@@ -207,7 +207,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-04-07 22:39:24 / 修改时间：22:59:23" itemprop="dateCreated datePublished" datetime="2022-04-07T22:39:24+08:00">2022-04-07</time>
+              <time title="创建时间：2022-04-07 22:39:24 / 修改时间：23:45:26" itemprop="dateCreated datePublished" datetime="2022-04-07T22:39:24+08:00">2022-04-07</time>
             </span>
 
           
@@ -223,18 +223,14 @@
       
           <h1 id="什么是Tplmap？"><a href="#什么是Tplmap？" class="headerlink" title="什么是Tplmap？"></a>什么是Tplmap？</h1><p>Tplmap是一种SSTI注入工具，类似于与sqlmap，只不过sqlmap适用于sql注入，而tplmap适用于ssti注入</p>
 <h1 id="什么是SSTI？"><a href="#什么是SSTI？" class="headerlink" title="什么是SSTI？"></a>什么是SSTI？</h1><p>这里引用一下大佬的博客，<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b6f1aea3a2eb">点这里</a>。</p>
-<h1 id="安装Tplmap"><a href="#安装Tplmap" class="headerlink" title="安装Tplmap"></a>安装Tplmap</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_47726676/article/details/115905366">点这里</a>，这里用的是python2，而kali自带的是python3，我试了一下，也可以，只不过这里命令要换成<code>python3 tplmap.py -u &quot;URL/?flag=1&quot;</code>，这里的变量名称不一定是flag，根据题目而定，但是一定要输入变量名。</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/smli_ng/article/details/106026901">详细使用方法</a></p>
-<h1 id="实战例题"><a href="#实战例题" class="headerlink" title="实战例题"></a>实战例题</h1><p>我用的是最菜的Simple_SSTI_2，首先题目便提示了我们变量名称为flag，所以我们直接执行</p>
-<p><code>python3 tplmap.py -u URL/?flag=1</code></p>
-<p>结果如图</p>
-<p><img src="/2022/04/07/Tplmap%E5%88%9D%E4%BD%93%E9%AA%8C/image-20220407225224144.png" alt="image-20220407225224144"></p>
-<p>然后指定 –os-shell,就可以进入到shell，如图</p>
-<p><img src="/2022/04/07/Tplmap%E5%88%9D%E4%BD%93%E9%AA%8C/image-20220407225459468.png" alt="image-20220407225459468"></p>
-<h1 id="什么是shell？"><a href="#什么是shell？" class="headerlink" title="什么是shell？"></a>什么是shell？</h1><p>简单来说</p>
-<p>Shell 是一个命令解释器，它在操作系统的最外层，负责直接与用户进行对话，把用户的输入解释给<br>操作系统，并处理各种各样的操作系统的输出结果，输出到屏幕反馈给用户。这种对话方式可以是交互式<br>也可以是非交互式的</p>
-<p>详细<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/706.html">点这里</a>。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/04/07/Tplmap%E5%88%9D%E4%BD%93%E9%AA%8C/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

