@@ -639,130 +639,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Git版本穿梭及版本比较</title>
-    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
-    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
-<li><p>状态查看：<code>git status</code></p>
-</li>
-<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
-</li>
-<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
-<p>简洁显示：<code>git log --pretty=oneline</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
-<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
-<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
-<p>HEAD@{移动到当前版本所需要步数}</p>
-<p>若版本信息有多屏</p>
-<p>则空格向下翻页，b向上翻页，q退出</p>
-<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
-<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
-<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
-<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
-<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
-<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
-<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
-<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
-<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
-<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
-<p>现在状态为</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
-<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
-<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
-<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
-<p>然后删除文件，并添加到暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
-<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
-<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
-<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
-<p>上图表示第一行删去了9个a</p>
-<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git的分支管理级Git的基本原理</title>
-    <url>/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h1 id="分支的意义"><a href="#分支的意义" class="headerlink" title="分支的意义"></a>分支的意义</h1><ul>
-<li><p>分支是主干（master）的复制品，可以进行试错，可以删除，也也可以合并回主干</p>
-</li>
-<li><p>分支更加专业化，分支之间互不干扰</p>
-</li>
-<li><p>可以多人同时开发不同分支，增加开发效率</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h1><p>查看所有分支命令：<code>git branch -v</code></p>
-<p>创建新的分支：<code>git branch 分支名</code></p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110195627374.png" alt="image-20220110195627374"></p>
-<p>分支的切换：<code>git checkout 分支名</code></p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110195754653.png" alt="image-20220110195754653"></p>
-<p>用hot_fix分支修改文件</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110200141530.png" alt="image-20220110200141530"></p>
-<p>若要将hot_fix分支合并到master分支上，则要切换到master分支上（即被合并的分支）</p>
-<p>合并命令：<code>git merge 分支名</code></p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110200612093.png" alt="image-20220110200612093"></p>
-<p>当分支有冲突时（即两个分支都对同一地方进行了修改）</p>
-<p>首先要产生冲突</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110201910358.png" alt="image-20220110201910358"></p>
-<p>产生冲突后看产生冲突的文件内容</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110202059391.png" alt="image-20220110202059391"></p>
-<p>删除多于内容后（可在阅览模式下双击d键删除一行）</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110202632027.png" alt="image-20220110202632027"></p>
-<p>保留自己想要的内容，然后<code>git add 文件名</code>，<code>git commit -m &quot;备注&quot;</code>提交</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110203321229.png" alt="image-20220110203321229"></p>
-<h1 id="Git基本原理"><a href="#Git基本原理" class="headerlink" title="Git基本原理"></a>Git基本原理</h1><h2 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h2><p>哈希是一个系列的加密算法，各个不同的哈希加密虽然加密强度不同，但是有以下几个共同点</p>
-<ul>
-<li>不管输入的数据量有多大，输入同一个哈希算法，得到的加密结果长度固定。</li>
-<li>哈希加密确定，输入数据有变化，输出数据一定有变化，而且变化程度很大。</li>
-<li>哈希算法确定，输入数据确定，输出数据能够保证不变。</li>
-<li>哈希算法不可逆</li>
-</ul>
-<p>Git底层采用的是SHA-1算法。</p>
-<p>哈希算法可以被用来验证文件。原理如下</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111095840028.png" alt="image-20220111095840028"></p>
-<p>Git就是靠这种操作从根本上保证数据的完整性。</p>
-<h2 id="Git保存版本机制"><a href="#Git保存版本机制" class="headerlink" title="Git保存版本机制"></a>Git保存版本机制</h2><p>首先讲一下集中式版本控制工具的文件管理机制</p>
-<p>以文件变更列表的方式存储信息。这类系统将它们保存的信息看作时一组基本文件和每个文件随时间逐步积累的差异。也就是只保存更改的地方</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111101222004.png" alt="image-20220111101222004"></p>
-<p>然后是Git的文件管理机制</p>
-<p>Git把数据看作是小型文件系统的一组快照，每次提交更新时，Git都会对当前的全部文件制作一个快照并保存这个快照的索引。为了高效，<u>如果文件没有修改，Git不再重新存储该文件</u>。所以Git的工作方式可以称之为快照流。</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103051918.png" alt="image-20220111103051918"></p>
-<p>Git的提交对象</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103632587.png" alt="image-20220111103632587"></p>
-<p>提交对象及其父对象形成的链条</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103823481.png" alt="image-20220111103823481"></p>
-<h2 id="Git分支管理机制"><a href="#Git分支管理机制" class="headerlink" title="Git分支管理机制"></a>Git分支管理机制</h2><p>分支的创建</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111104023440.png" alt="image-20220111104023440"></p>
-<p>testing指针和master指针在同一链条，而不是为testing单搞一条链，节省了储存空间</p>
-<p>分支切换（改变HEAD指针的位置）</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111121831087.png" alt="image-20220111121831087"></p>
-<p>当分支文件不一样时，才会出现分支</p>
-<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111122101487.png" alt="image-20220111122101487"></p>
-<p><strong>Git在本地的版本控制就完结了</strong></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++运算符</title>
     <url>/2021/12/10/C-%E8%BF%90%E7%AE%97%E7%AC%A6/</url>
     <content><![CDATA[<h1 id="1-运算符类型"><a href="#1-运算符类型" class="headerlink" title="1.运算符类型"></a>1.运算符类型</h1><p>运算运算符：用于四则运算</p>
@@ -992,6 +868,70 @@
       </tags>
   </entry>
   <entry>
+    <title>Git的分支管理级Git的基本原理</title>
+    <url>/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="分支的意义"><a href="#分支的意义" class="headerlink" title="分支的意义"></a>分支的意义</h1><ul>
+<li><p>分支是主干（master）的复制品，可以进行试错，可以删除，也也可以合并回主干</p>
+</li>
+<li><p>分支更加专业化，分支之间互不干扰</p>
+</li>
+<li><p>可以多人同时开发不同分支，增加开发效率</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h1><p>查看所有分支命令：<code>git branch -v</code></p>
+<p>创建新的分支：<code>git branch 分支名</code></p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110195627374.png" alt="image-20220110195627374"></p>
+<p>分支的切换：<code>git checkout 分支名</code></p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110195754653.png" alt="image-20220110195754653"></p>
+<p>用hot_fix分支修改文件</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110200141530.png" alt="image-20220110200141530"></p>
+<p>若要将hot_fix分支合并到master分支上，则要切换到master分支上（即被合并的分支）</p>
+<p>合并命令：<code>git merge 分支名</code></p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110200612093.png" alt="image-20220110200612093"></p>
+<p>当分支有冲突时（即两个分支都对同一地方进行了修改）</p>
+<p>首先要产生冲突</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110201910358.png" alt="image-20220110201910358"></p>
+<p>产生冲突后看产生冲突的文件内容</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110202059391.png" alt="image-20220110202059391"></p>
+<p>删除多于内容后（可在阅览模式下双击d键删除一行）</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110202632027.png" alt="image-20220110202632027"></p>
+<p>保留自己想要的内容，然后<code>git add 文件名</code>，<code>git commit -m &quot;备注&quot;</code>提交</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220110203321229.png" alt="image-20220110203321229"></p>
+<h1 id="Git基本原理"><a href="#Git基本原理" class="headerlink" title="Git基本原理"></a>Git基本原理</h1><h2 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h2><p>哈希是一个系列的加密算法，各个不同的哈希加密虽然加密强度不同，但是有以下几个共同点</p>
+<ul>
+<li>不管输入的数据量有多大，输入同一个哈希算法，得到的加密结果长度固定。</li>
+<li>哈希加密确定，输入数据有变化，输出数据一定有变化，而且变化程度很大。</li>
+<li>哈希算法确定，输入数据确定，输出数据能够保证不变。</li>
+<li>哈希算法不可逆</li>
+</ul>
+<p>Git底层采用的是SHA-1算法。</p>
+<p>哈希算法可以被用来验证文件。原理如下</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111095840028.png" alt="image-20220111095840028"></p>
+<p>Git就是靠这种操作从根本上保证数据的完整性。</p>
+<h2 id="Git保存版本机制"><a href="#Git保存版本机制" class="headerlink" title="Git保存版本机制"></a>Git保存版本机制</h2><p>首先讲一下集中式版本控制工具的文件管理机制</p>
+<p>以文件变更列表的方式存储信息。这类系统将它们保存的信息看作时一组基本文件和每个文件随时间逐步积累的差异。也就是只保存更改的地方</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111101222004.png" alt="image-20220111101222004"></p>
+<p>然后是Git的文件管理机制</p>
+<p>Git把数据看作是小型文件系统的一组快照，每次提交更新时，Git都会对当前的全部文件制作一个快照并保存这个快照的索引。为了高效，<u>如果文件没有修改，Git不再重新存储该文件</u>。所以Git的工作方式可以称之为快照流。</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103051918.png" alt="image-20220111103051918"></p>
+<p>Git的提交对象</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103632587.png" alt="image-20220111103632587"></p>
+<p>提交对象及其父对象形成的链条</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111103823481.png" alt="image-20220111103823481"></p>
+<h2 id="Git分支管理机制"><a href="#Git分支管理机制" class="headerlink" title="Git分支管理机制"></a>Git分支管理机制</h2><p>分支的创建</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111104023440.png" alt="image-20220111104023440"></p>
+<p>testing指针和master指针在同一链条，而不是为testing单搞一条链，节省了储存空间</p>
+<p>分支切换（改变HEAD指针的位置）</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111121831087.png" alt="image-20220111121831087"></p>
+<p>当分支文件不一样时，才会出现分支</p>
+<p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111122101487.png" alt="image-20220111122101487"></p>
+<p><strong>Git在本地的版本控制就完结了</strong></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git远程库相关操作</title>
     <url>/2022/01/11/Git%E8%BF%9C%E7%A8%8B%E5%BA%93%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<h1 id="添加远程库及推送"><a href="#添加远程库及推送" class="headerlink" title="添加远程库及推送"></a>添加远程库及推送</h1><p>命令：<code>git remote add 地址名 HTTP或SSH地址</code></p>
@@ -1094,6 +1034,66 @@
 ]]></content>
       <tags>
         <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git版本穿梭及版本比较</title>
+    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
+    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
+<li><p>状态查看：<code>git status</code></p>
+</li>
+<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
+</li>
+<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
+<p>简洁显示：<code>git log --pretty=oneline</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
+<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
+<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
+<p>HEAD@{移动到当前版本所需要步数}</p>
+<p>若版本信息有多屏</p>
+<p>则空格向下翻页，b向上翻页，q退出</p>
+<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
+<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
+<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
+<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
+<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
+<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
+<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
+<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
+<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
+<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
+<p>现在状态为</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
+<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
+<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
+<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
+<p>然后删除文件，并添加到暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
+<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
+<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
+<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
+<p>上图表示第一行删去了9个a</p>
+<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -1887,6 +1887,8 @@
     <url>/2022/04/07/cstring%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="字符串初始赋值的三种方法"><a href="#字符串初始赋值的三种方法" class="headerlink" title="字符串初始赋值的三种方法"></a>字符串初始赋值的三种方法</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> a[<span class="number">10</span>] = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;\0&#x27;</span>&#125;;<span class="comment">//后面7个元素默认初始化为NULL</span></span><br><span class="line">	<span class="keyword">char</span> b[<span class="number">10</span>] = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>, <span class="number">0</span>, <span class="string">&#x27;h&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;g&#x27;</span>&#125;; <span class="comment">//从0处截断</span></span><br><span class="line">	<span class="comment">//若想显示后面的值，可用逐个遍历输出 </span></span><br><span class="line">	<span class="keyword">char</span> c[<span class="number">10</span>] = &#123;<span class="string">&quot;09AZaz&quot;</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> d[<span class="number">10</span>] = <span class="string">&quot;09AZaz&quot;</span>;</span><br><span class="line">    string b=<span class="string">&quot;aaaa&quot;</span>;</span><br><span class="line">	cout&lt;&lt;b;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<span id="more"></span>
+
 <h1 id="字符串的三种输入方法"><a href="#字符串的三种输入方法" class="headerlink" title="字符串的三种输入方法"></a>字符串的三种输入方法</h1><h2 id="单个逐一输入"><a href="#单个逐一输入" class="headerlink" title="单个逐一输入"></a>单个逐一输入</h2><p>该方法规定字符串长度，也就是必须输入规定长度，少补（再输入）多截断，且<strong>不包含分隔符（空格，制表符，换行符，回车）</strong></p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> a[<span class="number">20</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">20</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;a[i];<span class="comment">//不包含分隔符(空格,制表符/Tab键,换行符/回车键)</span></span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">20</span>;i++)<span class="comment">//逐一单个输出</span></span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[i];</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;a;<span class="comment">//整体输出：从第一个字符向后依次输出，一直到结束符(&#x27;\0&#x27;)为止</span></span><br><span class="line">    <span class="comment">//在这里二者效果一样，&#x27;\0&#x27;是码值为0的NULL</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1906,102 +1908,6 @@
 ]]></content>
       <tags>
         <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git的介绍、安装和基本提交</title>
-    <url>/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/</url>
-    <content><![CDATA[<h1 id="Git的优势"><a href="#Git的优势" class="headerlink" title="Git的优势"></a>Git的优势</h1><ul>
-<li><p>大部分操作在本地完成，不需要连接互联网</p>
-</li>
-<li><p>完整性保证（利用Hash值）</p>
-</li>
-<li><p>尽可能添加数据而不是删除数据或修改数据，从而避免了不可逆操作（为每个版本拍摄快照）</p>
-</li>
-<li><p>分支操作非常快捷流畅</p>
-</li>
-<li><p>与Linux命令全面兼容（二者是一个爹）</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h1><p>首先去<a href="https://git-scm.com/download/win">git官网下载</a>并根据自己电脑的位数选择相应的版本</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108191953930.png" alt="image-20220108191953930"></p>
-<p>下载完成后安装，选择一个非中文没有空格的目录</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192101316.png" alt="image-20220108192101316"></p>
-<p>然后下一步，按照下面图片的选项即可</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192700075.png" alt="image-20220108192700075"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192807726.png" alt="image-20220108192807726"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192853679.png" alt="image-20220108192853679"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193229371.png" alt="image-20220108193229371"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193435463.png" alt="image-20220108193435463"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193801302.png" alt="image-20220108193801302"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193945547.png" alt="image-20220108193945547"></p>
-<p>然后安装即可，装完效果如下</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194259961.png" alt="image-20220108194259961"></p>
-<h1 id="Git在本地的结构"><a href="#Git在本地的结构" class="headerlink" title="Git在本地的结构"></a>Git在本地的结构</h1><p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194609170.png" alt="image-20220108194609170"></p>
-<h1 id="Git和代码托管中心"><a href="#Git和代码托管中心" class="headerlink" title="Git和代码托管中心"></a>Git和代码托管中心</h1><p>代码托管中心有很多，如外网环境下的GitHub、码云，局域网里的GitLab服务器（Git和Github的历史发展没有渊源）代码托管中心的任务是维护远程库</p>
-<h1 id="Git的本地库和远程库的交互"><a href="#Git的本地库和远程库的交互" class="headerlink" title="Git的本地库和远程库的交互"></a>Git的本地库和远程库的交互</h1><p>团队内协作（不加入团队不可push修改远程库代码）</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108202115421.png" alt="image-20220108202115421"></p>
-<p>跨团队协作</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108211729222.png" alt="image-20220108211729222"></p>
-<h1 id="Git命令行操作"><a href="#Git命令行操作" class="headerlink" title="Git命令行操作"></a>Git命令行操作</h1><h2 id="本地库操作"><a href="#本地库操作" class="headerlink" title="本地库操作"></a>本地库操作</h2><h3 id="本地库初始化"><a href="#本地库初始化" class="headerlink" title="本地库初始化"></a>本地库初始化</h3><p>命令：<code>git init</code></p>
-<p>效果：<img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108212311272.png" alt="image-20220108212311272"></p>
-<p>注意：.git目录中存放的是本地库相关的子目录和文件，不要删除和修改</p>
-<h3 id="设置签名"><a href="#设置签名" class="headerlink" title="设置签名"></a>设置签名</h3><p>形式：</p>
-<p>用户名：随便输</p>
-<p>Email地址：随便输，不存在也没关系</p>
-<p>作用：区分不同开发人员</p>
-<p>辨析：这里设置的签名和远程库（代码托管中心）的账号和密码一点关系没有</p>
-<p>命令：<code>git config user.name 用户名</code>  </p>
-<p>​        ：<code>git config user.email 邮件地址</code>    项目级别</p>
-<p>​        ：<code>git config --global user.name 用户名</code></p>
-<p>​         :  <code>git config --global user.email 邮件地址</code>    系统用户级别</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108214655319.png" alt="image-20220108214655319"></p>
-<p>项目级别/仓库级别：仅在当前本地库范围内有效（即只在test文件夹内有效）</p>
-<p>系统用户级别：登录当前操作系统的用户范围，如图</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108213618080.png" alt="image-20220108213618080"></p>
-<p>若没设置，则默认是系统用户级别，若两个都有，则是项目级别。也就是项目级别优先于系统用户级别。</p>
-<p>若二者都没有是不允许的</p>
-<p>项目级别用户名和邮件地址保存在.git/config里面，如上图</p>
-<p>系统用户级别用户名和邮件地址保存在当前用户文件夹里，如图</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108215432512.png" alt="image-20220108215432512"></p>
-<p>通常只设置一个系统用户级别</p>
-<h3 id="添加提交和查看状态操作"><a href="#添加提交和查看状态操作" class="headerlink" title="添加提交和查看状态操作"></a>添加提交和查看状态操作</h3><p>查看当前库状态命令：<code>git status</code></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220013324.png" alt="image-20220108220013324"></p>
-<p>创建文件命令：<code>vim 文件名.文件类型</code>（创建后即使未提交，在windows文件夹中也可看到该文件）</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220229743.png" alt="image-20220108220229743"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220240175.png" alt="image-20220108220240175"></p>
-<p>按I键开始输入内容</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220517621.png" alt="image-20220108220517621"></p>
-<p>编辑完成后按ESC然后输入<code>:wq</code>退出</p>
-<p>此时再输入<code>git status</code>可看到</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
-<p>将工作区文件放入暂存区命令：<code>git add 文件名.文件类型</code></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221653353.png" alt="image-20220108221653353"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
-<p>放进去后，在用<code>git status</code>看一下状态，可知test.txt已经进入暂存区</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222245958.png" alt="image-20220108222245958"></p>
-<p>若使用<code>git rm --cached test.txt</code>则又回到此状态</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
-<p>将暂存区文件提交到本地库命令：<code>git commit 文件名.文件类型</code></p>
-<p>vim编辑器中输入<code>:set nu</code>来查看行号</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222950393.png" alt="image-20220108222950393"></p>
-<p>然后按I键来进行输入更改备注信息</p>
-<p>输入好后按ESC然后输入<code>:wq</code>退出</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223450538.png" alt="image-20220108223450538"></p>
-<p>然后再看一下状态</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223535612.png" alt="image-20220108223535612"></p>
-<p>利用<code>git commit --amend - “新的备注”</code>来更改备注信息，并用<code>git log</code>来查看历史版本</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224049105.png" alt="image-20220108224049105"></p>
-<p>用<code>vim test.txt</code>继续编辑文件，加入一行“d”然后再查看状态</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224800559.png" alt="image-20220108224800559"></p>
-<p>这里用<code>git add test.txt</code>按部就班的进行提交，然后查看状态</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225112194.png" alt="image-20220108225112194"></p>
-<p>然后进行提交，这里用<code>git commit -m &quot;备注&quot; test.txt</code>进行提交，不用再在vim编辑器里输入备注信息</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225410302.png" alt="image-20220108225410302"></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -2105,6 +2011,102 @@
 ]]></content>
       <tags>
         <tag>杂谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git的介绍、安装和基本提交</title>
+    <url>/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/</url>
+    <content><![CDATA[<h1 id="Git的优势"><a href="#Git的优势" class="headerlink" title="Git的优势"></a>Git的优势</h1><ul>
+<li><p>大部分操作在本地完成，不需要连接互联网</p>
+</li>
+<li><p>完整性保证（利用Hash值）</p>
+</li>
+<li><p>尽可能添加数据而不是删除数据或修改数据，从而避免了不可逆操作（为每个版本拍摄快照）</p>
+</li>
+<li><p>分支操作非常快捷流畅</p>
+</li>
+<li><p>与Linux命令全面兼容（二者是一个爹）</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h1><p>首先去<a href="https://git-scm.com/download/win">git官网下载</a>并根据自己电脑的位数选择相应的版本</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108191953930.png" alt="image-20220108191953930"></p>
+<p>下载完成后安装，选择一个非中文没有空格的目录</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192101316.png" alt="image-20220108192101316"></p>
+<p>然后下一步，按照下面图片的选项即可</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192700075.png" alt="image-20220108192700075"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192807726.png" alt="image-20220108192807726"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192853679.png" alt="image-20220108192853679"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193229371.png" alt="image-20220108193229371"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193435463.png" alt="image-20220108193435463"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193801302.png" alt="image-20220108193801302"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193945547.png" alt="image-20220108193945547"></p>
+<p>然后安装即可，装完效果如下</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194259961.png" alt="image-20220108194259961"></p>
+<h1 id="Git在本地的结构"><a href="#Git在本地的结构" class="headerlink" title="Git在本地的结构"></a>Git在本地的结构</h1><p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194609170.png" alt="image-20220108194609170"></p>
+<h1 id="Git和代码托管中心"><a href="#Git和代码托管中心" class="headerlink" title="Git和代码托管中心"></a>Git和代码托管中心</h1><p>代码托管中心有很多，如外网环境下的GitHub、码云，局域网里的GitLab服务器（Git和Github的历史发展没有渊源）代码托管中心的任务是维护远程库</p>
+<h1 id="Git的本地库和远程库的交互"><a href="#Git的本地库和远程库的交互" class="headerlink" title="Git的本地库和远程库的交互"></a>Git的本地库和远程库的交互</h1><p>团队内协作（不加入团队不可push修改远程库代码）</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108202115421.png" alt="image-20220108202115421"></p>
+<p>跨团队协作</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108211729222.png" alt="image-20220108211729222"></p>
+<h1 id="Git命令行操作"><a href="#Git命令行操作" class="headerlink" title="Git命令行操作"></a>Git命令行操作</h1><h2 id="本地库操作"><a href="#本地库操作" class="headerlink" title="本地库操作"></a>本地库操作</h2><h3 id="本地库初始化"><a href="#本地库初始化" class="headerlink" title="本地库初始化"></a>本地库初始化</h3><p>命令：<code>git init</code></p>
+<p>效果：<img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108212311272.png" alt="image-20220108212311272"></p>
+<p>注意：.git目录中存放的是本地库相关的子目录和文件，不要删除和修改</p>
+<h3 id="设置签名"><a href="#设置签名" class="headerlink" title="设置签名"></a>设置签名</h3><p>形式：</p>
+<p>用户名：随便输</p>
+<p>Email地址：随便输，不存在也没关系</p>
+<p>作用：区分不同开发人员</p>
+<p>辨析：这里设置的签名和远程库（代码托管中心）的账号和密码一点关系没有</p>
+<p>命令：<code>git config user.name 用户名</code>  </p>
+<p>​        ：<code>git config user.email 邮件地址</code>    项目级别</p>
+<p>​        ：<code>git config --global user.name 用户名</code></p>
+<p>​         :  <code>git config --global user.email 邮件地址</code>    系统用户级别</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108214655319.png" alt="image-20220108214655319"></p>
+<p>项目级别/仓库级别：仅在当前本地库范围内有效（即只在test文件夹内有效）</p>
+<p>系统用户级别：登录当前操作系统的用户范围，如图</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108213618080.png" alt="image-20220108213618080"></p>
+<p>若没设置，则默认是系统用户级别，若两个都有，则是项目级别。也就是项目级别优先于系统用户级别。</p>
+<p>若二者都没有是不允许的</p>
+<p>项目级别用户名和邮件地址保存在.git/config里面，如上图</p>
+<p>系统用户级别用户名和邮件地址保存在当前用户文件夹里，如图</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108215432512.png" alt="image-20220108215432512"></p>
+<p>通常只设置一个系统用户级别</p>
+<h3 id="添加提交和查看状态操作"><a href="#添加提交和查看状态操作" class="headerlink" title="添加提交和查看状态操作"></a>添加提交和查看状态操作</h3><p>查看当前库状态命令：<code>git status</code></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220013324.png" alt="image-20220108220013324"></p>
+<p>创建文件命令：<code>vim 文件名.文件类型</code>（创建后即使未提交，在windows文件夹中也可看到该文件）</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220229743.png" alt="image-20220108220229743"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220240175.png" alt="image-20220108220240175"></p>
+<p>按I键开始输入内容</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220517621.png" alt="image-20220108220517621"></p>
+<p>编辑完成后按ESC然后输入<code>:wq</code>退出</p>
+<p>此时再输入<code>git status</code>可看到</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
+<p>将工作区文件放入暂存区命令：<code>git add 文件名.文件类型</code></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221653353.png" alt="image-20220108221653353"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
+<p>放进去后，在用<code>git status</code>看一下状态，可知test.txt已经进入暂存区</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222245958.png" alt="image-20220108222245958"></p>
+<p>若使用<code>git rm --cached test.txt</code>则又回到此状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
+<p>将暂存区文件提交到本地库命令：<code>git commit 文件名.文件类型</code></p>
+<p>vim编辑器中输入<code>:set nu</code>来查看行号</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222950393.png" alt="image-20220108222950393"></p>
+<p>然后按I键来进行输入更改备注信息</p>
+<p>输入好后按ESC然后输入<code>:wq</code>退出</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223450538.png" alt="image-20220108223450538"></p>
+<p>然后再看一下状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223535612.png" alt="image-20220108223535612"></p>
+<p>利用<code>git commit --amend - “新的备注”</code>来更改备注信息，并用<code>git log</code>来查看历史版本</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224049105.png" alt="image-20220108224049105"></p>
+<p>用<code>vim test.txt</code>继续编辑文件，加入一行“d”然后再查看状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224800559.png" alt="image-20220108224800559"></p>
+<p>这里用<code>git add test.txt</code>按部就班的进行提交，然后查看状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225112194.png" alt="image-20220108225112194"></p>
+<p>然后进行提交，这里用<code>git commit -m &quot;备注&quot; test.txt</code>进行提交，不用再在vim编辑器里输入备注信息</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225410302.png" alt="image-20220108225410302"></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -2652,46 +2654,6 @@
       </tags>
   </entry>
   <entry>
-    <title>刷题记录-4（爆破）</title>
-    <url>/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/</url>
-    <content><![CDATA[<h1 id="WEB21"><a href="#WEB21" class="headerlink" title="WEB21"></a>WEB21</h1><p>这道题有点意思，不只是单纯的爆破，还进行了base64加密，首先下载给的字典。然后用字典进行爆破，爆破时要用custom iterator（自定义迭代器），然后通过base64解码得知格式为 <code>用户名:密码</code>攻击类型为Sniper</p>
-<p>设置如下</p>
-<span id="more"></span>
-
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175309858.png" alt="image-20220217175309858"></p>
-<p>这里的admin只是猜测，没想到真能搞出来</p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175341802.png" alt="image-20220217175341802"></p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175430654.png" alt="image-20220217175430654"></p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217180350198.png" alt="image-20220217180350198"></p>
-<p>最终得到flag</p>
-<h1 id="WEB22"><a href="#WEB22" class="headerlink" title="WEB22"></a>WEB22</h1><p>爆破子域名，这个还真不会，但是这个<a href="http://z.zcjun.com/?http=baidu.com">在线爆破子域名</a>可还行</p>
-<h1 id="WEB23"><a href="#WEB23" class="headerlink" title="WEB23"></a>WEB23</h1><p>呜呜呜，这个也不会，等着以后学了php再回来搞，码子先放这了</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">error_reporting(<span class="number">0</span>); </span><br><span class="line"> </span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;asdfghjklqwertyuiopzxcvbnm1234567890&quot;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="number">36</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$j</span>=<span class="number">0</span>;<span class="variable">$j</span>&lt;<span class="number">36</span>;<span class="variable">$j</span>++)&#123;</span><br><span class="line">        <span class="variable">$token</span>=<span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];    </span><br><span class="line">        <span class="variable">$token</span> = md5(<span class="variable">$token</span>); </span><br><span class="line">        <span class="keyword">if</span>(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) &amp;&amp; substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) ===substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))&#123; </span><br><span class="line">            <span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>))+intval(substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>))+substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))/substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===intval(substr(<span class="variable">$token</span>, <span class="number">31</span>,<span class="number">1</span>)))&#123; </span><br><span class="line">                <span class="keyword">echo</span> <span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];</span><br><span class="line">                <span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="meta">?&gt;</span> </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="WEB24"><a href="#WEB24" class="headerlink" title="WEB24"></a>WEB24</h1><p>这里首先要认识一个函数<a href="https://www.w3school.com.cn/php/func_math_mt_rand.asp">mt_rand() 函数</a>，代码可以<a href="https://c.runoob.com/compile/1/">在线上执行</a></p>
-<p>首先要知道题目中的mt_srand(372619038)是多少</p>
-<p>所以我们运行</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">mt_srand(<span class="number">372619038</span>);</span><br><span class="line"><span class="keyword">echo</span>(mt_rand());</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>得到1155388967所以令r=1155388967，得到flag</p>
-<h1 id="WEB25"><a href="#WEB25" class="headerlink" title="WEB25"></a>WEB25</h1><p>有点复杂呜呜呜，留给“明天”吧</p>
-<h1 id="WEB26"><a href="#WEB26" class="headerlink" title="WEB26"></a>WEB26</h1><p>查看源码发现js，直接进入代码中的checkdb.php，然后直接post提交（原理不太清楚）</p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217200641171.png" alt="image-20220217200641171"></p>
-<p>得到flag</p>
-<h1 id="WEB27"><a href="#WEB27" class="headerlink" title="WEB27"></a>WEB27</h1><p>这里是爆破身份证号中的生日，设置如下，如果线程太多的话，很可能出现503报错，导致爆破结果不准确</p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217203239020.png" alt="image-20220217203239020"></p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217204616803.png" alt="image-20220217204616803"></p>
-<p>得出结果后，Unicode解码后用学号登入，得到flag</p>
-<h1 id="WEB28"><a href="#WEB28" class="headerlink" title="WEB28"></a>WEB28</h1><p>看到url中诡异的0/1则用集束炸弹爆破这两个地方，最后得到flag</p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217205359730.png" alt="image-20220217205359730"></p>
-]]></content>
-      <tags>
-        <tag>刷题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>刷题记录-3（信息收集）</title>
     <url>/2022/02/12/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-3/</url>
     <content><![CDATA[<h1 id="vim临时文件泄露（CTFshow）"><a href="#vim临时文件泄露（CTFshow）" class="headerlink" title="vim临时文件泄露（CTFshow）"></a>vim临时文件泄露（CTFshow）</h1><p>直接进入index.php.swp下载文件即可得到flag。用dirsearch扫描无结果</p>
@@ -2735,6 +2697,46 @@
 <h1 id="WEB19"><a href="#WEB19" class="headerlink" title="WEB19"></a>WEB19</h1><p><img src="/2022/02/12/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-3/image-20220214110909063.png" alt="image-20220214110909063"></p>
 <p>用hackbar传参得到flag</p>
 <h1 id="WEB20"><a href="#WEB20" class="headerlink" title="WEB20"></a>WEB20</h1><p>根据提示mdb文件是早期asp+access构架的数据库文件 访问<code>url/db/db.mdb</code> 下载文件通过txt打开然后搜索flag得到flag</p>
+]]></content>
+      <tags>
+        <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>刷题记录-4（爆破）</title>
+    <url>/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/</url>
+    <content><![CDATA[<h1 id="WEB21"><a href="#WEB21" class="headerlink" title="WEB21"></a>WEB21</h1><p>这道题有点意思，不只是单纯的爆破，还进行了base64加密，首先下载给的字典。然后用字典进行爆破，爆破时要用custom iterator（自定义迭代器），然后通过base64解码得知格式为 <code>用户名:密码</code>攻击类型为Sniper</p>
+<p>设置如下</p>
+<span id="more"></span>
+
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175309858.png" alt="image-20220217175309858"></p>
+<p>这里的admin只是猜测，没想到真能搞出来</p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175341802.png" alt="image-20220217175341802"></p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175430654.png" alt="image-20220217175430654"></p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217180350198.png" alt="image-20220217180350198"></p>
+<p>最终得到flag</p>
+<h1 id="WEB22"><a href="#WEB22" class="headerlink" title="WEB22"></a>WEB22</h1><p>爆破子域名，这个还真不会，但是这个<a href="http://z.zcjun.com/?http=baidu.com">在线爆破子域名</a>可还行</p>
+<h1 id="WEB23"><a href="#WEB23" class="headerlink" title="WEB23"></a>WEB23</h1><p>呜呜呜，这个也不会，等着以后学了php再回来搞，码子先放这了</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">error_reporting(<span class="number">0</span>); </span><br><span class="line"> </span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;asdfghjklqwertyuiopzxcvbnm1234567890&quot;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="number">36</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$j</span>=<span class="number">0</span>;<span class="variable">$j</span>&lt;<span class="number">36</span>;<span class="variable">$j</span>++)&#123;</span><br><span class="line">        <span class="variable">$token</span>=<span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];    </span><br><span class="line">        <span class="variable">$token</span> = md5(<span class="variable">$token</span>); </span><br><span class="line">        <span class="keyword">if</span>(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) &amp;&amp; substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) ===substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))&#123; </span><br><span class="line">            <span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>))+intval(substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>))+substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))/substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===intval(substr(<span class="variable">$token</span>, <span class="number">31</span>,<span class="number">1</span>)))&#123; </span><br><span class="line">                <span class="keyword">echo</span> <span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];</span><br><span class="line">                <span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="meta">?&gt;</span> </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="WEB24"><a href="#WEB24" class="headerlink" title="WEB24"></a>WEB24</h1><p>这里首先要认识一个函数<a href="https://www.w3school.com.cn/php/func_math_mt_rand.asp">mt_rand() 函数</a>，代码可以<a href="https://c.runoob.com/compile/1/">在线上执行</a></p>
+<p>首先要知道题目中的mt_srand(372619038)是多少</p>
+<p>所以我们运行</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">mt_srand(<span class="number">372619038</span>);</span><br><span class="line"><span class="keyword">echo</span>(mt_rand());</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>得到1155388967所以令r=1155388967，得到flag</p>
+<h1 id="WEB25"><a href="#WEB25" class="headerlink" title="WEB25"></a>WEB25</h1><p>有点复杂呜呜呜，留给“明天”吧</p>
+<h1 id="WEB26"><a href="#WEB26" class="headerlink" title="WEB26"></a>WEB26</h1><p>查看源码发现js，直接进入代码中的checkdb.php，然后直接post提交（原理不太清楚）</p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217200641171.png" alt="image-20220217200641171"></p>
+<p>得到flag</p>
+<h1 id="WEB27"><a href="#WEB27" class="headerlink" title="WEB27"></a>WEB27</h1><p>这里是爆破身份证号中的生日，设置如下，如果线程太多的话，很可能出现503报错，导致爆破结果不准确</p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217203239020.png" alt="image-20220217203239020"></p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217204616803.png" alt="image-20220217204616803"></p>
+<p>得出结果后，Unicode解码后用学号登入，得到flag</p>
+<h1 id="WEB28"><a href="#WEB28" class="headerlink" title="WEB28"></a>WEB28</h1><p>看到url中诡异的0/1则用集束炸弹爆破这两个地方，最后得到flag</p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217205359730.png" alt="image-20220217205359730"></p>
 ]]></content>
       <tags>
         <tag>刷题</tag>
@@ -2876,7 +2878,7 @@
 <h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
 <p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
 <p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
-<p>User：<a href="mailto:&#98;&#117;&#103;&#107;&#x75;&#x6b;&#117;&#x40;&#x31;&#x36;&#51;&#x2e;&#99;&#111;&#x6d;">&#98;&#117;&#103;&#107;&#x75;&#x6b;&#117;&#x40;&#x31;&#x36;&#51;&#x2e;&#99;&#111;&#x6d;</a></p>
+<p>User：<a href="mailto:&#98;&#117;&#103;&#x6b;&#117;&#x6b;&#x75;&#x40;&#x31;&#54;&#51;&#46;&#99;&#111;&#x6d;">&#98;&#117;&#103;&#x6b;&#117;&#x6b;&#x75;&#x40;&#x31;&#54;&#51;&#46;&#99;&#111;&#x6d;</a></p>
 <p>Pass：XSLROCPMNWWZQDZL</p>
 <p>登录显示密码错误，然后继续看wp</p>
 <p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
@@ -3068,39 +3070,6 @@
       </tags>
   </entry>
   <entry>
-    <title>极客大挑战 2019Upload</title>
-    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
-    <content><![CDATA[<p>该题为上传木马题</p>
-<p>进入题目后，上传一句话木马</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
-<p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
-<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
-<p>得到</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
-<p>上传失败</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
-<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
-<p>上传后</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
-<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
-<p>链接成功</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
-<p>最后在根目录下得到flag</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
-]]></content>
-      <tags>
-        <tag>webshell</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>极客大挑战 2019 EasySQL</title>
     <url>/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/</url>
     <content><![CDATA[<p>打开题目如下</p>
@@ -3149,6 +3118,39 @@
 ]]></content>
       <tags>
         <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>极客大挑战 2019Upload</title>
+    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
+    <content><![CDATA[<p>该题为上传木马题</p>
+<p>进入题目后，上传一句话木马</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
+<p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
+<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
+<p>得到</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
+<p>上传失败</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
+<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
+<p>上传后</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
+<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
+<p>链接成功</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
+<p>最后在根目录下得到flag</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
+]]></content>
+      <tags>
+        <tag>webshell</tag>
       </tags>
   </entry>
   <entry>
