@@ -1131,6 +1131,119 @@
       </tags>
   </entry>
   <entry>
+    <title>SQL入门</title>
+    <url>/2022/01/12/SQL%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<h1 id="计算机语言"><a href="#计算机语言" class="headerlink" title="计算机语言"></a>计算机语言</h1><ul>
+<li><p>机器语言：例如10101010100011（二进制语言）</p>
+</li>
+<li><p>汇编语言：也是比较接近计算机底层，例如<img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112122525180.png" alt="image-20220112122525180"></p>
+</li>
+<li><p>高级语言：例如C语言（更接近底层）、python、SQL等</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="SQL概述"><a href="#SQL概述" class="headerlink" title="SQL概述"></a>SQL概述</h1><p><strong>SQL</strong> (Structured Query Language:结构化查询语言) 是用于管理关系数据库管理系统（RDBMS）。 SQL 的范围包括数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。</p>
+<h2 id="SQL的特点"><a href="#SQL的特点" class="headerlink" title="SQL的特点"></a>SQL的特点</h2><ul>
+<li>具有总和统一性，不同数据库所支持的SQL稍有不同</li>
+<li>非过程化语言（不需要关心内部操作过程）</li>
+<li>语言简洁，用户容易接受</li>
+<li>以一种语言结构提供两种使用方式，例如SQL和python或java结合使用</li>
+</ul>
+<h2 id="SQL的语法特点"><a href="#SQL的语法特点" class="headerlink" title="SQL的语法特点"></a>SQL的语法特点</h2><ul>
+<li>SQL对关键字的大小写不敏感，比如SELECT和select一样</li>
+<li>SQL语句可以以单行或者多行书写，以分号结束</li>
+<li>SQL注释分单行注释和多行注释，单行注释语法：<code>-- 单行注释</code>，注意–后面有空格；<code>#单行注释</code>，#后可加可不加空格。例如<code>select * from 库名;-- 单行注释</code>。多行注释和C++一样<code>/*  注释内容  */</code>。</li>
+</ul>
+<h1 id="数据库概述"><a href="#数据库概述" class="headerlink" title="数据库概述"></a>数据库概述</h1><p>数据库（DataBase）是“按照数据结构来组织、存储和管理数据的仓库”。是一个长期存储在计算机内的、有组织的、可共享的、统一管理的大量数据的集合。</p>
+<p><strong>数据库应用系统是指基于数据库的应用软件</strong></p>
+<h2 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h2><h3 id="关系型数据库（RDBMS）"><a href="#关系型数据库（RDBMS）" class="headerlink" title="关系型数据库（RDBMS）"></a>关系型数据库（RDBMS）</h3><ul>
+<li>Oracle数据库（最挣钱体积庞大，几个Gb）</li>
+<li>MySQL数据库（最流行中型数据库）</li>
+<li>SQL server数据库（Window上最好的数据库）</li>
+<li>PostgreSQL（功能最强大的开源数据库）</li>
+<li>SQLite（最流行的嵌入式数据库，体积非常小几百kb）</li>
+</ul>
+<h3 id="非关系型数据库（NoSQL）"><a href="#非关系型数据库（NoSQL）" class="headerlink" title="非关系型数据库（NoSQL）"></a>非关系型数据库（NoSQL）</h3><ul>
+<li>Redis（最好的缓存数据库）</li>
+<li>MongoDB（最好的文档型数据库）</li>
+<li>Elasticsearch（最好的搜索服务）</li>
+<li>Cassandra（最好的列式数据库）</li>
+<li>HBase（优秀的分布式、列式数据库）</li>
+</ul>
+<p><strong>两类数据库的区别在于，关系型数据库存储数据用一张张的表，而非关系型数据库有其自身的存储方式</strong></p>
+<h2 id="SQL和数据库管理系统的关系"><a href="#SQL和数据库管理系统的关系" class="headerlink" title="SQL和数据库管理系统的关系"></a>SQL和数据库管理系统的关系</h2><ul>
+<li>SQL是一种用于操作数据库的语言，SQL适用于所有的关系数据库。</li>
+<li>MySQL、Oracle、SQLSever是一个数据库软件，这些数据库软件支持标准的SQL，也就是通过SQL可以使用这些软件，不过每一个数据库系统会在标准SQL的举出上扩展自己的SQL语法</li>
+<li>大部分NoSQL数据库有自己的操作语言，对SQL支持并不好</li>
+</ul>
+<h2 id="关系型数据库的组成"><a href="#关系型数据库的组成" class="headerlink" title="关系型数据库的组成"></a>关系型数据库的组成</h2><p>数据库管理系统（DBMS）主要由数据库（Database）和表（table）组成，一个系统可以有很多数据库，每个数据库可以有很多表。</p>
+<h1 id="MySQL简介"><a href="#MySQL简介" class="headerlink" title="MySQL简介"></a>MySQL简介</h1><ul>
+<li>MySQL如今归Oracle管，并有社区版和企业版</li>
+<li>MySQL使用标准化的SQL语言</li>
+</ul>
+<h2 id="MySQL的特点"><a href="#MySQL的特点" class="headerlink" title="MySQL的特点"></a>MySQL的特点</h2><ol>
+<li>MySQL的数据库是用C和C++语言编写的，以保证源码的可移植性</li>
+<li>支持多个操作系统，例如：Windows、Linux、Mac OS等等</li>
+<li>支持多线程，可以充分利用CPU资源</li>
+<li>为多种编程语言提供API，包括C语言、Java、PHP、Python语言等</li>
+<li>MySQL优化了SQL算法，有效的提高了查询速度</li>
+<li>MySQL开放源代码，且无版权制约，自主性强，使用成本低</li>
+<li>MySQL历史悠久，社区及用户非常活跃，遇到问题，可以很快获得帮助</li>
+</ol>
+<h2 id="MySQL的版本"><a href="#MySQL的版本" class="headerlink" title="MySQL的版本"></a>MySQL的版本</h2><p>针对不同用户，MySQL分为两种不同的版本：</p>
+<p><strong>MySQL Community Server</strong></p>
+<p>社区版本，免费，但是MySQL不提供官方的技术支持</p>
+<p><strong>MySQL Enterprise Edition</strong></p>
+<p>商业版，该版本是收费的，可以试用30天，官方提供技术支持</p>
+<p><strong>MySQL Cluster</strong></p>
+<p>集群版，开源免费，可将几个MySQL Server封装成一个Server</p>
+<p><strong>MySQL Cluster CGE</strong></p>
+<p>高级集群版，需要付费</p>
+<p><strong>MySQL Workbench （GUI TOOL）</strong></p>
+<p>一款专门为MySQL设计的ER/数据库建模工具，MySQL Workbench又分为两个版本，分别是社区版（MySQL Workbench OSS）、商用版（MySQL Workbench SE）</p>
+<h2 id="MySQL的版本命名"><a href="#MySQL的版本命名" class="headerlink" title="MySQL的版本命名"></a>MySQL的版本命名</h2><p>MySQL的命名机制使用三个数字和一个后缀组成的版本号，例如，mysql-8.0.26的版本号这样解释：</p>
+<p>第一个数字（8）是主版本号，描述了文件格式，所有版本5的发行都有相同的文件格式。</p>
+<p>第二个数字（0）是发行级别，主版本号和发行级别组合到一块便构成了发行序列号。</p>
+<p>第三个数字（26）是在此发行系列的版本号，随每个新发行版本递增</p>
+<h1 id="MySQL的安装"><a href="#MySQL的安装" class="headerlink" title="MySQL的安装"></a>MySQL的安装</h1><h2 id="压缩包安装"><a href="#压缩包安装" class="headerlink" title="压缩包安装"></a>压缩包安装</h2><p>去<a href="https://dev.mysql.com/downloads/mysql/">官网下载zip</a>然后解压进行配置</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112153020029.png" alt="image-20220112153020029"></p>
+<p>解压后新建my. ini文件,并编辑</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160645372.png" alt="image-20220112160645372"></p>
+<p>若没有新建文件的权力，修改一下内容</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160750113.png" alt="image-20220112160750113"></p>
+<p>然后配置环境变量（<strong>若不配置，则cmd无法识别mysql指令</strong>）</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161003464.png" alt="image-20220112161003464"></p>
+<p>然后在Path中添加如下内容</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161441314.png" alt="image-20220112161441314"></p>
+<p>配置好后，进入cmd（管理员模式）并打开bin文件如图</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112162133149.png" alt="image-20220112162133149"></p>
+<p>然后对mysql进行初始化，记住初始化密码，下面登录要用</p>
+<p><code>mysqld --initialize --user=mysql --console</code></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112221537146.png" alt="image-20220112221537146"></p>
+<p>安装mysql服务</p>
+<p><code>mysqld --install</code></p>
+<p>启动mysql服务</p>
+<p><code>net start mysql</code></p>
+<p>登录mysql</p>
+<p><code>mysql -uroot -p</code></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223115990.png" alt="image-20220112223115990"></p>
+<p>修改root用户密码为root</p>
+<p><code>ALTER USER&#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></p>
+<p>修改root用户权限</p>
+<p><code>create user &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223244690.png" alt="image-20220112223244690"></p>
+<p>退出登录用quit</p>
+<h2 id="程序安装"><a href="#程序安装" class="headerlink" title="程序安装"></a>程序安装</h2><p>去<a href="https://dev.mysql.com/downloads/windows/installer/8.0.html">官网下载程序</a>然后安装</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112154249700.png" alt="image-20220112154249700"></p>
+<p>这种方法比较上一种，少了配置my.ini文件和初始化的步骤，其余差不多，但需要注意的是配置环境变量时，MySQL的安装路径</p>
+<h1 id="MySQL的卸载"><a href="#MySQL的卸载" class="headerlink" title="MySQL的卸载"></a>MySQL的卸载</h1><p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223649914.png" alt="image-20220112223649914"></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223728875.png" alt="image-20220112223728875"></p>
+<p>该图片摘自B站黑马程序员</p>
+]]></content>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PHP环境搭建</title>
     <url>/2022/01/29/PHP%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<h1 id="PHP简介"><a href="#PHP简介" class="headerlink" title="PHP简介"></a>PHP简介</h1><h2 id="PHP定义"><a href="#PHP定义" class="headerlink" title="PHP定义"></a>PHP定义</h2><p>PHP定义：一种<strong>服务器端</strong>的 HTML <strong>脚本/编程语言</strong>,是一种简单的、面向对象的、解释型的、健壮的、安全的、性能非常之高的、独立于架构的、可移植的、动态的脚本语言。是一种广泛用于 Open Source（开放源代码）的尤其适合 Web 开发并可以嵌入 HTML 的多用途脚本语言。它的语法接近 C，Java 和 Perl，而且容易学习。该语言让 Web 开发人员快速的书写<strong>动态</strong>生成的网页。</p>
@@ -1332,119 +1445,6 @@
 ]]></content>
       <tags>
         <tag>PHP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SQL入门</title>
-    <url>/2022/01/12/SQL%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<h1 id="计算机语言"><a href="#计算机语言" class="headerlink" title="计算机语言"></a>计算机语言</h1><ul>
-<li><p>机器语言：例如10101010100011（二进制语言）</p>
-</li>
-<li><p>汇编语言：也是比较接近计算机底层，例如<img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112122525180.png" alt="image-20220112122525180"></p>
-</li>
-<li><p>高级语言：例如C语言（更接近底层）、python、SQL等</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="SQL概述"><a href="#SQL概述" class="headerlink" title="SQL概述"></a>SQL概述</h1><p><strong>SQL</strong> (Structured Query Language:结构化查询语言) 是用于管理关系数据库管理系统（RDBMS）。 SQL 的范围包括数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。</p>
-<h2 id="SQL的特点"><a href="#SQL的特点" class="headerlink" title="SQL的特点"></a>SQL的特点</h2><ul>
-<li>具有总和统一性，不同数据库所支持的SQL稍有不同</li>
-<li>非过程化语言（不需要关心内部操作过程）</li>
-<li>语言简洁，用户容易接受</li>
-<li>以一种语言结构提供两种使用方式，例如SQL和python或java结合使用</li>
-</ul>
-<h2 id="SQL的语法特点"><a href="#SQL的语法特点" class="headerlink" title="SQL的语法特点"></a>SQL的语法特点</h2><ul>
-<li>SQL对关键字的大小写不敏感，比如SELECT和select一样</li>
-<li>SQL语句可以以单行或者多行书写，以分号结束</li>
-<li>SQL注释分单行注释和多行注释，单行注释语法：<code>-- 单行注释</code>，注意–后面有空格；<code>#单行注释</code>，#后可加可不加空格。例如<code>select * from 库名;-- 单行注释</code>。多行注释和C++一样<code>/*  注释内容  */</code>。</li>
-</ul>
-<h1 id="数据库概述"><a href="#数据库概述" class="headerlink" title="数据库概述"></a>数据库概述</h1><p>数据库（DataBase）是“按照数据结构来组织、存储和管理数据的仓库”。是一个长期存储在计算机内的、有组织的、可共享的、统一管理的大量数据的集合。</p>
-<p><strong>数据库应用系统是指基于数据库的应用软件</strong></p>
-<h2 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h2><h3 id="关系型数据库（RDBMS）"><a href="#关系型数据库（RDBMS）" class="headerlink" title="关系型数据库（RDBMS）"></a>关系型数据库（RDBMS）</h3><ul>
-<li>Oracle数据库（最挣钱体积庞大，几个Gb）</li>
-<li>MySQL数据库（最流行中型数据库）</li>
-<li>SQL server数据库（Window上最好的数据库）</li>
-<li>PostgreSQL（功能最强大的开源数据库）</li>
-<li>SQLite（最流行的嵌入式数据库，体积非常小几百kb）</li>
-</ul>
-<h3 id="非关系型数据库（NoSQL）"><a href="#非关系型数据库（NoSQL）" class="headerlink" title="非关系型数据库（NoSQL）"></a>非关系型数据库（NoSQL）</h3><ul>
-<li>Redis（最好的缓存数据库）</li>
-<li>MongoDB（最好的文档型数据库）</li>
-<li>Elasticsearch（最好的搜索服务）</li>
-<li>Cassandra（最好的列式数据库）</li>
-<li>HBase（优秀的分布式、列式数据库）</li>
-</ul>
-<p><strong>两类数据库的区别在于，关系型数据库存储数据用一张张的表，而非关系型数据库有其自身的存储方式</strong></p>
-<h2 id="SQL和数据库管理系统的关系"><a href="#SQL和数据库管理系统的关系" class="headerlink" title="SQL和数据库管理系统的关系"></a>SQL和数据库管理系统的关系</h2><ul>
-<li>SQL是一种用于操作数据库的语言，SQL适用于所有的关系数据库。</li>
-<li>MySQL、Oracle、SQLSever是一个数据库软件，这些数据库软件支持标准的SQL，也就是通过SQL可以使用这些软件，不过每一个数据库系统会在标准SQL的举出上扩展自己的SQL语法</li>
-<li>大部分NoSQL数据库有自己的操作语言，对SQL支持并不好</li>
-</ul>
-<h2 id="关系型数据库的组成"><a href="#关系型数据库的组成" class="headerlink" title="关系型数据库的组成"></a>关系型数据库的组成</h2><p>数据库管理系统（DBMS）主要由数据库（Database）和表（table）组成，一个系统可以有很多数据库，每个数据库可以有很多表。</p>
-<h1 id="MySQL简介"><a href="#MySQL简介" class="headerlink" title="MySQL简介"></a>MySQL简介</h1><ul>
-<li>MySQL如今归Oracle管，并有社区版和企业版</li>
-<li>MySQL使用标准化的SQL语言</li>
-</ul>
-<h2 id="MySQL的特点"><a href="#MySQL的特点" class="headerlink" title="MySQL的特点"></a>MySQL的特点</h2><ol>
-<li>MySQL的数据库是用C和C++语言编写的，以保证源码的可移植性</li>
-<li>支持多个操作系统，例如：Windows、Linux、Mac OS等等</li>
-<li>支持多线程，可以充分利用CPU资源</li>
-<li>为多种编程语言提供API，包括C语言、Java、PHP、Python语言等</li>
-<li>MySQL优化了SQL算法，有效的提高了查询速度</li>
-<li>MySQL开放源代码，且无版权制约，自主性强，使用成本低</li>
-<li>MySQL历史悠久，社区及用户非常活跃，遇到问题，可以很快获得帮助</li>
-</ol>
-<h2 id="MySQL的版本"><a href="#MySQL的版本" class="headerlink" title="MySQL的版本"></a>MySQL的版本</h2><p>针对不同用户，MySQL分为两种不同的版本：</p>
-<p><strong>MySQL Community Server</strong></p>
-<p>社区版本，免费，但是MySQL不提供官方的技术支持</p>
-<p><strong>MySQL Enterprise Edition</strong></p>
-<p>商业版，该版本是收费的，可以试用30天，官方提供技术支持</p>
-<p><strong>MySQL Cluster</strong></p>
-<p>集群版，开源免费，可将几个MySQL Server封装成一个Server</p>
-<p><strong>MySQL Cluster CGE</strong></p>
-<p>高级集群版，需要付费</p>
-<p><strong>MySQL Workbench （GUI TOOL）</strong></p>
-<p>一款专门为MySQL设计的ER/数据库建模工具，MySQL Workbench又分为两个版本，分别是社区版（MySQL Workbench OSS）、商用版（MySQL Workbench SE）</p>
-<h2 id="MySQL的版本命名"><a href="#MySQL的版本命名" class="headerlink" title="MySQL的版本命名"></a>MySQL的版本命名</h2><p>MySQL的命名机制使用三个数字和一个后缀组成的版本号，例如，mysql-8.0.26的版本号这样解释：</p>
-<p>第一个数字（8）是主版本号，描述了文件格式，所有版本5的发行都有相同的文件格式。</p>
-<p>第二个数字（0）是发行级别，主版本号和发行级别组合到一块便构成了发行序列号。</p>
-<p>第三个数字（26）是在此发行系列的版本号，随每个新发行版本递增</p>
-<h1 id="MySQL的安装"><a href="#MySQL的安装" class="headerlink" title="MySQL的安装"></a>MySQL的安装</h1><h2 id="压缩包安装"><a href="#压缩包安装" class="headerlink" title="压缩包安装"></a>压缩包安装</h2><p>去<a href="https://dev.mysql.com/downloads/mysql/">官网下载zip</a>然后解压进行配置</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112153020029.png" alt="image-20220112153020029"></p>
-<p>解压后新建my. ini文件,并编辑</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160645372.png" alt="image-20220112160645372"></p>
-<p>若没有新建文件的权力，修改一下内容</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160750113.png" alt="image-20220112160750113"></p>
-<p>然后配置环境变量（<strong>若不配置，则cmd无法识别mysql指令</strong>）</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161003464.png" alt="image-20220112161003464"></p>
-<p>然后在Path中添加如下内容</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161441314.png" alt="image-20220112161441314"></p>
-<p>配置好后，进入cmd（管理员模式）并打开bin文件如图</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112162133149.png" alt="image-20220112162133149"></p>
-<p>然后对mysql进行初始化，记住初始化密码，下面登录要用</p>
-<p><code>mysqld --initialize --user=mysql --console</code></p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112221537146.png" alt="image-20220112221537146"></p>
-<p>安装mysql服务</p>
-<p><code>mysqld --install</code></p>
-<p>启动mysql服务</p>
-<p><code>net start mysql</code></p>
-<p>登录mysql</p>
-<p><code>mysql -uroot -p</code></p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223115990.png" alt="image-20220112223115990"></p>
-<p>修改root用户密码为root</p>
-<p><code>ALTER USER&#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></p>
-<p>修改root用户权限</p>
-<p><code>create user &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223244690.png" alt="image-20220112223244690"></p>
-<p>退出登录用quit</p>
-<h2 id="程序安装"><a href="#程序安装" class="headerlink" title="程序安装"></a>程序安装</h2><p>去<a href="https://dev.mysql.com/downloads/windows/installer/8.0.html">官网下载程序</a>然后安装</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112154249700.png" alt="image-20220112154249700"></p>
-<p>这种方法比较上一种，少了配置my.ini文件和初始化的步骤，其余差不多，但需要注意的是配置环境变量时，MySQL的安装路径</p>
-<h1 id="MySQL的卸载"><a href="#MySQL的卸载" class="headerlink" title="MySQL的卸载"></a>MySQL的卸载</h1><p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223649914.png" alt="image-20220112223649914"></p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223728875.png" alt="image-20220112223728875"></p>
-<p>该图片摘自B站黑马程序员</p>
-]]></content>
-      <tags>
-        <tag>SQL</tag>
       </tags>
   </entry>
   <entry>
@@ -1763,26 +1763,6 @@
       </tags>
   </entry>
   <entry>
-    <title>bugku-bp</title>
-    <url>/2021/12/05/bugku-bp/</url>
-    <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185551656.png" alt="image-20211205185551656"></p>
-<p>爆破结果如下</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/05/bugku-bp/image-20211205185641750.png" alt="image-20211205185641750"></p>
-<p>结果均为908，则猜想正确结果与错误结果的length一样，则选择其他参考标准，通过观察响应包里面的内容，我们发现错误包里面都会返回一个JavaScript代码告知我们的密码有错误。因此我们通过Burpsuite的 （Grep – Match 在响应中找出存在指定的内容的一项。）过滤掉存在JavaScript代码中的{code: ‘bugku10000’}的数据包。</p>
-<p>添加如图内容，继续爆破</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185817178.png" alt="image-20211205185817178"></p>
-<p>发现可疑点</p>
-<p><img src="/2021/12/05/bugku-bp/image-20211205185906383.png" alt="image-20211205185906383"></p>
-<p>输入该密码，得到flag。</p>
-]]></content>
-      <tags>
-        <tag>bp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>bugku刷题记录</title>
     <url>/2022/03/15/bugku%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<h1 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h1><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">include</span> <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line">    <span class="variable">$a</span> = @<span class="variable">$_REQUEST</span>[<span class="string">&#x27;hello&#x27;</span>];</span><br><span class="line">    <span class="keyword">eval</span>( <span class="string">&quot;var_dump(<span class="subst">$a</span>);&quot;</span>);</span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br></pre></td></tr></table></figure>
@@ -1824,6 +1804,26 @@
 ]]></content>
       <tags>
         <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bugku-bp</title>
+    <url>/2021/12/05/bugku-bp/</url>
+    <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185551656.png" alt="image-20211205185551656"></p>
+<p>爆破结果如下</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/05/bugku-bp/image-20211205185641750.png" alt="image-20211205185641750"></p>
+<p>结果均为908，则猜想正确结果与错误结果的length一样，则选择其他参考标准，通过观察响应包里面的内容，我们发现错误包里面都会返回一个JavaScript代码告知我们的密码有错误。因此我们通过Burpsuite的 （Grep – Match 在响应中找出存在指定的内容的一项。）过滤掉存在JavaScript代码中的{code: ‘bugku10000’}的数据包。</p>
+<p>添加如图内容，继续爆破</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185817178.png" alt="image-20211205185817178"></p>
+<p>发现可疑点</p>
+<p><img src="/2021/12/05/bugku-bp/image-20211205185906383.png" alt="image-20211205185906383"></p>
+<p>输入该密码，得到flag。</p>
+]]></content>
+      <tags>
+        <tag>bp</tag>
       </tags>
   </entry>
   <entry>
@@ -1880,6 +1880,32 @@
 ]]></content>
       <tags>
         <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++字符串的使用</title>
+    <url>/2022/04/07/cstring%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="字符串初始赋值的三种方法"><a href="#字符串初始赋值的三种方法" class="headerlink" title="字符串初始赋值的三种方法"></a>字符串初始赋值的三种方法</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> a[<span class="number">10</span>] = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;\0&#x27;</span>&#125;;<span class="comment">//后面7个元素默认初始化为NULL</span></span><br><span class="line">	<span class="keyword">char</span> b[<span class="number">10</span>] = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>, <span class="number">0</span>, <span class="string">&#x27;h&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;g&#x27;</span>&#125;; <span class="comment">//从0处截断</span></span><br><span class="line">	<span class="comment">//若想显示后面的值，可用逐个遍历输出 </span></span><br><span class="line">	<span class="keyword">char</span> c[<span class="number">10</span>] = &#123;<span class="string">&quot;09AZaz&quot;</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> d[<span class="number">10</span>] = <span class="string">&quot;09AZaz&quot;</span>;</span><br><span class="line">    string b=<span class="string">&quot;aaaa&quot;</span>;</span><br><span class="line">	cout&lt;&lt;b;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="字符串的三种输入方法"><a href="#字符串的三种输入方法" class="headerlink" title="字符串的三种输入方法"></a>字符串的三种输入方法</h1><h2 id="单个逐一输入"><a href="#单个逐一输入" class="headerlink" title="单个逐一输入"></a>单个逐一输入</h2><p>该方法规定字符串长度，也就是必须输入规定长度，少补（再输入）多截断，且<strong>不包含分隔符（空格，制表符，换行符，回车）</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> a[<span class="number">20</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">20</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;a[i];<span class="comment">//不包含分隔符(空格,制表符/Tab键,换行符/回车键)</span></span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">20</span>;i++)<span class="comment">//逐一单个输出</span></span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[i];</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;a;<span class="comment">//整体输出：从第一个字符向后依次输出，一直到结束符(&#x27;\0&#x27;)为止</span></span><br><span class="line">    <span class="comment">//在这里二者效果一样，&#x27;\0&#x27;是码值为0的NULL</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：这里的数组是char型的，可以整体输出，但是如果是int型的，输出a会输出数组a第一个元素的地址，并且没有输入的元素会补成0，而不是NULL</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">20</span>]=&#123;<span class="number">5</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> b[<span class="number">20</span>]=&#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>&#125;;</span><br><span class="line">	</span><br><span class="line">	cout&lt;&lt;a&lt;&lt;endl;<span class="comment">//输出整型数组第一个元素的地址</span></span><br><span class="line">	cout&lt;&lt;b&lt;&lt;endl;<span class="comment">//整体输出字符型数组</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">20</span>;i++)<span class="comment">//遍历整型数组</span></span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[i]&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">20</span>;i++)<span class="comment">//遍历字符型数组</span></span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;b[i]&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="整体输入"><a href="#整体输入" class="headerlink" title="整体输入"></a>整体输入</h2><p>从键盘输入流中提取第一个连续字符串(<strong>不包含分隔符</strong>) </p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> b[<span class="number">20</span>];</span><br><span class="line">	cin&gt;&gt;b;<span class="comment">//仅可用于字符型数组，整型数组报错</span></span><br><span class="line">	cout&lt;&lt;b;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="按行输入"><a href="#按行输入" class="headerlink" title="按行输入"></a>按行输入</h2><p>不限制输入字符数，也<strong>可以输入空格和制表符</strong>，遇到回车/换行符结束</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	string str;<span class="comment">//不可用char str[20];来定义</span></span><br><span class="line">	<span class="built_in">getline</span>(cin,str);</span><br><span class="line">	cout&lt;&lt;str&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="cstring的简单使用"><a href="#cstring的简单使用" class="headerlink" title="cstring的简单使用"></a>cstring的简单使用</h1><p>这里的cstring和string不同</p>
+<p>string是C++标准库头文件，包含了拟容器class std::string的声明（不过class string事实上只是basic_string<char>的typedef），用于字符串操作。<br><cstring>是C标准库头文件&lt;string.h&gt;的C++标准库版本，包含了C风格字符串（NUL即’\0’结尾字符串）相关的一些类型和函数的声明，例如strcmp、strchr、strstr等。<cstring>和&lt;string.h&gt;的最大区别在于，其中声明的名称都是位于std命名空间中的，而不是后者的全局命名空间。</cstring></cstring></char></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span><span class="comment">//for strcmp(),strcpy(),strcat(),strlen().</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> s1[<span class="number">10</span>] = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">	<span class="keyword">char</span> s2[<span class="number">10</span>] = <span class="string">&quot;123&quot;</span>;</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; <span class="built_in">strcmp</span>(s1, s2) &lt;&lt; endl;<span class="comment">//string compare: 1-大于, -1-小于, 0-等于</span></span><br><span class="line">	cout &lt;&lt; <span class="built_in">strcmp</span>(s1, <span class="string">&quot;abc&quot;</span>) &lt;&lt; endl; </span><br><span class="line">	cout &lt;&lt; <span class="built_in">strcmp</span>(s1, <span class="string">&quot;abd&quot;</span>) &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;-----&quot;</span> &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;s1 = &quot;</span> &lt;&lt; s1 &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;s2 = &quot;</span> &lt;&lt; s2 &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">strcpy</span>(s1, s2);<span class="comment">//string copy, 字符串复制 </span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;s1 = &quot;</span> &lt;&lt; s1 &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;s2 = &quot;</span> &lt;&lt; s2 &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">strcat</span>(s1, s2);<span class="comment">//string catenate, 字符串连接</span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;s1 = &quot;</span> &lt;&lt; s1 &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;s2 = &quot;</span> &lt;&lt; s2 &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt;<span class="built_in">strlen</span>(s1) &lt;&lt;endl;<span class="comment">//s1的有效字符长度</span></span><br><span class="line">	 </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -2850,7 +2876,7 @@
 <h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
 <p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
 <p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
-<p>User：<a href="mailto:&#98;&#117;&#x67;&#x6b;&#117;&#107;&#x75;&#64;&#x31;&#x36;&#51;&#x2e;&#x63;&#x6f;&#109;">&#98;&#117;&#x67;&#x6b;&#117;&#107;&#x75;&#64;&#x31;&#x36;&#51;&#x2e;&#x63;&#x6f;&#109;</a></p>
+<p>User：<a href="mailto:&#98;&#117;&#103;&#107;&#x75;&#x6b;&#x75;&#64;&#x31;&#54;&#51;&#x2e;&#x63;&#x6f;&#x6d;">&#98;&#117;&#103;&#107;&#x75;&#x6b;&#x75;&#64;&#x31;&#54;&#51;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
 <p>Pass：XSLROCPMNWWZQDZL</p>
 <p>登录显示密码错误，然后继续看wp</p>
 <p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
