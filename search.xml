@@ -213,8 +213,8 @@
   <entry>
     <title>C++中的结构体</title>
     <url>/2022/02/28/C-%E4%B8%AD%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93/</url>
-    <content><![CDATA[<h1 id="结构体基本概念"><a href="#结构体基本概念" class="headerlink" title="结构体基本概念"></a>结构体基本概念</h1><p>结构体属于用户自定义的数据类型，允许用户存储不同的数据类型</p>
-<h1 id="结构体的定义和使用"><a href="#结构体的定义和使用" class="headerlink" title="结构体的定义和使用"></a>结构体的定义和使用</h1><p>语法：<code>struct 结构体名 &#123;结构体成员列表&#125;;</code> </p>
+    <content><![CDATA[<h1 id="结构体基本概念"><a href="#结构体基本概念" class="headerlink" title="结构体基本概念"></a>结构体基本概念</h1><p>结构体属于用户自定义的数据类型，允许用户存储不同的数据类型，创建结构时不会分配内存，切记结构体的花括号后面要有分号（;）</p>
+<h1 id="结构体的定义和使用"><a href="#结构体的定义和使用" class="headerlink" title="结构体的定义和使用"></a>结构体的定义和使用</h1><p>语法：<code>struct 结构体名 &#123;结构体成员列表&#125;;</code> <strong>结构体定义尽量要在main函数外面，否则其他函数无法调用</strong></p>
 <p>通过结构体创建变量的三种方式：</p>
 <ul>
 <li><p><code>struct 结构体名 变量名</code></p>
@@ -224,19 +224,28 @@
 <li><p>定义结构体时顺便创建变量</p>
 <span id="more"></span></li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span><span class="comment">//下面有string数据类型，需要该头</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="comment">//创建学生结构体</span></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">   &#123;</span></span><br><span class="line">       <span class="comment">//成员列表</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">//姓名</span></span><br><span class="line">       string name;</span><br><span class="line">       <span class="comment">//年龄</span></span><br><span class="line">       <span class="keyword">int</span> age;</span><br><span class="line">       <span class="comment">//分数</span></span><br><span class="line">       <span class="keyword">int</span> score;</span><br><span class="line">   &#125;;</span><br><span class="line">   <span class="comment">//1.struct student s1</span></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">s1</span>;</span></span><br><span class="line">   s1.name=<span class="string">&quot;张三&quot;</span>;</span><br><span class="line">   s1.age=<span class="number">18</span>;</span><br><span class="line">   s1.score=<span class="number">100</span>;</span><br><span class="line">   cout&lt;&lt;<span class="string">&quot;姓名：&quot;</span>&lt;&lt;s1.name&lt;&lt;<span class="string">&quot;\n年龄：&quot;</span>&lt;&lt;s1.age&lt;&lt;<span class="string">&quot;\n分数：&quot;</span>&lt;&lt;s1.score&lt;&lt;endl;</span><br><span class="line">   cout&lt;&lt;endl;</span><br><span class="line">   <span class="comment">//2.struct student s2=&#123;...&#125;</span></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">s2</span>=</span>&#123;<span class="string">&quot;李四&quot;</span>,<span class="number">18</span>,<span class="number">90</span>&#125;;</span><br><span class="line">   cout&lt;&lt;<span class="string">&quot;姓名：&quot;</span>&lt;&lt;s2.name&lt;&lt;<span class="string">&quot;\n年龄：&quot;</span>&lt;&lt;s2.age&lt;&lt;<span class="string">&quot;\n分数：&quot;</span>&lt;&lt;s2.score&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span><span class="comment">//下面有string数据类型，需要该头</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建学生结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="comment">//成员列表</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//姓名</span></span><br><span class="line">    string name;</span><br><span class="line">    <span class="comment">//年龄</span></span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    <span class="comment">//分数</span></span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//1.struct student s1</span></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">s1</span>;</span><span class="comment">//或者直接student s1;  这里的student可以理解为int、double等数据类型</span></span><br><span class="line">   s1.name=<span class="string">&quot;张三&quot;</span>;</span><br><span class="line">   s1.age=<span class="number">18</span>;</span><br><span class="line">   s1.score=<span class="number">100</span>;</span><br><span class="line">   cout&lt;&lt;<span class="string">&quot;姓名：&quot;</span>&lt;&lt;s1.name&lt;&lt;<span class="string">&quot;\n年龄：&quot;</span>&lt;&lt;s1.age&lt;&lt;<span class="string">&quot;\n分数：&quot;</span>&lt;&lt;s1.score&lt;&lt;endl;</span><br><span class="line">   cout&lt;&lt;endl;</span><br><span class="line">   <span class="comment">//2.struct student s2=&#123;...&#125;</span></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">s2</span>=</span>&#123;<span class="string">&quot;李四&quot;</span>,<span class="number">18</span>,<span class="number">90</span>&#125;;</span><br><span class="line">   cout&lt;&lt;<span class="string">&quot;姓名：&quot;</span>&lt;&lt;s2.name&lt;&lt;<span class="string">&quot;\n年龄：&quot;</span>&lt;&lt;s2.age&lt;&lt;<span class="string">&quot;\n分数：&quot;</span>&lt;&lt;s2.score&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="comment">//创建学生结构体</span></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">   &#123;</span></span><br><span class="line">       <span class="comment">//成员列表</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">//姓名</span></span><br><span class="line">       string name;</span><br><span class="line">       <span class="comment">//年龄</span></span><br><span class="line">       <span class="keyword">int</span> age;</span><br><span class="line">       <span class="comment">//分数</span></span><br><span class="line">       <span class="keyword">int</span> score;</span><br><span class="line">   &#125;s3;<span class="comment">//此处加一s3，这种方式用的少</span></span><br><span class="line">   s3.name=<span class="string">&quot;王五&quot;</span>;</span><br><span class="line">   s3.age=<span class="number">20</span>;</span><br><span class="line">   s3.score=<span class="number">80</span>;</span><br><span class="line">   cout&lt;&lt;<span class="string">&quot;姓名：&quot;</span>&lt;&lt;s3.name&lt;&lt;<span class="string">&quot;\n年龄：&quot;</span>&lt;&lt;s3.age&lt;&lt;<span class="string">&quot;\n分数：&quot;</span>&lt;&lt;s3.score&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">   <span class="comment">//创建学生结构体</span></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">   &#123;</span></span><br><span class="line">       <span class="comment">//成员列表</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">//姓名</span></span><br><span class="line">       string name;</span><br><span class="line">       <span class="comment">//年龄</span></span><br><span class="line">       <span class="keyword">int</span> age;</span><br><span class="line">       <span class="comment">//分数</span></span><br><span class="line">       <span class="keyword">int</span> score;</span><br><span class="line">   &#125;s3;<span class="comment">//此处加一s3，这种方式用的少，此时的s3是全局变量</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">   s3.name=<span class="string">&quot;王五&quot;</span>;</span><br><span class="line">   s3.age=<span class="number">20</span>;</span><br><span class="line">   s3.score=<span class="number">80</span>;</span><br><span class="line">   cout&lt;&lt;<span class="string">&quot;姓名：&quot;</span>&lt;&lt;s3.name&lt;&lt;<span class="string">&quot;\n年龄：&quot;</span>&lt;&lt;s3.age&lt;&lt;<span class="string">&quot;\n分数：&quot;</span>&lt;&lt;s3.score&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>创建变量时的struct可省</p>
+<p><strong>创建变量时的struct可省</strong></p>
+<h1 id="结构体函数"><a href="#结构体函数" class="headerlink" title="结构体函数"></a>结构体函数</h1><p>将结构体变量传递给函数并以普通自变量类似的方式返回</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	string name;</span><br><span class="line">	<span class="keyword">int</span> age;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">(person s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;s.name&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;s.age&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	person s1;</span><br><span class="line">	s1.name=<span class="string">&quot;Harbeter&quot;</span>;</span><br><span class="line">	s1.age=<span class="number">18</span>;</span><br><span class="line">	<span class="built_in">show</span>(s1);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="结构体数组"><a href="#结构体数组" class="headerlink" title="结构体数组"></a>结构体数组</h1><p>作用：将定义的结构体放入到数组中方便维护</p>
 <p>语法：<code>struct 结构体名 数组名[元素个数]=&#123;&#123;&#125;,&#123;&#125;...&#123;&#125;&#125;</code>       这里插一句题外话，hexo发布文件时，这篇老是上不去，最后发现是花括号里不能有花括号，除非变成代码块</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">   <span class="comment">//1.创建学生结构体</span></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">   &#123;</span></span><br><span class="line">       <span class="comment">//姓名</span></span><br><span class="line">       string name;</span><br><span class="line">       <span class="comment">//年龄</span></span><br><span class="line">       <span class="keyword">int</span> age;</span><br><span class="line">       <span class="comment">//分数</span></span><br><span class="line">       <span class="keyword">int</span> score;</span><br><span class="line">   &#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//2.创建结构体数组</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">stuarr</span>[]</span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        &#123;<span class="string">&quot;张三&quot;</span>,<span class="number">18</span>,<span class="number">100</span>&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;李四&quot;</span>,<span class="number">19</span>,<span class="number">90</span>&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;王五&quot;</span>,<span class="number">20</span>,<span class="number">80</span>&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">//3.给结构体数组中的元素赋值</span></span><br><span class="line">    stuarr[<span class="number">1</span>].name=<span class="string">&quot;李8&quot;</span>;</span><br><span class="line">    <span class="comment">//4.遍历结构体数组</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;name:&quot;</span>&lt;&lt;stuarr[i].name&lt;&lt;<span class="string">&quot;\nage:&quot;</span>&lt;&lt;stuarr[i].age&lt;&lt;<span class="string">&quot;\nscore:&quot;</span>&lt;&lt;stuarr[i].score&lt;&lt;endl&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">person</span> //定义结构体</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	string name;</span><br><span class="line">	<span class="keyword">int</span> age;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">show</span>(person s) <span class="comment">//输出结构体中的变量的函数</span></span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;s.name&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;s.age&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	person class3[<span class="number">3</span>];<span class="comment">//定义结构体数组</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)<span class="comment">//输入结构体数组中变量的值</span></span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;class3[i].name&gt;&gt;class3[i].age;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)<span class="comment">//遍历输出结构体变量值</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">show</span>(class3[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="结构体指针"><a href="#结构体指针" class="headerlink" title="结构体指针"></a>结构体指针</h1><p>作用：通过指针访问结构体中的成员</p>
+<p>指针变量不仅可以为本机类型(int、float、double等)创建，还可以为用户定义的类型(如结构体)创建。</p>
 <p>利用操作符<code>-&gt;</code>可以通过结构体指针访问结构体属性</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">   <span class="comment">//1.创建学生结构体</span></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">   &#123;</span></span><br><span class="line">       <span class="comment">//姓名</span></span><br><span class="line">       string name;</span><br><span class="line">       <span class="comment">//年龄</span></span><br><span class="line">       <span class="keyword">int</span> age;</span><br><span class="line">       <span class="comment">//分数</span></span><br><span class="line">       <span class="keyword">int</span> score;</span><br><span class="line">   &#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//2.创建结构体</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">s</span>=</span>&#123;<span class="string">&quot;张三&quot;</span>,<span class="number">18</span>,<span class="number">100</span>&#125;;</span><br><span class="line">    <span class="comment">//3.通过指针指向结构体变量</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">student</span> *<span class="title">p</span> =</span>&amp;s;</span><br><span class="line">    <span class="comment">//4.通过指针指向结构体变量</span></span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;name:&quot;</span>&lt;&lt;p-&gt;name&lt;&lt;<span class="string">&quot;\nage:&quot;</span>&lt;&lt;p-&gt;age&lt;&lt;<span class="string">&quot;\nscore:&quot;</span>&lt;&lt;p-&gt;score&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;name:&quot;</span>&lt;&lt;(*p).name&lt;&lt;<span class="string">&quot;\nage:&quot;</span>&lt;&lt;(*p).age&lt;&lt;<span class="string">&quot;\nscore:&quot;</span>&lt;&lt;(*p).score&lt;&lt;endl;</span><br><span class="line">    <span class="comment">//以上两种输出方式等价</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	string name;</span><br><span class="line">	<span class="keyword">int</span> age;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">show</span>(person *s)<span class="comment">//通过指针传参</span></span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;(*s).name&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;(*s).age&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	person class3[<span class="number">3</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;class3[i].name&gt;&gt;class3[i].age;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">show</span>(&amp;class3[i]);<span class="comment">//这里要用到取址符</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>忘了三种传参方式移步<a href="https://harbeter.github.io/2022/04/06/C-%E7%9A%84%E4%B8%89%E7%A7%8D%E4%BC%A0%E5%80%BC%E6%96%B9%E5%BC%8F/">这</a></p>
 <h1 id="结构体嵌套结构体"><a href="#结构体嵌套结构体" class="headerlink" title="结构体嵌套结构体"></a>结构体嵌套结构体</h1><p>作用：结构体中的成员可以是另一个结构体</p>
 <p>例如：每个老师辅导一个学生，一个老师的结构体中，记录一个学生的结构体</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">    <span class="comment">//创建学生结构体</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        string name;</span><br><span class="line">        <span class="keyword">int</span> age;</span><br><span class="line">        <span class="keyword">int</span> score;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="comment">//创建老师结构体</span></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">teacher</span></span></span><br><span class="line"><span class="class">   &#123;</span></span><br><span class="line">       string name;</span><br><span class="line">       <span class="keyword">int</span> age;</span><br><span class="line">       <span class="class"><span class="keyword">struct</span> <span class="title">student</span> <span class="title">stu</span>;</span></span><br><span class="line">   &#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建老师</span></span><br><span class="line">    teacher t;</span><br><span class="line">    t.name=<span class="string">&quot;老王&quot;</span>;</span><br><span class="line">    t.age=<span class="number">60</span>;</span><br><span class="line">    t.stu.name=<span class="string">&quot;小王&quot;</span>;</span><br><span class="line">    t.stu.age=<span class="number">20</span>;</span><br><span class="line">    t.stu.score=<span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;teacher&#x27;s name:&quot;</span>&lt;&lt;t.name&lt;&lt;<span class="string">&quot;\nteacher&#x27;s age:&quot;</span>&lt;&lt;t.age</span><br><span class="line">    &lt;&lt;<span class="string">&quot;\nteacher&#x27;s student&#x27;s name:&quot;</span>&lt;&lt;t.stu.name&lt;&lt;<span class="string">&quot;\nteacher&#x27;s student&#x27;s age&quot;</span>&lt;&lt;t.stu.age</span><br><span class="line">    &lt;&lt;<span class="string">&quot;\nteacher&#x27;s student&#x27;s score:&quot;</span>&lt;&lt;t.stu.score&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -317,57 +326,79 @@
 
 <h1 id="vector头文件的使用"><a href="#vector头文件的使用" class="headerlink" title="vector头文件的使用"></a>vector头文件的使用</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//vector: &lt;vector&gt;, 变长数组 </span></span><br><span class="line"><span class="comment">//常用操作：整体赋值,size(),push_back(),pop_back(),resize()</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showVector</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v.<span class="built_in">size</span>(); i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; v[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;At the beginning, a.size() = &quot;</span> &lt;&lt; a.<span class="built_in">size</span>() &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		a.<span class="built_in">push_back</span>(i*<span class="number">2</span>);</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;After i = &quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot; , a.size() = &quot;</span> &lt;&lt; a.<span class="built_in">size</span>() &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">showVector</span>(a);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		a.<span class="built_in">pop_back</span>();</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;After i = &quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot; , a.size() = &quot;</span> &lt;&lt; a.<span class="built_in">size</span>() &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">showVector</span>(a);</span><br><span class="line">	</span><br><span class="line">	a.<span class="built_in">resize</span>(<span class="number">10</span>);</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;After a.resize(10): &quot;</span> &lt;&lt; endl;</span><br><span class="line">	<span class="built_in">showVector</span>(a);</span><br><span class="line">	</span><br><span class="line">	a.<span class="built_in">resize</span>(<span class="number">3</span>);</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;After a.resize(3): &quot;</span> &lt;&lt; endl;</span><br><span class="line">	<span class="built_in">showVector</span>(a);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="C-中的左右对齐"><a href="#C-中的左右对齐" class="headerlink" title="C++中的左右对齐"></a>C++中的左右对齐</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iomanip&gt;</span><span class="comment">//关键头文件 </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">setiosflags</span>(ios::right)&lt;&lt;<span class="built_in">setw</span>(<span class="number">10</span>)&lt;&lt;<span class="string">&quot;abc&quot;</span>&lt;&lt;endl;<span class="comment">//右对齐 </span></span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;aaa&quot;</span>&lt;&lt;endl;<span class="comment">//左对齐（默认） </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>顺便补充一下iomanip中的功能</p>
-<p>I/O流常用控制符：</p>
-<p>使用控制符时，在程序开头加投文件#include <iomanip> C++有两种方法控制格式输出：1、用格式控制符；2、用流对象的成员函数 格式控制符：</iomanip></p>
-<p>dec                                 设置基数为10</p>
-<p>hex                                 设置基数为16</p>
-<p>oct                                 设置基数为8</p>
-<p>setfill(c)                          设置填充字符c</p>
-<p>setprecision(n)                     设置显示小数精度为n位</p>
-<p>setw(n)                             设置域宽为n个字符</p>
-<p>setiosflags(ios::fixed)             固定的浮点显示</p>
-<p> setiosflags(ios::scientific)        指数表示</p>
-<p>setiosflags(ios::left)              左对齐</p>
-<p>setiosflags(ios::right)             右对齐</p>
-<p>setiosflags(ios::skipws)            忽略前导空白</p>
-<p>setiosflags(ios::uppercase)         16进制数大写输出</p>
-<p>setiosflags(ios::lowercase)         16进制小写输出</p>
+<h1 id="C-中的iomanip的使用"><a href="#C-中的iomanip的使用" class="headerlink" title="C++中的iomanip的使用"></a>C++中的iomanip的使用</h1><p>I/O流常用控制符：</p>
+<p>使用控制符时，在程序开头加投文件<code>#include &lt;iomanip&gt;</code> C++有两种方法控制格式输出：</p>
+<p>1、用格式控制符；</p>
+<p>2、用流对象的成员函数 格式控制符：</p>
+<p>下面是iomanip的部分用法指令</p>
+<p><strong>注</strong>：以下指令前面都要加cout&lt;&lt;</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dec</td>
+<td>以十进制形式输出</td>
+</tr>
+<tr>
+<td>hex</td>
+<td>以十六进制形式输出</td>
+</tr>
+<tr>
+<td>oct</td>
+<td>以八进制形式输出</td>
+</tr>
+<tr>
+<td>setfill(‘*’)</td>
+<td>用*填充空余部分</td>
+</tr>
+<tr>
+<td>setprecision(n)</td>
+<td>设置显示n位小数（四舍五入）</td>
+</tr>
+<tr>
+<td>setw(n)</td>
+<td>设置域宽为n个字符，并默认右对齐</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>固定小数显示位，只有超出setprecision显示范围时才使用</td>
+</tr>
+<tr>
+<td>scientific</td>
+<td>科学计数法显示，默认保留小数点后6位</td>
+</tr>
+<tr>
+<td>left</td>
+<td>左对齐</td>
+</tr>
+<tr>
+<td>right</td>
+<td>右对齐</td>
+</tr>
+<tr>
+<td>skipws</td>
+<td>忽略前导空白</td>
+</tr>
+<tr>
+<td>uppercase</td>
+<td>16进制数大写输出</td>
+</tr>
+<tr>
+<td>lowercase</td>
+<td>16进制数小写输出</td>
+</tr>
+</tbody></table>
+<p><strong>浮点数精度：默认精度为6，可以通过setprecision()来设置新的浮点数精度</strong><br><strong>非定点数模式：从左侧第一个非零数值开始的连续有效数字个数</strong><br><strong>定点数模式：小数点后连续有效数字个数</strong><br><strong>取消设置/回复默认：cout.unsetf(控制符)</strong></p>
+<p><strong>setw(): 设置显示宽度 (单次/一次性操作，仅仅对后面的第一个对象有效)</strong><br><strong>其他的格式控制符：大都是黏性操作(持久性/永久性操作，设置之后持续有效，直到新的设置为止)</strong> </p>
 <h1 id="递归的简单使用"><a href="#递归的简单使用" class="headerlink" title="递归的简单使用"></a>递归的简单使用</h1><p>利用递归算阶乘</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">s</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a&gt;<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> b=a*<span class="built_in">s</span>(a<span class="number">-1</span>);</span><br><span class="line">		<span class="keyword">return</span> b;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">s</span>(<span class="number">4</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>法2</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">s</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a==<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> a*<span class="built_in">s</span>(a<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">s</span>(<span class="number">4</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++的三种传值方式</title>
-    <url>/2022/04/06/C-%E7%9A%84%E4%B8%89%E7%A7%8D%E4%BC%A0%E5%80%BC%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="传值-按值传递"><a href="#传值-按值传递" class="headerlink" title="传值/按值传递"></a>传值/按值传递</h1><p><strong>值传递：</strong></p>
-<p>形参是实参的拷贝，<strong>改变形参的值并不会影响外部实参的值</strong>。从被调用函数的角度来说，值传递是单向的（实参-&gt;形参），<strong>参数的值只能传入，不能传出</strong>。当函数内部需要修改参数，并且不希望这个改变影响调用者时，采用值传递。</p>
-<span id="more"></span>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change1</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;;</span><br><span class="line">	<span class="built_in">change1</span>(a);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="传地址-按地址传递-指针传递"><a href="#传地址-按地址传递-指针传递" class="headerlink" title="传地址/按地址传递/指针传递"></a>传地址/按地址传递/指针传递</h1><p><strong>指针传递：</strong></p>
-<p>形参为指向实参地址的指针，当对形参的指向操作时，就相当于对实参本身进行的操作，可以改变实参的值。其<strong>实质是传参</strong>，只不过这里的参数是一个指针。这里的指针比较特殊，可以当作参数使用。若将change2函数里的代码拿到main里面，却不能执行。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change2</span><span class="params">(<span class="keyword">int</span> *a)</span><span class="comment">//传地址/按地址传递 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The initial value in the function is:&quot;</span> &lt;&lt; *a &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The initial address in the function is:&quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">	*a = <span class="number">3</span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The final value in the function is:&quot;</span> &lt;&lt; *a &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The final address in the function is:&quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial address is:&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	<span class="built_in">change2</span>(&amp;a);</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final address is:&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>错误示例</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *a;</span><br><span class="line">	*a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;*a;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//执行完之后，返回结果为空</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>正确用法</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *a;</span><br><span class="line">	<span class="keyword">int</span> b=<span class="number">5</span>;</span><br><span class="line">	a=&amp;b;</span><br><span class="line">	cout&lt;&lt;*a;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="传引用-按引用传递"><a href="#传引用-按引用传递" class="headerlink" title="传引用/按引用传递"></a>传引用/按引用传递</h1><p><strong>引用传递：</strong></p>
-<p>形参相当于是实参的“别名”，<strong>对形参的操作其实就是对实参的操作</strong>，在引用传递过程中，被调函数的形式参数虽然也作为局部变量在栈中开辟了内存空间，但是这时存放的是由主调函数放进来的实参变量的地址。<strong>被调函数对形参的任何操作都被处理成间接寻址，即通过栈中存放的地址访问主调函数中的实参变量</strong>。正因为如此，被调函数对形参做的任何操作都影响了主调函数中的实参变量。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change3</span><span class="params">(<span class="keyword">int</span> &amp;a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="built_in">change3</span>(a);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
@@ -586,6 +617,34 @@
       </tags>
   </entry>
   <entry>
+    <title>C++的三种传值方式</title>
+    <url>/2022/04/06/C-%E7%9A%84%E4%B8%89%E7%A7%8D%E4%BC%A0%E5%80%BC%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="传值-按值传递"><a href="#传值-按值传递" class="headerlink" title="传值/按值传递"></a>传值/按值传递</h1><p><strong>值传递：</strong></p>
+<p>形参是实参的拷贝，<strong>改变形参的值并不会影响外部实参的值</strong>。从被调用函数的角度来说，值传递是单向的（实参-&gt;形参），<strong>参数的值只能传入，不能传出</strong>。当函数内部需要修改参数，并且不希望这个改变影响调用者时，采用值传递。</p>
+<span id="more"></span>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change1</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;;</span><br><span class="line">	<span class="built_in">change1</span>(a);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="传地址-按地址传递-指针传递"><a href="#传地址-按地址传递-指针传递" class="headerlink" title="传地址/按地址传递/指针传递"></a>传地址/按地址传递/指针传递</h1><p><strong>指针传递：</strong></p>
+<p>形参为指向实参地址的指针，当对形参的指向操作时，就相当于对实参本身进行的操作，可以改变实参的值。其<strong>实质是传参</strong>，只不过这里的参数是一个指针。这里的指针比较特殊，可以当作参数使用。若将change2函数里的代码拿到main里面，却不能执行。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change2</span><span class="params">(<span class="keyword">int</span> *a)</span><span class="comment">//传地址/按地址传递 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The initial value in the function is:&quot;</span> &lt;&lt; *a &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The initial address in the function is:&quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">	*a = <span class="number">3</span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The final value in the function is:&quot;</span> &lt;&lt; *a &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;The final address in the function is:&quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial address is:&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	<span class="built_in">change2</span>(&amp;a);</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final address is:&quot;</span>&lt;&lt;&amp;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>错误示例</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *a;</span><br><span class="line">	*a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;*a;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//执行完之后，返回结果为空</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>正确用法</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *a;</span><br><span class="line">	<span class="keyword">int</span> b=<span class="number">5</span>;</span><br><span class="line">	a=&amp;b;</span><br><span class="line">	cout&lt;&lt;*a;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="传引用-按引用传递"><a href="#传引用-按引用传递" class="headerlink" title="传引用/按引用传递"></a>传引用/按引用传递</h1><p><strong>引用传递：</strong></p>
+<p>形参相当于是实参的“别名”，<strong>对形参的操作其实就是对实参的操作</strong>，在引用传递过程中，被调函数的形式参数虽然也作为局部变量在栈中开辟了内存空间，但是这时存放的是由主调函数放进来的实参变量的地址。<strong>被调函数对形参的任何操作都被处理成间接寻址，即通过栈中存放的地址访问主调函数中的实参变量</strong>。正因为如此，被调函数对形参做的任何操作都影响了主调函数中的实参变量。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change3</span><span class="params">(<span class="keyword">int</span> &amp;a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	a=<span class="number">5</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value in the function is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The initial value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="built_in">change3</span>(a);</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The final value is:&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++的函数</title>
     <url>/2022/01/17/C-%E7%9A%84%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>将一串经常会使用的代码封装起来，减少重复代码。一个较大的程序，一般分为若干个程序块，每个模块实现特定的功能。</p>
@@ -657,6 +716,52 @@
 <p>main.cpp</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;max.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>,b=<span class="number">20</span>;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">m</span>(a,b)&lt;&lt;endl; <span class="comment">//直接引用</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++的类</title>
+    <url>/2022/04/28/C-%E7%9A%84%E7%B1%BB/</url>
+    <content><![CDATA[<h1 id="什么是类以及类的定义"><a href="#什么是类以及类的定义" class="headerlink" title="什么是类以及类的定义"></a>什么是类以及类的定义</h1><p>类是属于用户自定义的数据类型, 并且该类型的数据具有一定的行为能力, 也就是类中说描述的方法。通常来说, 一个类的定义包含两部分的内容, 一是该类的<strong>属性</strong>, 另一部分是它所拥有的<strong>方法</strong>。</p>
+<h2 id="类的实质"><a href="#类的实质" class="headerlink" title="类的实质"></a>类的实质</h2><p><strong>类是一种用户自定义的引用数据类型，它的本质是数据类型，并不是数据，所以不存在于内存中，不能被直接操作，只有被实例化为对象时，才会变得可操作</strong></p>
+<h2 id="类的特性"><a href="#类的特性" class="headerlink" title="类的特性"></a>类的特性</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、抽象；</span><br><span class="line">2、封装和数据隐藏；</span><br><span class="line">3、继承；</span><br><span class="line">4、多态；</span><br><span class="line">5、代码可重用性</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h2 id="类的定义"><a href="#类的定义" class="headerlink" title="类的定义"></a>类的定义</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> 类名</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="comment">//公共的行为或者属性</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="comment">//私有的行为或属性 </span></span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">    	<span class="comment">//</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="成员访问类型的选择"><a href="#成员访问类型的选择" class="headerlink" title="成员访问类型的选择"></a>成员访问类型的选择</h2><p>类使用private、protected和public关键字控制成员的访问权限，类成员的<strong>默认访问权限为private</strong><br>1）、private成员：能被本类的成员函数（不管是哪一种控制符声明的成员函数，都可以）、友元函数<br>2）、protected成员：可通过本类的成员函数（不管是哪一种控制符声明的成员函数，都可以）、友元函数、其派生类的成员函数（不管是哪一种控制符声明的成员函数，都可以）<br>3）、public成员：能被本类的成员函数（不管是哪一种控制符声明的成员函数，都可以）、友元函数、本类的对象、其派生类的成员函数（不管是哪一种控制符声明的成员函数，都可以）；</p>
+<p>1）、数据成员通常声明为private属性，这样可以实现数据隐藏；<br>2）、成员函数通常声明为public属性，这样在外部可以访问；<br>3）、对于类成员，若想让派生类能够访问访问而不想让外部访问，则声明为protected属性</p>
+<p>说明：</p>
+<ol>
+<li>类名需要遵循一般的命名规则</li>
+<li><strong>public</strong>和<strong>private</strong>为属性/方法限制的关键字，<strong>private</strong>表示该部分内容是私密的，不能被外部所访问或者调用，只能被本类内容访问；而 <strong>public</strong> 表示公开的属性和方法, 外界可以直接访问或者调用。一般来说类的属性成员都应设置为<strong>private</strong>, <strong>public</strong>只留给那些被外界用来调用的函数接口, 但这并非是强制规定, 可以根据需要进行调整;</li>
+<li>结束部分的分号不能忽略</li>
+<li>定义类后，类名就是新的数据类型，即类名就像int一样可以定义变量</li>
+</ol>
+<h1 id="类的实现"><a href="#类的实现" class="headerlink" title="类的实现"></a>类的实现</h1><p>在上面的定义示例中我们只是定义了这个类的一些属性和方法声明, 并没有去实现它, 类的实现就是完成其方法的过程。类的实现有两种方式, 一种是在类定义时完成对成员函数的定义, 另一种是在类定义的外部进行完成。</p>
+<h2 id="在类定义时定义成员函数"><a href="#在类定义时定义成员函数" class="headerlink" title="在类定义时定义成员函数"></a>在类定义时定义成员函数</h2><p>成员函数的实现可以在类定义时同时完成，如代码</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">caculate</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:<span class="comment">//公共的行为或者属性</span></span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">jia</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span><span class="comment">//实现jia函数 </span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="keyword">int</span> c;</span><br><span class="line">			c=a+b;</span><br><span class="line">			<span class="keyword">return</span> c;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">jian</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span><span class="comment">//实现jian函数 </span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="keyword">int</span> c;</span><br><span class="line">			c=a-b;</span><br><span class="line">			<span class="keyword">return</span> c;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:<span class="comment">//私有的行为或属性 </span></span><br><span class="line">		<span class="function"><span class="keyword">double</span> <span class="title">cheng</span><span class="params">(<span class="keyword">double</span> a,<span class="keyword">double</span> b)</span><span class="comment">//实现cheng函数 </span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="keyword">double</span> c;</span><br><span class="line">			c=a*b;</span><br><span class="line">			<span class="keyword">return</span> c;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	caculate M;   <span class="comment">//用定义好的类创建一个对象  M</span></span><br><span class="line">	<span class="keyword">int</span> c=M.<span class="built_in">jia</span>(<span class="number">10</span>,<span class="number">20</span>);<span class="comment">//利用caculate类中的jia函数进行运算 </span></span><br><span class="line">	cout&lt;&lt;c&lt;&lt;endl; </span><br><span class="line">	cout&lt;&lt;M.<span class="built_in">jian</span>(<span class="number">10</span>,<span class="number">20</span>);<span class="comment">//利用caculate类中的jian函数进行运算</span></span><br><span class="line">	cout&lt;&lt;M.<span class="built_in">cheng</span>(<span class="number">20</span>,<span class="number">10</span>); <span class="comment">//这里不能调用，会报错，因为cheng的属性时private </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>与类的定义相比, 在类内实现成员函数不再是在类内进行声明, 而是直接将函数进行定义, 在类中定义成员函数时, 编译器默认会争取将其定义为 inline 型函数 </p>
+<h2 id="在类外定义成员函数"><a href="#在类外定义成员函数" class="headerlink" title="在类外定义成员函数"></a>在类外定义成员函数</h2><p> 在类外定义成员函数通过在类内进行声明, 然后在类外通过作用域操作符 <strong>::</strong> 进行实现, 形式如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">返回类型 类名::成员函数名(参数列表)</span><br><span class="line">&#123;</span><br><span class="line">	//函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体用法代码如下</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">caculate</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:<span class="comment">//公共的行为或者属性</span></span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">jia</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;<span class="comment">//在类中对jia函数进行声明 ，此处别忘记分号；</span></span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">jian</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;<span class="comment">//在类中对jian函数进行声明 </span></span><br><span class="line">	<span class="keyword">private</span>:<span class="comment">//私有的行为或属性 </span></span><br><span class="line">		<span class="function"><span class="keyword">double</span> <span class="title">cheng</span><span class="params">(<span class="keyword">double</span> a,<span class="keyword">double</span> b)</span></span>;<span class="comment">//在类中对cheng函数进行声明 </span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">caculate::jia</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span><span class="comment">//通过作用域操作符&quot;::&quot;实现jia函数 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> c;</span><br><span class="line">	c=a+b;</span><br><span class="line">	<span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">caculate::jian</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span><span class="comment">//通过作用域操作符&quot;::&quot;实现jian函数 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> c;</span><br><span class="line">	c=a-b;</span><br><span class="line">	<span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">cheng</span><span class="params">(<span class="keyword">double</span> a,<span class="keyword">double</span> b)</span><span class="comment">//过作用域操作符&quot;::&quot;实现cheng函数 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> c;</span><br><span class="line">	c=a*b;</span><br><span class="line">	<span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	caculate M;   <span class="comment">//用定义好的类创建一个对象  M</span></span><br><span class="line">	<span class="keyword">int</span> c=M.<span class="built_in">jia</span>(<span class="number">10</span>,<span class="number">20</span>);<span class="comment">//利用caculate类中的jia函数进行运算 </span></span><br><span class="line">	cout&lt;&lt;c&lt;&lt;endl; </span><br><span class="line">	cout&lt;&lt;M.<span class="built_in">jian</span>(<span class="number">10</span>,<span class="number">20</span>);<span class="comment">//利用caculate类中的jian函数进行运算</span></span><br><span class="line">	cout&lt;&lt;M.<span class="built_in">cheng</span>(<span class="number">20</span>,<span class="number">10</span>); <span class="comment">//这里不能调用，会报错，因为cheng的属性时private </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>依 jia 成员函数来说, 在类内声明的形式为 <strong>int jia(int a,int b);</strong> 那么在类外对其定义时函数头就应该是 <strong>caculate::int jia(int a,int b)</strong> 这种形式, 其返回类型、成员函数名、参数列表都要与类内声明的<strong>形式一致</strong>。</p>
+<h1 id="访问类成员"><a href="#访问类成员" class="headerlink" title="访问类成员"></a>访问类成员</h1><h2 id="通过对象访问类成员"><a href="#通过对象访问类成员" class="headerlink" title="通过对象访问类成员"></a>通过对象访问类成员</h2><p>代码如下</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="keyword">int</span> a=<span class="number">20</span>;</span><br><span class="line">		<span class="keyword">double</span> b=<span class="number">1.23</span>;<span class="comment">//数据成员 </span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">function</span><span class="params">()</span></span>;<span class="comment">//成员函数 </span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	test put;<span class="comment">//在栈上创建对象 </span></span><br><span class="line">	put.a=<span class="number">30</span>;<span class="comment">//调用类中的数据 ，并修改 </span></span><br><span class="line">	cout&lt;&lt;put.a;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过指向类的指针访问类成员"><a href="#通过指向类的指针访问类成员" class="headerlink" title="通过指向类的指针访问类成员"></a>通过指向类的指针访问类成员</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="keyword">int</span> a=<span class="number">20</span>;</span><br><span class="line">		<span class="keyword">double</span> b=<span class="number">1.23</span>;<span class="comment">//数据成员 </span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">function</span><span class="params">()</span></span>;<span class="comment">//成员函数 </span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	test *put=<span class="keyword">new</span> test;<span class="comment">//创建指向类的指针，在堆上创建对象</span></span><br><span class="line">	put-&gt;a=<span class="number">30</span>;<span class="comment">//通过指针访问成员数据 </span></span><br><span class="line">	cout&lt;&lt;put-&gt;a;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>补充：对和栈的区别</p>
+<p>栈（stack）是由系统自动分配和释放，例如int b;</p>
+<p>堆（heap）是由程序员分配和释放，例如p2=new char[10]; 但注意，p2本身是在栈中的。</p>
+<h1 id="对象的作用域、可见域、生存周期"><a href="#对象的作用域、可见域、生存周期" class="headerlink" title="对象的作用域、可见域、生存周期"></a>对象的作用域、可见域、生存周期</h1><p>类对象的作用域、可见域以及生存周期与普通变量的保持相同, 当对象生存周期结束时<strong>对象被自动撤销</strong>, 所占用的内存被回收, 需要注意的是, 如果对象的成员函数中有使用 <strong>new</strong> 或者 <strong>malloc</strong> 申请的动态内存程序<strong>不会对其进行释放</strong>, 需要我们手动进行清理, 否则会造成内存泄露。</p>
 ]]></content>
       <tags>
         <tag>C++</tag>
@@ -2019,33 +2124,6 @@
       </tags>
   </entry>
   <entry>
-    <title>buu刷题记录</title>
-    <url>/2022/04/17/buu%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h1 id="极客大挑战-2019-PHP"><a href="#极客大挑战-2019-PHP" class="headerlink" title="[极客大挑战 2019]PHP"></a>[极客大挑战 2019]PHP</h1><p>进去后提示有备份文件，所以我们用webrobots扫一下后台，每次扫描都出现429响应，搜了一下是因为访问频率太大了，所以我们减小线程，发现有<a href="http://www.zip备份文件,下载后发现有flag.php但是里面的php并不正确.所以我们继续检索,之后返现关键源码/">www.zip备份文件，下载后发现有flag.php但是里面的php并不正确。所以我们继续检索，之后返现关键源码</a></p>
-<span id="more"></span>
-
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;flag.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Name</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$username</span> = <span class="string">&#x27;nonono&#x27;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$password</span> = <span class="string">&#x27;yesyes&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$username</span>,<span class="variable">$password</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;username = <span class="variable">$username</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;password = <span class="variable">$password</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;username = <span class="string">&#x27;guest&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;password != <span class="number">100</span>) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;NO!!!hacker!!!&lt;/br&gt;&quot;</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;You name is: &quot;</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;username;<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;You password is: &quot;</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;password;<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">            <span class="keyword">die</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;username === <span class="string">&#x27;admin&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">global</span> <span class="variable">$flag</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;hello my friend~~&lt;/br&gt;sorry i can&#x27;t give you the flag!&quot;</span>;</span><br><span class="line">            <span class="keyword">die</span>();</span><br><span class="line"></span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>看不懂php代码，反序列化啥的也没学，不会做。</p>
-<h1 id="BJDCTF2020-Easy-MD5"><a href="#BJDCTF2020-Easy-MD5" class="headerlink" title="[BJDCTF2020]Easy MD5"></a>[BJDCTF2020]Easy MD5</h1><p>首先想到的当然是0e开头的md5加密，尝试了一下，没有反应，然后随便输入了一些东西，也没有反应，源码也没有东西，所以我们抓一下包试试，在Response界面发现了Hint</p>
-<p><img src="/2022/04/17/buu%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220417134728086.png" alt="image-20220417134728086"></p>
-<p>可以使用ffifdyop绕过，这个点的原理是 ffifdyop 这个字符串被 md5 哈希了之后会变成 276f722736c95d99e921722cf9ed621c，这个字符串前几位刚好是 ‘or ‘6，而 Mysql 刚好又会把 hex 转成 ascii 解释，因此拼接之后的形式是1select * from ‘admin’ where password=’’ or ‘6xxxxx’</p>
-<p>等价于 or 一个永真式，因此相当于万能密码，可以绕过md5()函数</p>
-<p>之后就进入了的二层</p>
-<p>查看源码可以发现，这就是经典的0e绕过</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">QNKCDZO</span><br><span class="line">0e830400451993494058024219903391</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s878926199a</span><br><span class="line">0e545993274517709034328855841020</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s155964671a</span><br><span class="line">0e342768416822451524974117254469</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s214587387a</span><br><span class="line">0e848240448830537924465865611904</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s214587387a</span><br><span class="line">0e848240448830537924465865611904</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s878926199a</span><br><span class="line">0e545993274517709034328855841020</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1091221200a</span><br><span class="line">0e940624217856561557816327384675</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1885207154a</span><br><span class="line">0e509367213418206700842008763514</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1502113478a</span><br><span class="line">0e861580163291561247404381396064</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1885207154a</span><br><span class="line">0e509367213418206700842008763514</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1836677006a</span><br><span class="line">0e481036490867661113260034900752</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s155964671a</span><br><span class="line">0e342768416822451524974117254469</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1184209335a</span><br><span class="line">0e072485820392773389523109082030</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1665632922a</span><br><span class="line">0e731198061491163073197128363787</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1502113478a</span><br><span class="line">0e861580163291561247404381396064</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1836677006a</span><br><span class="line">0e481036490867661113260034900752</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1091221200a</span><br><span class="line">0e940624217856561557816327384675</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s155964671a</span><br><span class="line">0e342768416822451524974117254469</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1502113478a</span><br><span class="line">0e861580163291561247404381396064</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s155964671a</span><br><span class="line">0e342768416822451524974117254469</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1665632922a</span><br><span class="line">0e731198061491163073197128363787</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s155964671a</span><br><span class="line">0e342768416822451524974117254469</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1091221200a</span><br><span class="line">0e940624217856561557816327384675</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1836677006a</span><br><span class="line">0e481036490867661113260034900752</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1885207154a</span><br><span class="line">0e509367213418206700842008763514</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s532378020a</span><br><span class="line">0e220463095855511507588041205815</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s878926199a</span><br><span class="line">0e545993274517709034328855841020</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1091221200a</span><br><span class="line">0e940624217856561557816327384675</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s214587387a</span><br><span class="line">0e848240448830537924465865611904</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1502113478a</span><br><span class="line">0e861580163291561247404381396064</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1091221200a</span><br><span class="line">0e940624217856561557816327384675</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1665632922a</span><br><span class="line">0e731198061491163073197128363787</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1885207154a</span><br><span class="line">0e509367213418206700842008763514</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1836677006a</span><br><span class="line">0e481036490867661113260034900752</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1665632922a</span><br><span class="line">0e731198061491163073197128363787 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s878926199a</span><br><span class="line">0e545993274517709034328855841020</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>我们传值的时候，因为前面已经有了php文件，所以我们直接打一个?然后传参即可不用打 / 了，例如</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://253b8f16-a47c-4eee-a9ac-59c0fa616a55.node4.buuoj.cn:81/levels91.php?a=s1665632922a&amp;b=s878926199a</span><br></pre></td></tr></table></figure>
-
-<p>然后跳出了新页面，这个是一个数组绕过，md5()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL,也就是相等的。</p>
-<h1 id="极客大挑战-2019-BuyFlag"><a href="#极客大挑战-2019-BuyFlag" class="headerlink" title="[极客大挑战 2019]BuyFlag"></a>[极客大挑战 2019]BuyFlag</h1><p>首先查看源码发现了要传入密码和金钱，密码不能是数字，还必须等于404，明显是让我们加一个字母从而绕过，然后让money=1000000000，然后它让我们是来自CUIT的学生，我们观察Cookie发现user=0；我们把它改成1，然后他又提示我们金钱过长，我们用科学计数法，1e9，最终得到flag</p>
-]]></content>
-      <tags>
-        <tag>刷题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>bugku刷题记录2</title>
     <url>/2022/03/26/bugku%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%952/</url>
     <content><![CDATA[<h1 id="备份是个好习惯"><a href="#备份是个好习惯" class="headerlink" title="备份是个好习惯"></a>备份是个好习惯</h1><p>既然是备份题，废话不多说，直接御剑扫描，结果出来index.php.bak文件，下载之后打开</p>
@@ -2102,6 +2180,33 @@
       </tags>
   </entry>
   <entry>
+    <title>buu刷题记录</title>
+    <url>/2022/04/17/buu%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="极客大挑战-2019-PHP"><a href="#极客大挑战-2019-PHP" class="headerlink" title="[极客大挑战 2019]PHP"></a>[极客大挑战 2019]PHP</h1><p>进去后提示有备份文件，所以我们用webrobots扫一下后台，每次扫描都出现429响应，搜了一下是因为访问频率太大了，所以我们减小线程，发现有<a href="http://www.zip备份文件,下载后发现有flag.php但是里面的php并不正确.所以我们继续检索,之后返现关键源码/">www.zip备份文件，下载后发现有flag.php但是里面的php并不正确。所以我们继续检索，之后返现关键源码</a></p>
+<span id="more"></span>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;flag.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Name</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$username</span> = <span class="string">&#x27;nonono&#x27;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$password</span> = <span class="string">&#x27;yesyes&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$username</span>,<span class="variable">$password</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;username = <span class="variable">$username</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;password = <span class="variable">$password</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;username = <span class="string">&#x27;guest&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;password != <span class="number">100</span>) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;NO!!!hacker!!!&lt;/br&gt;&quot;</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;You name is: &quot;</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;username;<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;You password is: &quot;</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;password;<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">            <span class="keyword">die</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;username === <span class="string">&#x27;admin&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">global</span> <span class="variable">$flag</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;hello my friend~~&lt;/br&gt;sorry i can&#x27;t give you the flag!&quot;</span>;</span><br><span class="line">            <span class="keyword">die</span>();</span><br><span class="line"></span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>看不懂php代码，反序列化啥的也没学，不会做。</p>
+<h1 id="BJDCTF2020-Easy-MD5"><a href="#BJDCTF2020-Easy-MD5" class="headerlink" title="[BJDCTF2020]Easy MD5"></a>[BJDCTF2020]Easy MD5</h1><p>首先想到的当然是0e开头的md5加密，尝试了一下，没有反应，然后随便输入了一些东西，也没有反应，源码也没有东西，所以我们抓一下包试试，在Response界面发现了Hint</p>
+<p><img src="/2022/04/17/buu%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/image-20220417134728086.png" alt="image-20220417134728086"></p>
+<p>可以使用ffifdyop绕过，这个点的原理是 ffifdyop 这个字符串被 md5 哈希了之后会变成 276f722736c95d99e921722cf9ed621c，这个字符串前几位刚好是 ‘or ‘6，而 Mysql 刚好又会把 hex 转成 ascii 解释，因此拼接之后的形式是1select * from ‘admin’ where password=’’ or ‘6xxxxx’</p>
+<p>等价于 or 一个永真式，因此相当于万能密码，可以绕过md5()函数</p>
+<p>之后就进入了的二层</p>
+<p>查看源码可以发现，这就是经典的0e绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">QNKCDZO</span><br><span class="line">0e830400451993494058024219903391</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s878926199a</span><br><span class="line">0e545993274517709034328855841020</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s155964671a</span><br><span class="line">0e342768416822451524974117254469</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s214587387a</span><br><span class="line">0e848240448830537924465865611904</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s214587387a</span><br><span class="line">0e848240448830537924465865611904</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s878926199a</span><br><span class="line">0e545993274517709034328855841020</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1091221200a</span><br><span class="line">0e940624217856561557816327384675</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1885207154a</span><br><span class="line">0e509367213418206700842008763514</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1502113478a</span><br><span class="line">0e861580163291561247404381396064</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1885207154a</span><br><span class="line">0e509367213418206700842008763514</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1836677006a</span><br><span class="line">0e481036490867661113260034900752</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s155964671a</span><br><span class="line">0e342768416822451524974117254469</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1184209335a</span><br><span class="line">0e072485820392773389523109082030</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1665632922a</span><br><span class="line">0e731198061491163073197128363787</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1502113478a</span><br><span class="line">0e861580163291561247404381396064</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1836677006a</span><br><span class="line">0e481036490867661113260034900752</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1091221200a</span><br><span class="line">0e940624217856561557816327384675</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s155964671a</span><br><span class="line">0e342768416822451524974117254469</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1502113478a</span><br><span class="line">0e861580163291561247404381396064</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s155964671a</span><br><span class="line">0e342768416822451524974117254469</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1665632922a</span><br><span class="line">0e731198061491163073197128363787</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s155964671a</span><br><span class="line">0e342768416822451524974117254469</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1091221200a</span><br><span class="line">0e940624217856561557816327384675</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1836677006a</span><br><span class="line">0e481036490867661113260034900752</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1885207154a</span><br><span class="line">0e509367213418206700842008763514</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s532378020a</span><br><span class="line">0e220463095855511507588041205815</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s878926199a</span><br><span class="line">0e545993274517709034328855841020</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1091221200a</span><br><span class="line">0e940624217856561557816327384675</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s214587387a</span><br><span class="line">0e848240448830537924465865611904</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1502113478a</span><br><span class="line">0e861580163291561247404381396064</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1091221200a</span><br><span class="line">0e940624217856561557816327384675</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1665632922a</span><br><span class="line">0e731198061491163073197128363787</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1885207154a</span><br><span class="line">0e509367213418206700842008763514</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1836677006a</span><br><span class="line">0e481036490867661113260034900752</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1665632922a</span><br><span class="line">0e731198061491163073197128363787 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s878926199a</span><br><span class="line">0e545993274517709034328855841020</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我们传值的时候，因为前面已经有了php文件，所以我们直接打一个?然后传参即可不用打 / 了，例如</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://253b8f16-a47c-4eee-a9ac-59c0fa616a55.node4.buuoj.cn:81/levels91.php?a=s1665632922a&amp;b=s878926199a</span><br></pre></td></tr></table></figure>
+
+<p>然后跳出了新页面，这个是一个数组绕过，md5()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL,也就是相等的。</p>
+<h1 id="极客大挑战-2019-BuyFlag"><a href="#极客大挑战-2019-BuyFlag" class="headerlink" title="[极客大挑战 2019]BuyFlag"></a>[极客大挑战 2019]BuyFlag</h1><p>首先查看源码发现了要传入密码和金钱，密码不能是数字，还必须等于404，明显是让我们加一个字母从而绕过，然后让money=1000000000，然后它让我们是来自CUIT的学生，我们观察Cookie发现user=0；我们把它改成1，然后他又提示我们金钱过长，我们用科学计数法，1e9，最终得到flag</p>
+]]></content>
+      <tags>
+        <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++字符串的使用</title>
     <url>/2022/04/07/cstring%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="字符串初始赋值的三种方法"><a href="#字符串初始赋值的三种方法" class="headerlink" title="字符串初始赋值的三种方法"></a>字符串初始赋值的三种方法</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> a[<span class="number">10</span>] = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;\0&#x27;</span>&#125;;<span class="comment">//后面7个元素默认初始化为NULL</span></span><br><span class="line">	<span class="keyword">char</span> b[<span class="number">10</span>] = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>, <span class="number">0</span>, <span class="string">&#x27;h&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;g&#x27;</span>&#125;; <span class="comment">//从0处截断</span></span><br><span class="line">	<span class="comment">//若想显示后面的值，可用逐个遍历输出 </span></span><br><span class="line">	<span class="keyword">char</span> c[<span class="number">10</span>] = &#123;<span class="string">&quot;09AZaz&quot;</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> d[<span class="number">10</span>] = <span class="string">&quot;09AZaz&quot;</span>;</span><br><span class="line">    string b=<span class="string">&quot;aaaa&quot;</span>;</span><br><span class="line">	cout&lt;&lt;b;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -2130,6 +2235,102 @@
 ]]></content>
       <tags>
         <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git的介绍、安装和基本提交</title>
+    <url>/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/</url>
+    <content><![CDATA[<h1 id="Git的优势"><a href="#Git的优势" class="headerlink" title="Git的优势"></a>Git的优势</h1><ul>
+<li><p>大部分操作在本地完成，不需要连接互联网</p>
+</li>
+<li><p>完整性保证（利用Hash值）</p>
+</li>
+<li><p>尽可能添加数据而不是删除数据或修改数据，从而避免了不可逆操作（为每个版本拍摄快照）</p>
+</li>
+<li><p>分支操作非常快捷流畅</p>
+</li>
+<li><p>与Linux命令全面兼容（二者是一个爹）</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h1><p>首先去<a href="https://git-scm.com/download/win">git官网下载</a>并根据自己电脑的位数选择相应的版本</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108191953930.png" alt="image-20220108191953930"></p>
+<p>下载完成后安装，选择一个非中文没有空格的目录</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192101316.png" alt="image-20220108192101316"></p>
+<p>然后下一步，按照下面图片的选项即可</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192700075.png" alt="image-20220108192700075"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192807726.png" alt="image-20220108192807726"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192853679.png" alt="image-20220108192853679"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193229371.png" alt="image-20220108193229371"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193435463.png" alt="image-20220108193435463"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193801302.png" alt="image-20220108193801302"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193945547.png" alt="image-20220108193945547"></p>
+<p>然后安装即可，装完效果如下</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194259961.png" alt="image-20220108194259961"></p>
+<h1 id="Git在本地的结构"><a href="#Git在本地的结构" class="headerlink" title="Git在本地的结构"></a>Git在本地的结构</h1><p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194609170.png" alt="image-20220108194609170"></p>
+<h1 id="Git和代码托管中心"><a href="#Git和代码托管中心" class="headerlink" title="Git和代码托管中心"></a>Git和代码托管中心</h1><p>代码托管中心有很多，如外网环境下的GitHub、码云，局域网里的GitLab服务器（Git和Github的历史发展没有渊源）代码托管中心的任务是维护远程库</p>
+<h1 id="Git的本地库和远程库的交互"><a href="#Git的本地库和远程库的交互" class="headerlink" title="Git的本地库和远程库的交互"></a>Git的本地库和远程库的交互</h1><p>团队内协作（不加入团队不可push修改远程库代码）</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108202115421.png" alt="image-20220108202115421"></p>
+<p>跨团队协作</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108211729222.png" alt="image-20220108211729222"></p>
+<h1 id="Git命令行操作"><a href="#Git命令行操作" class="headerlink" title="Git命令行操作"></a>Git命令行操作</h1><h2 id="本地库操作"><a href="#本地库操作" class="headerlink" title="本地库操作"></a>本地库操作</h2><h3 id="本地库初始化"><a href="#本地库初始化" class="headerlink" title="本地库初始化"></a>本地库初始化</h3><p>命令：<code>git init</code></p>
+<p>效果：<img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108212311272.png" alt="image-20220108212311272"></p>
+<p>注意：.git目录中存放的是本地库相关的子目录和文件，不要删除和修改</p>
+<h3 id="设置签名"><a href="#设置签名" class="headerlink" title="设置签名"></a>设置签名</h3><p>形式：</p>
+<p>用户名：随便输</p>
+<p>Email地址：随便输，不存在也没关系</p>
+<p>作用：区分不同开发人员</p>
+<p>辨析：这里设置的签名和远程库（代码托管中心）的账号和密码一点关系没有</p>
+<p>命令：<code>git config user.name 用户名</code>  </p>
+<p>​        ：<code>git config user.email 邮件地址</code>    项目级别</p>
+<p>​        ：<code>git config --global user.name 用户名</code></p>
+<p>​         :  <code>git config --global user.email 邮件地址</code>    系统用户级别</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108214655319.png" alt="image-20220108214655319"></p>
+<p>项目级别/仓库级别：仅在当前本地库范围内有效（即只在test文件夹内有效）</p>
+<p>系统用户级别：登录当前操作系统的用户范围，如图</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108213618080.png" alt="image-20220108213618080"></p>
+<p>若没设置，则默认是系统用户级别，若两个都有，则是项目级别。也就是项目级别优先于系统用户级别。</p>
+<p>若二者都没有是不允许的</p>
+<p>项目级别用户名和邮件地址保存在.git/config里面，如上图</p>
+<p>系统用户级别用户名和邮件地址保存在当前用户文件夹里，如图</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108215432512.png" alt="image-20220108215432512"></p>
+<p>通常只设置一个系统用户级别</p>
+<h3 id="添加提交和查看状态操作"><a href="#添加提交和查看状态操作" class="headerlink" title="添加提交和查看状态操作"></a>添加提交和查看状态操作</h3><p>查看当前库状态命令：<code>git status</code></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220013324.png" alt="image-20220108220013324"></p>
+<p>创建文件命令：<code>vim 文件名.文件类型</code>（创建后即使未提交，在windows文件夹中也可看到该文件）</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220229743.png" alt="image-20220108220229743"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220240175.png" alt="image-20220108220240175"></p>
+<p>按I键开始输入内容</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220517621.png" alt="image-20220108220517621"></p>
+<p>编辑完成后按ESC然后输入<code>:wq</code>退出</p>
+<p>此时再输入<code>git status</code>可看到</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
+<p>将工作区文件放入暂存区命令：<code>git add 文件名.文件类型</code></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221653353.png" alt="image-20220108221653353"></p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
+<p>放进去后，在用<code>git status</code>看一下状态，可知test.txt已经进入暂存区</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222245958.png" alt="image-20220108222245958"></p>
+<p>若使用<code>git rm --cached test.txt</code>则又回到此状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
+<p>将暂存区文件提交到本地库命令：<code>git commit 文件名.文件类型</code></p>
+<p>vim编辑器中输入<code>:set nu</code>来查看行号</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222950393.png" alt="image-20220108222950393"></p>
+<p>然后按I键来进行输入更改备注信息</p>
+<p>输入好后按ESC然后输入<code>:wq</code>退出</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223450538.png" alt="image-20220108223450538"></p>
+<p>然后再看一下状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223535612.png" alt="image-20220108223535612"></p>
+<p>利用<code>git commit --amend - “新的备注”</code>来更改备注信息，并用<code>git log</code>来查看历史版本</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224049105.png" alt="image-20220108224049105"></p>
+<p>用<code>vim test.txt</code>继续编辑文件，加入一行“d”然后再查看状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224800559.png" alt="image-20220108224800559"></p>
+<p>这里用<code>git add test.txt</code>按部就班的进行提交，然后查看状态</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225112194.png" alt="image-20220108225112194"></p>
+<p>然后进行提交，这里用<code>git commit -m &quot;备注&quot; test.txt</code>进行提交，不用再在vim编辑器里输入备注信息</p>
+<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225410302.png" alt="image-20220108225410302"></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -2236,102 +2437,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Git的介绍、安装和基本提交</title>
-    <url>/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/</url>
-    <content><![CDATA[<h1 id="Git的优势"><a href="#Git的优势" class="headerlink" title="Git的优势"></a>Git的优势</h1><ul>
-<li><p>大部分操作在本地完成，不需要连接互联网</p>
-</li>
-<li><p>完整性保证（利用Hash值）</p>
-</li>
-<li><p>尽可能添加数据而不是删除数据或修改数据，从而避免了不可逆操作（为每个版本拍摄快照）</p>
-</li>
-<li><p>分支操作非常快捷流畅</p>
-</li>
-<li><p>与Linux命令全面兼容（二者是一个爹）</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="Git的安装"><a href="#Git的安装" class="headerlink" title="Git的安装"></a>Git的安装</h1><p>首先去<a href="https://git-scm.com/download/win">git官网下载</a>并根据自己电脑的位数选择相应的版本</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108191953930.png" alt="image-20220108191953930"></p>
-<p>下载完成后安装，选择一个非中文没有空格的目录</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192101316.png" alt="image-20220108192101316"></p>
-<p>然后下一步，按照下面图片的选项即可</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192700075.png" alt="image-20220108192700075"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192807726.png" alt="image-20220108192807726"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108192853679.png" alt="image-20220108192853679"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193229371.png" alt="image-20220108193229371"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193435463.png" alt="image-20220108193435463"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193801302.png" alt="image-20220108193801302"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193945547.png" alt="image-20220108193945547"></p>
-<p>然后安装即可，装完效果如下</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194259961.png" alt="image-20220108194259961"></p>
-<h1 id="Git在本地的结构"><a href="#Git在本地的结构" class="headerlink" title="Git在本地的结构"></a>Git在本地的结构</h1><p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108194609170.png" alt="image-20220108194609170"></p>
-<h1 id="Git和代码托管中心"><a href="#Git和代码托管中心" class="headerlink" title="Git和代码托管中心"></a>Git和代码托管中心</h1><p>代码托管中心有很多，如外网环境下的GitHub、码云，局域网里的GitLab服务器（Git和Github的历史发展没有渊源）代码托管中心的任务是维护远程库</p>
-<h1 id="Git的本地库和远程库的交互"><a href="#Git的本地库和远程库的交互" class="headerlink" title="Git的本地库和远程库的交互"></a>Git的本地库和远程库的交互</h1><p>团队内协作（不加入团队不可push修改远程库代码）</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108202115421.png" alt="image-20220108202115421"></p>
-<p>跨团队协作</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108211729222.png" alt="image-20220108211729222"></p>
-<h1 id="Git命令行操作"><a href="#Git命令行操作" class="headerlink" title="Git命令行操作"></a>Git命令行操作</h1><h2 id="本地库操作"><a href="#本地库操作" class="headerlink" title="本地库操作"></a>本地库操作</h2><h3 id="本地库初始化"><a href="#本地库初始化" class="headerlink" title="本地库初始化"></a>本地库初始化</h3><p>命令：<code>git init</code></p>
-<p>效果：<img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108212311272.png" alt="image-20220108212311272"></p>
-<p>注意：.git目录中存放的是本地库相关的子目录和文件，不要删除和修改</p>
-<h3 id="设置签名"><a href="#设置签名" class="headerlink" title="设置签名"></a>设置签名</h3><p>形式：</p>
-<p>用户名：随便输</p>
-<p>Email地址：随便输，不存在也没关系</p>
-<p>作用：区分不同开发人员</p>
-<p>辨析：这里设置的签名和远程库（代码托管中心）的账号和密码一点关系没有</p>
-<p>命令：<code>git config user.name 用户名</code>  </p>
-<p>​        ：<code>git config user.email 邮件地址</code>    项目级别</p>
-<p>​        ：<code>git config --global user.name 用户名</code></p>
-<p>​         :  <code>git config --global user.email 邮件地址</code>    系统用户级别</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108214655319.png" alt="image-20220108214655319"></p>
-<p>项目级别/仓库级别：仅在当前本地库范围内有效（即只在test文件夹内有效）</p>
-<p>系统用户级别：登录当前操作系统的用户范围，如图</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108213618080.png" alt="image-20220108213618080"></p>
-<p>若没设置，则默认是系统用户级别，若两个都有，则是项目级别。也就是项目级别优先于系统用户级别。</p>
-<p>若二者都没有是不允许的</p>
-<p>项目级别用户名和邮件地址保存在.git/config里面，如上图</p>
-<p>系统用户级别用户名和邮件地址保存在当前用户文件夹里，如图</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108215432512.png" alt="image-20220108215432512"></p>
-<p>通常只设置一个系统用户级别</p>
-<h3 id="添加提交和查看状态操作"><a href="#添加提交和查看状态操作" class="headerlink" title="添加提交和查看状态操作"></a>添加提交和查看状态操作</h3><p>查看当前库状态命令：<code>git status</code></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220013324.png" alt="image-20220108220013324"></p>
-<p>创建文件命令：<code>vim 文件名.文件类型</code>（创建后即使未提交，在windows文件夹中也可看到该文件）</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220229743.png" alt="image-20220108220229743"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220240175.png" alt="image-20220108220240175"></p>
-<p>按I键开始输入内容</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108220517621.png" alt="image-20220108220517621"></p>
-<p>编辑完成后按ESC然后输入<code>:wq</code>退出</p>
-<p>此时再输入<code>git status</code>可看到</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
-<p>将工作区文件放入暂存区命令：<code>git add 文件名.文件类型</code></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221653353.png" alt="image-20220108221653353"></p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108193655903.png" alt="image-20220108193655903"></p>
-<p>放进去后，在用<code>git status</code>看一下状态，可知test.txt已经进入暂存区</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222245958.png" alt="image-20220108222245958"></p>
-<p>若使用<code>git rm --cached test.txt</code>则又回到此状态</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108221241830.png" alt="image-20220108221241830"></p>
-<p>将暂存区文件提交到本地库命令：<code>git commit 文件名.文件类型</code></p>
-<p>vim编辑器中输入<code>:set nu</code>来查看行号</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108222950393.png" alt="image-20220108222950393"></p>
-<p>然后按I键来进行输入更改备注信息</p>
-<p>输入好后按ESC然后输入<code>:wq</code>退出</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223450538.png" alt="image-20220108223450538"></p>
-<p>然后再看一下状态</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108223535612.png" alt="image-20220108223535612"></p>
-<p>利用<code>git commit --amend - “新的备注”</code>来更改备注信息，并用<code>git log</code>来查看历史版本</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224049105.png" alt="image-20220108224049105"></p>
-<p>用<code>vim test.txt</code>继续编辑文件，加入一行“d”然后再查看状态</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108224800559.png" alt="image-20220108224800559"></p>
-<p>这里用<code>git add test.txt</code>按部就班的进行提交，然后查看状态</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225112194.png" alt="image-20220108225112194"></p>
-<p>然后进行提交，这里用<code>git commit -m &quot;备注&quot; test.txt</code>进行提交，不用再在vim编辑器里输入备注信息</p>
-<p><img src="/2022/01/08/git%E4%BB%8B%E7%BB%8D%E5%AE%89%E8%A3%85%E5%92%8C%E6%8F%90%E4%BA%A4/image-20220108225410302.png" alt="image-20220108225410302"></p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>php://filter 协议</title>
     <url>/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/</url>
     <content><![CDATA[<h1 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a>php://filter 协议</h1><p><img src="/2021/12/05/php-filter-%E5%8D%8F%E8%AE%AE/20210711135416691.png" alt="asd"></p>
@@ -2353,6 +2458,37 @@
 ]]></content>
       <tags>
         <tag>php协议</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>scrabble的使用</title>
+    <url>/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="scrabble介绍"><a href="#scrabble介绍" class="headerlink" title="scrabble介绍"></a>scrabble介绍</h1><p>scrabble适用常规的git泄露，用于获取源码。开发人员忘记.git文件，导致攻击者可以通过.git文件夹中的信息获取开发人员所提交过的源码。</p>
+<p>安装：<code>git clone https://github.com/denny0223/scrabble</code>(用在linux系统中)</p>
+<span id="more"></span>
+
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143040320.png" alt="image-20220128143040320"></p>
+<p>有时候获取不到，多试几次，毕竟github有时候进不去，呜呜呜。</p>
+<h1 id="测试环境的搭建"><a href="#测试环境的搭建" class="headerlink" title="测试环境的搭建"></a>测试环境的搭建</h1><p>这里用Ubuntu和PHPstudy示范</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143248746.png" alt="image-20220128143248746"></p>
+<p>进入根目录后，创建test测试文件</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143340203.png" alt="image-20220128143340203"></p>
+<p>若出现如下情况，直接用命令行进入管理员模式访问吧。</p>
+<p>进入管理员模式：<code>su root</code>，然后输入密码即可，注意，密码输入后是不会显示的。</p>
+<p>然后切换到目的文件夹</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143610379.png" alt="image-20220128143610379"></p>
+<p>这里我已经创建了几个文档和一个文件夹，文档的创建过程见Git教程，文件夹的创建<code>mkdir 文件夹名</code></p>
+<p>所以，这里我们的测试网址应该是<code>http://127.0.0.1/test</code>。</p>
+<p>顺便补充一下，我这里还搭建了sqli-labs靶场，虚拟机内访问是<code>http://127.0.0.1/sqli-labs</code>，物理机访问是要把127.0.0.1换成虚拟机的IP v4地址。查看方法如下</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144009957.png" alt="image-20220128144009957"></p>
+<h1 id="开始测试"><a href="#开始测试" class="headerlink" title="开始测试"></a>开始测试</h1><p>按照图中的指令即可</p>
+<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144150492.png" alt="image-20220128144150492"></p>
+<p>注意，这里用完后，原来scrabble文件夹中的内容就被目标网站中的源码取代了，所以建议备份scrabble源文件，要不还得git clone一下。获取后直接cat查看就可以了。但是我试了一下，这里并不能获得sqli-labs的源文件，目测是因为sqli-labs中.git文件夹中的信息不太友好，本地对其并没有操作。所以也就没有git提交记录。</p>
+<p><strong>还有一种情况是，flag会藏在老版本里，所以我们用scrabble获取源码后。输入<code>git log</code>查看以前版本，并切换，从而找到flag</strong></p>
+<p>再补充一下，<code>git reflog</code>版本信息更全，能够看更先进的版本（如果有的话）。而<code>git log</code>只能看老版本</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -2409,37 +2545,6 @@
 ]]></content>
       <tags>
         <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>scrabble的使用</title>
-    <url>/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="scrabble介绍"><a href="#scrabble介绍" class="headerlink" title="scrabble介绍"></a>scrabble介绍</h1><p>scrabble适用常规的git泄露，用于获取源码。开发人员忘记.git文件，导致攻击者可以通过.git文件夹中的信息获取开发人员所提交过的源码。</p>
-<p>安装：<code>git clone https://github.com/denny0223/scrabble</code>(用在linux系统中)</p>
-<span id="more"></span>
-
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143040320.png" alt="image-20220128143040320"></p>
-<p>有时候获取不到，多试几次，毕竟github有时候进不去，呜呜呜。</p>
-<h1 id="测试环境的搭建"><a href="#测试环境的搭建" class="headerlink" title="测试环境的搭建"></a>测试环境的搭建</h1><p>这里用Ubuntu和PHPstudy示范</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143248746.png" alt="image-20220128143248746"></p>
-<p>进入根目录后，创建test测试文件</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143340203.png" alt="image-20220128143340203"></p>
-<p>若出现如下情况，直接用命令行进入管理员模式访问吧。</p>
-<p>进入管理员模式：<code>su root</code>，然后输入密码即可，注意，密码输入后是不会显示的。</p>
-<p>然后切换到目的文件夹</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128143610379.png" alt="image-20220128143610379"></p>
-<p>这里我已经创建了几个文档和一个文件夹，文档的创建过程见Git教程，文件夹的创建<code>mkdir 文件夹名</code></p>
-<p>所以，这里我们的测试网址应该是<code>http://127.0.0.1/test</code>。</p>
-<p>顺便补充一下，我这里还搭建了sqli-labs靶场，虚拟机内访问是<code>http://127.0.0.1/sqli-labs</code>，物理机访问是要把127.0.0.1换成虚拟机的IP v4地址。查看方法如下</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144009957.png" alt="image-20220128144009957"></p>
-<h1 id="开始测试"><a href="#开始测试" class="headerlink" title="开始测试"></a>开始测试</h1><p>按照图中的指令即可</p>
-<p><img src="/2022/01/28/scrabble%E7%9A%84%E4%BD%BF%E7%94%A8/image-20220128144150492.png" alt="image-20220128144150492"></p>
-<p>注意，这里用完后，原来scrabble文件夹中的内容就被目标网站中的源码取代了，所以建议备份scrabble源文件，要不还得git clone一下。获取后直接cat查看就可以了。但是我试了一下，这里并不能获得sqli-labs的源文件，目测是因为sqli-labs中.git文件夹中的信息不太友好，本地对其并没有操作。所以也就没有git提交记录。</p>
-<p><strong>还有一种情况是，flag会藏在老版本里，所以我们用scrabble获取源码后。输入<code>git log</code>查看以前版本，并切换，从而找到flag</strong></p>
-<p>再补充一下，<code>git reflog</code>版本信息更全，能够看更先进的版本（如果有的话）。而<code>git log</code>只能看老版本</p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -2876,46 +2981,6 @@
       </tags>
   </entry>
   <entry>
-    <title>刷题记录-4（爆破）</title>
-    <url>/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/</url>
-    <content><![CDATA[<h1 id="WEB21"><a href="#WEB21" class="headerlink" title="WEB21"></a>WEB21</h1><p>这道题有点意思，不只是单纯的爆破，还进行了base64加密，首先下载给的字典。然后用字典进行爆破，爆破时要用custom iterator（自定义迭代器），然后通过base64解码得知格式为 <code>用户名:密码</code>攻击类型为Sniper</p>
-<p>设置如下</p>
-<span id="more"></span>
-
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175309858.png" alt="image-20220217175309858"></p>
-<p>这里的admin只是猜测，没想到真能搞出来</p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175341802.png" alt="image-20220217175341802"></p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175430654.png" alt="image-20220217175430654"></p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217180350198.png" alt="image-20220217180350198"></p>
-<p>最终得到flag</p>
-<h1 id="WEB22"><a href="#WEB22" class="headerlink" title="WEB22"></a>WEB22</h1><p>爆破子域名，这个还真不会，但是这个<a href="http://z.zcjun.com/?http=baidu.com">在线爆破子域名</a>可还行</p>
-<h1 id="WEB23"><a href="#WEB23" class="headerlink" title="WEB23"></a>WEB23</h1><p>呜呜呜，这个也不会，等着以后学了php再回来搞，码子先放这了</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">error_reporting(<span class="number">0</span>); </span><br><span class="line"> </span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;asdfghjklqwertyuiopzxcvbnm1234567890&quot;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="number">36</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$j</span>=<span class="number">0</span>;<span class="variable">$j</span>&lt;<span class="number">36</span>;<span class="variable">$j</span>++)&#123;</span><br><span class="line">        <span class="variable">$token</span>=<span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];    </span><br><span class="line">        <span class="variable">$token</span> = md5(<span class="variable">$token</span>); </span><br><span class="line">        <span class="keyword">if</span>(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) &amp;&amp; substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) ===substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))&#123; </span><br><span class="line">            <span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>))+intval(substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>))+substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))/substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===intval(substr(<span class="variable">$token</span>, <span class="number">31</span>,<span class="number">1</span>)))&#123; </span><br><span class="line">                <span class="keyword">echo</span> <span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];</span><br><span class="line">                <span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="meta">?&gt;</span> </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="WEB24"><a href="#WEB24" class="headerlink" title="WEB24"></a>WEB24</h1><p>这里首先要认识一个函数<a href="https://www.w3school.com.cn/php/func_math_mt_rand.asp">mt_rand() 函数</a>，代码可以<a href="https://c.runoob.com/compile/1/">在线上执行</a></p>
-<p>首先要知道题目中的mt_srand(372619038)是多少</p>
-<p>所以我们运行</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">mt_srand(<span class="number">372619038</span>);</span><br><span class="line"><span class="keyword">echo</span>(mt_rand());</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>得到1155388967所以令r=1155388967，得到flag</p>
-<h1 id="WEB25"><a href="#WEB25" class="headerlink" title="WEB25"></a>WEB25</h1><p>有点复杂呜呜呜，留给“明天”吧</p>
-<h1 id="WEB26"><a href="#WEB26" class="headerlink" title="WEB26"></a>WEB26</h1><p>查看源码发现js，直接进入代码中的checkdb.php，然后直接post提交（原理不太清楚）</p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217200641171.png" alt="image-20220217200641171"></p>
-<p>得到flag</p>
-<h1 id="WEB27"><a href="#WEB27" class="headerlink" title="WEB27"></a>WEB27</h1><p>这里是爆破身份证号中的生日，设置如下，如果线程太多的话，很可能出现503报错，导致爆破结果不准确</p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217203239020.png" alt="image-20220217203239020"></p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217204616803.png" alt="image-20220217204616803"></p>
-<p>得出结果后，Unicode解码后用学号登入，得到flag</p>
-<h1 id="WEB28"><a href="#WEB28" class="headerlink" title="WEB28"></a>WEB28</h1><p>看到url中诡异的0/1则用集束炸弹爆破这两个地方，最后得到flag</p>
-<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217205359730.png" alt="image-20220217205359730"></p>
-]]></content>
-      <tags>
-        <tag>刷题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>刷题记录-3（信息收集）</title>
     <url>/2022/02/12/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-3/</url>
     <content><![CDATA[<h1 id="vim临时文件泄露（CTFshow）"><a href="#vim临时文件泄露（CTFshow）" class="headerlink" title="vim临时文件泄露（CTFshow）"></a>vim临时文件泄露（CTFshow）</h1><p>直接进入index.php.swp下载文件即可得到flag。用dirsearch扫描无结果</p>
@@ -2959,6 +3024,46 @@
 <h1 id="WEB19"><a href="#WEB19" class="headerlink" title="WEB19"></a>WEB19</h1><p><img src="/2022/02/12/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-3/image-20220214110909063.png" alt="image-20220214110909063"></p>
 <p>用hackbar传参得到flag</p>
 <h1 id="WEB20"><a href="#WEB20" class="headerlink" title="WEB20"></a>WEB20</h1><p>根据提示mdb文件是早期asp+access构架的数据库文件 访问<code>url/db/db.mdb</code> 下载文件通过txt打开然后搜索flag得到flag</p>
+]]></content>
+      <tags>
+        <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>刷题记录-4（爆破）</title>
+    <url>/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/</url>
+    <content><![CDATA[<h1 id="WEB21"><a href="#WEB21" class="headerlink" title="WEB21"></a>WEB21</h1><p>这道题有点意思，不只是单纯的爆破，还进行了base64加密，首先下载给的字典。然后用字典进行爆破，爆破时要用custom iterator（自定义迭代器），然后通过base64解码得知格式为 <code>用户名:密码</code>攻击类型为Sniper</p>
+<p>设置如下</p>
+<span id="more"></span>
+
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175309858.png" alt="image-20220217175309858"></p>
+<p>这里的admin只是猜测，没想到真能搞出来</p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175341802.png" alt="image-20220217175341802"></p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217175430654.png" alt="image-20220217175430654"></p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217180350198.png" alt="image-20220217180350198"></p>
+<p>最终得到flag</p>
+<h1 id="WEB22"><a href="#WEB22" class="headerlink" title="WEB22"></a>WEB22</h1><p>爆破子域名，这个还真不会，但是这个<a href="http://z.zcjun.com/?http=baidu.com">在线爆破子域名</a>可还行</p>
+<h1 id="WEB23"><a href="#WEB23" class="headerlink" title="WEB23"></a>WEB23</h1><p>呜呜呜，这个也不会，等着以后学了php再回来搞，码子先放这了</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">error_reporting(<span class="number">0</span>); </span><br><span class="line"> </span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;asdfghjklqwertyuiopzxcvbnm1234567890&quot;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="number">36</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$j</span>=<span class="number">0</span>;<span class="variable">$j</span>&lt;<span class="number">36</span>;<span class="variable">$j</span>++)&#123;</span><br><span class="line">        <span class="variable">$token</span>=<span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];    </span><br><span class="line">        <span class="variable">$token</span> = md5(<span class="variable">$token</span>); </span><br><span class="line">        <span class="keyword">if</span>(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) &amp;&amp; substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>) ===substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))&#123; </span><br><span class="line">            <span class="keyword">if</span>((intval(substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>))+intval(substr(<span class="variable">$token</span>, <span class="number">14</span>,<span class="number">1</span>))+substr(<span class="variable">$token</span>, <span class="number">17</span>,<span class="number">1</span>))/substr(<span class="variable">$token</span>, <span class="number">1</span>,<span class="number">1</span>)===intval(substr(<span class="variable">$token</span>, <span class="number">31</span>,<span class="number">1</span>)))&#123; </span><br><span class="line">                <span class="keyword">echo</span> <span class="variable">$a</span>[<span class="variable">$i</span>].<span class="variable">$a</span>[<span class="variable">$j</span>];</span><br><span class="line">                <span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="meta">?&gt;</span> </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="WEB24"><a href="#WEB24" class="headerlink" title="WEB24"></a>WEB24</h1><p>这里首先要认识一个函数<a href="https://www.w3school.com.cn/php/func_math_mt_rand.asp">mt_rand() 函数</a>，代码可以<a href="https://c.runoob.com/compile/1/">在线上执行</a></p>
+<p>首先要知道题目中的mt_srand(372619038)是多少</p>
+<p>所以我们运行</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">mt_srand(<span class="number">372619038</span>);</span><br><span class="line"><span class="keyword">echo</span>(mt_rand());</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>得到1155388967所以令r=1155388967，得到flag</p>
+<h1 id="WEB25"><a href="#WEB25" class="headerlink" title="WEB25"></a>WEB25</h1><p>有点复杂呜呜呜，留给“明天”吧</p>
+<h1 id="WEB26"><a href="#WEB26" class="headerlink" title="WEB26"></a>WEB26</h1><p>查看源码发现js，直接进入代码中的checkdb.php，然后直接post提交（原理不太清楚）</p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217200641171.png" alt="image-20220217200641171"></p>
+<p>得到flag</p>
+<h1 id="WEB27"><a href="#WEB27" class="headerlink" title="WEB27"></a>WEB27</h1><p>这里是爆破身份证号中的生日，设置如下，如果线程太多的话，很可能出现503报错，导致爆破结果不准确</p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217203239020.png" alt="image-20220217203239020"></p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217204616803.png" alt="image-20220217204616803"></p>
+<p>得出结果后，Unicode解码后用学号登入，得到flag</p>
+<h1 id="WEB28"><a href="#WEB28" class="headerlink" title="WEB28"></a>WEB28</h1><p>看到url中诡异的0/1则用集束炸弹爆破这两个地方，最后得到flag</p>
+<p><img src="/2022/02/14/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-4/image-20220217205359730.png" alt="image-20220217205359730"></p>
 ]]></content>
       <tags>
         <tag>刷题</tag>
@@ -3100,7 +3205,7 @@
 <h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
 <p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
 <p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
-<p>User：<a href="mailto:&#x62;&#117;&#103;&#x6b;&#117;&#x6b;&#117;&#64;&#49;&#x36;&#x33;&#46;&#99;&#111;&#109;">&#x62;&#117;&#103;&#x6b;&#117;&#x6b;&#117;&#64;&#49;&#x36;&#x33;&#46;&#99;&#111;&#109;</a></p>
+<p>User：<a href="mailto:&#98;&#117;&#x67;&#x6b;&#x75;&#x6b;&#117;&#64;&#x31;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#109;">&#98;&#117;&#x67;&#x6b;&#x75;&#x6b;&#117;&#64;&#x31;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#109;</a></p>
 <p>Pass：XSLROCPMNWWZQDZL</p>
 <p>登录显示密码错误，然后继续看wp</p>
 <p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
@@ -3403,39 +3508,6 @@
       </tags>
   </entry>
   <entry>
-    <title>极客大挑战 2019Upload</title>
-    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
-    <content><![CDATA[<p>该题为上传木马题</p>
-<p>进入题目后，上传一句话木马</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
-<p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
-<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
-<p>得到</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
-<p>上传失败</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
-<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
-<p>上传后</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
-<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
-<p>链接成功</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
-<p>最后在根目录下得到flag</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
-]]></content>
-      <tags>
-        <tag>webshell</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>第一次接触CTF</title>
     <url>/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/</url>
     <content><![CDATA[<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="1-白给-amp-签到"><a href="#1-白给-amp-签到" class="headerlink" title="1.白给&amp;签到"></a>1.白给&amp;签到</h2><p>没什么可说的，直接复制粘贴。</p>
@@ -3482,6 +3554,39 @@
 ]]></content>
       <tags>
         <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>极客大挑战 2019Upload</title>
+    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
+    <content><![CDATA[<p>该题为上传木马题</p>
+<p>进入题目后，上传一句话木马</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
+<p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
+<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
+<p>得到</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
+<p>上传失败</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
+<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
+<p>上传后</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
+<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
+<p>链接成功</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
+<p>最后在根目录下得到flag</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
+]]></content>
+      <tags>
+        <tag>webshell</tag>
       </tags>
   </entry>
 </search>

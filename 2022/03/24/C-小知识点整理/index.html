@@ -28,7 +28,7 @@
 <meta property="og:description" content="保留固定位有效小数12345678#include&lt;iostream&gt;#include&lt;iomanip&gt; &#x2F;&#x2F;关键头文件using namespace std;int main()&amp;#123;	cout&lt;&lt;fixed&lt;&lt;setprecision(3)&lt;&lt;1&#x2F;3.0&lt;&lt;endl;	return 0;&amp;#125;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-24T09:21:24.788Z">
-<meta property="article:modified_time" content="2022-04-17T15:38:26.038Z">
+<meta property="article:modified_time" content="2022-04-26T12:37:05.780Z">
 <meta property="article:author" content="Harbeter">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -216,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-17 23:38:26" itemprop="dateModified" datetime="2022-04-17T23:38:26+08:00">2022-04-17</time>
+                <time title="修改时间：2022-04-26 20:37:05" itemprop="dateModified" datetime="2022-04-26T20:37:05+08:00">2022-04-26</time>
               </span>
 
           
@@ -252,24 +252,74 @@
 
 <h1 id="vector头文件的使用"><a href="#vector头文件的使用" class="headerlink" title="vector头文件的使用"></a>vector头文件的使用</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//vector: &lt;vector&gt;, 变长数组 </span></span><br><span class="line"><span class="comment">//常用操作：整体赋值,size(),push_back(),pop_back(),resize()</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showVector</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v.<span class="built_in">size</span>(); i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; v[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt; a;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;At the beginning, a.size() = &quot;</span> &lt;&lt; a.<span class="built_in">size</span>() &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		a.<span class="built_in">push_back</span>(i*<span class="number">2</span>);</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;After i = &quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot; , a.size() = &quot;</span> &lt;&lt; a.<span class="built_in">size</span>() &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">showVector</span>(a);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		a.<span class="built_in">pop_back</span>();</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;After i = &quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot; , a.size() = &quot;</span> &lt;&lt; a.<span class="built_in">size</span>() &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">showVector</span>(a);</span><br><span class="line">	</span><br><span class="line">	a.<span class="built_in">resize</span>(<span class="number">10</span>);</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;After a.resize(10): &quot;</span> &lt;&lt; endl;</span><br><span class="line">	<span class="built_in">showVector</span>(a);</span><br><span class="line">	</span><br><span class="line">	a.<span class="built_in">resize</span>(<span class="number">3</span>);</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;After a.resize(3): &quot;</span> &lt;&lt; endl;</span><br><span class="line">	<span class="built_in">showVector</span>(a);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="C-中的左右对齐"><a href="#C-中的左右对齐" class="headerlink" title="C++中的左右对齐"></a>C++中的左右对齐</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iomanip&gt;</span><span class="comment">//关键头文件 </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">setiosflags</span>(ios::right)&lt;&lt;<span class="built_in">setw</span>(<span class="number">10</span>)&lt;&lt;<span class="string">&quot;abc&quot;</span>&lt;&lt;endl;<span class="comment">//右对齐 </span></span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;aaa&quot;</span>&lt;&lt;endl;<span class="comment">//左对齐（默认） </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>顺便补充一下iomanip中的功能</p>
-<p>I/O流常用控制符：</p>
-<p>使用控制符时，在程序开头加投文件#include <iomanip> C++有两种方法控制格式输出：1、用格式控制符；2、用流对象的成员函数 格式控制符：</iomanip></p>
-<p>dec                                 设置基数为10</p>
-<p>hex                                 设置基数为16</p>
-<p>oct                                 设置基数为8</p>
-<p>setfill(c)                          设置填充字符c</p>
-<p>setprecision(n)                     设置显示小数精度为n位</p>
-<p>setw(n)                             设置域宽为n个字符</p>
-<p>setiosflags(ios::fixed)             固定的浮点显示</p>
-<p> setiosflags(ios::scientific)        指数表示</p>
-<p>setiosflags(ios::left)              左对齐</p>
-<p>setiosflags(ios::right)             右对齐</p>
-<p>setiosflags(ios::skipws)            忽略前导空白</p>
-<p>setiosflags(ios::uppercase)         16进制数大写输出</p>
-<p>setiosflags(ios::lowercase)         16进制小写输出</p>
+<h1 id="C-中的iomanip的使用"><a href="#C-中的iomanip的使用" class="headerlink" title="C++中的iomanip的使用"></a>C++中的iomanip的使用</h1><p>I/O流常用控制符：</p>
+<p>使用控制符时，在程序开头加投文件<code>#include &lt;iomanip&gt;</code> C++有两种方法控制格式输出：</p>
+<p>1、用格式控制符；</p>
+<p>2、用流对象的成员函数 格式控制符：</p>
+<p>下面是iomanip的部分用法指令</p>
+<p><strong>注</strong>：以下指令前面都要加cout&lt;&lt;</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dec</td>
+<td>以十进制形式输出</td>
+</tr>
+<tr>
+<td>hex</td>
+<td>以十六进制形式输出</td>
+</tr>
+<tr>
+<td>oct</td>
+<td>以八进制形式输出</td>
+</tr>
+<tr>
+<td>setfill(‘*’)</td>
+<td>用*填充空余部分</td>
+</tr>
+<tr>
+<td>setprecision(n)</td>
+<td>设置显示n位小数（四舍五入）</td>
+</tr>
+<tr>
+<td>setw(n)</td>
+<td>设置域宽为n个字符，并默认右对齐</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>固定小数显示位，只有超出setprecision显示范围时才使用</td>
+</tr>
+<tr>
+<td>scientific</td>
+<td>科学计数法显示，默认保留小数点后6位</td>
+</tr>
+<tr>
+<td>left</td>
+<td>左对齐</td>
+</tr>
+<tr>
+<td>right</td>
+<td>右对齐</td>
+</tr>
+<tr>
+<td>skipws</td>
+<td>忽略前导空白</td>
+</tr>
+<tr>
+<td>uppercase</td>
+<td>16进制数大写输出</td>
+</tr>
+<tr>
+<td>lowercase</td>
+<td>16进制数小写输出</td>
+</tr>
+</tbody></table>
+<p><strong>浮点数精度：默认精度为6，可以通过setprecision()来设置新的浮点数精度</strong><br><strong>非定点数模式：从左侧第一个非零数值开始的连续有效数字个数</strong><br><strong>定点数模式：小数点后连续有效数字个数</strong><br><strong>取消设置/回复默认：cout.unsetf(控制符)</strong></p>
+<p><strong>setw(): 设置显示宽度 (单次/一次性操作，仅仅对后面的第一个对象有效)</strong><br><strong>其他的格式控制符：大都是黏性操作(持久性/永久性操作，设置之后持续有效，直到新的设置为止)</strong> </p>
 <h1 id="递归的简单使用"><a href="#递归的简单使用" class="headerlink" title="递归的简单使用"></a>递归的简单使用</h1><p>利用递归算阶乘</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">s</span><span class="params">(<span class="keyword">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(a&gt;<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> b=a*<span class="built_in">s</span>(a<span class="number">-1</span>);</span><br><span class="line">		<span class="keyword">return</span> b;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">s</span>(<span class="number">4</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -359,7 +409,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%9D%E7%95%99%E5%9B%BA%E5%AE%9A%E4%BD%8D%E6%9C%89%E6%95%88%E5%B0%8F%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">保留固定位有效小数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%9A%84%E7%94%9F%E6%88%90"><span class="nav-number">2.</span> <span class="nav-text">随机数的生成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#array%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">array头文件的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vector%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">vector头文件的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-%E4%B8%AD%E7%9A%84%E5%B7%A6%E5%8F%B3%E5%AF%B9%E9%BD%90"><span class="nav-number">5.</span> <span class="nav-text">C++中的左右对齐</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="nav-number">6.</span> <span class="nav-text">递归的简单使用</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%9D%E7%95%99%E5%9B%BA%E5%AE%9A%E4%BD%8D%E6%9C%89%E6%95%88%E5%B0%8F%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">保留固定位有效小数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%9A%84%E7%94%9F%E6%88%90"><span class="nav-number">2.</span> <span class="nav-text">随机数的生成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#array%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">array头文件的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vector%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">vector头文件的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-%E4%B8%AD%E7%9A%84iomanip%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">C++中的iomanip的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="nav-number">6.</span> <span class="nav-text">递归的简单使用</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -375,7 +425,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
