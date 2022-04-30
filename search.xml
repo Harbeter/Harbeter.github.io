@@ -146,43 +146,6 @@
       </tags>
   </entry>
   <entry>
-    <title>C++中的函数模板</title>
-    <url>/2022/04/29/C-%E4%B8%AD%E7%9A%84%E7%B1%BB%E6%A8%A1%E6%9D%BF/</url>
-    <content><![CDATA[<h1 id="函数模板简介"><a href="#函数模板简介" class="headerlink" title="函数模板简介"></a>函数模板简介</h1><p>模板是C++的高级特性，分为<strong>函数模板</strong>和<strong>类模板</strong>，使用模板能够快速建立具有类型安全的类库合集和函数合集。</p>
-<p>这里我们主要介绍<strong>函数模板</strong></p>
-<p>函数模板不是一个实在的函数，编译器不能为其生成可执行代码。定义函数模板最后只是一个对函数功能框架的描述，当它具体执行时，将根据传递的实际参数决定功能。</p>
-<span id="more"></span>
-
-<h1 id="函数模板的定义"><a href="#函数模板的定义" class="headerlink" title="函数模板的定义"></a>函数模板的定义</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;参数类型及参数&gt; 返回类型 函数名 (形式参数)</span><br><span class="line">&#123;</span><br><span class="line">		<span class="comment">//函数体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>也可以声明函数模板分成template部分和函数部分：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;参数类型&gt;</span><br><span class="line">返回类型 函数名 (形式参数)</span><br><span class="line">&#123;</span><br><span class="line">		<span class="comment">//函数体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>template为关键字，表示定义一个模板。<br>&lt;&gt;表示模板参数，模板参数有两种，是<strong>模板类型参数</strong>、<strong>模板非类型参数</strong>。模板类型参数使用关键字<strong>class或typedef</strong>开始，后面跟一个合法类型名。模板非类型参数与普通参数定义相同，通常是一个常数。可以不使用模板非类型参数。</p>
-<p>下面以<strong>求和函数为例解释函数模板</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//定义求和函数模板 </span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">type</span>&gt;</span> <span class="comment">//这里的type可以是任意类型，关键看传入的是什么类型 </span></span><br><span class="line"><span class="function">type <span class="title">sum</span><span class="params">(type x,type y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">3</span>;</span><br><span class="line">	<span class="keyword">int</span> b=<span class="number">5</span>;</span><br><span class="line">	<span class="keyword">int</span> s=sum&lt;<span class="keyword">int</span>&gt;(a,b);<span class="comment">//调用函数模板 </span></span><br><span class="line">	cout&lt;&lt;s&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">double</span> c=<span class="number">1.23</span>;</span><br><span class="line">	<span class="keyword">double</span> d=<span class="number">2.45</span>;</span><br><span class="line">	<span class="keyword">double</span> m=sum&lt;<span class="keyword">double</span>&gt;(c,d);<span class="comment">//调用函数模板 </span></span><br><span class="line">	cout&lt;&lt;m;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>对如上代码进行解释：<br>首先是声明一个模板<code>template&lt;calss type&gt;</code>，然后是定义函数模板的具体实现方法</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数模板								//自定义函数</span></span><br><span class="line"><span class="function">type <span class="title">sum</span><span class="params">(type x,type y)</span>				   <span class="comment">//int sum(int x,int y)	</span></span></span><br><span class="line"><span class="function"></span>&#123;									   <span class="comment">//&#123;</span></span><br><span class="line">    <span class="keyword">return</span> x+y;						   <span class="comment">//	return x+y;</span></span><br><span class="line">&#125;									   <span class="comment">//&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>相比之下，模板函数在声明类型的情况下可以实现各种运算，而自定义函数只能实现单纯的int运算。</p>
-<p>所以，定义函数模板的有点就是<strong>适应各种类型对象</strong>的计算和输出。</p>
-<p>最后就是函数模板的调用</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> s=sum&lt;<span class="keyword">int</span>&gt;(a,b);</span><br><span class="line"><span class="keyword">double</span> m=sum&lt;<span class="keyword">double</span>&gt;(c,d);</span><br></pre></td></tr></table></figure>
-
-<p>这里的int和double就是使用模板的方式，即模板类型。若除去&lt;&gt;，就变成了</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> s=<span class="built_in">sum</span>(a,b);</span><br><span class="line"><span class="keyword">double</span> m=<span class="built_in">sum</span>(c,d);</span><br></pre></td></tr></table></figure>
-
-<p>这个跟自定义函数的使用方法相同。</p>
-<h1 id="函数模板入门应用"><a href="#函数模板入门应用" class="headerlink" title="函数模板入门应用"></a>函数模板入门应用</h1><p>使用数组作为模板参数，分别输出int数组和double数组的最大值</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">type</span>,<span class="title">int</span> <span class="title">len</span>&gt;</span></span><br><span class="line"><span class="function">type <span class="title">max</span><span class="params">(type a[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	type m=a[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]&gt;m)</span><br><span class="line">		&#123;</span><br><span class="line">			m=a[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">	<span class="keyword">double</span> y[]=&#123;<span class="number">1.2</span>,<span class="number">2.5</span>,<span class="number">1.6</span>,<span class="number">5.6</span>,<span class="number">7.8</span>,<span class="number">4.6</span>&#125;;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The max int is:&quot;</span>&lt;&lt;max&lt;<span class="keyword">int</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(x)/<span class="built_in"><span class="keyword">sizeof</span></span>(x[<span class="number">0</span>])&gt;(x)&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The max double is:&quot;</span>&lt;&lt;max&lt;<span class="keyword">double</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(y)/<span class="built_in"><span class="keyword">sizeof</span></span>(y[<span class="number">0</span>])&gt;(y);</span><br><span class="line">	<span class="comment">//补充：x.size()、x.length()是用于string类型的数组长度判断，不可用于整型 </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++中的数组</title>
     <url>/2022/01/15/C-%E4%B8%AD%E7%9A%84%E6%95%B0%E7%BB%84/</url>
     <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>所谓数组，就是一个集合，里面存放了相同类型的数据元素</p>
@@ -242,6 +205,43 @@
 <li><p>获取二维数组首位置</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> arr[<span class="number">2</span>][<span class="number">3</span>]</span><br><span class="line">    &#123;</span><br><span class="line">        &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,</span><br><span class="line">        &#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(arr)&lt;&lt;endl;<span class="comment">//整个数组所占外存，单位是字节</span></span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(arr[<span class="number">0</span>])&lt;&lt;endl;<span class="comment">//一行所占存储空间</span></span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(arr[<span class="number">0</span>][<span class="number">0</span>])&lt;&lt;endl;<span class="comment">//某个元素所占存储空间</span></span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(arr)/<span class="built_in"><span class="keyword">sizeof</span></span>(arr[<span class="number">0</span>])&lt;&lt;endl;<span class="comment">//二维数组行数</span></span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(arr[<span class="number">0</span>])/<span class="built_in"><span class="keyword">sizeof</span></span>(arr[<span class="number">0</span>][<span class="number">0</span>])&lt;&lt;endl;<span class="comment">//二维数组列数</span></span><br><span class="line">    cout&lt;&lt;arr&lt;&lt;endl;<span class="comment">//二维数组首地址</span></span><br><span class="line">    cout&lt;&lt;(<span class="keyword">int</span>) arr&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;(<span class="keyword">int</span>) arr[<span class="number">0</span>]&lt;&lt;endl;<span class="comment">//第一行首地址</span></span><br><span class="line">    cout&lt;&lt;(<span class="keyword">int</span>) &amp;arr[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;endl;<span class="comment">//第一个元素的首地址，注意别丢了&amp;</span></span><br><span class="line">    cout&lt;&lt;(<span class="keyword">int</span>) arr[<span class="number">1</span>]&lt;&lt;endl;<span class="comment">//第二行首地址</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++中的函数模板</title>
+    <url>/2022/04/29/C-%E4%B8%AD%E7%9A%84%E7%B1%BB%E6%A8%A1%E6%9D%BF/</url>
+    <content><![CDATA[<h1 id="函数模板简介"><a href="#函数模板简介" class="headerlink" title="函数模板简介"></a>函数模板简介</h1><p>模板是C++的高级特性，分为<strong>函数模板</strong>和<strong>类模板</strong>，使用模板能够快速建立具有类型安全的类库合集和函数合集。</p>
+<p>这里我们主要介绍<strong>函数模板</strong></p>
+<p>函数模板不是一个实在的函数，编译器不能为其生成可执行代码。定义函数模板最后只是一个对函数功能框架的描述，当它具体执行时，将根据传递的实际参数决定功能。</p>
+<span id="more"></span>
+
+<h1 id="函数模板的定义"><a href="#函数模板的定义" class="headerlink" title="函数模板的定义"></a>函数模板的定义</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;参数类型及参数&gt; 返回类型 函数名 (形式参数)</span><br><span class="line">&#123;</span><br><span class="line">		<span class="comment">//函数体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以声明函数模板分成template部分和函数部分：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;参数类型&gt;</span><br><span class="line">返回类型 函数名 (形式参数)</span><br><span class="line">&#123;</span><br><span class="line">		<span class="comment">//函数体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>template为关键字，表示定义一个模板。<br>&lt;&gt;表示模板参数，模板参数有两种，是<strong>模板类型参数</strong>、<strong>模板非类型参数</strong>。模板类型参数使用关键字<strong>class或typedef</strong>开始，后面跟一个合法类型名。模板非类型参数与普通参数定义相同，通常是一个常数。可以不使用模板非类型参数。</p>
+<p>下面以<strong>求和函数为例解释函数模板</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//定义求和函数模板 </span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">type</span>&gt;</span> <span class="comment">//这里的type可以是任意类型，关键看传入的是什么类型 </span></span><br><span class="line"><span class="function">type <span class="title">sum</span><span class="params">(type x,type y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">3</span>;</span><br><span class="line">	<span class="keyword">int</span> b=<span class="number">5</span>;</span><br><span class="line">	<span class="keyword">int</span> s=sum&lt;<span class="keyword">int</span>&gt;(a,b);<span class="comment">//调用函数模板 </span></span><br><span class="line">	cout&lt;&lt;s&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">double</span> c=<span class="number">1.23</span>;</span><br><span class="line">	<span class="keyword">double</span> d=<span class="number">2.45</span>;</span><br><span class="line">	<span class="keyword">double</span> m=sum&lt;<span class="keyword">double</span>&gt;(c,d);<span class="comment">//调用函数模板 </span></span><br><span class="line">	cout&lt;&lt;m;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对如上代码进行解释：<br>首先是声明一个模板<code>template&lt;calss type&gt;</code>，然后是定义函数模板的具体实现方法</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数模板								//自定义函数</span></span><br><span class="line"><span class="function">type <span class="title">sum</span><span class="params">(type x,type y)</span>				   <span class="comment">//int sum(int x,int y)	</span></span></span><br><span class="line"><span class="function"></span>&#123;									   <span class="comment">//&#123;</span></span><br><span class="line">    <span class="keyword">return</span> x+y;						   <span class="comment">//	return x+y;</span></span><br><span class="line">&#125;									   <span class="comment">//&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>相比之下，模板函数在声明类型的情况下可以实现各种运算，而自定义函数只能实现单纯的int运算。</p>
+<p>所以，定义函数模板的有点就是<strong>适应各种类型对象</strong>的计算和输出。</p>
+<p>最后就是函数模板的调用</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> s=sum&lt;<span class="keyword">int</span>&gt;(a,b);</span><br><span class="line"><span class="keyword">double</span> m=sum&lt;<span class="keyword">double</span>&gt;(c,d);</span><br></pre></td></tr></table></figure>
+
+<p>这里的int和double就是使用模板的方式，即模板类型。若除去&lt;&gt;，就变成了</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> s=<span class="built_in">sum</span>(a,b);</span><br><span class="line"><span class="keyword">double</span> m=<span class="built_in">sum</span>(c,d);</span><br></pre></td></tr></table></figure>
+
+<p>这个跟自定义函数的使用方法相同。</p>
+<h1 id="函数模板入门应用"><a href="#函数模板入门应用" class="headerlink" title="函数模板入门应用"></a>函数模板入门应用</h1><p>使用数组作为模板参数，分别输出int数组和double数组的最大值</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">type</span>,<span class="title">int</span> <span class="title">len</span>&gt;</span></span><br><span class="line"><span class="function">type <span class="title">max</span><span class="params">(type a[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	type m=a[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]&gt;m)</span><br><span class="line">		&#123;</span><br><span class="line">			m=a[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">	<span class="keyword">double</span> y[]=&#123;<span class="number">1.2</span>,<span class="number">2.5</span>,<span class="number">1.6</span>,<span class="number">5.6</span>,<span class="number">7.8</span>,<span class="number">4.6</span>&#125;;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The max int is:&quot;</span>&lt;&lt;max&lt;<span class="keyword">int</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(x)/<span class="built_in"><span class="keyword">sizeof</span></span>(x[<span class="number">0</span>])&gt;(x)&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The max double is:&quot;</span>&lt;&lt;max&lt;<span class="keyword">double</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(y)/<span class="built_in"><span class="keyword">sizeof</span></span>(y[<span class="number">0</span>])&gt;(y);</span><br><span class="line">	<span class="comment">//补充：x.size()、x.length()是用于string类型的数组长度判断，不可用于整型 </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
         <tag>C++</tag>
@@ -2071,32 +2071,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Win7搭建sqlilabs</title>
-    <url>/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/</url>
-    <content><![CDATA[<h1 id="下载sqli-labs"><a href="#下载sqli-labs" class="headerlink" title="下载sqli-labs"></a>下载sqli-labs</h1><p><a href="https://github.com/Audi-1/sqli-labs">点击此处下载</a>sqli-labs</p>
-<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102456244.png" alt="image-20220112102456244"></p>
-<p>下载后将该文件移入虚拟机，并解压到如下文件夹</p>
-<span id="more"></span>
-
-<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102537646.png" alt="image-20220112102537646"></p>
-<h1 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h1><p>进入如下位置</p>
-<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102702411.png" alt="image-20220112102702411"></p>
-<p>打开phpstudy并启用如下服务</p>
-<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102759449.png" alt="image-20220112102759449"></p>
-<p>然后访问sqli-labs的网址</p>
-<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102840119.png" alt="image-20220112102840119"></p>
-<p>安装完成后即可使用</p>
-<h1 id="物理机访问虚拟机的sqli-labs"><a href="#物理机访问虚拟机的sqli-labs" class="headerlink" title="物理机访问虚拟机的sqli-labs"></a>物理机访问虚拟机的sqli-labs</h1><p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112103120644.png" alt="image-20220112103120644"></p>
-<p>然后用物理机访问IPv4地址中的sqli-labs文件夹</p>
-<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112103219553.png" alt="image-20220112103219553"></p>
-<p>完成</p>
-<p><strong>最后提示：一定一定一定一定要打开phpstudy的相关服务</strong></p>
-]]></content>
-      <tags>
-        <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>bugku-bp</title>
     <url>/2021/12/05/bugku-bp/</url>
     <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
@@ -2158,6 +2132,32 @@
 ]]></content>
       <tags>
         <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Win7搭建sqlilabs</title>
+    <url>/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/</url>
+    <content><![CDATA[<h1 id="下载sqli-labs"><a href="#下载sqli-labs" class="headerlink" title="下载sqli-labs"></a>下载sqli-labs</h1><p><a href="https://github.com/Audi-1/sqli-labs">点击此处下载</a>sqli-labs</p>
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102456244.png" alt="image-20220112102456244"></p>
+<p>下载后将该文件移入虚拟机，并解压到如下文件夹</p>
+<span id="more"></span>
+
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102537646.png" alt="image-20220112102537646"></p>
+<h1 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h1><p>进入如下位置</p>
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102702411.png" alt="image-20220112102702411"></p>
+<p>打开phpstudy并启用如下服务</p>
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102759449.png" alt="image-20220112102759449"></p>
+<p>然后访问sqli-labs的网址</p>
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102840119.png" alt="image-20220112102840119"></p>
+<p>安装完成后即可使用</p>
+<h1 id="物理机访问虚拟机的sqli-labs"><a href="#物理机访问虚拟机的sqli-labs" class="headerlink" title="物理机访问虚拟机的sqli-labs"></a>物理机访问虚拟机的sqli-labs</h1><p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112103120644.png" alt="image-20220112103120644"></p>
+<p>然后用物理机访问IPv4地址中的sqli-labs文件夹</p>
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112103219553.png" alt="image-20220112103219553"></p>
+<p>完成</p>
+<p><strong>最后提示：一定一定一定一定要打开phpstudy的相关服务</strong></p>
+]]></content>
+      <tags>
+        <tag>SQL</tag>
       </tags>
   </entry>
   <entry>
@@ -2864,6 +2864,30 @@
       </tags>
   </entry>
   <entry>
+    <title>“解决codeblocks无法运行c++程序&quot;</title>
+    <url>/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/</url>
+    <content><![CDATA[<p>下载Codeblocks后，创建新程序后，发现点击运行后无法弹出控制台，如图</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120305308.png" alt="image-20211127120305308"></p>
+<span id="more"></span>
+
+<p>#法1</p>
+<p>查看compiler setting中的路径，如下图</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120458845.png" alt="image-20211127120458845"></p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120607794.png" alt="image-20211127120607794"></p>
+<p>修改MinGW的路径后，解决问题</p>
+<p>#法2（法1未解决）</p>
+<p>路径正常，修改路径后显示</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120747653.png" alt="image-20211127120747653"></p>
+<p>即缺少GNU GCC Compiler，说白了就是MinGW文件不完整，尝试删除WinGW文件夹，然后重新下载</p>
+<p>下载地址：链接：<a href="https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag">https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag</a>    提取码：axen</p>
+<p>将该压缩包解压后，解决问题</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127121331465.png" alt="image-20211127121331465"></p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqlilabs第四关</title>
     <url>/2022/01/22/sqlilabs%E7%AC%AC%E5%9B%9B%E5%85%B3/</url>
     <content><![CDATA[<p>p判断闭合方式</p>
@@ -2896,30 +2920,6 @@
 ]]></content>
       <tags>
         <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>“解决codeblocks无法运行c++程序&quot;</title>
-    <url>/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/</url>
-    <content><![CDATA[<p>下载Codeblocks后，创建新程序后，发现点击运行后无法弹出控制台，如图</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120305308.png" alt="image-20211127120305308"></p>
-<span id="more"></span>
-
-<p>#法1</p>
-<p>查看compiler setting中的路径，如下图</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120458845.png" alt="image-20211127120458845"></p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120607794.png" alt="image-20211127120607794"></p>
-<p>修改MinGW的路径后，解决问题</p>
-<p>#法2（法1未解决）</p>
-<p>路径正常，修改路径后显示</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120747653.png" alt="image-20211127120747653"></p>
-<p>即缺少GNU GCC Compiler，说白了就是MinGW文件不完整，尝试删除WinGW文件夹，然后重新下载</p>
-<p>下载地址：链接：<a href="https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag">https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag</a>    提取码：axen</p>
-<p>将该压缩包解压后，解决问题</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127121331465.png" alt="image-20211127121331465"></p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -3242,7 +3242,7 @@
 <h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
 <p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
 <p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
-<p>User：<a href="mailto:&#x62;&#117;&#x67;&#x6b;&#x75;&#x6b;&#x75;&#64;&#49;&#x36;&#x33;&#x2e;&#99;&#x6f;&#109;">&#x62;&#117;&#x67;&#x6b;&#x75;&#x6b;&#x75;&#64;&#49;&#x36;&#x33;&#x2e;&#99;&#x6f;&#109;</a></p>
+<p>User：<a href="mailto:&#98;&#117;&#x67;&#107;&#x75;&#x6b;&#x75;&#64;&#x31;&#x36;&#x33;&#x2e;&#99;&#x6f;&#x6d;">&#98;&#117;&#x67;&#107;&#x75;&#x6b;&#x75;&#64;&#x31;&#x36;&#x33;&#x2e;&#99;&#x6f;&#x6d;</a></p>
 <p>Pass：XSLROCPMNWWZQDZL</p>
 <p>登录显示密码错误，然后继续看wp</p>
 <p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
@@ -3475,6 +3475,91 @@
 ]]></content>
       <tags>
         <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文件上传题总结</title>
+    <url>/2022/04/30/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%A2%98%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="前端检验"><a href="#前端检验" class="headerlink" title="前端检验"></a>前端检验</h1><p>这是最简单的绕过方式，该方式只在前端检验文件后缀是否为php，若是则退回，不是则上传。</p>
+<p>绕过方式很简单，将php格式的一句话木马后缀改为png，然后上传抓包，修改文件后缀为php即可。</p>
+<h1 id="后端检验文件格式"><a href="#后端检验文件格式" class="headerlink" title="后端检验文件格式"></a>后端检验文件格式</h1><p>这种检验方式同样可以用上传图片，抓包改后缀的方式绕过，也是比较基础的</p>
+<span id="more"></span>
+
+<h1 id="后端检验文件格式和后缀"><a href="#后端检验文件格式和后缀" class="headerlink" title="后端检验文件格式和后缀"></a>后端检验文件格式和后缀</h1><p>这次再上传图片改后缀就不行了，这里就有必要解释一下.htaccess文件和.user.ini文件了。</p>
+<p>这类题的思路就是上传局部配置文件，</p>
+<p><strong>.htaccess : 使得phtml等文件能够被当作解析，从而执行php木马</strong></p>
+<p><strong>.user.ini : 使得原本的php文件包含上传的php文件得内容，从而执行恶意代码</strong></p>
+<p>注意：有时候还会过滤php，可以尝试用大写绕过</p>
+<h2 id="htaccess"><a href="#htaccess" class="headerlink" title=".htaccess"></a>.htaccess</h2><p>httpd-conf 是 Apache 的系统配置文件，一个全局的配置文件，对整个 web 服务起作用；而.htaccess 也是 Apache 的配置文件，不过相当于一个局部配置文件，只对该文件所在目录下的文件起作用。</p>
+<table>
+<thead>
+<tr>
+<th>Apache配置文件</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>httpd-conf</td>
+<td>全局配置文件</td>
+</tr>
+<tr>
+<td>.htaccess</td>
+<td>局部配置文件</td>
+</tr>
+</tbody></table>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>在绕过文件上传的限制中，通常在 Apache 全局配置文件 httpd.conf 中有这样一条配置：</p>
+<p><code>AddType application/x-httpd-php .php .phtml</code></p>
+<p>这条配置的意思就是将.php、.phtml 文件后缀的文件当做 php 文件执行，如果开启了这条配置，就可以上传.phtml 文件在执行 php 代码，这也就是为什么在文件上传时可以尝试上传.phtml，不过在高版本中这条配置默认是关闭的，也就是只能解析.php 文件后缀。</p>
+<p>或者这条配置：</p>
+<p><code>SetHandler application/x-httpd-php</code></p>
+<p>将所有文件都解析为 php 文件。</p>
+<p><strong>通常全局文件我们都是不可更改的</strong>，而 Apache 还有一个局部配置文件.htaccess，这个配置文件只对该目录所在的 web 目录起作用，例如：我们在 www 目录下有一个.htaccess 配置文件，配置内容为</p>
+<p><code>AddType application/x-httpd-php .jpg</code></p>
+<p>将 jpg 文件当做 PHP 文件解析。这样就可以直接解析 jpg 后缀的 webshell。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// .htaccess文件中的内容</span><br><span class="line">AddType application/x-httpd-php .jpg</span><br><span class="line"></span><br><span class="line">// 1.jpg文件中的内容</span><br><span class="line">&lt;?php phpinfo();?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这时访问 1.jpg，1.jpg会被当做 PHP 解析</p>
+<h3 id="局限"><a href="#局限" class="headerlink" title="局限"></a>局限</h3><p>.htaccess配置文件只会在Apache服务器种起作用</p>
+<h2 id="user-ini"><a href="#user-ini" class="headerlink" title=".user.ini"></a>.user.ini</h2><p>php.ini 是 php 的一个全局配置文件，对整个 web 服务起作用；而**.user.ini 和.htaccess 一样是目录的配置文件<strong>，.user.ini 就是用户自定义的一个 php.ini，</strong>通常用这个文件来构造后门和隐藏后门。**</p>
+<table>
+<thead>
+<tr>
+<th>php配置文件</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>php.ini</td>
+<td>全局配置文件</td>
+</tr>
+<tr>
+<td>.user.ini</td>
+<td>局部配置文件</td>
+</tr>
+</tbody></table>
+<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><p>php 配置项中有两个配置可以起到一些作用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">auto_prepend_file = &lt;filename&gt;         //包含在文件头</span><br><span class="line">auto_append_file = &lt;filename&gt;          //包含在文件尾</span><br></pre></td></tr></table></figure>
+
+<p>这两个配置项的作用相当于一个文件包含，比如</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// .user.ini中的内容</span><br><span class="line">auto_prepend_file = 1.jpg  //包含1.jpg文件</span><br><span class="line"></span><br><span class="line">// 1.jpg中的内容</span><br><span class="line">&lt;?php phpinfo();?&gt;</span><br><span class="line"></span><br><span class="line">// 该目录下存在任意.php文件（这里以11.php为例）</span><br></pre></td></tr></table></figure>
+
+<p>也就是在一个目录下有.user.ini 这个配置文件，配置内容为上，有 1.jpg，同时该目录下还需要有.php 后缀的文件，<code>auto_prepend_file = 1.jpg</code> 这个配置的意思就是在当前目录下的.php 文件包含 1.jpg 这个图片，在此处相当于在 11.php 文件头插入了 <code>require(&#39;1.jpg&#39;)</code> 这条语句，也就是说<strong>相当于文件包含</strong>。<br>另一条配置包含在文件尾，如果遇到了 exit 语句的话就会失效。</p>
+<p>.user.ini 使用范围很广，<strong>不仅限于 Apache 服务器</strong>，同样<strong>适用于 Nginx 服务器</strong>，只要服务器启用了 <strong>fastcgi 模式</strong> (通常非线程安全模式使用的就是 fastcgi 模式)。</p>
+<h3 id="局限-1"><a href="#局限-1" class="headerlink" title="局限"></a>局限</h3><p>在.user.ini 中使用这条配置的使用也说了是在同目录下的其他.php 文件中包含配置中所指定的文件，也就是说需要<strong>该目录下存在.php 文件</strong>，通常在文件上传中，<strong>一般是专门有一个目录用来存在图片，可能小概率会存在.php 文件</strong>。</p>
+<h1 id="短标签的应用"><a href="#短标签的应用" class="headerlink" title="短标签的应用"></a>短标签的应用</h1><p>有时候，我们遇到有php文件且能上传.user.ini的题目时，但是php却被严格过滤（大小写都不行），这时候我们就要考虑到短标签，也就是在.user.ini文件中添加</p>
+<p><code>short_open_tag = On</code>，然后其余和上一种方法相同即可，这样我们的木马就可以不包含php。从而可以执行恶意代码</p>
+<p>短标签的四种风格</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">echo</span> “<span class="number">1111111111111</span> &lt;br&gt;”; </span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">&lt;?</span></span><br><span class="line">    <span class="keyword">echo</span> “<span class="number">222222222222</span> &lt;br&gt;”;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">     <span class="keyword">echo</span>“<span class="number">333333333333</span> &lt;br&gt;”;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">(注释：这种写法在php配置中默认关闭了的，所以不能输出一行<span class="number">3</span>.如果要正常输出，需要配置php.ini文件。在配置文件中找到asp_tags=off ,将off改为on。改动配置文件后需要重启apache。)</span><br><span class="line"> </span><br><span class="line">&lt;script language=”php”&gt;</span><br><span class="line">     <span class="keyword">echo</span>“<span class="number">444444444444</span> &lt;br&gt;”</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="几种常见的后端过滤"><a href="#几种常见的后端过滤" class="headerlink" title="几种常见的后端过滤"></a>几种常见的后端过滤</h1><ol>
+<li>过滤小写，可用大写绕过</li>
+<li>过滤php的大小写，可用短标签绕过</li>
+<li>过滤[ ]，可用{ }绕过</li>
+<li>过滤php，可以尝试php3、phtml等</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>文件上传</tag>
       </tags>
   </entry>
   <entry>
