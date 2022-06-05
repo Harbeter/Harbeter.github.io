@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"harbeter.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="众所周知，C&#x2F;C++语言可以使用#define和const创建符号常量，而使用enum工具不仅能够创建符号常量，还能定义新的数据类型，但是必须按照一定的规则进行，下面我们一起看下enum的使用方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++中的枚举">
+<meta property="og:url" content="https://harbeter.github.io/2022/05/01/C-%E4%B8%AD%E7%9A%84%E6%9E%9A%E4%B8%BE/index.html">
+<meta property="og:site_name" content="像风吹过八千里">
+<meta property="og:description" content="众所周知，C&#x2F;C++语言可以使用#define和const创建符号常量，而使用enum工具不仅能够创建符号常量，还能定义新的数据类型，但是必须按照一定的规则进行，下面我们一起看下enum的使用方法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-01T02:27:31.863Z">
+<meta property="article:modified_time" content="2022-05-01T03:12:32.247Z">
+<meta property="article:author" content="Harbeter">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://harbeter.github.io/2022/05/01/C-%E4%B8%AD%E7%9A%84%E6%9E%9A%E4%B8%BE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>C++中的枚举 | 像风吹过八千里</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">像风吹过八千里</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">流云和月都曾爱过你</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2022/05/01/C-%E4%B8%AD%E7%9A%84%E6%9E%9A%E4%B8%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Harbeter">
+      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="像风吹过八千里">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++中的枚举
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-05-01 10:27:31 / 修改时间：11:12:32" itemprop="dateCreated datePublished" datetime="2022-05-01T10:27:31+08:00">2022-05-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>众所周知，C/C++语言可以使用#define和const创建符号常量，而使用enum工具不仅能够创建符号常量，还能定义新的数据类型，但是必须按照一定的规则进行，下面我们一起看下enum的使用方法。</p>
+<span id="more"></span>
+
+<h1 id="枚举量的声明和定义"><a href="#枚举量的声明和定义" class="headerlink" title="枚举量的声明和定义"></a>枚举量的声明和定义</h1><p>（1）先看例句</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">enumType</span> &#123;</span>Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这句话有两个作用：</p>
+<p>第一：声明enumType为新的数据类型，称为<strong>枚举</strong>(enumeration);</p>
+<p>第二：声明Monday、Tuesday等为符号常量，通常称之为<strong>枚举量</strong>，其<strong>值默认分别为0-6</strong>。（后面会介绍怎样显式的初始化<strong>枚举量</strong>的值）</p>
+<p>（2）接着利用新的枚举类型enumType声明这种类型的变量：<code>enumType Weekday;</code>就像使用基本变量类型int声明变量一样，如 <code>int a;</code>也可以在定义枚举类型时定义枚举变量<code>enum enumType &#123;Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday&#125;Weekday;</code></p>
+<p>然而与基本变量类型不同的地方是，<strong>在不进行强制转换的前提下</strong>，只能将定义的<strong>枚举量</strong>赋值给该种枚举的变量，如：<code>Weekday = Monday;</code>或者<code>Weekday = Sunday;</code>不能将其他值赋给<strong>枚举变量</strong>，如：<code>Weekday = 10;</code>这是不允许的，因为10不是<strong>枚举量</strong>。也就是说Weekday只能是定义的Monday-Sunday这些定义过的<strong>枚举量</strong>。然而这不是绝对的，第六条会讲到利用强制类型转换将其他类型值赋给<strong>枚举变量</strong>。</p>
+<p>（3）上面讲不能将<strong>非枚举量</strong>赋给<strong>枚举变量</strong>，那么能不能将<strong>枚举量</strong>赋给<strong>非枚举变量</strong>呢？如：<code>int a=Monday;</code>这是允许的，因为<strong>枚举量</strong>是符号常量，这里的赋值编译器会自动把<strong>枚举量</strong>转换为int类型。</p>
+<p>（4）前面讲可以对枚举进行赋值运算，那<strong>枚举变量</strong>能不能进行算术运算呢？</p>
+<p><code>Weekday++;</code>、<code>Weekday = Monday + Tuesday;</code>这是非法的，因为<strong>这些操作可能导致违反类型限制</strong>，比如：<code>Weekday = Sunday;</code></p>
+<p><code>Weekday++;</code> Weekday首先被赋予<strong>枚举量</strong>中的最后一个值Sunday(值为6)，再进行递增的话，Weekday增加到7，而对于enumType类型来说，7是无效的。</p>
+<p><strong>总结：对于枚举，只定义了赋值运算符，没有为枚举定义算术运算。</strong></p>
+<p>（5）不能对枚举量进行算术运算，那么枚举量能不能<strong>参与其他类型变量的运算</strong>呢？<code>int a;  a = 1 + Monday;</code>这是允许的，因为编译器会自动把枚举量转换为int类型。</p>
+<p>（6）第二条讲：在不进行强制转换的前提下，只能将定义的枚举量赋值给该种枚举的变量，言下之意就是可以通过强制转换将其他类型值赋给枚举变量：</p>
+<p><code>Weekday = enumType(2);</code>等同于：<code>Weekday = Wednesday;</code>但是，如果试图将一个超出枚举取值范围的值通过强制转换赋给枚举变量，会出现什么结果？</p>
+<p><code>Weekday = enumType(20);</code>结果将是不确定的，这么做不会出错，但得不到想要的结果。</p>
+<h1 id="自定义枚举量的值"><a href="#自定义枚举量的值" class="headerlink" title="自定义枚举量的值"></a>自定义枚举量的值</h1><p>(1)前面讲通过定义<code>enum enumType &#123;Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday&#125;;</code></p>
+<p><strong>枚举量</strong>Monday、Tuesday等的值默认分别为0-6，我们可以显式的设置<strong>枚举量</strong>的值：</p>
+<p><code>enum enumType &#123;Monday=1, Tuesday=2, Wednesday=3, Thursday=4, Friday=5, Saturday=6, Sunday=7&#125;;</code></p>
+<p>指定的值必须是<strong>整数</strong>！</p>
+<p>(2)也可以只显式的定义一部分<strong>枚举量</strong>的值：</p>
+<p><code>enum enumType &#123;Monday=1, Tuesday, Wednesday=1, Thursday, Friday, Saturday, Sunday&#125;;</code>这样Monday、Wednesday均被定义为1，则Tuesday=2，Thursday、Friday、Saturday、Sunday的值默认分别为2、3、4、5.<strong>总结：未被初始化的枚举值的值默认将比其前面的枚举值大1。</strong></p>
+<p>(3)第二条还说明另外一个现象，就是 <strong>枚举量 的值可以相同</strong>。</p>
+<h1 id="枚举的取值范围"><a href="#枚举的取值范围" class="headerlink" title="枚举的取值范围"></a>枚举的取值范围</h1><p>前面讲到可以通过强制转换将其他类型值赋给<strong>枚举变量：</strong><code>Weekday = enumType(2);</code>这是合法的；但是<code>Weekday = enumType(20);</code>是非法的。这里涉及<strong>枚举取值范围</strong>的概念：枚举的上限是 大于最大<strong>枚举量</strong>的 最小的2的幂，减去1；</p>
+<p>枚举的下限有两种情况：</p>
+<p>一、<strong>枚举量</strong>的最小值不小于0，则枚举下限取0；</p>
+<p>二、<strong>枚举量</strong>的最小值小于0，则枚举下限是 小于最小<strong>枚举量</strong>的 最大的2的幂，加上1。</p>
+<p>举例来讲：</p>
+<p>假如定义 <code>enum enumType1 &#123; First=-5，Second=14，Third=10 &#125;;</code>则枚举的上限是16-1=15（16大于最大<strong>枚举量</strong>14，且为2的幂）；  枚举的下限是-8+1=-7（-8小于最小<strong>枚举量</strong>-5，且为2的幂）；</p>
+<h1 id="枚举的应用"><a href="#枚举的应用" class="headerlink" title="枚举的应用"></a>枚举的应用</h1><p>个人觉得<strong>枚举</strong>和<strong>switch</strong>是最好的搭档：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">enumType</span>&#123;</span>Step0, Step1, Step2&#125;Step=Step0;<span class="comment">//注意这里在声明枚举的时候直接定义了枚举变量Step,并初始化为Step0</span></span><br><span class="line"><span class="built_in"><span class="keyword">switch</span></span> (Step)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">case</span> Step0:&#123;...;<span class="keyword">break</span>;&#125;</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">case</span> Step1:&#123;...;<span class="keyword">break</span>;&#125;</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">case</span> Step2:&#123;...;<span class="keyword">break</span>;&#125;</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">default</span>:<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>另外枚举还有一种少见的用法是 <code>enum &#123; one ,two ,three&#125;;</code> 就是不指定一个名字,这样我们自然也没法去定义一些枚举类型了。此时就相当于<code>static const int one = 0;</code>这样定义三个常量一样。然后用的话就是<code>int no = one</code>。</p>
+<h2 id="一、简述"><a href="#一、简述" class="headerlink" title="一、简述"></a>一、简述</h2><p><strong>强类型枚举（Strongly-typed enums）</strong>，号称枚举类型，是C++11中的新语法，用以解决传统C++枚举类型存在的缺陷。传统C++中枚举常量被暴漏在外层作用域中，这样若是同一作用域下有两个不同的枚举类型，但含有相同的枚举常量也是不可的，比如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Side</span>&#123;</span>Right,Left&#125;;</span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Thing</span>&#123;</span>Wrong,Right&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这是不能一起用的。<br>另外一个缺陷是传统枚举值总是被隐式转换为整形，用户无法自定义类型。C++11中的强类型枚举解决了这些问题。</p>
+<h2 id="二、强类型枚举"><a href="#二、强类型枚举" class="headerlink" title="二、强类型枚举"></a>二、强类型枚举</h2><p> <strong>强类型枚举使用enum class语法来声明</strong>，如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="keyword">class</span> <span class="title">Enumeration</span>&#123;</span></span><br><span class="line"> VAL1,</span><br><span class="line"> VAL2,</span><br><span class="line"> VAL3=<span class="number">100</span>,</span><br><span class="line"> VAL4</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这样，枚举类型是安全的，枚举值也不会被隐式转换为整数，无法和整数数值比较，比如（Enumeration：：VAL4==10会触发编译错误）。</p>
+<p>另外枚举类型所使用的类型默认为int类型，也可指定其他类型，比如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">calss</span> <span class="title">Enum</span>:</span><span class="keyword">unsigned</span> <span class="keyword">int</span>&#123;VAL1,VAL2&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>正如前面所说，强类型枚举能解决传统枚举不同枚举类下同枚举值名的问题，使用枚举类型的枚举名时，必须指明所属范围，比如：<code>Enum::VAL1</code>，而单独的VAL1则不再具有意义。</p>
+<p>还有一点值得说明的是C++11中枚举类型的前置声明也是可行的，比如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">calss</span> <span class="title">Enum</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="keyword">class</span> <span class="title">Enum1</span>:</span><span class="keyword">unsigned</span> <span class="keyword">int</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、项目中的强类型枚举代码片段"><a href="#三、项目中的强类型枚举代码片段" class="headerlink" title="三、项目中的强类型枚举代码片段"></a>三、项目中的强类型枚举代码片段</h2><h2 id="1、图像处理"><a href="#1、图像处理" class="headerlink" title="1、图像处理"></a>1、图像处理</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="keyword">class</span> <span class="title">Color</span>&#123;</span>RED,BLUE,YELLOR,BLACK,WHITE&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-交通灯"><a href="#2-交通灯" class="headerlink" title="2.交通灯"></a>2.交通灯</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="keyword">class</span> <span class="title">TrafficLight</span>&#123;</span>RED,YELLOR,GREEN&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>强类型枚举值具有传统枚举的功能——<strong>命名枚举值</strong>，同时又具有类的特点——<strong>具有类域的成员和无法进行默认的类型转换</strong>。所以也称之为<strong>枚举类</strong>——enmu class</p>
+<p>枚举类的底层数据必须是有符号或无符号整型，比如char unsigned int unsigned long，默认为int。</p>
+<h2 id="3-前置声明应用"><a href="#3-前置声明应用" class="headerlink" title="3.前置声明应用"></a>3.前置声明应用</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">enmu <span class="class"><span class="keyword">class</span> <span class="title">Clolor</span>:</span><span class="keyword">char</span>;  <span class="comment">//前置声明枚举类</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Foo</span><span class="params">(Color*p)</span></span>;        <span class="comment">//前置声明的使用</span></span><br><span class="line"><span class="comment">//....................</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="keyword">class</span> <span class="title">Color</span>:</span><span class="keyword">char</span>&#123;RED,GREEN,BLACK,WHITE&#125;;                       <span class="comment">//前置声明的定义</span></span><br></pre></td></tr></table></figure>
+
+<p>注：以上内容摘自<a target="_blank" rel="noopener" href="https://blog.csdn.net/Bruce_0712/article/details/54984371?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165137198016782388043601%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=165137198016782388043601&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-5-54984371.142%5Ev9%5Epc_search_result_cache,157%5Ev4%5Econtrol&utm_term=C++%E4%B8%AD%E7%9A%84%E6%9E%9A%E4%B8%BE&spm=1018.2226.3001.4187">csdn博主</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/30/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E9%A2%98%E6%80%BB%E7%BB%93/" rel="prev" title="文件上传题总结">
+      <i class="fa fa-chevron-left"></i> 文件上传题总结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/01/C-%E4%B8%AD%E7%9A%84%E7%B1%BB%E6%A8%A1%E6%9D%BF/" rel="next" title="C++中的类模板">
+      C++中的类模板 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">枚举量的声明和定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9E%9A%E4%B8%BE%E9%87%8F%E7%9A%84%E5%80%BC"><span class="nav-number">2.</span> <span class="nav-text">自定义枚举量的值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%8F%96%E5%80%BC%E8%8C%83%E5%9B%B4"><span class="nav-number">3.</span> <span class="nav-text">枚举的取值范围</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">枚举的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E8%BF%B0"><span class="nav-number">4.1.</span> <span class="nav-text">一、简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%BC%BA%E7%B1%BB%E5%9E%8B%E6%9E%9A%E4%B8%BE"><span class="nav-number">4.2.</span> <span class="nav-text">二、强类型枚举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%BC%BA%E7%B1%BB%E5%9E%8B%E6%9E%9A%E4%B8%BE%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5"><span class="nav-number">4.3.</span> <span class="nav-text">三、项目中的强类型枚举代码片段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86"><span class="nav-number">4.4.</span> <span class="nav-text">1、图像处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%BA%A4%E9%80%9A%E7%81%AF"><span class="nav-number">4.5.</span> <span class="nav-text">2.交通灯</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%89%8D%E7%BD%AE%E5%A3%B0%E6%98%8E%E5%BA%94%E7%94%A8"><span class="nav-number">4.6.</span> <span class="nav-text">3.前置声明应用</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Harbeter"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Harbeter</p>
+  <div class="site-description" itemprop="description">愿你永远善良，永远向往未来！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:qq2300350627@163.com" title="E-Mail → mailto:qq2300350627@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">冀ICP备2021027275号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Harbeter</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
+
+

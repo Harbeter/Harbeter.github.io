@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"harbeter.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="为什么要对运算符进行重载C++预定义中的运算符的操作对象只局限于基本的内置数据类型，但是对于我们自定义的类型（类）是没有办法操作的。但是大多时候我们需要对我们定义的类型进行类似的运算，这个时候就需要我们对这么运算符进行重新定义，赋予其新的功能，以满足自身的需求。 运算符重载的实质运算符重载的实质就是函数重载或函数多态。运算符重载是一种形式的C++多态。目的在于让人能够用同名的函数来完成不同的基本操">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++中的运算符重载">
+<meta property="og:url" content="https://harbeter.github.io/2022/05/26/C-%E4%B8%AD%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/index.html">
+<meta property="og:site_name" content="像风吹过八千里">
+<meta property="og:description" content="为什么要对运算符进行重载C++预定义中的运算符的操作对象只局限于基本的内置数据类型，但是对于我们自定义的类型（类）是没有办法操作的。但是大多时候我们需要对我们定义的类型进行类似的运算，这个时候就需要我们对这么运算符进行重新定义，赋予其新的功能，以满足自身的需求。 运算符重载的实质运算符重载的实质就是函数重载或函数多态。运算符重载是一种形式的C++多态。目的在于让人能够用同名的函数来完成不同的基本操">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-26T09:20:49.222Z">
+<meta property="article:modified_time" content="2022-06-03T13:29:23.925Z">
+<meta property="article:author" content="Harbeter">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://harbeter.github.io/2022/05/26/C-%E4%B8%AD%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>C++中的运算符重载 | 像风吹过八千里</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">像风吹过八千里</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">流云和月都曾爱过你</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2022/05/26/C-%E4%B8%AD%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Harbeter">
+      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="像风吹过八千里">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++中的运算符重载
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-26 17:20:49" itemprop="dateCreated datePublished" datetime="2022-05-26T17:20:49+08:00">2022-05-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-03 21:29:23" itemprop="dateModified" datetime="2022-06-03T21:29:23+08:00">2022-06-03</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="为什么要对运算符进行重载"><a href="#为什么要对运算符进行重载" class="headerlink" title="为什么要对运算符进行重载"></a>为什么要对运算符进行重载</h1><p>C++预定义中的运算符的操作对象只局限于基本的内置数据类型，但是对于我们自定义的类型（类）是没有办法操作的。但是<strong>大多时候我们需要对我们定义的类型进行类似的运算</strong>，这个时候就需要我们对这么运算符进行重新定义，赋予其新的功能，以满足自身的需求。</p>
+<h1 id="运算符重载的实质"><a href="#运算符重载的实质" class="headerlink" title="运算符重载的实质"></a>运算符重载的实质</h1><p>运算符重载的实质就<strong>是函数重载或函数多态</strong>。<strong>运算符重载是一种形式的C++多态</strong>。目的在于让人能够用同名的函数来完成不同的基本操作。要重载运算符，需要使用被称为运算符函数的特殊函数形式，运算符函数形式：operator p（argument-list）//operator 后面的’p’为要重载的运算符符号。</p>
+<span id="more"></span>
+
+<p>语法如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">返回值类型 <span class="keyword">operator</span> 运算符符号(参数表)</span><br><span class="line">&#123;</span><br><span class="line">     函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里的  <strong>‘operator运算符’  相当于函数名</strong></p>
+<h1 id="加法运算符的重载"><a href="#加法运算符的重载" class="headerlink" title="加法运算符的重载"></a>加法运算符的重载</h1><p>第一种：通过<strong>全局函数</strong>对加号进行重载</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="keyword">int</span> a;</span><br><span class="line">		<span class="keyword">int</span> b;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//通过全局函数对 &#x27;+&#x27; 进行重载 ,以实现对类中多个变量的加法 </span></span><br><span class="line">Person <span class="keyword">operator</span>+(Person &amp;p1,Person &amp;p2)</span><br><span class="line">&#123;</span><br><span class="line">	Person temp;</span><br><span class="line">	temp.a=p1.a+p2.a;</span><br><span class="line">	temp.b=p1.b+p2.b;</span><br><span class="line">	<span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Person p1;</span><br><span class="line">	p1.a=<span class="number">10</span>;</span><br><span class="line">	p1.b=<span class="number">10</span>;</span><br><span class="line">	</span><br><span class="line">	Person p2;</span><br><span class="line">	p2.a=<span class="number">20</span>;</span><br><span class="line">	p2.b=<span class="number">15</span>;</span><br><span class="line">	</span><br><span class="line">	Person p3;</span><br><span class="line">	<span class="comment">//实质：p3=operator+(p1,p2),简化后如下 </span></span><br><span class="line">	p3=p1+p2;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;p3.a=&quot;</span>&lt;&lt;p3.a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;p3.b=&quot;</span>&lt;&lt;p3.b&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第二种：通过成员函数对加号进行重载</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="keyword">int</span> a;</span><br><span class="line">		<span class="keyword">int</span> b;</span><br><span class="line">		<span class="comment">//通过成员函数对 &#x27;+&#x27; 进行重载 ,以实现对类中多个变量的加法 </span></span><br><span class="line">		Person <span class="keyword">operator</span>+(Person &amp;p)</span><br><span class="line">		&#123;</span><br><span class="line">			Person temp;</span><br><span class="line">			temp.a=<span class="keyword">this</span>-&gt;a+p.a;</span><br><span class="line">			temp.b=<span class="keyword">this</span>-&gt;b+p.b;</span><br><span class="line">			<span class="keyword">return</span> temp;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Person p1;</span><br><span class="line">	p1.a=<span class="number">10</span>;</span><br><span class="line">	p1.b=<span class="number">10</span>;</span><br><span class="line">	</span><br><span class="line">	Person p2;</span><br><span class="line">	p2.a=<span class="number">20</span>;</span><br><span class="line">	p2.b=<span class="number">15</span>;</span><br><span class="line">	</span><br><span class="line">	Person p3;</span><br><span class="line">	<span class="comment">//实质：p3=p1.operator+(p2),简化后如下 </span></span><br><span class="line">	p3=p1+p2;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;p3.a=&quot;</span>&lt;&lt;p3.a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;p3.b=&quot;</span>&lt;&lt;p3.b&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="左移运算符的重载"><a href="#左移运算符的重载" class="headerlink" title="左移运算符的重载"></a>左移运算符的重载</h1><p>利用成员函数重载左移运算符  <code>p.operator&lt;&lt;(cout)</code>  简化版本<code>p&lt;&lt;cout</code>，所以我们一般不会利用成员函数重载&lt;&lt;运算符，因为无法实现cout在左侧</p>
+<p>通过全局函数重载左移运算符</p>
+<p><code>void operator&lt;&lt;(cout,p)</code>的本质是<code>operator&lt;&lt;(cout,p)</code>简化为<code>cout&lt;&lt;p</code>，从而实现cout在左侧</p>
+<p><strong>cout属于ostream类的一个对象，叫做标准输出流对象</strong></p>
+<p>初级代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="keyword">int</span> a;</span><br><span class="line">		<span class="keyword">int</span> b;</span><br><span class="line">		</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,Person &amp;p)<span class="comment">//这里是引用cout，因为不能再创建已有的全局对象</span></span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;p1.a=&quot;</span>&lt;&lt;p.a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;p1.b=&quot;</span>&lt;&lt;p.b&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Person p1;</span><br><span class="line">	p1.a=<span class="number">10</span>;</span><br><span class="line">	p1.b=<span class="number">20</span>;</span><br><span class="line">	cout&lt;&lt;p1;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：以上代码<code>cout&lt;&lt;p1;</code>不能再追加<code>endl;</code>因为此时函数返回值为空，所以我们要加上一个返回数据类型，也就是<code>ostream &amp;</code>，这里同样可以按照引用来理解。</p>
+<p>改进后如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="keyword">int</span> a;</span><br><span class="line">		<span class="keyword">int</span> b;</span><br><span class="line">		</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ostream &amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,Person &amp;p)<span class="comment">//这里是引用cout，因为不能再创建已有的</span></span><br><span class="line"><span class="comment">//同样，这里的cout也可以写成别的名称，因为引用的本身就是起别名。例如</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">ostream &amp; operator&lt;&lt;(ostream &amp;out,Person &amp;p)</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">	out&lt;&lt;&quot;p1.a=&quot;&lt;&lt;p.a&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	out&lt;&lt;&quot;p1.b=&quot;&lt;&lt;p.b&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    return out;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span>    </span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;p1.a=&quot;</span>&lt;&lt;p.a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;p1.b=&quot;</span>&lt;&lt;p.b&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> cout;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Person p1;</span><br><span class="line">	p1.a=<span class="number">10</span>;</span><br><span class="line">	p1.b=<span class="number">20</span>;</span><br><span class="line">	cout&lt;&lt;p1&lt;&lt;endl&lt;&lt;<span class="string">&quot;Hello world!&quot;</span>&lt;&lt;endl;<span class="comment">//调用完之后仍然返回cout，这样后面便可以追加内容了</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是通常情况下，我们类中的成员属性设置成私有化，但是私有化之后重载运算符的函数不能够正常访问类中的成员变量，而利用我们以前set get函数的方式又太麻烦了，那么我们可以用<strong>友元函数</strong>来实现。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">friend</span> ostream &amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,Person &amp;p);<span class="comment">//友元函数用法</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a;</span><br><span class="line">		<span class="keyword">int</span> b;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">setAB</span><span class="params">(<span class="keyword">int</span> aa,<span class="keyword">int</span> bb)</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			a=aa;</span><br><span class="line">			b=bb;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ostream &amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,Person &amp;p)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;p1.a=&quot;</span>&lt;&lt;p.a&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;p1.b=&quot;</span>&lt;&lt;p.b&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> cout;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Person p1;</span><br><span class="line">	<span class="comment">//p1.a=10;  外部无法赋值 ，所以我们不得不创建set函数</span></span><br><span class="line">	<span class="comment">//p1.b=20;</span></span><br><span class="line">	p1.<span class="built_in">setAB</span>(<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line">	cout&lt;&lt;p1&lt;&lt;endl&lt;&lt;<span class="string">&quot;Hello world!&quot;</span>&lt;&lt;endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>总结：重载左移运算符配合友元可以实现输出自定义数据类型</strong></p>
+<h1 id="递增运算符的重载"><a href="#递增运算符的重载" class="headerlink" title="递增运算符的重载"></a>递增运算符的重载</h1><h2 id="用成员函数实现"><a href="#用成员函数实现" class="headerlink" title="用成员函数实现"></a>用成员函数实现</h2><p>*this的解释：</p>
+<p>*表示的解引用，那么<code>*this</code>就很好理解了，就是指针的内容，即对象本身。return *this返回的是当前对象的克隆或者本身（若返回类型为A， 则是克隆， 若返回类型为A&amp;， 则是本身 ）</p>
+<p>下面用的是成员函数进行的重载</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyInteger</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">friend</span> ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,MyInteger i);<span class="comment">//友元函数，用来输出私有变量</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		MyInteger&amp; <span class="keyword">operator</span>++()<span class="comment">//重载前置++运算符</span></span><br><span class="line">		&#123;</span><br><span class="line">			a++;<span class="comment">//先进行++操作，后返回</span></span><br><span class="line">			<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">		&#125;</span><br><span class="line">    	MyInteger <span class="keyword">operator</span>++(<span class="keyword">int</span>)<span class="comment">//后置++，int是占位参数，用来区分前置和后置++，且只能用int</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//记录初始值</span></span><br><span class="line">			MyInteger temp=*<span class="keyword">this</span>;</span><br><span class="line">			<span class="comment">//实现++操作 </span></span><br><span class="line">			a++;</span><br><span class="line">			<span class="comment">//返回初始值</span></span><br><span class="line">			<span class="keyword">return</span> temp; </span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,MyInteger i)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;i.a;</span><br><span class="line">	<span class="keyword">return</span> cout;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	MyInteger myint;</span><br><span class="line">	cout&lt;&lt;++(++myint)&lt;&lt;endl;<span class="comment">//*this也就是返回myint本身</span></span><br><span class="line">	cout&lt;&lt;myint&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;-----------------&quot;</span>&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;myint++&lt;&lt;endl;<span class="comment">//这里不能实现(myint++)++的操作</span></span><br><span class="line">    cout&lt;&lt;myint&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：前置++返回的是引用，后置++返回的是值</strong></p>
+<h2 id="用全局函数实现"><a href="#用全局函数实现" class="headerlink" title="用全局函数实现"></a>用全局函数实现</h2><h3 id="前置"><a href="#前置" class="headerlink" title="前置++"></a>前置++</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyInteger</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">friend</span> ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,MyInteger i);</span><br><span class="line">	<span class="keyword">friend</span> MyInteger <span class="keyword">operator</span>++(MyInteger &amp;i);</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		MyInteger&amp; operator++()//前置++</span></span><br><span class="line"><span class="comment">		&#123;</span></span><br><span class="line"><span class="comment">			a++;</span></span><br><span class="line"><span class="comment">			return *this;</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		MyInteger operator++(int)//后置++，int是占位参数，用来区分前置和后置++，且只能用int</span></span><br><span class="line"><span class="comment">		&#123;</span></span><br><span class="line"><span class="comment">			//记录初始值</span></span><br><span class="line"><span class="comment">			MyInteger temp=*this;</span></span><br><span class="line"><span class="comment">			//实现++操作 </span></span><br><span class="line"><span class="comment">			a++;</span></span><br><span class="line"><span class="comment">			//返回初始值</span></span><br><span class="line"><span class="comment">			return temp; </span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		*/</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,MyInteger i)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;i.a;</span><br><span class="line">	<span class="keyword">return</span> cout;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyInteger <span class="keyword">operator</span>++(MyInteger &amp;i)<span class="comment">//前置++，这里要传引用，要不无法改变实参</span></span><br><span class="line">&#123;</span><br><span class="line">	i.a=i.a+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	MyInteger myint;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;++a ------------------&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;++(++myint)&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;myint&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;a++ ------------------&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;myint++&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;myint&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;----------------&quot;</span>&lt;&lt;endl;</span><br><span class="line">	++myint;</span><br><span class="line">	cout&lt;&lt;++myint;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="后置"><a href="#后置" class="headerlink" title="后置++"></a>后置++</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyInteger</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">friend</span> ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,MyInteger i);</span><br><span class="line">	<span class="keyword">friend</span> MyInteger <span class="keyword">operator</span>++(MyInteger &amp;i,<span class="keyword">int</span>);<span class="comment">//友元函数 </span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,MyInteger i)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;i.a;</span><br><span class="line">	<span class="keyword">return</span> cout;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyInteger <span class="keyword">operator</span>++(MyInteger &amp;i,<span class="keyword">int</span>)<span class="comment">//后置++，一开始一直返回不了正确值，后来记起来，形参改变实参不会改变，所以这里的i要用引用传值，而且不要忘记加上友元函数</span></span><br><span class="line">&#123;</span><br><span class="line">	MyInteger temp=i;</span><br><span class="line">	i.a=i.a+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	MyInteger myint;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;----------------&quot;</span>&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;myint++&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;myint;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>人生建议：重载++运算符用成员函数进行</strong></p>
+<h1 id="赋值运算符重载"><a href="#赋值运算符重载" class="headerlink" title="赋值运算符重载"></a>赋值运算符重载</h1><h2 id="什么时候用到赋值运算符重载？"><a href="#什么时候用到赋值运算符重载？" class="headerlink" title="什么时候用到赋值运算符重载？"></a>什么时候用到赋值运算符重载？</h2><p><strong>答：当浅拷贝不适用时，要用赋值运算符重载来进行深拷贝，以避免堆区内存二次删除。</strong></p>
+<p>下面用成员函数对赋值运算符进行重载操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> *age;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> *age;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">Person</span>(<span class="keyword">int</span> a)</span><br><span class="line">		&#123;</span><br><span class="line">			age=<span class="keyword">new</span> <span class="built_in"><span class="keyword">int</span></span>(a);<span class="comment">//new int(a)返回的是int*，和age数据类型一致</span></span><br><span class="line">		&#125;</span><br><span class="line">		~<span class="built_in">Person</span>()</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(age!=<span class="literal">NULL</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">delete</span> age;</span><br><span class="line">				age=<span class="literal">NULL</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		Person&amp; <span class="keyword">operator</span>=(Person &amp;a)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//编译器提供的是浅拷贝</span></span><br><span class="line">			<span class="comment">//age=a.age;</span></span><br><span class="line">			</span><br><span class="line">			<span class="comment">//应该先判断是否有属性在本身堆区，如果有先释放，再深拷贝</span></span><br><span class="line">			<span class="keyword">if</span>(age!=<span class="literal">NULL</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">delete</span> age;</span><br><span class="line">				age=<span class="literal">NULL</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			<span class="comment">//深拷贝</span></span><br><span class="line">			age=<span class="keyword">new</span> <span class="built_in"><span class="keyword">int</span></span>(*a.age);</span><br><span class="line">			</span><br><span class="line">			<span class="comment">//返回类本身，以允许连续赋值，例如p1=p2=p3 </span></span><br><span class="line">			<span class="keyword">return</span> *<span class="keyword">this</span>; <span class="comment">//this是指向自身的指针，想返回自身就要对this进行解引用 </span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">Person <span class="title">p1</span><span class="params">(<span class="number">18</span>)</span></span>;</span><br><span class="line">	<span class="function">Person <span class="title">p2</span><span class="params">(<span class="number">20</span>)</span></span>;</span><br><span class="line">	<span class="function">Person <span class="title">p3</span><span class="params">(<span class="number">30</span>)</span></span>;</span><br><span class="line">	cout&lt;&lt;p1.<span class="built_in">getAge</span>()&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;p2.<span class="built_in">getAge</span>()&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;p3.<span class="built_in">getAge</span>()&lt;&lt;endl;</span><br><span class="line">	p3=p2=p1;</span><br><span class="line">	cout&lt;&lt;p1.<span class="built_in">getAge</span>()&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;p2.<span class="built_in">getAge</span>()&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;p3.<span class="built_in">getAge</span>()&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>总结：重点就是深拷贝和浅拷贝的知识，目的是为了防止浅拷贝造成堆区内存二次释放。</strong></p>
+<h1 id="关系运算符重载"><a href="#关系运算符重载" class="headerlink" title="关系运算符重载"></a>关系运算符重载</h1><p>用<strong>成员函数</strong>重载“==”和“&gt;”其余类似，不再赘述。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> age;</span><br><span class="line">		string name;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="built_in">Person</span>(string n,<span class="keyword">int</span> a)</span><br><span class="line">		&#123;</span><br><span class="line">			name=n;</span><br><span class="line">			age=a;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">bool</span> <span class="keyword">operator</span>==(Person &amp;p)<span class="comment">//重载== </span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(name==p.name&amp;&amp;age==p.age)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">bool</span> <span class="keyword">operator</span>&gt;(Person &amp;p)<span class="comment">//重载&gt; </span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(age&gt;p.age)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">Person <span class="title">p1</span><span class="params">(<span class="string">&quot;Tom&quot;</span>,<span class="number">18</span>)</span></span>;</span><br><span class="line">	<span class="function">Person <span class="title">p2</span><span class="params">(<span class="string">&quot;Tom&quot;</span>,<span class="number">18</span>)</span></span>;</span><br><span class="line">	<span class="keyword">if</span>(p1==p2)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;p1==p2&quot;</span>&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;p1!=p2&quot;</span>&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">Person <span class="title">p3</span><span class="params">(<span class="string">&quot;Tom&quot;</span>,<span class="number">19</span>)</span></span>;</span><br><span class="line">	<span class="keyword">if</span>(p1&gt;p3)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;p1&gt;p3&quot;</span>&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;p1&lt;p3&quot;</span>&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="函数调用运算符重载"><a href="#函数调用运算符重载" class="headerlink" title="函数调用运算符重载"></a>函数调用运算符重载</h1><ul>
+<li>函数调用运算符()也可以重载</li>
+<li>由于重载后使用的方式非常像函数的调用，因此称仿函数</li>
+<li>仿函数没有固定的用法，非常灵活</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Print</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(string a)</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			cout&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">b</span><span class="params">(string n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;n;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Print a;</span><br><span class="line">	<span class="built_in">a</span>(<span class="string">&quot;print&quot;</span>);<span class="comment">//仿函数</span></span><br><span class="line">	<span class="built_in">b</span>(<span class="string">&quot;Print&quot;</span>);<span class="comment">//真函数 </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不过这里比较重要的是一个<strong>匿名函数对象</strong>的概念，我们将上面的代码稍作修改。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Print</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(string a)</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			cout&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">b</span><span class="params">(string n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Print a;</span><br><span class="line">	<span class="built_in">a</span>(<span class="string">&quot;print&quot;</span>);<span class="comment">//仿函数</span></span><br><span class="line">	<span class="built_in">b</span>(<span class="string">&quot;Print&quot;</span>);<span class="comment">//真函数 </span></span><br><span class="line">	<span class="built_in">Print</span>()(<span class="string">&quot;Print again&quot;</span>);<span class="comment">//匿名函数对象，用完即销毁。</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/05/25/C-%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" rel="prev" title="C++类的继承和多态">
+      <i class="fa fa-chevron-left"></i> C++类的继承和多态
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/30/C-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="next" title="C++文件操作">
+      C++文件操作 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AF%B9%E8%BF%90%E7%AE%97%E7%AC%A6%E8%BF%9B%E8%A1%8C%E9%87%8D%E8%BD%BD"><span class="nav-number">1.</span> <span class="nav-text">为什么要对运算符进行重载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E7%9A%84%E5%AE%9E%E8%B4%A8"><span class="nav-number">2.</span> <span class="nav-text">运算符重载的实质</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A0%E6%B3%95%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD"><span class="nav-number">3.</span> <span class="nav-text">加法运算符的重载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A6%E7%A7%BB%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD"><span class="nav-number">4.</span> <span class="nav-text">左移运算符的重载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%92%E5%A2%9E%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E9%87%8D%E8%BD%BD"><span class="nav-number">5.</span> <span class="nav-text">递增运算符的重载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0"><span class="nav-number">5.1.</span> <span class="nav-text">用成员函数实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0"><span class="nav-number">5.2.</span> <span class="nav-text">用全局函数实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE"><span class="nav-number">5.2.1.</span> <span class="nav-text">前置++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E7%BD%AE"><span class="nav-number">5.2.2.</span> <span class="nav-text">后置++</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-number">6.</span> <span class="nav-text">赋值运算符重载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%E5%88%B0%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%EF%BC%9F"><span class="nav-number">6.1.</span> <span class="nav-text">什么时候用到赋值运算符重载？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-number">7.</span> <span class="nav-text">关系运算符重载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-number">8.</span> <span class="nav-text">函数调用运算符重载</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Harbeter"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Harbeter</p>
+  <div class="site-description" itemprop="description">愿你永远善良，永远向往未来！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:qq2300350627@163.com" title="E-Mail → mailto:qq2300350627@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">冀ICP备2021027275号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Harbeter</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
+
+

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"harbeter.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="简介日常开发中，如果在类似dos窗口中进行，对于初学者来说，上手难度高，也显得枯燥乏味，所以我们用MySQL图形管理工具来连接MySQL，然后在图形化界面上操作。 MySQL的管理维护工具非常多，除了系统自带的命令行管理工具外，还有许多其他的图形管理工具。  常用工具介绍Navicat（第一批队）Navicat是一套快速、可靠的数据库管理工具，Navicat是以直觉化的图形用户界面而建的，可以兼容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL常用的图形管理工具">
+<meta property="og:url" content="https://harbeter.github.io/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:site_name" content="像风吹过八千里">
+<meta property="og:description" content="简介日常开发中，如果在类似dos窗口中进行，对于初学者来说，上手难度高，也显得枯燥乏味，所以我们用MySQL图形管理工具来连接MySQL，然后在图形化界面上操作。 MySQL的管理维护工具非常多，除了系统自带的命令行管理工具外，还有许多其他的图形管理工具。  常用工具介绍Navicat（第一批队）Navicat是一套快速、可靠的数据库管理工具，Navicat是以直觉化的图形用户界面而建的，可以兼容">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113170325596.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113173117017.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113174323767.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113175137345.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113184750571.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113190355479.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113190605114.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113191121646.png">
+<meta property="og:image" content="https://harbeter.github.io/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113191138375.png">
+<meta property="article:published_time" content="2022-01-13T08:56:11.404Z">
+<meta property="article:modified_time" content="2022-01-13T11:38:21.153Z">
+<meta property="article:author" content="Harbeter">
+<meta property="article:tag" content="SQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://harbeter.github.io/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113170325596.png">
+
+<link rel="canonical" href="https://harbeter.github.io/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>MySQL常用的图形管理工具 | 像风吹过八千里</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">像风吹过八千里</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">流云和月都曾爱过你</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Harbeter">
+      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="像风吹过八千里">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL常用的图形管理工具
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-01-13 16:56:11 / 修改时间：19:38:21" itemprop="dateCreated datePublished" datetime="2022-01-13T16:56:11+08:00">2022-01-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>日常开发中，如果在类似dos窗口中进行，对于初学者来说，上手难度高，也显得枯燥乏味，所以我们用MySQL图形管理工具来连接MySQL，然后在图形化界面上操作。</p>
+<p>MySQL的管理维护工具非常多，除了系统自带的命令行管理工具外，还有许多其他的图形管理工具。</p>
+<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113170325596.png" alt="image-20220113170325596"></p>
+<h1 id="常用工具介绍"><a href="#常用工具介绍" class="headerlink" title="常用工具介绍"></a>常用工具介绍</h1><h2 id="Navicat（第一批队）"><a href="#Navicat（第一批队）" class="headerlink" title="Navicat（第一批队）"></a>Navicat（第一批队）</h2><p>Navicat是一套快速、可靠的数据库管理工具，Navicat是以直觉化的图形用户界面而建的，可以兼容多种昂数据库，支持多种操作系统。</p>
+<span id="more"></span>
+
+<h2 id="SQLyog（第一批队）"><a href="#SQLyog（第一批队）" class="headerlink" title="SQLyog（第一批队）"></a>SQLyog（第一批队）</h2><p>SQLyog是一个快速而简洁的图形化管理MySQL数据库工具，他能后在任何地方有效管理你的数据库，由业界著名的Webyog公司出品</p>
+<p>使用SQLyog可以快速直观地让您从世界的任何角落通过网络来维护远端的MySQL数据库</p>
+<h2 id="MySQL-Workbench（第一批队）"><a href="#MySQL-Workbench（第一批队）" class="headerlink" title="MySQL Workbench（第一批队）"></a>MySQL Workbench（第一批队）</h2><p>MySQL Workbench是MySQL官方提供的图形化管理工具，分为社区版和商业版，社区版完全免费，而商业版则是按年收费。支持数据库的创建、设计、迁移、备份、到处和导入等功能，并且支持Windows、Linux和mac等主流的操作系统</p>
+<h2 id="DataGrip（第二批队）"><a href="#DataGrip（第二批队）" class="headerlink" title="DataGrip（第二批队）"></a>DataGrip（第二批队）</h2><p>DataGrip是大名鼎鼎的JetBrains公司出品的，就是那个出品Intellij IDEA的公司。</p>
+<p>DataGrip是一款数据库管理客户端工具，方便连接到数据库服务，执行sql、创建表、创建索引以及导出数据等。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li>phpMyAdmin</li>
+<li>MySQLDumper</li>
+<li>MySQL GUI Tools（官网提供）</li>
+<li>MySQL ODBS Connector</li>
+</ul>
+<h1 id="图形管理工具安装"><a href="#图形管理工具安装" class="headerlink" title="图形管理工具安装"></a>图形管理工具安装</h1><h2 id="Navicat的安装"><a href="#Navicat的安装" class="headerlink" title="Navicat的安装"></a>Navicat的安装</h2><p>去<a target="_blank" rel="noopener" href="https://navicat.com.cn/products">官网</a>下载安装包（<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1804255">白嫖请参考</a>）并安装</p>
+<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113173117017.png" alt="image-20220113173117017"></p>
+<p>安装完成后</p>
+<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113174323767.png" alt="image-20220113174323767"></p>
+<h2 id="SQLyog的安装"><a href="#SQLyog的安装" class="headerlink" title="SQLyog的安装"></a>SQLyog的安装</h2><p><a target="_blank" rel="noopener" href="https://sqlyog.softonic.nl/">点击此处</a>下载安装包，下载完成后安装（<a target="_blank" rel="noopener" href="https://www.cnblogs.com/pengpengdeyuan/p/14364777.html">白嫖参考</a>也可以下载<a target="_blank" rel="noopener" href="https://github.com/webyog/sqlyog-community/wiki/Downloads">社区版</a>）</p>
+<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113175137345.png" alt="image-20220113175137345"></p>
+<p>一直点下一步即可</p>
+<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113184750571.png" alt="image-20220113184750571"></p>
+<h1 id="图形化管理工具连接MySQL"><a href="#图形化管理工具连接MySQL" class="headerlink" title="图形化管理工具连接MySQL"></a>图形化管理工具连接MySQL</h1><h2 id="Navicat连接"><a href="#Navicat连接" class="headerlink" title="Navicat连接"></a>Navicat连接</h2><p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113190355479.png" alt="image-20220113190355479"></p>
+<p>注意：此时主机连接的是本地地址，若是远程的要输入对应ip</p>
+<p>连接成功后</p>
+<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113190605114.png" alt="image-20220113190605114"></p>
+<h2 id="SQLyog连接"><a href="#SQLyog连接" class="headerlink" title="SQLyog连接"></a>SQLyog连接</h2><p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113191121646.png" alt="image-20220113191121646"></p>
+<p>点击是，连接成功</p>
+<p><img src="/2022/01/13/MySQL%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/image-20220113191138375.png" alt="image-20220113191138375"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SQL/" rel="tag"># SQL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/12/SQL%E5%85%A5%E9%97%A8/" rel="prev" title="SQL入门">
+      <i class="fa fa-chevron-left"></i> SQL入门
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/01/13/SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" rel="next" title="SQL数据库基本操作">
+      SQL数据库基本操作 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">常用工具介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Navicat%EF%BC%88%E7%AC%AC%E4%B8%80%E6%89%B9%E9%98%9F%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">Navicat（第一批队）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLyog%EF%BC%88%E7%AC%AC%E4%B8%80%E6%89%B9%E9%98%9F%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">SQLyog（第一批队）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-Workbench%EF%BC%88%E7%AC%AC%E4%B8%80%E6%89%B9%E9%98%9F%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">MySQL Workbench（第一批队）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DataGrip%EF%BC%88%E7%AC%AC%E4%BA%8C%E6%89%B9%E9%98%9F%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">DataGrip（第二批队）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">2.5.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">图形管理工具安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Navicat%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">3.1.</span> <span class="nav-text">Navicat的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLyog%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">3.2.</span> <span class="nav-text">SQLyog的安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E8%BF%9E%E6%8E%A5MySQL"><span class="nav-number">4.</span> <span class="nav-text">图形化管理工具连接MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Navicat%E8%BF%9E%E6%8E%A5"><span class="nav-number">4.1.</span> <span class="nav-text">Navicat连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLyog%E8%BF%9E%E6%8E%A5"><span class="nav-number">4.2.</span> <span class="nav-text">SQLyog连接</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Harbeter"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Harbeter</p>
+  <div class="site-description" itemprop="description">愿你永远善良，永远向往未来！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:qq2300350627@163.com" title="E-Mail → mailto:qq2300350627@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">冀ICP备2021027275号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Harbeter</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
+
+

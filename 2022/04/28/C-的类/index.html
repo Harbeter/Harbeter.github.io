@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"harbeter.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="什么是类以及类的定义类是属于用户自定义的数据类型, 并且该类型的数据具有一定的行为能力, 也就是类中说描述的方法。通常来说, 一个类的定义包含两部分的内容, 一是该类的属性, 另一部分是它所拥有的方法。 类的实质类是一种用户自定义的引用数据类型，它的本质是数据类型，并不是数据，所以不存在于内存中，不能被直接操作，只有被实例化为对象时，才会变得可操作 类的特性123451、抽象；2、封装和数据隐藏；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++的类">
+<meta property="og:url" content="https://harbeter.github.io/2022/04/28/C-%E7%9A%84%E7%B1%BB/index.html">
+<meta property="og:site_name" content="像风吹过八千里">
+<meta property="og:description" content="什么是类以及类的定义类是属于用户自定义的数据类型, 并且该类型的数据具有一定的行为能力, 也就是类中说描述的方法。通常来说, 一个类的定义包含两部分的内容, 一是该类的属性, 另一部分是它所拥有的方法。 类的实质类是一种用户自定义的引用数据类型，它的本质是数据类型，并不是数据，所以不存在于内存中，不能被直接操作，只有被实例化为对象时，才会变得可操作 类的特性123451、抽象；2、封装和数据隐藏；">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-28T09:45:05.387Z">
+<meta property="article:modified_time" content="2022-04-29T03:05:03.520Z">
+<meta property="article:author" content="Harbeter">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://harbeter.github.io/2022/04/28/C-%E7%9A%84%E7%B1%BB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>C++的类 | 像风吹过八千里</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">像风吹过八千里</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">流云和月都曾爱过你</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://harbeter.github.io/2022/04/28/C-%E7%9A%84%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Harbeter">
+      <meta itemprop="description" content="愿你永远善良，永远向往未来！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="像风吹过八千里">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++的类
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-28 17:45:05" itemprop="dateCreated datePublished" datetime="2022-04-28T17:45:05+08:00">2022-04-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-04-29 11:05:03" itemprop="dateModified" datetime="2022-04-29T11:05:03+08:00">2022-04-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="什么是类以及类的定义"><a href="#什么是类以及类的定义" class="headerlink" title="什么是类以及类的定义"></a>什么是类以及类的定义</h1><p>类是属于用户自定义的数据类型, 并且该类型的数据具有一定的行为能力, 也就是类中说描述的方法。通常来说, 一个类的定义包含两部分的内容, 一是该类的<strong>属性</strong>, 另一部分是它所拥有的<strong>方法</strong>。</p>
+<h2 id="类的实质"><a href="#类的实质" class="headerlink" title="类的实质"></a>类的实质</h2><p><strong>类是一种用户自定义的引用数据类型，它的本质是数据类型，并不是数据，所以不存在于内存中，不能被直接操作，只有被实例化为对象时，才会变得可操作</strong></p>
+<h2 id="类的特性"><a href="#类的特性" class="headerlink" title="类的特性"></a>类的特性</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、抽象；</span><br><span class="line">2、封装和数据隐藏；</span><br><span class="line">3、继承；</span><br><span class="line">4、多态；</span><br><span class="line">5、代码可重用性</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h2 id="类的定义"><a href="#类的定义" class="headerlink" title="类的定义"></a>类的定义</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> 类名</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="comment">//公共的行为或者属性</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="comment">//私有的行为或属性 </span></span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">    	<span class="comment">//</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="成员访问类型的选择"><a href="#成员访问类型的选择" class="headerlink" title="成员访问类型的选择"></a>成员访问类型的选择</h2><p>类使用private、protected和public关键字控制成员的访问权限，类成员的<strong>默认访问权限为private</strong><br>1）、private成员：能被本类的成员函数（不管是哪一种控制符声明的成员函数，都可以）、友元函数<br>2）、protected成员：可通过本类的成员函数（不管是哪一种控制符声明的成员函数，都可以）、友元函数、其派生类的成员函数（不管是哪一种控制符声明的成员函数，都可以）<br>3）、public成员：能被本类的成员函数（不管是哪一种控制符声明的成员函数，都可以）、友元函数、本类的对象、其派生类的成员函数（不管是哪一种控制符声明的成员函数，都可以）；</p>
+<p>1）、数据成员通常声明为private属性，这样可以实现数据隐藏；<br>2）、成员函数通常声明为public属性，这样在外部可以访问；<br>3）、对于类成员，若想让派生类能够访问访问而不想让外部访问，则声明为protected属性</p>
+<p>说明：</p>
+<ol>
+<li>类名需要遵循一般的命名规则</li>
+<li><strong>public</strong>和<strong>private</strong>为属性/方法限制的关键字，<strong>private</strong>表示该部分内容是私密的，不能被外部所访问或者调用，只能被本类内容访问；而 <strong>public</strong> 表示公开的属性和方法, 外界可以直接访问或者调用。一般来说类的属性成员都应设置为<strong>private</strong>, <strong>public</strong>只留给那些被外界用来调用的函数接口, 但这并非是强制规定, 可以根据需要进行调整;</li>
+<li>结束部分的分号不能忽略</li>
+<li>定义类后，类名就是新的数据类型，即类名就像int一样可以定义变量</li>
+</ol>
+<h1 id="类的实现"><a href="#类的实现" class="headerlink" title="类的实现"></a>类的实现</h1><p>在上面的定义示例中我们只是定义了这个类的一些属性和方法声明, 并没有去实现它, 类的实现就是完成其方法的过程。类的实现有两种方式, 一种是在类定义时完成对成员函数的定义, 另一种是在类定义的外部进行完成。</p>
+<h2 id="在类定义时定义成员函数"><a href="#在类定义时定义成员函数" class="headerlink" title="在类定义时定义成员函数"></a>在类定义时定义成员函数</h2><p>成员函数的实现可以在类定义时同时完成，如代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">caculate</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:<span class="comment">//公共的行为或者属性</span></span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">jia</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span><span class="comment">//实现jia函数 </span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="keyword">int</span> c;</span><br><span class="line">			c=a+b;</span><br><span class="line">			<span class="keyword">return</span> c;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">jian</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span><span class="comment">//实现jian函数 </span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="keyword">int</span> c;</span><br><span class="line">			c=a-b;</span><br><span class="line">			<span class="keyword">return</span> c;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:<span class="comment">//私有的行为或属性 </span></span><br><span class="line">		<span class="function"><span class="keyword">double</span> <span class="title">cheng</span><span class="params">(<span class="keyword">double</span> a,<span class="keyword">double</span> b)</span><span class="comment">//实现cheng函数 </span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="keyword">double</span> c;</span><br><span class="line">			c=a*b;</span><br><span class="line">			<span class="keyword">return</span> c;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	caculate M;   <span class="comment">//用定义好的类创建一个对象  M</span></span><br><span class="line">	<span class="keyword">int</span> c=M.<span class="built_in">jia</span>(<span class="number">10</span>,<span class="number">20</span>);<span class="comment">//利用caculate类中的jia函数进行运算 </span></span><br><span class="line">	cout&lt;&lt;c&lt;&lt;endl; </span><br><span class="line">	cout&lt;&lt;M.<span class="built_in">jian</span>(<span class="number">10</span>,<span class="number">20</span>);<span class="comment">//利用caculate类中的jian函数进行运算</span></span><br><span class="line">	cout&lt;&lt;M.<span class="built_in">cheng</span>(<span class="number">20</span>,<span class="number">10</span>); <span class="comment">//这里不能调用，会报错，因为cheng的属性时private </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>与类的定义相比, 在类内实现成员函数不再是在类内进行声明, 而是直接将函数进行定义, 在类中定义成员函数时, 编译器默认会争取将其定义为 inline 型函数 </p>
+<h2 id="在类外定义成员函数"><a href="#在类外定义成员函数" class="headerlink" title="在类外定义成员函数"></a>在类外定义成员函数</h2><p> 在类外定义成员函数通过在类内进行声明, 然后在类外通过作用域操作符 <strong>::</strong> 进行实现, 形式如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">返回类型 类名::成员函数名(参数列表)</span><br><span class="line">&#123;</span><br><span class="line">	//函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体用法代码如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">caculate</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:<span class="comment">//公共的行为或者属性</span></span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">jia</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;<span class="comment">//在类中对jia函数进行声明 ，此处别忘记分号；</span></span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">jian</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;<span class="comment">//在类中对jian函数进行声明 </span></span><br><span class="line">	<span class="keyword">private</span>:<span class="comment">//私有的行为或属性 </span></span><br><span class="line">		<span class="function"><span class="keyword">double</span> <span class="title">cheng</span><span class="params">(<span class="keyword">double</span> a,<span class="keyword">double</span> b)</span></span>;<span class="comment">//在类中对cheng函数进行声明 </span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">caculate::jia</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span><span class="comment">//通过作用域操作符&quot;::&quot;实现jia函数 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> c;</span><br><span class="line">	c=a+b;</span><br><span class="line">	<span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">caculate::jian</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span><span class="comment">//通过作用域操作符&quot;::&quot;实现jian函数 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> c;</span><br><span class="line">	c=a-b;</span><br><span class="line">	<span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">cheng</span><span class="params">(<span class="keyword">double</span> a,<span class="keyword">double</span> b)</span><span class="comment">//过作用域操作符&quot;::&quot;实现cheng函数 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">double</span> c;</span><br><span class="line">	c=a*b;</span><br><span class="line">	<span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	caculate M;   <span class="comment">//用定义好的类创建一个对象  M</span></span><br><span class="line">	<span class="keyword">int</span> c=M.<span class="built_in">jia</span>(<span class="number">10</span>,<span class="number">20</span>);<span class="comment">//利用caculate类中的jia函数进行运算 </span></span><br><span class="line">	cout&lt;&lt;c&lt;&lt;endl; </span><br><span class="line">	cout&lt;&lt;M.<span class="built_in">jian</span>(<span class="number">10</span>,<span class="number">20</span>);<span class="comment">//利用caculate类中的jian函数进行运算</span></span><br><span class="line">	cout&lt;&lt;M.<span class="built_in">cheng</span>(<span class="number">20</span>,<span class="number">10</span>); <span class="comment">//这里不能调用，会报错，因为cheng的属性时private </span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>依 jia 成员函数来说, 在类内声明的形式为 <strong>int jia(int a,int b);</strong> 那么在类外对其定义时函数头就应该是 <strong>caculate::int jia(int a,int b)</strong> 这种形式, 其返回类型、成员函数名、参数列表都要与类内声明的<strong>形式一致</strong>。</p>
+<h1 id="访问类成员"><a href="#访问类成员" class="headerlink" title="访问类成员"></a>访问类成员</h1><h2 id="通过对象访问类成员"><a href="#通过对象访问类成员" class="headerlink" title="通过对象访问类成员"></a>通过对象访问类成员</h2><p>代码如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="keyword">int</span> a=<span class="number">20</span>;</span><br><span class="line">		<span class="keyword">double</span> b=<span class="number">1.23</span>;<span class="comment">//数据成员 </span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">function</span><span class="params">()</span></span>;<span class="comment">//成员函数 </span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	test put;<span class="comment">//在栈上创建对象 </span></span><br><span class="line">	put.a=<span class="number">30</span>;<span class="comment">//调用类中的数据 ，并修改 </span></span><br><span class="line">	cout&lt;&lt;put.a;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过指向类的指针访问类成员"><a href="#通过指向类的指针访问类成员" class="headerlink" title="通过指向类的指针访问类成员"></a>通过指向类的指针访问类成员</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="keyword">int</span> a=<span class="number">20</span>;</span><br><span class="line">		<span class="keyword">double</span> b=<span class="number">1.23</span>;<span class="comment">//数据成员 </span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">function</span><span class="params">()</span></span>;<span class="comment">//成员函数 </span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	test *put=<span class="keyword">new</span> test;<span class="comment">//创建指向类的指针，在堆上创建对象</span></span><br><span class="line">	put-&gt;a=<span class="number">30</span>;<span class="comment">//通过指针访问成员数据 </span></span><br><span class="line">	cout&lt;&lt;put-&gt;a;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>补充：对和栈的区别</p>
+<p>栈（stack）是由系统自动分配和释放，例如int b;</p>
+<p>堆（heap）是由程序员分配和释放，例如p2=new char[10]; 但注意，p2本身是在栈中的。</p>
+<h1 id="对象的作用域、可见域、生存周期"><a href="#对象的作用域、可见域、生存周期" class="headerlink" title="对象的作用域、可见域、生存周期"></a>对象的作用域、可见域、生存周期</h1><p>类对象的作用域、可见域以及生存周期与普通变量的保持相同, 当对象生存周期结束时<strong>对象被自动撤销</strong>, 所占用的内存被回收, 需要注意的是, 如果对象的成员函数中有使用 <strong>new</strong> 或者 <strong>malloc</strong> 申请的动态内存程序<strong>不会对其进行释放</strong>, 需要我们手动进行清理, 否则会造成内存泄露。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/23/PHP%E4%B8%AD%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" rel="prev" title="PHP中的序列化和反序列化">
+      <i class="fa fa-chevron-left"></i> PHP中的序列化和反序列化
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/29/C-%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF/" rel="next" title="C++中的函数模板">
+      C++中的函数模板 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%B1%BB%E4%BB%A5%E5%8F%8A%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">什么是类以及类的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%AE%9E%E8%B4%A8"><span class="nav-number">1.1.</span> <span class="nav-text">类的实质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-number">1.2.</span> <span class="nav-text">类的特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.3.</span> <span class="nav-text">类的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%90%E5%91%98%E8%AE%BF%E9%97%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%80%89%E6%8B%A9"><span class="nav-number">1.4.</span> <span class="nav-text">成员访问类型的选择</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">类的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E7%B1%BB%E5%AE%9A%E4%B9%89%E6%97%B6%E5%AE%9A%E4%B9%89%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">在类定义时定义成员函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E7%B1%BB%E5%A4%96%E5%AE%9A%E4%B9%89%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">2.2.</span> <span class="nav-text">在类外定义成员函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E7%B1%BB%E6%88%90%E5%91%98"><span class="nav-number">3.</span> <span class="nav-text">访问类成员</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%AF%B9%E8%B1%A1%E8%AE%BF%E9%97%AE%E7%B1%BB%E6%88%90%E5%91%98"><span class="nav-number">3.1.</span> <span class="nav-text">通过对象访问类成员</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E6%8C%87%E5%90%91%E7%B1%BB%E7%9A%84%E6%8C%87%E9%92%88%E8%AE%BF%E9%97%AE%E7%B1%BB%E6%88%90%E5%91%98"><span class="nav-number">3.2.</span> <span class="nav-text">通过指向类的指针访问类成员</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E3%80%81%E5%8F%AF%E8%A7%81%E5%9F%9F%E3%80%81%E7%94%9F%E5%AD%98%E5%91%A8%E6%9C%9F"><span class="nav-number">4.</span> <span class="nav-text">对象的作用域、可见域、生存周期</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Harbeter"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Harbeter</p>
+  <div class="site-description" itemprop="description">愿你永远善良，永远向往未来！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:qq2300350627@163.com" title="E-Mail → mailto:qq2300350627@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">冀ICP备2021027275号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Harbeter</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
+
+
