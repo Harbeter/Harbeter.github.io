@@ -1926,6 +1926,119 @@
       </tags>
   </entry>
   <entry>
+    <title>SQL入门</title>
+    <url>/2022/01/12/SQL%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<h1 id="计算机语言"><a href="#计算机语言" class="headerlink" title="计算机语言"></a>计算机语言</h1><ul>
+<li><p>机器语言：例如10101010100011（二进制语言）</p>
+</li>
+<li><p>汇编语言：也是比较接近计算机底层，例如<img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112122525180.png" alt="image-20220112122525180"></p>
+</li>
+<li><p>高级语言：例如C语言（更接近底层）、python、SQL等</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="SQL概述"><a href="#SQL概述" class="headerlink" title="SQL概述"></a>SQL概述</h1><p><strong>SQL</strong> (Structured Query Language:结构化查询语言) 是用于管理关系数据库管理系统（RDBMS）。 SQL 的范围包括数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。</p>
+<h2 id="SQL的特点"><a href="#SQL的特点" class="headerlink" title="SQL的特点"></a>SQL的特点</h2><ul>
+<li>具有总和统一性，不同数据库所支持的SQL稍有不同</li>
+<li>非过程化语言（不需要关心内部操作过程）</li>
+<li>语言简洁，用户容易接受</li>
+<li>以一种语言结构提供两种使用方式，例如SQL和python或java结合使用</li>
+</ul>
+<h2 id="SQL的语法特点"><a href="#SQL的语法特点" class="headerlink" title="SQL的语法特点"></a>SQL的语法特点</h2><ul>
+<li>SQL对关键字的大小写不敏感，比如SELECT和select一样</li>
+<li>SQL语句可以以单行或者多行书写，以分号结束</li>
+<li>SQL注释分单行注释和多行注释，单行注释语法：<code>-- 单行注释</code>，注意–后面有空格；<code>#单行注释</code>，#后可加可不加空格。例如<code>select * from 库名;-- 单行注释</code>。多行注释和C++一样<code>/*  注释内容  */</code>。</li>
+</ul>
+<h1 id="数据库概述"><a href="#数据库概述" class="headerlink" title="数据库概述"></a>数据库概述</h1><p>数据库（DataBase）是“按照数据结构来组织、存储和管理数据的仓库”。是一个长期存储在计算机内的、有组织的、可共享的、统一管理的大量数据的集合。</p>
+<p><strong>数据库应用系统是指基于数据库的应用软件</strong></p>
+<h2 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h2><h3 id="关系型数据库（RDBMS）"><a href="#关系型数据库（RDBMS）" class="headerlink" title="关系型数据库（RDBMS）"></a>关系型数据库（RDBMS）</h3><ul>
+<li>Oracle数据库（最挣钱体积庞大，几个Gb）</li>
+<li>MySQL数据库（最流行中型数据库）</li>
+<li>SQL server数据库（Window上最好的数据库）</li>
+<li>PostgreSQL（功能最强大的开源数据库）</li>
+<li>SQLite（最流行的嵌入式数据库，体积非常小几百kb）</li>
+</ul>
+<h3 id="非关系型数据库（NoSQL）"><a href="#非关系型数据库（NoSQL）" class="headerlink" title="非关系型数据库（NoSQL）"></a>非关系型数据库（NoSQL）</h3><ul>
+<li>Redis（最好的缓存数据库）</li>
+<li>MongoDB（最好的文档型数据库）</li>
+<li>Elasticsearch（最好的搜索服务）</li>
+<li>Cassandra（最好的列式数据库）</li>
+<li>HBase（优秀的分布式、列式数据库）</li>
+</ul>
+<p><strong>两类数据库的区别在于，关系型数据库存储数据用一张张的表，而非关系型数据库有其自身的存储方式</strong></p>
+<h2 id="SQL和数据库管理系统的关系"><a href="#SQL和数据库管理系统的关系" class="headerlink" title="SQL和数据库管理系统的关系"></a>SQL和数据库管理系统的关系</h2><ul>
+<li>SQL是一种用于操作数据库的语言，SQL适用于所有的关系数据库。</li>
+<li>MySQL、Oracle、SQLSever是一个数据库软件，这些数据库软件支持标准的SQL，也就是通过SQL可以使用这些软件，不过每一个数据库系统会在标准SQL的举出上扩展自己的SQL语法</li>
+<li>大部分NoSQL数据库有自己的操作语言，对SQL支持并不好</li>
+</ul>
+<h2 id="关系型数据库的组成"><a href="#关系型数据库的组成" class="headerlink" title="关系型数据库的组成"></a>关系型数据库的组成</h2><p>数据库管理系统（DBMS）主要由数据库（Database）和表（table）组成，一个系统可以有很多数据库，每个数据库可以有很多表。</p>
+<h1 id="MySQL简介"><a href="#MySQL简介" class="headerlink" title="MySQL简介"></a>MySQL简介</h1><ul>
+<li>MySQL如今归Oracle管，并有社区版和企业版</li>
+<li>MySQL使用标准化的SQL语言</li>
+</ul>
+<h2 id="MySQL的特点"><a href="#MySQL的特点" class="headerlink" title="MySQL的特点"></a>MySQL的特点</h2><ol>
+<li>MySQL的数据库是用C和C++语言编写的，以保证源码的可移植性</li>
+<li>支持多个操作系统，例如：Windows、Linux、Mac OS等等</li>
+<li>支持多线程，可以充分利用CPU资源</li>
+<li>为多种编程语言提供API，包括C语言、Java、PHP、Python语言等</li>
+<li>MySQL优化了SQL算法，有效的提高了查询速度</li>
+<li>MySQL开放源代码，且无版权制约，自主性强，使用成本低</li>
+<li>MySQL历史悠久，社区及用户非常活跃，遇到问题，可以很快获得帮助</li>
+</ol>
+<h2 id="MySQL的版本"><a href="#MySQL的版本" class="headerlink" title="MySQL的版本"></a>MySQL的版本</h2><p>针对不同用户，MySQL分为两种不同的版本：</p>
+<p><strong>MySQL Community Server</strong></p>
+<p>社区版本，免费，但是MySQL不提供官方的技术支持</p>
+<p><strong>MySQL Enterprise Edition</strong></p>
+<p>商业版，该版本是收费的，可以试用30天，官方提供技术支持</p>
+<p><strong>MySQL Cluster</strong></p>
+<p>集群版，开源免费，可将几个MySQL Server封装成一个Server</p>
+<p><strong>MySQL Cluster CGE</strong></p>
+<p>高级集群版，需要付费</p>
+<p><strong>MySQL Workbench （GUI TOOL）</strong></p>
+<p>一款专门为MySQL设计的ER/数据库建模工具，MySQL Workbench又分为两个版本，分别是社区版（MySQL Workbench OSS）、商用版（MySQL Workbench SE）</p>
+<h2 id="MySQL的版本命名"><a href="#MySQL的版本命名" class="headerlink" title="MySQL的版本命名"></a>MySQL的版本命名</h2><p>MySQL的命名机制使用三个数字和一个后缀组成的版本号，例如，mysql-8.0.26的版本号这样解释：</p>
+<p>第一个数字（8）是主版本号，描述了文件格式，所有版本5的发行都有相同的文件格式。</p>
+<p>第二个数字（0）是发行级别，主版本号和发行级别组合到一块便构成了发行序列号。</p>
+<p>第三个数字（26）是在此发行系列的版本号，随每个新发行版本递增</p>
+<h1 id="MySQL的安装"><a href="#MySQL的安装" class="headerlink" title="MySQL的安装"></a>MySQL的安装</h1><h2 id="压缩包安装"><a href="#压缩包安装" class="headerlink" title="压缩包安装"></a>压缩包安装</h2><p>去<a href="https://dev.mysql.com/downloads/mysql/">官网下载zip</a>然后解压进行配置</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112153020029.png" alt="image-20220112153020029"></p>
+<p>解压后新建my. ini文件,并编辑</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160645372.png" alt="image-20220112160645372"></p>
+<p>若没有新建文件的权力，修改一下内容</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160750113.png" alt="image-20220112160750113"></p>
+<p>然后配置环境变量（<strong>若不配置，则cmd无法识别mysql指令</strong>）</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161003464.png" alt="image-20220112161003464"></p>
+<p>然后在Path中添加如下内容</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161441314.png" alt="image-20220112161441314"></p>
+<p>配置好后，进入cmd（管理员模式）并打开bin文件如图</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112162133149.png" alt="image-20220112162133149"></p>
+<p>然后对mysql进行初始化，记住初始化密码，下面登录要用</p>
+<p><code>mysqld --initialize --user=mysql --console</code></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112221537146.png" alt="image-20220112221537146"></p>
+<p>安装mysql服务</p>
+<p><code>mysqld --install</code></p>
+<p>启动mysql服务</p>
+<p><code>net start mysql</code></p>
+<p>登录mysql</p>
+<p><code>mysql -uroot -p</code></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223115990.png" alt="image-20220112223115990"></p>
+<p>修改root用户密码为root</p>
+<p><code>ALTER USER&#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></p>
+<p>修改root用户权限</p>
+<p><code>create user &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223244690.png" alt="image-20220112223244690"></p>
+<p>退出登录用quit</p>
+<h2 id="程序安装"><a href="#程序安装" class="headerlink" title="程序安装"></a>程序安装</h2><p>去<a href="https://dev.mysql.com/downloads/windows/installer/8.0.html">官网下载程序</a>然后安装</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112154249700.png" alt="image-20220112154249700"></p>
+<p>这种方法比较上一种，少了配置my.ini文件和初始化的步骤，其余差不多，但需要注意的是配置环境变量时，MySQL的安装路径</p>
+<h1 id="MySQL的卸载"><a href="#MySQL的卸载" class="headerlink" title="MySQL的卸载"></a>MySQL的卸载</h1><p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223649914.png" alt="image-20220112223649914"></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223728875.png" alt="image-20220112223728875"></p>
+<p>该图片摘自B站黑马程序员</p>
+]]></content>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SQL数据库基本操作</title>
     <url>/2022/01/13/SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<h1 id="DDL语句"><a href="#DDL语句" class="headerlink" title="DDL语句"></a>DDL语句</h1><p>定义：数据库模式定义语言DDL(Data Definition Language)，是用于描述数据库中要存储的现实世界实体的语言。主要由create（添加）、alter（修改）、drop（删除）和 truncate（删除） 四个关键字完成。主要是对<strong>数据库</strong>的常规操作、对<strong>表结构</strong>的常规操作、修改表结构，而<strong>不涉及表中数据</strong>。</p>
@@ -2209,119 +2322,6 @@
 <p><img src="/2022/01/13/SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/image-20220115175411829.png" alt="image-20220115175411829"></p>
 <p>删除所有行的delete和truncate效果一样</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="/2022/01/13/SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/image-20220115175602576.png" alt="image-20220115175602576"></p>
-]]></content>
-      <tags>
-        <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SQL入门</title>
-    <url>/2022/01/12/SQL%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<h1 id="计算机语言"><a href="#计算机语言" class="headerlink" title="计算机语言"></a>计算机语言</h1><ul>
-<li><p>机器语言：例如10101010100011（二进制语言）</p>
-</li>
-<li><p>汇编语言：也是比较接近计算机底层，例如<img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112122525180.png" alt="image-20220112122525180"></p>
-</li>
-<li><p>高级语言：例如C语言（更接近底层）、python、SQL等</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="SQL概述"><a href="#SQL概述" class="headerlink" title="SQL概述"></a>SQL概述</h1><p><strong>SQL</strong> (Structured Query Language:结构化查询语言) 是用于管理关系数据库管理系统（RDBMS）。 SQL 的范围包括数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。</p>
-<h2 id="SQL的特点"><a href="#SQL的特点" class="headerlink" title="SQL的特点"></a>SQL的特点</h2><ul>
-<li>具有总和统一性，不同数据库所支持的SQL稍有不同</li>
-<li>非过程化语言（不需要关心内部操作过程）</li>
-<li>语言简洁，用户容易接受</li>
-<li>以一种语言结构提供两种使用方式，例如SQL和python或java结合使用</li>
-</ul>
-<h2 id="SQL的语法特点"><a href="#SQL的语法特点" class="headerlink" title="SQL的语法特点"></a>SQL的语法特点</h2><ul>
-<li>SQL对关键字的大小写不敏感，比如SELECT和select一样</li>
-<li>SQL语句可以以单行或者多行书写，以分号结束</li>
-<li>SQL注释分单行注释和多行注释，单行注释语法：<code>-- 单行注释</code>，注意–后面有空格；<code>#单行注释</code>，#后可加可不加空格。例如<code>select * from 库名;-- 单行注释</code>。多行注释和C++一样<code>/*  注释内容  */</code>。</li>
-</ul>
-<h1 id="数据库概述"><a href="#数据库概述" class="headerlink" title="数据库概述"></a>数据库概述</h1><p>数据库（DataBase）是“按照数据结构来组织、存储和管理数据的仓库”。是一个长期存储在计算机内的、有组织的、可共享的、统一管理的大量数据的集合。</p>
-<p><strong>数据库应用系统是指基于数据库的应用软件</strong></p>
-<h2 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h2><h3 id="关系型数据库（RDBMS）"><a href="#关系型数据库（RDBMS）" class="headerlink" title="关系型数据库（RDBMS）"></a>关系型数据库（RDBMS）</h3><ul>
-<li>Oracle数据库（最挣钱体积庞大，几个Gb）</li>
-<li>MySQL数据库（最流行中型数据库）</li>
-<li>SQL server数据库（Window上最好的数据库）</li>
-<li>PostgreSQL（功能最强大的开源数据库）</li>
-<li>SQLite（最流行的嵌入式数据库，体积非常小几百kb）</li>
-</ul>
-<h3 id="非关系型数据库（NoSQL）"><a href="#非关系型数据库（NoSQL）" class="headerlink" title="非关系型数据库（NoSQL）"></a>非关系型数据库（NoSQL）</h3><ul>
-<li>Redis（最好的缓存数据库）</li>
-<li>MongoDB（最好的文档型数据库）</li>
-<li>Elasticsearch（最好的搜索服务）</li>
-<li>Cassandra（最好的列式数据库）</li>
-<li>HBase（优秀的分布式、列式数据库）</li>
-</ul>
-<p><strong>两类数据库的区别在于，关系型数据库存储数据用一张张的表，而非关系型数据库有其自身的存储方式</strong></p>
-<h2 id="SQL和数据库管理系统的关系"><a href="#SQL和数据库管理系统的关系" class="headerlink" title="SQL和数据库管理系统的关系"></a>SQL和数据库管理系统的关系</h2><ul>
-<li>SQL是一种用于操作数据库的语言，SQL适用于所有的关系数据库。</li>
-<li>MySQL、Oracle、SQLSever是一个数据库软件，这些数据库软件支持标准的SQL，也就是通过SQL可以使用这些软件，不过每一个数据库系统会在标准SQL的举出上扩展自己的SQL语法</li>
-<li>大部分NoSQL数据库有自己的操作语言，对SQL支持并不好</li>
-</ul>
-<h2 id="关系型数据库的组成"><a href="#关系型数据库的组成" class="headerlink" title="关系型数据库的组成"></a>关系型数据库的组成</h2><p>数据库管理系统（DBMS）主要由数据库（Database）和表（table）组成，一个系统可以有很多数据库，每个数据库可以有很多表。</p>
-<h1 id="MySQL简介"><a href="#MySQL简介" class="headerlink" title="MySQL简介"></a>MySQL简介</h1><ul>
-<li>MySQL如今归Oracle管，并有社区版和企业版</li>
-<li>MySQL使用标准化的SQL语言</li>
-</ul>
-<h2 id="MySQL的特点"><a href="#MySQL的特点" class="headerlink" title="MySQL的特点"></a>MySQL的特点</h2><ol>
-<li>MySQL的数据库是用C和C++语言编写的，以保证源码的可移植性</li>
-<li>支持多个操作系统，例如：Windows、Linux、Mac OS等等</li>
-<li>支持多线程，可以充分利用CPU资源</li>
-<li>为多种编程语言提供API，包括C语言、Java、PHP、Python语言等</li>
-<li>MySQL优化了SQL算法，有效的提高了查询速度</li>
-<li>MySQL开放源代码，且无版权制约，自主性强，使用成本低</li>
-<li>MySQL历史悠久，社区及用户非常活跃，遇到问题，可以很快获得帮助</li>
-</ol>
-<h2 id="MySQL的版本"><a href="#MySQL的版本" class="headerlink" title="MySQL的版本"></a>MySQL的版本</h2><p>针对不同用户，MySQL分为两种不同的版本：</p>
-<p><strong>MySQL Community Server</strong></p>
-<p>社区版本，免费，但是MySQL不提供官方的技术支持</p>
-<p><strong>MySQL Enterprise Edition</strong></p>
-<p>商业版，该版本是收费的，可以试用30天，官方提供技术支持</p>
-<p><strong>MySQL Cluster</strong></p>
-<p>集群版，开源免费，可将几个MySQL Server封装成一个Server</p>
-<p><strong>MySQL Cluster CGE</strong></p>
-<p>高级集群版，需要付费</p>
-<p><strong>MySQL Workbench （GUI TOOL）</strong></p>
-<p>一款专门为MySQL设计的ER/数据库建模工具，MySQL Workbench又分为两个版本，分别是社区版（MySQL Workbench OSS）、商用版（MySQL Workbench SE）</p>
-<h2 id="MySQL的版本命名"><a href="#MySQL的版本命名" class="headerlink" title="MySQL的版本命名"></a>MySQL的版本命名</h2><p>MySQL的命名机制使用三个数字和一个后缀组成的版本号，例如，mysql-8.0.26的版本号这样解释：</p>
-<p>第一个数字（8）是主版本号，描述了文件格式，所有版本5的发行都有相同的文件格式。</p>
-<p>第二个数字（0）是发行级别，主版本号和发行级别组合到一块便构成了发行序列号。</p>
-<p>第三个数字（26）是在此发行系列的版本号，随每个新发行版本递增</p>
-<h1 id="MySQL的安装"><a href="#MySQL的安装" class="headerlink" title="MySQL的安装"></a>MySQL的安装</h1><h2 id="压缩包安装"><a href="#压缩包安装" class="headerlink" title="压缩包安装"></a>压缩包安装</h2><p>去<a href="https://dev.mysql.com/downloads/mysql/">官网下载zip</a>然后解压进行配置</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112153020029.png" alt="image-20220112153020029"></p>
-<p>解压后新建my. ini文件,并编辑</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160645372.png" alt="image-20220112160645372"></p>
-<p>若没有新建文件的权力，修改一下内容</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160750113.png" alt="image-20220112160750113"></p>
-<p>然后配置环境变量（<strong>若不配置，则cmd无法识别mysql指令</strong>）</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161003464.png" alt="image-20220112161003464"></p>
-<p>然后在Path中添加如下内容</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161441314.png" alt="image-20220112161441314"></p>
-<p>配置好后，进入cmd（管理员模式）并打开bin文件如图</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112162133149.png" alt="image-20220112162133149"></p>
-<p>然后对mysql进行初始化，记住初始化密码，下面登录要用</p>
-<p><code>mysqld --initialize --user=mysql --console</code></p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112221537146.png" alt="image-20220112221537146"></p>
-<p>安装mysql服务</p>
-<p><code>mysqld --install</code></p>
-<p>启动mysql服务</p>
-<p><code>net start mysql</code></p>
-<p>登录mysql</p>
-<p><code>mysql -uroot -p</code></p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223115990.png" alt="image-20220112223115990"></p>
-<p>修改root用户密码为root</p>
-<p><code>ALTER USER&#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></p>
-<p>修改root用户权限</p>
-<p><code>create user &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223244690.png" alt="image-20220112223244690"></p>
-<p>退出登录用quit</p>
-<h2 id="程序安装"><a href="#程序安装" class="headerlink" title="程序安装"></a>程序安装</h2><p>去<a href="https://dev.mysql.com/downloads/windows/installer/8.0.html">官网下载程序</a>然后安装</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112154249700.png" alt="image-20220112154249700"></p>
-<p>这种方法比较上一种，少了配置my.ini文件和初始化的步骤，其余差不多，但需要注意的是配置环境变量时，MySQL的安装路径</p>
-<h1 id="MySQL的卸载"><a href="#MySQL的卸载" class="headerlink" title="MySQL的卸载"></a>MySQL的卸载</h1><p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223649914.png" alt="image-20220112223649914"></p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223728875.png" alt="image-20220112223728875"></p>
-<p>该图片摘自B站黑马程序员</p>
 ]]></content>
       <tags>
         <tag>SQL</tag>
@@ -3455,6 +3455,42 @@
       </tags>
   </entry>
   <entry>
+    <title>刷题记录-7</title>
+    <url>/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/</url>
+    <content><![CDATA[<h1 id="Pretty-Horrible-Program-1"><a href="#Pretty-Horrible-Program-1" class="headerlink" title="Pretty Horrible Program 1"></a>Pretty Horrible Program 1</h1><p>这道题水得很，虽然我没有完全看懂源码，但也能稍作注释</p>
+<span id="more"></span>
+
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;bingus&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$input</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;bingus&#x27;</span>];  <span class="comment">//把get到的值赋给input</span></span><br><span class="line">    <span class="variable">$to_replace</span> = <span class="string">&#x27;bingus&#x27;</span>;  <span class="comment">//让to_replace为bingus</span></span><br><span class="line">    <span class="variable">$clean_string</span> = preg_replace(<span class="string">&quot;/<span class="subst">$to_replace</span>/&quot;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$input</span>);<span class="comment">//让clean_string为input中把bingus替换为空格后的值</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Your string is: <span class="subst">$clean_string</span>&lt;/p&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$clean_string</span> == <span class="variable">$to_replace</span>) &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=\&quot;answer\&quot;&gt;Bingus &lt;span style=\&quot;color: green;\&quot;&gt;IS&lt;/span&gt; your beloved&lt;/h2&gt;&quot;</span>;  <span class="comment">//如果clean_string的值为bingus，那么输出flag</span></span><br><span class="line">      output_flag();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=\&quot;answer\&quot;&gt;Bingus &lt;span style=\&quot;color: red;\&quot;&gt;IS NOT&lt;/span&gt; your beloved&lt;/h2&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是通过输入bingus回显空，输入aaa回显aaa，所以我们双写绕过，也就是binbingusgus，得到flag</p>
+<h1 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h1><p>首先要知道什么是shell，这里我们摘自百度百科：</p>
+<p>Shell 是一个应用程序，它连接了用户和 Linux 内核，让用户能够更加高效、安全、低成本地使用 Linux 内核，这就是 Shell 的本质。 Shell 本身并不是内核的一部分，它只是站在内核的基础上编写的一个应用程序，它和 QQ、迅雷、Firefox 等其它软件没有什么区别。 然而 Shell 也有着它的特殊性，就是开机立马启动，并呈现在用户面前；用户通过 Shell 来使用 Linux，不启动 Shell 的话，用户就没办法使用 Linux。 Shell 是如何连接用户和内核的？ Shell 能够接收用户输入的命令，并对命令进行处理，处理完毕后再将结果反馈给用户，比如输出到显示器、写入到文件等，这就是大部分读者对 Shell 的认知。</p>
+<p>简单来说，shell就是运行linux命令的前提，所以这里绝对和命令执行相关</p>
+<p>题目提示为：送给大家一个过狗一句话 $poc=”a#s#s#e#r#t”; $poc_1=explode(“#”,$poc); $poc_2=$poc_1[0].$poc_1[1].$poc_1[2].$poc_1[3].$poc_1[4].$poc_1[5]; $poc_2($_GET[‘s’])</p>
+<p>这里我们可以发现存在变量s，并由我们接收我们输入的内容，所以我们直接令s=ls，无回显，那么我们在最后加一个;  可是还是没有回显，接着我们令s=system(“ls”) ，有回显关键字，我们cat一下文档得到flag。</p>
+<p>由此可推出，这里s输入的是一段命令，并且可被执行。</p>
+<h1 id="社工-伪造"><a href="#社工-伪造" class="headerlink" title="社工-伪造"></a>社工-伪造</h1><p>真的很无语，想来想去找不到办法，结果看了一下wp，我直接当场去世，要把自己的qq昵称和头像换成他的男友才行，直接登录他男友的账号是不行的，有字符过滤。头一次见这个，很牛p。</p>
+<h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
+<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
+<p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
+<p>User：<a href="mailto:&#x62;&#117;&#x67;&#x6b;&#117;&#107;&#x75;&#64;&#49;&#x36;&#51;&#46;&#99;&#111;&#x6d;">&#x62;&#117;&#x67;&#x6b;&#117;&#107;&#x75;&#64;&#49;&#x36;&#51;&#46;&#99;&#111;&#x6d;</a></p>
+<p>Pass：XSLROCPMNWWZQDZL</p>
+<p>登录显示密码错误，然后继续看wp</p>
+<p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
+<p>用win10自带的邮箱登录成功</p>
+<p>然后找了半天也没找的关键邮件，可能是被删了，但是按照wp上说，会有一个如下的邮件</p>
+<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181540251.png" alt="image-20220402181540251"></p>
+<p>我们猜测可能是生日为密码，mara为账户</p>
+<p>推算的生日为20010206，登录后台得到flag</p>
+<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181728774.png" alt="image-20220402181728774"></p>
+<h1 id="程序员本地网站"><a href="#程序员本地网站" class="headerlink" title="程序员本地网站"></a>程序员本地网站</h1><p>X-Forwarded-For:127.0.0.1</p>
+<p>无语住了</p>
+]]></content>
+      <tags>
+        <tag>刷题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>刷题记录-6</title>
     <url>/2022/03/01/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-6/</url>
     <content><![CDATA[<h1 id="WEB171"><a href="#WEB171" class="headerlink" title="WEB171"></a>WEB171</h1><p>很经典的联合注入，这次相当于又复习了一遍，感觉以前的都忘了，好难过。</p>
@@ -3498,42 +3534,6 @@
 
 <p><img src="/2022/03/01/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-6/image-20220305171333948.png" alt="image-20220305171333948"></p>
 <p>每个都cat一下，最终得到flag</p>
-]]></content>
-      <tags>
-        <tag>刷题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>刷题记录-7</title>
-    <url>/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/</url>
-    <content><![CDATA[<h1 id="Pretty-Horrible-Program-1"><a href="#Pretty-Horrible-Program-1" class="headerlink" title="Pretty Horrible Program 1"></a>Pretty Horrible Program 1</h1><p>这道题水得很，虽然我没有完全看懂源码，但也能稍作注释</p>
-<span id="more"></span>
-
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;bingus&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$input</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;bingus&#x27;</span>];  <span class="comment">//把get到的值赋给input</span></span><br><span class="line">    <span class="variable">$to_replace</span> = <span class="string">&#x27;bingus&#x27;</span>;  <span class="comment">//让to_replace为bingus</span></span><br><span class="line">    <span class="variable">$clean_string</span> = preg_replace(<span class="string">&quot;/<span class="subst">$to_replace</span>/&quot;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$input</span>);<span class="comment">//让clean_string为input中把bingus替换为空格后的值</span></span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Your string is: <span class="subst">$clean_string</span>&lt;/p&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$clean_string</span> == <span class="variable">$to_replace</span>) &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=\&quot;answer\&quot;&gt;Bingus &lt;span style=\&quot;color: green;\&quot;&gt;IS&lt;/span&gt; your beloved&lt;/h2&gt;&quot;</span>;  <span class="comment">//如果clean_string的值为bingus，那么输出flag</span></span><br><span class="line">      output_flag();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="string">&quot;&lt;h2 class=\&quot;answer\&quot;&gt;Bingus &lt;span style=\&quot;color: red;\&quot;&gt;IS NOT&lt;/span&gt; your beloved&lt;/h2&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>但是通过输入bingus回显空，输入aaa回显aaa，所以我们双写绕过，也就是binbingusgus，得到flag</p>
-<h1 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h1><p>首先要知道什么是shell，这里我们摘自百度百科：</p>
-<p>Shell 是一个应用程序，它连接了用户和 Linux 内核，让用户能够更加高效、安全、低成本地使用 Linux 内核，这就是 Shell 的本质。 Shell 本身并不是内核的一部分，它只是站在内核的基础上编写的一个应用程序，它和 QQ、迅雷、Firefox 等其它软件没有什么区别。 然而 Shell 也有着它的特殊性，就是开机立马启动，并呈现在用户面前；用户通过 Shell 来使用 Linux，不启动 Shell 的话，用户就没办法使用 Linux。 Shell 是如何连接用户和内核的？ Shell 能够接收用户输入的命令，并对命令进行处理，处理完毕后再将结果反馈给用户，比如输出到显示器、写入到文件等，这就是大部分读者对 Shell 的认知。</p>
-<p>简单来说，shell就是运行linux命令的前提，所以这里绝对和命令执行相关</p>
-<p>题目提示为：送给大家一个过狗一句话 $poc=”a#s#s#e#r#t”; $poc_1=explode(“#”,$poc); $poc_2=$poc_1[0].$poc_1[1].$poc_1[2].$poc_1[3].$poc_1[4].$poc_1[5]; $poc_2($_GET[‘s’])</p>
-<p>这里我们可以发现存在变量s，并由我们接收我们输入的内容，所以我们直接令s=ls，无回显，那么我们在最后加一个;  可是还是没有回显，接着我们令s=system(“ls”) ，有回显关键字，我们cat一下文档得到flag。</p>
-<p>由此可推出，这里s输入的是一段命令，并且可被执行。</p>
-<h1 id="社工-伪造"><a href="#社工-伪造" class="headerlink" title="社工-伪造"></a>社工-伪造</h1><p>真的很无语，想来想去找不到办法，结果看了一下wp，我直接当场去世，要把自己的qq昵称和头像换成他的男友才行，直接登录他男友的账号是不行的，有字符过滤。头一次见这个，很牛p。</p>
-<h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
-<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
-<p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
-<p>User：<a href="mailto:&#x62;&#x75;&#x67;&#107;&#117;&#107;&#x75;&#64;&#49;&#x36;&#51;&#46;&#x63;&#111;&#x6d;">&#x62;&#x75;&#x67;&#107;&#117;&#107;&#x75;&#64;&#49;&#x36;&#51;&#46;&#x63;&#111;&#x6d;</a></p>
-<p>Pass：XSLROCPMNWWZQDZL</p>
-<p>登录显示密码错误，然后继续看wp</p>
-<p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
-<p>用win10自带的邮箱登录成功</p>
-<p>然后找了半天也没找的关键邮件，可能是被删了，但是按照wp上说，会有一个如下的邮件</p>
-<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181540251.png" alt="image-20220402181540251"></p>
-<p>我们猜测可能是生日为密码，mara为账户</p>
-<p>推算的生日为20010206，登录后台得到flag</p>
-<p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402181728774.png" alt="image-20220402181728774"></p>
-<h1 id="程序员本地网站"><a href="#程序员本地网站" class="headerlink" title="程序员本地网站"></a>程序员本地网站</h1><p>X-Forwarded-For:127.0.0.1</p>
-<p>无语住了</p>
 ]]></content>
       <tags>
         <tag>刷题</tag>
