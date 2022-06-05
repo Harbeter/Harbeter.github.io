@@ -73,6 +73,53 @@
       </tags>
   </entry>
   <entry>
+    <title>C++中的循环结构和跳转语句</title>
+    <url>/2021/12/16/C-%E4%B8%AD%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<h1 id="一、循环结构"><a href="#一、循环结构" class="headerlink" title="一、循环结构"></a>一、循环结构</h1><h2 id="1-while循环结构"><a href="#1-while循环结构" class="headerlink" title="1.while循环结构"></a>1.while循环结构</h2><p>作用：满足循环条件，执行循环语句</p>
+<p>语法：<code>while(循环条件)&#123;循环语句&#125;</code></p>
+<p>解释：只要满足循环条件即执行循环语句，直到条件不符合时才停止</p>
+<span id="more"></span>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n=<span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(n&lt;<span class="number">10</span>)          <span class="comment">//打印1~10</span></span><br><span class="line">    &#123;</span><br><span class="line">        n++;</span><br><span class="line">        cout&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-do…while循环语句"><a href="#2-do…while循环语句" class="headerlink" title="2.do…while循环语句"></a>2.do…while循环语句</h2><p>作用：先执行一次循环语句，再判断循环条件</p>
+<p>语法：<code>do&#123;循环语句&#125; while(循环条件);</code></p>
+<p>注意：与while循环语句的主要区别就是第一次判断的先后</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> n=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        n++;</span><br><span class="line">        cout&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(n&gt;<span class="number">10</span>);<span class="comment">//此程序会输出1，而while程序则什么也不输出</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-for循环语句"><a href="#3-for循环语句" class="headerlink" title="3.for循环语句"></a>3.for循环语句</h2><p>语法：<code>for(起始表达式；条件表达式；末尾循环体)&#123;循环语句；&#125;</code></p>
+<p>示例：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> n=<span class="number">0</span>;n&lt;<span class="number">10</span>;n++)<span class="comment">//此处用分号分割</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-嵌套循环"><a href="#4-嵌套循环" class="headerlink" title="4.嵌套循环"></a>4.嵌套循环</h2><p>作用：在循环体中再嵌套一层循环，解决一些实际问题</p>
+<p>示例：</p>
+<p>打印*阵图</p>
+<p><img src="/2021/12/16/C-%E4%B8%AD%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/image-20211217200102802.png" alt="image-20211217200102802"></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;* &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、跳转语句"><a href="#二、跳转语句" class="headerlink" title="二、跳转语句"></a>二、跳转语句</h1><h2 id="1-break语句"><a href="#1-break语句" class="headerlink" title="1.break语句"></a>1.break语句</h2><p>作用：用于跳出选择结构或者循环结构</p>
+<p>break的使用时机</p>
+<ul>
+<li>出现在switch条件语句中，作用是终止case并跳出switch</li>
+<li>出现在循环语句中，作用是跳出当前循环语句</li>
+<li>出现在嵌套中，作用是跳出最近的内层嵌套语句</li>
+</ul>
+<h2 id="2-continue语句"><a href="#2-continue语句" class="headerlink" title="2.continue语句"></a>2.continue语句</h2><p>作用：在循环语句中，跳过本次循环中余下尚未执行的语句，继续执行下一次循环</p>
+<p>示例</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(i%<span class="number">2</span>==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">continue</span>;<span class="comment">//不输出偶数  </span></span><br><span class="line">        &#125;</span><br><span class="line">            </span><br><span class="line">        cout&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-goto语句"><a href="#3-goto语句" class="headerlink" title="3.goto语句"></a>3.goto语句</h2><p>作用：无条件跳转语句</p>
+<p>语法：<code>goto 标记;</code></p>
+<p>解释：如果标记的名称存在的，执行goto语句时，会跳转到标记位置。（但是一般不用）</p>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;1&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">goto</span> flag;<span class="comment">//跳转到flag语句</span></span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;2&quot;</span>&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;3&quot;</span>&lt;&lt;endl;</span><br><span class="line">    flag:</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;4&quot;</span>&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++中的指针</title>
     <url>/2022/02/23/C-%E4%B8%AD%E7%9A%84%E6%8C%87%E9%92%88/</url>
     <content><![CDATA[<h1 id="指针的基本概念"><a href="#指针的基本概念" class="headerlink" title="指针的基本概念"></a>指针的基本概念</h1><p>可以通过指针来保存一个地址</p>
@@ -195,53 +242,6 @@
 <li><p>获取二维数组首位置</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> arr[<span class="number">2</span>][<span class="number">3</span>]</span><br><span class="line">    &#123;</span><br><span class="line">        &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,</span><br><span class="line">        &#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(arr)&lt;&lt;endl;<span class="comment">//整个数组所占外存，单位是字节</span></span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(arr[<span class="number">0</span>])&lt;&lt;endl;<span class="comment">//一行所占存储空间</span></span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(arr[<span class="number">0</span>][<span class="number">0</span>])&lt;&lt;endl;<span class="comment">//某个元素所占存储空间</span></span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(arr)/<span class="built_in"><span class="keyword">sizeof</span></span>(arr[<span class="number">0</span>])&lt;&lt;endl;<span class="comment">//二维数组行数</span></span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(arr[<span class="number">0</span>])/<span class="built_in"><span class="keyword">sizeof</span></span>(arr[<span class="number">0</span>][<span class="number">0</span>])&lt;&lt;endl;<span class="comment">//二维数组列数</span></span><br><span class="line">    cout&lt;&lt;arr&lt;&lt;endl;<span class="comment">//二维数组首地址</span></span><br><span class="line">    cout&lt;&lt;(<span class="keyword">int</span>) arr&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;(<span class="keyword">int</span>) arr[<span class="number">0</span>]&lt;&lt;endl;<span class="comment">//第一行首地址</span></span><br><span class="line">    cout&lt;&lt;(<span class="keyword">int</span>) &amp;arr[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;endl;<span class="comment">//第一个元素的首地址，注意别丢了&amp;</span></span><br><span class="line">    cout&lt;&lt;(<span class="keyword">int</span>) arr[<span class="number">1</span>]&lt;&lt;endl;<span class="comment">//第二行首地址</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
-]]></content>
-      <tags>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++中的循环结构和跳转语句</title>
-    <url>/2021/12/16/C-%E4%B8%AD%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<h1 id="一、循环结构"><a href="#一、循环结构" class="headerlink" title="一、循环结构"></a>一、循环结构</h1><h2 id="1-while循环结构"><a href="#1-while循环结构" class="headerlink" title="1.while循环结构"></a>1.while循环结构</h2><p>作用：满足循环条件，执行循环语句</p>
-<p>语法：<code>while(循环条件)&#123;循环语句&#125;</code></p>
-<p>解释：只要满足循环条件即执行循环语句，直到条件不符合时才停止</p>
-<span id="more"></span>
-
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n=<span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(n&lt;<span class="number">10</span>)          <span class="comment">//打印1~10</span></span><br><span class="line">    &#123;</span><br><span class="line">        n++;</span><br><span class="line">        cout&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-do…while循环语句"><a href="#2-do…while循环语句" class="headerlink" title="2.do…while循环语句"></a>2.do…while循环语句</h2><p>作用：先执行一次循环语句，再判断循环条件</p>
-<p>语法：<code>do&#123;循环语句&#125; while(循环条件);</code></p>
-<p>注意：与while循环语句的主要区别就是第一次判断的先后</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> n=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        n++;</span><br><span class="line">        cout&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(n&gt;<span class="number">10</span>);<span class="comment">//此程序会输出1，而while程序则什么也不输出</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-for循环语句"><a href="#3-for循环语句" class="headerlink" title="3.for循环语句"></a>3.for循环语句</h2><p>语法：<code>for(起始表达式；条件表达式；末尾循环体)&#123;循环语句；&#125;</code></p>
-<p>示例：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> n=<span class="number">0</span>;n&lt;<span class="number">10</span>;n++)<span class="comment">//此处用分号分割</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-嵌套循环"><a href="#4-嵌套循环" class="headerlink" title="4.嵌套循环"></a>4.嵌套循环</h2><p>作用：在循环体中再嵌套一层循环，解决一些实际问题</p>
-<p>示例：</p>
-<p>打印*阵图</p>
-<p><img src="/2021/12/16/C-%E4%B8%AD%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84/image-20211217200102802.png" alt="image-20211217200102802"></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;* &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;endl;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="二、跳转语句"><a href="#二、跳转语句" class="headerlink" title="二、跳转语句"></a>二、跳转语句</h1><h2 id="1-break语句"><a href="#1-break语句" class="headerlink" title="1.break语句"></a>1.break语句</h2><p>作用：用于跳出选择结构或者循环结构</p>
-<p>break的使用时机</p>
-<ul>
-<li>出现在switch条件语句中，作用是终止case并跳出switch</li>
-<li>出现在循环语句中，作用是跳出当前循环语句</li>
-<li>出现在嵌套中，作用是跳出最近的内层嵌套语句</li>
-</ul>
-<h2 id="2-continue语句"><a href="#2-continue语句" class="headerlink" title="2.continue语句"></a>2.continue语句</h2><p>作用：在循环语句中，跳过本次循环中余下尚未执行的语句，继续执行下一次循环</p>
-<p>示例</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(i%<span class="number">2</span>==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">continue</span>;<span class="comment">//不输出偶数  </span></span><br><span class="line">        &#125;</span><br><span class="line">            </span><br><span class="line">        cout&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-goto语句"><a href="#3-goto语句" class="headerlink" title="3.goto语句"></a>3.goto语句</h2><p>作用：无条件跳转语句</p>
-<p>语法：<code>goto 标记;</code></p>
-<p>解释：如果标记的名称存在的，执行goto语句时，会跳转到标记位置。（但是一般不用）</p>
-<p>例如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;1&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">goto</span> flag;<span class="comment">//跳转到flag语句</span></span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;2&quot;</span>&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;3&quot;</span>&lt;&lt;endl;</span><br><span class="line">    flag:</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;4&quot;</span>&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 ]]></content>
       <tags>
         <tag>C++</tag>
@@ -429,7 +429,7 @@
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyInteger</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">friend</span> ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,MyInteger i);<span class="comment">//友元函数，用来输出私有变量</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		MyInteger&amp; <span class="keyword">operator</span>++()<span class="comment">//重载前置++运算符</span></span><br><span class="line">		&#123;</span><br><span class="line">			a++;<span class="comment">//先进行++操作，后返回</span></span><br><span class="line">			<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">		&#125;</span><br><span class="line">    	MyInteger <span class="keyword">operator</span>++(<span class="keyword">int</span>)<span class="comment">//后置++，int是占位参数，用来区分前置和后置++，且只能用int</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//记录初始值</span></span><br><span class="line">			MyInteger temp=*<span class="keyword">this</span>;</span><br><span class="line">			<span class="comment">//实现++操作 </span></span><br><span class="line">			a++;</span><br><span class="line">			<span class="comment">//返回初始值</span></span><br><span class="line">			<span class="keyword">return</span> temp; </span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,MyInteger i)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;i.a;</span><br><span class="line">	<span class="keyword">return</span> cout;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	MyInteger myint;</span><br><span class="line">	cout&lt;&lt;++(++myint)&lt;&lt;endl;<span class="comment">//*this也就是返回myint本身</span></span><br><span class="line">	cout&lt;&lt;myint&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;-----------------&quot;</span>&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;myint++&lt;&lt;endl;<span class="comment">//这里不能实现(myint++)++的操作</span></span><br><span class="line">    cout&lt;&lt;myint&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>注意：前置++返回的是引用，后置++返回的是值</strong></p>
-<h2 id="用全局函数实现"><a href="#用全局函数实现" class="headerlink" title="用全局函数实现"></a>用全局函数实现</h2><h3 id="前置"><a href="#前置" class="headerlink" title="前置++"></a>前置++</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyInteger</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">friend</span> ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,MyInteger i);</span><br><span class="line">	<span class="keyword">friend</span> MyInteger <span class="keyword">operator</span>++(MyInteger i);</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		MyInteger&amp; operator++()//前置++</span></span><br><span class="line"><span class="comment">		&#123;</span></span><br><span class="line"><span class="comment">			a++;</span></span><br><span class="line"><span class="comment">			return *this;</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		MyInteger operator++(int)//后置++，int是占位参数，用来区分前置和后置++，且只能用int</span></span><br><span class="line"><span class="comment">		&#123;</span></span><br><span class="line"><span class="comment">			//记录初始值</span></span><br><span class="line"><span class="comment">			MyInteger temp=*this;</span></span><br><span class="line"><span class="comment">			//实现++操作 </span></span><br><span class="line"><span class="comment">			a++;</span></span><br><span class="line"><span class="comment">			//返回初始值</span></span><br><span class="line"><span class="comment">			return temp; </span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		*/</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,MyInteger i)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;i.a;</span><br><span class="line">	<span class="keyword">return</span> cout;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyInteger <span class="keyword">operator</span>++(MyInteger i)<span class="comment">//前置++</span></span><br><span class="line">&#123;</span><br><span class="line">	i.a=i.a+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	MyInteger myint;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;++a ------------------&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;++(++myint)&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;myint&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;a++ ------------------&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;myint++&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;myint&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;----------------&quot;</span>&lt;&lt;endl;</span><br><span class="line">	++myint;</span><br><span class="line">	cout&lt;&lt;++myint;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="用全局函数实现"><a href="#用全局函数实现" class="headerlink" title="用全局函数实现"></a>用全局函数实现</h2><h3 id="前置"><a href="#前置" class="headerlink" title="前置++"></a>前置++</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyInteger</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">friend</span> ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,MyInteger i);</span><br><span class="line">	<span class="keyword">friend</span> MyInteger <span class="keyword">operator</span>++(MyInteger &amp;i);</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		MyInteger&amp; operator++()//前置++</span></span><br><span class="line"><span class="comment">		&#123;</span></span><br><span class="line"><span class="comment">			a++;</span></span><br><span class="line"><span class="comment">			return *this;</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		MyInteger operator++(int)//后置++，int是占位参数，用来区分前置和后置++，且只能用int</span></span><br><span class="line"><span class="comment">		&#123;</span></span><br><span class="line"><span class="comment">			//记录初始值</span></span><br><span class="line"><span class="comment">			MyInteger temp=*this;</span></span><br><span class="line"><span class="comment">			//实现++操作 </span></span><br><span class="line"><span class="comment">			a++;</span></span><br><span class="line"><span class="comment">			//返回初始值</span></span><br><span class="line"><span class="comment">			return temp; </span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">		*/</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,MyInteger i)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;i.a;</span><br><span class="line">	<span class="keyword">return</span> cout;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyInteger <span class="keyword">operator</span>++(MyInteger &amp;i)<span class="comment">//前置++，这里要传引用，要不无法改变实参</span></span><br><span class="line">&#123;</span><br><span class="line">	i.a=i.a+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	MyInteger myint;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;++a ------------------&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;++(++myint)&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;myint&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;&quot;a++ ------------------&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;myint++&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	cout&lt;&lt;myint&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;----------------&quot;</span>&lt;&lt;endl;</span><br><span class="line">	++myint;</span><br><span class="line">	cout&lt;&lt;++myint;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="后置"><a href="#后置" class="headerlink" title="后置++"></a>后置++</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyInteger</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">friend</span> ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,MyInteger i);</span><br><span class="line">	<span class="keyword">friend</span> MyInteger <span class="keyword">operator</span>++(MyInteger &amp;i,<span class="keyword">int</span>);<span class="comment">//友元函数 </span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream &amp;cout,MyInteger i)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;i.a;</span><br><span class="line">	<span class="keyword">return</span> cout;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyInteger <span class="keyword">operator</span>++(MyInteger &amp;i,<span class="keyword">int</span>)<span class="comment">//后置++，一开始一直返回不了正确值，后来记起来，形参改变实参不会改变，所以这里的i要用引用传值，而且不要忘记加上友元函数</span></span><br><span class="line">&#123;</span><br><span class="line">	MyInteger temp=i;</span><br><span class="line">	i.a=i.a+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	MyInteger myint;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;----------------&quot;</span>&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;myint++&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;myint;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -541,6 +541,9 @@
 <p>对于2、3中的应用场景，有以下两点说明：</p>
 <p><strong>1、构造函数列表初始化执行顺序与成员变量在类中声明顺序相同，与初始化列表中语句书写先后无关。</strong></p>
 <p><strong>2、相对于在构造函数中赋值，初始化列表执行效率更高。</strong></p>
+<p>下面上一道例题让大家品一品</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">rectangle</span>&#123;</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> length,width;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="built_in">rectangle</span>(<span class="keyword">int</span> x,<span class="keyword">int</span> y)&#123;</span><br><span class="line">			length=x;</span><br><span class="line">			width=y;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">			length=x;</span><br><span class="line">			width=y;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">area</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> length*width;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">cuboid</span>:</span><span class="keyword">public</span> rectangle&#123;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> height;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="comment">/* write your code here...继承会把私有变量也继承，只不过不能直接访问，但是可以通过</span></span><br><span class="line"><span class="comment">    继承的函数间接访问啊*/</span></span><br><span class="line">		<span class="built_in">cuboid</span>(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z):<span class="built_in">rectangle</span>(x,y)</span><br><span class="line">        &#123;</span><br><span class="line">            height=z;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">getvolume</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">area</span>()*height;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x,y,z;</span><br><span class="line">	cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;</span><br><span class="line">	<span class="function">cuboid <span class="title">a</span><span class="params">(x,y,z)</span></span>;</span><br><span class="line">	cout&lt;&lt;a.<span class="built_in">getvolume</span>();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
         <tag>C++</tag>
@@ -1067,11 +1070,14 @@
 <p>结果</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Shape()</span><br><span class="line">Rectangle:public Shape</span><br><span class="line">~Rectangle:public Shape</span><br><span class="line">~Shape()</span><br></pre></td></tr></table></figure>
 
-<h1 id="类的多态"><a href="#类的多态" class="headerlink" title="类的多态"></a>类的多态</h1><p>多态：在具有继承关系的多个对象中，通过基类指针(或基类引用)来调用不同子类中的同名成员函数，自动根据不同子类的类型，来实现不同的功能(呈现不同的形态)<br><strong>通常使用虚函数(virtual)来实现多态</strong> </p>
+<h1 id="类的多态"><a href="#类的多态" class="headerlink" title="类的多态"></a>类的多态</h1><p>多态：在具有继承关系的多个对象中，通过基类指针(或基类引用)来调用不同子类中的同名成员函数，自动（当然也可以手动，例如<code>cout&lt;&lt;a.rectangle::area()&lt;&lt;&#39;\n&#39;&lt;&lt;a.area();</code>，其中a是用rectangle的子类创建的对象）根据不同子类的类型，来实现不同的功能(呈现不同的形态)<br><strong>通常使用虚函数(virtual)来实现多态</strong> </p>
 <p>例子：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">double</span> s;<span class="comment">//area</span></span><br><span class="line">		<span class="keyword">double</span> c;<span class="comment">//circumference</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">setArea</span><span class="params">(<span class="keyword">double</span> ss)</span></span>;<span class="comment">//statement</span></span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">getArea</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">setCircumference</span><span class="params">(<span class="keyword">double</span> cc)</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">double</span> <span class="title">getCircumference</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span>:</span><span class="keyword">public</span> Shape</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">double</span> length;</span><br><span class="line">		<span class="keyword">double</span> width;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">setLength</span><span class="params">(<span class="keyword">double</span> len)</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">setWidth</span><span class="params">(<span class="keyword">double</span> wid)</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">getArea</span><span class="params">()</span></span>;<span class="comment">//更改父类中函数定义 </span></span><br><span class="line">		</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Rectangle rect;</span><br><span class="line">	<span class="keyword">double</span> len,wid;</span><br><span class="line">	cout&lt;&lt;<span class="string">&quot;Enter length and width:&quot;</span>;</span><br><span class="line">	cin&gt;&gt;len&gt;&gt;wid;</span><br><span class="line">	rect.<span class="built_in">setLength</span>(len);</span><br><span class="line">	rect.<span class="built_in">setWidth</span>(wid);</span><br><span class="line">	cout&lt;&lt;rect.<span class="built_in">getArea</span>();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Shape::setArea</span><span class="params">(<span class="keyword">double</span> ss)</span><span class="comment">//definition</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	s=ss;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Shape::getArea</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Shape::setCircumference</span><span class="params">(<span class="keyword">double</span> cc)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	c=cc;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Shape::getCircumference</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Rectangle::setLength</span><span class="params">(<span class="keyword">double</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	length=len;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Rectangle::setWidth</span><span class="params">(<span class="keyword">double</span> wid)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	width=wid;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">Rectangle::getArea</span><span class="params">()</span><span class="comment">//此处不再加virtual</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> length*width;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="补充：类中指针的巧妙运用"><a href="#补充：类中指针的巧妙运用" class="headerlink" title="补充：类中指针的巧妙运用"></a>补充：类中指针的巧妙运用</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;Shape&quot;</span>&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span>:</span><span class="keyword">public</span> Shape</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span> :</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;Circle&quot;</span>&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span>:</span><span class="keyword">public</span> Shape</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			cout&lt;&lt;<span class="string">&quot;Rectangle&quot;</span>&lt;&lt;endl;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">drawShape1</span><span class="params">(Shape *x)</span><span class="comment">//指针传值 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	x-&gt;<span class="built_in">draw</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">drawShape2</span><span class="params">(Shape &amp;x)</span><span class="comment">//引用传值 </span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	x.<span class="built_in">draw</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Shape s;</span><br><span class="line">	Circle c;</span><br><span class="line">	Rectangle r;	</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;-------------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">	<span class="comment">//最基本方式</span></span><br><span class="line">	Shape *pShape; </span><br><span class="line">	</span><br><span class="line">	pShape = &amp;s;</span><br><span class="line">	pShape-&gt;<span class="built_in">draw</span>();</span><br><span class="line">	</span><br><span class="line">	pShape = &amp;c;</span><br><span class="line">	pShape-&gt;<span class="built_in">draw</span>();</span><br><span class="line">	</span><br><span class="line">	pShape = &amp;r;</span><br><span class="line">	pShape-&gt;<span class="built_in">draw</span>();</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;-------------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">	<span class="comment">//指针传值 </span></span><br><span class="line">	<span class="built_in">drawShape1</span>(&amp;s);</span><br><span class="line">	<span class="built_in">drawShape1</span>(&amp;c);</span><br><span class="line">	<span class="built_in">drawShape1</span>(&amp;r);</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;-------------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">	<span class="comment">//引用传值 </span></span><br><span class="line">	<span class="built_in">drawShape2</span>(s);</span><br><span class="line">	<span class="built_in">drawShape2</span>(c);</span><br><span class="line">	<span class="built_in">drawShape2</span>(r);</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;-------------------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>指针也可以用来创建子类对象</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseCalculator</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">int</span> m_A;</span><br><span class="line">        <span class="keyword">int</span> m_B;</span><br><span class="line">        <span class="comment">// write your code here......</span></span><br><span class="line">        <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">getResult</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//别忘记返回值</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加法计算器类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AddCalculator</span> :</span> <span class="keyword">public</span> BaseCalculator &#123;</span><br><span class="line">    <span class="comment">// write your code here......</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">getResult</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> m_A+m_B;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 减法计算器类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubCalculator</span> :</span> <span class="keyword">public</span> BaseCalculator &#123;</span><br><span class="line">    <span class="comment">// write your code here......</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">int</span> <span class="title">getResult</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> m_A-m_B;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    BaseCalculator* cal = <span class="keyword">new</span> AddCalculator;<span class="comment">//下面是精髓</span></span><br><span class="line">    cal-&gt;m_A = <span class="number">10</span>;</span><br><span class="line">    cal-&gt;m_B = <span class="number">20</span>;</span><br><span class="line">    cout &lt;&lt; cal-&gt;<span class="built_in">getResult</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">delete</span> cal;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*以上代码等于下面注释 </span></span><br><span class="line"><span class="comment">    AddCalculator cal;</span></span><br><span class="line"><span class="comment">    cal.m_A=10;</span></span><br><span class="line"><span class="comment">    cal.m_B=20;</span></span><br><span class="line"><span class="comment">    cout &lt;&lt; cal.getResult() &lt;&lt; endl;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    </span><br><span class="line">    cal = <span class="keyword">new</span> SubCalculator;</span><br><span class="line">    cal-&gt;m_A = <span class="number">20</span>;</span><br><span class="line">    cal-&gt;m_B = <span class="number">10</span>;</span><br><span class="line">    cout &lt;&lt; cal-&gt;<span class="built_in">getResult</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">delete</span> cal;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <tags>
@@ -1920,119 +1926,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SQL入门</title>
-    <url>/2022/01/12/SQL%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<h1 id="计算机语言"><a href="#计算机语言" class="headerlink" title="计算机语言"></a>计算机语言</h1><ul>
-<li><p>机器语言：例如10101010100011（二进制语言）</p>
-</li>
-<li><p>汇编语言：也是比较接近计算机底层，例如<img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112122525180.png" alt="image-20220112122525180"></p>
-</li>
-<li><p>高级语言：例如C语言（更接近底层）、python、SQL等</p>
-<span id="more"></span></li>
-</ul>
-<h1 id="SQL概述"><a href="#SQL概述" class="headerlink" title="SQL概述"></a>SQL概述</h1><p><strong>SQL</strong> (Structured Query Language:结构化查询语言) 是用于管理关系数据库管理系统（RDBMS）。 SQL 的范围包括数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。</p>
-<h2 id="SQL的特点"><a href="#SQL的特点" class="headerlink" title="SQL的特点"></a>SQL的特点</h2><ul>
-<li>具有总和统一性，不同数据库所支持的SQL稍有不同</li>
-<li>非过程化语言（不需要关心内部操作过程）</li>
-<li>语言简洁，用户容易接受</li>
-<li>以一种语言结构提供两种使用方式，例如SQL和python或java结合使用</li>
-</ul>
-<h2 id="SQL的语法特点"><a href="#SQL的语法特点" class="headerlink" title="SQL的语法特点"></a>SQL的语法特点</h2><ul>
-<li>SQL对关键字的大小写不敏感，比如SELECT和select一样</li>
-<li>SQL语句可以以单行或者多行书写，以分号结束</li>
-<li>SQL注释分单行注释和多行注释，单行注释语法：<code>-- 单行注释</code>，注意–后面有空格；<code>#单行注释</code>，#后可加可不加空格。例如<code>select * from 库名;-- 单行注释</code>。多行注释和C++一样<code>/*  注释内容  */</code>。</li>
-</ul>
-<h1 id="数据库概述"><a href="#数据库概述" class="headerlink" title="数据库概述"></a>数据库概述</h1><p>数据库（DataBase）是“按照数据结构来组织、存储和管理数据的仓库”。是一个长期存储在计算机内的、有组织的、可共享的、统一管理的大量数据的集合。</p>
-<p><strong>数据库应用系统是指基于数据库的应用软件</strong></p>
-<h2 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h2><h3 id="关系型数据库（RDBMS）"><a href="#关系型数据库（RDBMS）" class="headerlink" title="关系型数据库（RDBMS）"></a>关系型数据库（RDBMS）</h3><ul>
-<li>Oracle数据库（最挣钱体积庞大，几个Gb）</li>
-<li>MySQL数据库（最流行中型数据库）</li>
-<li>SQL server数据库（Window上最好的数据库）</li>
-<li>PostgreSQL（功能最强大的开源数据库）</li>
-<li>SQLite（最流行的嵌入式数据库，体积非常小几百kb）</li>
-</ul>
-<h3 id="非关系型数据库（NoSQL）"><a href="#非关系型数据库（NoSQL）" class="headerlink" title="非关系型数据库（NoSQL）"></a>非关系型数据库（NoSQL）</h3><ul>
-<li>Redis（最好的缓存数据库）</li>
-<li>MongoDB（最好的文档型数据库）</li>
-<li>Elasticsearch（最好的搜索服务）</li>
-<li>Cassandra（最好的列式数据库）</li>
-<li>HBase（优秀的分布式、列式数据库）</li>
-</ul>
-<p><strong>两类数据库的区别在于，关系型数据库存储数据用一张张的表，而非关系型数据库有其自身的存储方式</strong></p>
-<h2 id="SQL和数据库管理系统的关系"><a href="#SQL和数据库管理系统的关系" class="headerlink" title="SQL和数据库管理系统的关系"></a>SQL和数据库管理系统的关系</h2><ul>
-<li>SQL是一种用于操作数据库的语言，SQL适用于所有的关系数据库。</li>
-<li>MySQL、Oracle、SQLSever是一个数据库软件，这些数据库软件支持标准的SQL，也就是通过SQL可以使用这些软件，不过每一个数据库系统会在标准SQL的举出上扩展自己的SQL语法</li>
-<li>大部分NoSQL数据库有自己的操作语言，对SQL支持并不好</li>
-</ul>
-<h2 id="关系型数据库的组成"><a href="#关系型数据库的组成" class="headerlink" title="关系型数据库的组成"></a>关系型数据库的组成</h2><p>数据库管理系统（DBMS）主要由数据库（Database）和表（table）组成，一个系统可以有很多数据库，每个数据库可以有很多表。</p>
-<h1 id="MySQL简介"><a href="#MySQL简介" class="headerlink" title="MySQL简介"></a>MySQL简介</h1><ul>
-<li>MySQL如今归Oracle管，并有社区版和企业版</li>
-<li>MySQL使用标准化的SQL语言</li>
-</ul>
-<h2 id="MySQL的特点"><a href="#MySQL的特点" class="headerlink" title="MySQL的特点"></a>MySQL的特点</h2><ol>
-<li>MySQL的数据库是用C和C++语言编写的，以保证源码的可移植性</li>
-<li>支持多个操作系统，例如：Windows、Linux、Mac OS等等</li>
-<li>支持多线程，可以充分利用CPU资源</li>
-<li>为多种编程语言提供API，包括C语言、Java、PHP、Python语言等</li>
-<li>MySQL优化了SQL算法，有效的提高了查询速度</li>
-<li>MySQL开放源代码，且无版权制约，自主性强，使用成本低</li>
-<li>MySQL历史悠久，社区及用户非常活跃，遇到问题，可以很快获得帮助</li>
-</ol>
-<h2 id="MySQL的版本"><a href="#MySQL的版本" class="headerlink" title="MySQL的版本"></a>MySQL的版本</h2><p>针对不同用户，MySQL分为两种不同的版本：</p>
-<p><strong>MySQL Community Server</strong></p>
-<p>社区版本，免费，但是MySQL不提供官方的技术支持</p>
-<p><strong>MySQL Enterprise Edition</strong></p>
-<p>商业版，该版本是收费的，可以试用30天，官方提供技术支持</p>
-<p><strong>MySQL Cluster</strong></p>
-<p>集群版，开源免费，可将几个MySQL Server封装成一个Server</p>
-<p><strong>MySQL Cluster CGE</strong></p>
-<p>高级集群版，需要付费</p>
-<p><strong>MySQL Workbench （GUI TOOL）</strong></p>
-<p>一款专门为MySQL设计的ER/数据库建模工具，MySQL Workbench又分为两个版本，分别是社区版（MySQL Workbench OSS）、商用版（MySQL Workbench SE）</p>
-<h2 id="MySQL的版本命名"><a href="#MySQL的版本命名" class="headerlink" title="MySQL的版本命名"></a>MySQL的版本命名</h2><p>MySQL的命名机制使用三个数字和一个后缀组成的版本号，例如，mysql-8.0.26的版本号这样解释：</p>
-<p>第一个数字（8）是主版本号，描述了文件格式，所有版本5的发行都有相同的文件格式。</p>
-<p>第二个数字（0）是发行级别，主版本号和发行级别组合到一块便构成了发行序列号。</p>
-<p>第三个数字（26）是在此发行系列的版本号，随每个新发行版本递增</p>
-<h1 id="MySQL的安装"><a href="#MySQL的安装" class="headerlink" title="MySQL的安装"></a>MySQL的安装</h1><h2 id="压缩包安装"><a href="#压缩包安装" class="headerlink" title="压缩包安装"></a>压缩包安装</h2><p>去<a href="https://dev.mysql.com/downloads/mysql/">官网下载zip</a>然后解压进行配置</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112153020029.png" alt="image-20220112153020029"></p>
-<p>解压后新建my. ini文件,并编辑</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160645372.png" alt="image-20220112160645372"></p>
-<p>若没有新建文件的权力，修改一下内容</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160750113.png" alt="image-20220112160750113"></p>
-<p>然后配置环境变量（<strong>若不配置，则cmd无法识别mysql指令</strong>）</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161003464.png" alt="image-20220112161003464"></p>
-<p>然后在Path中添加如下内容</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161441314.png" alt="image-20220112161441314"></p>
-<p>配置好后，进入cmd（管理员模式）并打开bin文件如图</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112162133149.png" alt="image-20220112162133149"></p>
-<p>然后对mysql进行初始化，记住初始化密码，下面登录要用</p>
-<p><code>mysqld --initialize --user=mysql --console</code></p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112221537146.png" alt="image-20220112221537146"></p>
-<p>安装mysql服务</p>
-<p><code>mysqld --install</code></p>
-<p>启动mysql服务</p>
-<p><code>net start mysql</code></p>
-<p>登录mysql</p>
-<p><code>mysql -uroot -p</code></p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223115990.png" alt="image-20220112223115990"></p>
-<p>修改root用户密码为root</p>
-<p><code>ALTER USER&#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></p>
-<p>修改root用户权限</p>
-<p><code>create user &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223244690.png" alt="image-20220112223244690"></p>
-<p>退出登录用quit</p>
-<h2 id="程序安装"><a href="#程序安装" class="headerlink" title="程序安装"></a>程序安装</h2><p>去<a href="https://dev.mysql.com/downloads/windows/installer/8.0.html">官网下载程序</a>然后安装</p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112154249700.png" alt="image-20220112154249700"></p>
-<p>这种方法比较上一种，少了配置my.ini文件和初始化的步骤，其余差不多，但需要注意的是配置环境变量时，MySQL的安装路径</p>
-<h1 id="MySQL的卸载"><a href="#MySQL的卸载" class="headerlink" title="MySQL的卸载"></a>MySQL的卸载</h1><p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223649914.png" alt="image-20220112223649914"></p>
-<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223728875.png" alt="image-20220112223728875"></p>
-<p>该图片摘自B站黑马程序员</p>
-]]></content>
-      <tags>
-        <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SQL数据库基本操作</title>
     <url>/2022/01/13/SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<h1 id="DDL语句"><a href="#DDL语句" class="headerlink" title="DDL语句"></a>DDL语句</h1><p>定义：数据库模式定义语言DDL(Data Definition Language)，是用于描述数据库中要存储的现实世界实体的语言。主要由create（添加）、alter（修改）、drop（删除）和 truncate（删除） 四个关键字完成。主要是对<strong>数据库</strong>的常规操作、对<strong>表结构</strong>的常规操作、修改表结构，而<strong>不涉及表中数据</strong>。</p>
@@ -2316,6 +2209,119 @@
 <p><img src="/2022/01/13/SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/image-20220115175411829.png" alt="image-20220115175411829"></p>
 <p>删除所有行的delete和truncate效果一样</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="/2022/01/13/SQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/image-20220115175602576.png" alt="image-20220115175602576"></p>
+]]></content>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL入门</title>
+    <url>/2022/01/12/SQL%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<h1 id="计算机语言"><a href="#计算机语言" class="headerlink" title="计算机语言"></a>计算机语言</h1><ul>
+<li><p>机器语言：例如10101010100011（二进制语言）</p>
+</li>
+<li><p>汇编语言：也是比较接近计算机底层，例如<img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112122525180.png" alt="image-20220112122525180"></p>
+</li>
+<li><p>高级语言：例如C语言（更接近底层）、python、SQL等</p>
+<span id="more"></span></li>
+</ul>
+<h1 id="SQL概述"><a href="#SQL概述" class="headerlink" title="SQL概述"></a>SQL概述</h1><p><strong>SQL</strong> (Structured Query Language:结构化查询语言) 是用于管理关系数据库管理系统（RDBMS）。 SQL 的范围包括数据插入、查询、更新和删除，数据库模式创建和修改，以及数据访问控制。</p>
+<h2 id="SQL的特点"><a href="#SQL的特点" class="headerlink" title="SQL的特点"></a>SQL的特点</h2><ul>
+<li>具有总和统一性，不同数据库所支持的SQL稍有不同</li>
+<li>非过程化语言（不需要关心内部操作过程）</li>
+<li>语言简洁，用户容易接受</li>
+<li>以一种语言结构提供两种使用方式，例如SQL和python或java结合使用</li>
+</ul>
+<h2 id="SQL的语法特点"><a href="#SQL的语法特点" class="headerlink" title="SQL的语法特点"></a>SQL的语法特点</h2><ul>
+<li>SQL对关键字的大小写不敏感，比如SELECT和select一样</li>
+<li>SQL语句可以以单行或者多行书写，以分号结束</li>
+<li>SQL注释分单行注释和多行注释，单行注释语法：<code>-- 单行注释</code>，注意–后面有空格；<code>#单行注释</code>，#后可加可不加空格。例如<code>select * from 库名;-- 单行注释</code>。多行注释和C++一样<code>/*  注释内容  */</code>。</li>
+</ul>
+<h1 id="数据库概述"><a href="#数据库概述" class="headerlink" title="数据库概述"></a>数据库概述</h1><p>数据库（DataBase）是“按照数据结构来组织、存储和管理数据的仓库”。是一个长期存储在计算机内的、有组织的、可共享的、统一管理的大量数据的集合。</p>
+<p><strong>数据库应用系统是指基于数据库的应用软件</strong></p>
+<h2 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h2><h3 id="关系型数据库（RDBMS）"><a href="#关系型数据库（RDBMS）" class="headerlink" title="关系型数据库（RDBMS）"></a>关系型数据库（RDBMS）</h3><ul>
+<li>Oracle数据库（最挣钱体积庞大，几个Gb）</li>
+<li>MySQL数据库（最流行中型数据库）</li>
+<li>SQL server数据库（Window上最好的数据库）</li>
+<li>PostgreSQL（功能最强大的开源数据库）</li>
+<li>SQLite（最流行的嵌入式数据库，体积非常小几百kb）</li>
+</ul>
+<h3 id="非关系型数据库（NoSQL）"><a href="#非关系型数据库（NoSQL）" class="headerlink" title="非关系型数据库（NoSQL）"></a>非关系型数据库（NoSQL）</h3><ul>
+<li>Redis（最好的缓存数据库）</li>
+<li>MongoDB（最好的文档型数据库）</li>
+<li>Elasticsearch（最好的搜索服务）</li>
+<li>Cassandra（最好的列式数据库）</li>
+<li>HBase（优秀的分布式、列式数据库）</li>
+</ul>
+<p><strong>两类数据库的区别在于，关系型数据库存储数据用一张张的表，而非关系型数据库有其自身的存储方式</strong></p>
+<h2 id="SQL和数据库管理系统的关系"><a href="#SQL和数据库管理系统的关系" class="headerlink" title="SQL和数据库管理系统的关系"></a>SQL和数据库管理系统的关系</h2><ul>
+<li>SQL是一种用于操作数据库的语言，SQL适用于所有的关系数据库。</li>
+<li>MySQL、Oracle、SQLSever是一个数据库软件，这些数据库软件支持标准的SQL，也就是通过SQL可以使用这些软件，不过每一个数据库系统会在标准SQL的举出上扩展自己的SQL语法</li>
+<li>大部分NoSQL数据库有自己的操作语言，对SQL支持并不好</li>
+</ul>
+<h2 id="关系型数据库的组成"><a href="#关系型数据库的组成" class="headerlink" title="关系型数据库的组成"></a>关系型数据库的组成</h2><p>数据库管理系统（DBMS）主要由数据库（Database）和表（table）组成，一个系统可以有很多数据库，每个数据库可以有很多表。</p>
+<h1 id="MySQL简介"><a href="#MySQL简介" class="headerlink" title="MySQL简介"></a>MySQL简介</h1><ul>
+<li>MySQL如今归Oracle管，并有社区版和企业版</li>
+<li>MySQL使用标准化的SQL语言</li>
+</ul>
+<h2 id="MySQL的特点"><a href="#MySQL的特点" class="headerlink" title="MySQL的特点"></a>MySQL的特点</h2><ol>
+<li>MySQL的数据库是用C和C++语言编写的，以保证源码的可移植性</li>
+<li>支持多个操作系统，例如：Windows、Linux、Mac OS等等</li>
+<li>支持多线程，可以充分利用CPU资源</li>
+<li>为多种编程语言提供API，包括C语言、Java、PHP、Python语言等</li>
+<li>MySQL优化了SQL算法，有效的提高了查询速度</li>
+<li>MySQL开放源代码，且无版权制约，自主性强，使用成本低</li>
+<li>MySQL历史悠久，社区及用户非常活跃，遇到问题，可以很快获得帮助</li>
+</ol>
+<h2 id="MySQL的版本"><a href="#MySQL的版本" class="headerlink" title="MySQL的版本"></a>MySQL的版本</h2><p>针对不同用户，MySQL分为两种不同的版本：</p>
+<p><strong>MySQL Community Server</strong></p>
+<p>社区版本，免费，但是MySQL不提供官方的技术支持</p>
+<p><strong>MySQL Enterprise Edition</strong></p>
+<p>商业版，该版本是收费的，可以试用30天，官方提供技术支持</p>
+<p><strong>MySQL Cluster</strong></p>
+<p>集群版，开源免费，可将几个MySQL Server封装成一个Server</p>
+<p><strong>MySQL Cluster CGE</strong></p>
+<p>高级集群版，需要付费</p>
+<p><strong>MySQL Workbench （GUI TOOL）</strong></p>
+<p>一款专门为MySQL设计的ER/数据库建模工具，MySQL Workbench又分为两个版本，分别是社区版（MySQL Workbench OSS）、商用版（MySQL Workbench SE）</p>
+<h2 id="MySQL的版本命名"><a href="#MySQL的版本命名" class="headerlink" title="MySQL的版本命名"></a>MySQL的版本命名</h2><p>MySQL的命名机制使用三个数字和一个后缀组成的版本号，例如，mysql-8.0.26的版本号这样解释：</p>
+<p>第一个数字（8）是主版本号，描述了文件格式，所有版本5的发行都有相同的文件格式。</p>
+<p>第二个数字（0）是发行级别，主版本号和发行级别组合到一块便构成了发行序列号。</p>
+<p>第三个数字（26）是在此发行系列的版本号，随每个新发行版本递增</p>
+<h1 id="MySQL的安装"><a href="#MySQL的安装" class="headerlink" title="MySQL的安装"></a>MySQL的安装</h1><h2 id="压缩包安装"><a href="#压缩包安装" class="headerlink" title="压缩包安装"></a>压缩包安装</h2><p>去<a href="https://dev.mysql.com/downloads/mysql/">官网下载zip</a>然后解压进行配置</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112153020029.png" alt="image-20220112153020029"></p>
+<p>解压后新建my. ini文件,并编辑</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160645372.png" alt="image-20220112160645372"></p>
+<p>若没有新建文件的权力，修改一下内容</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112160750113.png" alt="image-20220112160750113"></p>
+<p>然后配置环境变量（<strong>若不配置，则cmd无法识别mysql指令</strong>）</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161003464.png" alt="image-20220112161003464"></p>
+<p>然后在Path中添加如下内容</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112161441314.png" alt="image-20220112161441314"></p>
+<p>配置好后，进入cmd（管理员模式）并打开bin文件如图</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112162133149.png" alt="image-20220112162133149"></p>
+<p>然后对mysql进行初始化，记住初始化密码，下面登录要用</p>
+<p><code>mysqld --initialize --user=mysql --console</code></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112221537146.png" alt="image-20220112221537146"></p>
+<p>安装mysql服务</p>
+<p><code>mysqld --install</code></p>
+<p>启动mysql服务</p>
+<p><code>net start mysql</code></p>
+<p>登录mysql</p>
+<p><code>mysql -uroot -p</code></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223115990.png" alt="image-20220112223115990"></p>
+<p>修改root用户密码为root</p>
+<p><code>ALTER USER&#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></p>
+<p>修改root用户权限</p>
+<p><code>create user &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</code></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223244690.png" alt="image-20220112223244690"></p>
+<p>退出登录用quit</p>
+<h2 id="程序安装"><a href="#程序安装" class="headerlink" title="程序安装"></a>程序安装</h2><p>去<a href="https://dev.mysql.com/downloads/windows/installer/8.0.html">官网下载程序</a>然后安装</p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112154249700.png" alt="image-20220112154249700"></p>
+<p>这种方法比较上一种，少了配置my.ini文件和初始化的步骤，其余差不多，但需要注意的是配置环境变量时，MySQL的安装路径</p>
+<h1 id="MySQL的卸载"><a href="#MySQL的卸载" class="headerlink" title="MySQL的卸载"></a>MySQL的卸载</h1><p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223649914.png" alt="image-20220112223649914"></p>
+<p><img src="/2022/01/12/SQL%E5%85%A5%E9%97%A8/image-20220112223728875.png" alt="image-20220112223728875"></p>
+<p>该图片摘自B站黑马程序员</p>
 ]]></content>
       <tags>
         <tag>SQL</tag>
@@ -3516,7 +3522,7 @@
 <h1 id="社工-初步收集"><a href="#社工-初步收集" class="headerlink" title="社工-初步收集"></a>社工-初步收集</h1><p>进去后发现可下载文件，我们下载后打开，发现没啥线索，既然是信息搜集，我们就要扫后台，扫描到.git文件，进去后，没有发现关键线索，但是发现了后台登录页面，但是不知道用户名和密码，实在没办法了，看大佬wp，发现我们要使用wireshark工具进行抓包，先开wireshark，然后再开exe文件，然后在包中尝试搜索User发现关键信息</p>
 <p><img src="/2022/04/02/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95-7/image-20220402180235715.png" alt="image-20220402180235715"></p>
 <p>这里的用户名和密码一看就是经过了base64加密。解密结果如下</p>
-<p>User：<a href="mailto:&#x62;&#x75;&#103;&#x6b;&#x75;&#x6b;&#x75;&#64;&#49;&#54;&#x33;&#x2e;&#99;&#x6f;&#109;">&#x62;&#x75;&#103;&#x6b;&#x75;&#x6b;&#x75;&#64;&#49;&#54;&#x33;&#x2e;&#99;&#x6f;&#109;</a></p>
+<p>User：<a href="mailto:&#x62;&#x75;&#x67;&#107;&#117;&#107;&#x75;&#64;&#49;&#x36;&#51;&#46;&#x63;&#111;&#x6d;">&#x62;&#x75;&#x67;&#107;&#117;&#107;&#x75;&#64;&#49;&#x36;&#51;&#46;&#x63;&#111;&#x6d;</a></p>
 <p>Pass：XSLROCPMNWWZQDZL</p>
 <p>登录显示密码错误，然后继续看wp</p>
 <p>知道邮箱可以用授权码登录，所以我们用第三方邮箱登录看看有什么关键信息</p>
